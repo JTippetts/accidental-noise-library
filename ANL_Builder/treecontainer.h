@@ -1,6 +1,8 @@
 #ifndef TREECONTAINER_H
 #define TREECONTAINER_H
-#include "anl.h"
+#include "../ANL_Noise/anl_noise.h"
+#include "../ANL_RGBA/anl_rgba.h"
+#include "../ANL_Imaging/anl_imaging.h"
 #include <map>
 #include <string>
 
