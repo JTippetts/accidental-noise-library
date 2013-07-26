@@ -1,5 +1,5 @@
 # Define target name
-set (TARGET_NAME ANL_Imaging)
+set (TARGET_NAME Imaging)
 
 # Define source files
 file (GLOB CPP_FILES *.cpp)

@@ -1,5 +1,5 @@
 # Define target name
-set (TARGET_NAME ANL_RGBA)
+set (TARGET_NAME RGBA)
 
 # Define source files
 file (GLOB CPP_FILES *.cpp)

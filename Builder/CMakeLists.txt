@@ -1,5 +1,5 @@
 # Define target name
-set (TARGET_NAME ANL_Builder)
+set (TARGET_NAME Builder)
 
 # Define source files
 file (GLOB CPP_FILES *.cpp)

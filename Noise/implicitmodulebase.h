@@ -7,6 +7,7 @@
 #define MaxSources 20
 namespace anl
 {
+	
 class CImplicitModuleBase
 {
 public:

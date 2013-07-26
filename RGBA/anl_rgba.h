@@ -1,6 +1,7 @@
 #ifndef ANL_RGBA_H
 #define ANL_RGBA_H
 
+#include "rgbamodulebase.h"
 #include "rgbablend.h"
 #include "rgbablendops.h"
 #include "rgbacolorops.h"

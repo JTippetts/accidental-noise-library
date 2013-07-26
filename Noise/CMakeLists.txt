@@ -1,5 +1,5 @@
 # Define target name
-set (TARGET_NAME ANL_Noise)
+set (TARGET_NAME Noise)
 
 # Define source files
 file (GLOB CPP_FILES *.cpp)
