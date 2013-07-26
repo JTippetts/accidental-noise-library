@@ -45,6 +45,34 @@ namespace anl
     {
         return getRGBA(name);
     }
+	
+	std::shared_ptr<CImplicitBufferBase> CTreeContainer::getImplicitBuffer(std::string name)
+    {
+        auto i=m_implicitbuffers.find(name);
+        if(i==m_implicitbuffers.end()) return 0;
+        return i->second;
+    }
+
+    CImplicitBufferBase *CTreeContainer::getImplicitBufferUnsafe(std::string name)
+    {
+        auto p=getImplicitBuffer(name);
+        if(!p) return 0;
+        return p.get();
+    }
+
+    CRGBABufferBase *CTreeContainer::getRGBABufferUnsafe(std::string name)
+    {
+        auto p=getRGBABuffer(name);
+        if(!p) return 0;
+        return p.get();
+    }
+
+    std::shared_ptr<CRGBABufferBase> CTreeContainer::getRGBABuffer(std::string name)
+    {
+        auto i=m_rgbabuffers.find(name);
+        if(i==m_rgbabuffers.end()) return 0;
+        return i->second;
+    }
 
     CTreeContainer &CTreeContainer::autoCorrect(std::string name, std::string src, double low, double high)
     {
@@ -2456,8 +2484,146 @@ namespace anl
         m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
         return *this;
     }
+	
+	CTreeContainer &CTreeContainer::implicitBufferImplicitAdapter(std::string name, std::string source, int mapping, SMappingRanges ranges, bool use_z, double z)
+    {
+        if(getImplicitBuffer(name)) return *this;
+        auto src=get(source);
+        if(!src) return *this;
+
+        m_implicitbuffers[name]=std::shared_ptr<CImplicitBufferBase>( new CImplicitBufferImplicitAdapter(src,mapping,ranges,use_z,z));
+
+      
+        return *this;
+    }
+
+    CTreeContainer &CTreeContainer::implicitBufferBlur(std::string name, std::string source, double blursize, bool seamless)
+    {
+        if(getImplicitBuffer(name) ||get(name) || getRGBA(name)) return *this;
+        auto src=getImplicitBuffer(source);
+        if(!src) return *this;
+
+        m_implicitbuffers[name]=std::shared_ptr<CImplicitBufferBase> (new CImplicitBufferBlur(src,blursize,seamless));
+
+       
+        return *this;
+    }
+
+    CTreeContainer &CTreeContainer::implicitBufferScaleToRange(std::string name, std::string source, double low, double high)
+    {
+        if(getImplicitBuffer(name) ||get(name) || getRGBA(name)) return *this;
+        auto src=getImplicitBuffer(source);
+        if(!src) return *this;
+
+        m_implicitbuffers[name]=std::shared_ptr<CImplicitBufferBase> (new CImplicitBufferScaleToRange(src,low,high));
+
+        
+        return *this;
+    }
+
+    CTreeContainer &CTreeContainer::implicitBufferBumpMap(std::string name, std::string source, double lx, double ly, double lz, double spacing, bool seamless)
+    {
+        if(getImplicitBuffer(name) ||get(name) || getRGBA(name)) return *this;
+        auto src=getImplicitBuffer(source);
+        if(!src) return *this;
+
+        m_implicitbuffers[name]=std::shared_ptr<CImplicitBufferBase> (new CImplicitBufferBumpMap(src,lx,ly,lz,spacing,seamless));
+
+        
+
+        return *this;
+    }
+
+    CTreeContainer &CTreeContainer::implicitBufferUnaryMath(std::string name, std::string source, int op)
+    {
+         if(getImplicitBuffer(name) ||get(name) || getRGBA(name)) return *this;
+        auto src=getImplicitBuffer(source);
+        if(!src) return *this;
+
+        m_implicitbuffers[name]=std::shared_ptr<CImplicitBufferBase> (new CImplicitBufferUnaryMath(src,op));
+
+       
+        return *this;
+    }
+
+    CTreeContainer &CTreeContainer::implicitBufferSimpleErode(std::string name, std::string source, int numdrops, float power)
+    {
+        if(getImplicitBuffer(name) ||get(name) || getRGBA(name)) return *this;
+        auto src=getImplicitBuffer(source);
+        if(!src) return *this;
+
+        m_implicitbuffers[name]=std::shared_ptr<CImplicitBufferBase> (new CImplicitBufferSimpleErode(src,numdrops,power));
+
+        
+
+        return *this;
+    }
+
+    CTreeContainer &CTreeContainer::implicitBufferSimpleRainfall(std::string name, std::string source, std::string depth, int iterations)
+    {
+        if(getImplicitBuffer(name) ||get(name) || getRGBA(name)) return *this;
+        auto src=getImplicitBuffer(source);
+        if(!src) return *this;
+        auto dep=getImplicitBuffer(depth);
+        if(!dep) return *this;
+
+        m_implicitbuffers[name]=std::shared_ptr<CImplicitBufferBase> (new CImplicitBufferSimpleRainfall(src,dep,iterations));
+
+        
+
+        return *this;
+    }
 
 
+
+    CTreeContainer &CTreeContainer::rgbaBufferRGBAAdapter(std::string name, std::string source, int mapping, SMappingRanges ranges, bool use_z, double z)
+    {
+        if(getRGBABuffer(name) || getImplicitBuffer(name) || get(name) || getRGBA(name)) return *this;
+        auto src=getRGBA(source);
+        if(!src) return *this;
+
+        m_rgbabuffers[name]=std::shared_ptr<CRGBABufferBase> (new CRGBABufferRGBAAdapter(src,mapping,ranges,use_z,z));
+
+        
+        return *this;
+    }
+
+    CTreeContainer &CTreeContainer::rgbaBufferImplicitBufferAdapter(std::string name, std::string source)
+    {
+        if(getRGBABuffer(name) || getImplicitBuffer(name) || get(name) || getRGBA(name)) return *this;
+        auto src=getImplicitBuffer(source);
+        if(!src) return *this;
+
+        m_rgbabuffers[name]=std::shared_ptr<CRGBABufferBase> (new CRGBABufferImplicitBufferAdapter(src));
+
+        
+        return *this;
+    }
+
+    CTreeContainer &CTreeContainer::rgbaBufferBlur(std::string name, std::string source, double blursize, bool seamless)
+    {
+        if(getRGBABuffer(name) || getImplicitBuffer(name) || get(name) || getRGBA(name)) return *this;
+        auto src=getRGBABuffer(source);
+        if(!src) return *this;
+
+        m_rgbabuffers[name]=std::shared_ptr<CRGBABufferBase> (new CRGBABufferBlur(src,blursize,seamless));
+
+        return *this;
+    }
+
+    CTreeContainer &CTreeContainer::rgbaBufferImplicitBufferMultiply(std::string name, std::string rgbasource, std::string implicitsource)
+    {
+        if(getRGBABuffer(name) || getImplicitBuffer(name) || get(name) || getRGBA(name)) return *this;
+        auto rgbasrc=getRGBABuffer(rgbasource);
+        if(!rgbasrc) return *this;
+
+        auto impsrc=getImplicitBuffer(implicitsource);
+        if(!impsrc) return *this;
+
+        m_rgbabuffers[name]=std::shared_ptr<CRGBABufferBase> (new CRGBABufferImplicitBufferMultiply(rgbasrc,impsrc));
+
+        return *this;
+    }
 
 };
 

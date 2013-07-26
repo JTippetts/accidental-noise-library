@@ -1,10 +1,8 @@
-#ifndef TREECONTAINER_H
-#define TREECONTAINER_H
-#include "../Noise/anl_noise.h"
-#include "../RGBA/anl_rgba.h"
-#include "../Imaging/anl_imaging.h"
-#include <map>
-#include <string>
+$#include "anl_noise.h"
+$#include "anl_rgba.h"
+$#include "anl_imaging.h"
+$#include "treecontainer.h"
+
 
 namespace anl
 {
@@ -15,7 +13,7 @@ namespace anl
         ~CTreeContainer();
 
         CTreeContainer &autoCorrect(std::string name, std::string src, double low=0, double high=1);
-        CTreeContainer &basisFunction(std::string name, int type=GRADIENT, int interp=QUINTIC);
+        CTreeContainer &basisFunction(std::string name, int type, int interp);
         CTreeContainer &blend(std::string name, double low, double high, double control);
         CTreeContainer &blend(std::string name, double low, double high, std::string control);
         CTreeContainer &blend(std::string name, double low, std::string high, double control);
@@ -68,10 +66,10 @@ namespace anl
 
         // TODO: ImplicitExtractRGBAChannel
 
-        CTreeContainer &fractal(std::string name, unsigned int type=FBM, unsigned int basis=GRADIENT, unsigned int interp=QUINTIC, int octaves=8, double freq=1);
+        CTreeContainer &fractal(std::string name, unsigned int type, unsigned int basis, unsigned int interp, int octaves=8, double freq=1);
 
-        CTreeContainer &functionGradient(std::string name, double s, int axis=X_AXIS, double spacing=0.0001);
-        CTreeContainer &functionGradient(std::string name, std::string s, int axis=X_AXIS, double spacing=0.0001);
+        CTreeContainer &functionGradient(std::string name, double s, int axis, double spacing=0.0001);
+        CTreeContainer &functionGradient(std::string name, std::string s, int axis, double spacing=0.0001);
 
         CTreeContainer &gradient(std::string name, double x1, double x2, double y1, double y2, double z1, double z2, double w1=0, double w2=0, double u1=0, double u2=0, double v1=0, double v2=0);
 
@@ -231,23 +229,23 @@ namespace anl
         CTreeContainer &triangle(std::string name, std::string src, std::string period, double offset);
         CTreeContainer &triangle(std::string name, std::string src, std::string period, std::string offset);
 
-        CTreeContainer &rgbaBlend(std::string name, double control, SRGBA low, SRGBA high);
-        CTreeContainer &rgbaBlend(std::string name, double control, SRGBA low, std::string high);
-        CTreeContainer &rgbaBlend(std::string name, double control, std::string low, SRGBA high);
+        CTreeContainer &rgbaBlend(std::string name, double control, anl::SRGBA low, anl::SRGBA high);
+        CTreeContainer &rgbaBlend(std::string name, double control, anl::SRGBA low, std::string high);
+        CTreeContainer &rgbaBlend(std::string name, double control, std::string low, anl::SRGBA high);
         CTreeContainer &rgbaBlend(std::string name, double control, std::string low, std::string high);
-        CTreeContainer &rgbaBlend(std::string name, std::string control, SRGBA low, SRGBA high);
-        CTreeContainer &rgbaBlend(std::string name, std::string control, SRGBA low, std::string high);
-        CTreeContainer &rgbaBlend(std::string name, std::string control, std::string low, SRGBA high);
+        CTreeContainer &rgbaBlend(std::string name, std::string control, anl::SRGBA low, anl::SRGBA high);
+        CTreeContainer &rgbaBlend(std::string name, std::string control, anl::SRGBA low, std::string high);
+        CTreeContainer &rgbaBlend(std::string name, std::string control, std::string low, anl::SRGBA high);
         CTreeContainer &rgbaBlend(std::string name, std::string control, std::string low, std::string high);
 
-        CTreeContainer &rgbaBlendOps(std::string name, SRGBA s1, SRGBA s2, int op1, int op2);
-        CTreeContainer &rgbaBlendOps(std::string name, SRGBA s1, std::string s2, int op1, int op2);
-        CTreeContainer &rgbaBlendOps(std::string name, std::string s1, SRGBA s2, int op1, int op2);
+        CTreeContainer &rgbaBlendOps(std::string name, anl::SRGBA s1, anl::SRGBA s2, int op1, int op2);
+        CTreeContainer &rgbaBlendOps(std::string name, anl::SRGBA s1, std::string s2, int op1, int op2);
+        CTreeContainer &rgbaBlendOps(std::string name, std::string s1, anl::SRGBA s2, int op1, int op2);
         CTreeContainer &rgbaBlendOps(std::string name, std::string s1, std::string s2, int op1, int op2);
 
-        CTreeContainer &rgbaColorOps(std::string name, SRGBA s1, SRGBA s2, int op);
-        CTreeContainer &rgbaColorOps(std::string name, SRGBA s1, std::string s2, int op);
-        CTreeContainer &rgbaColorOps(std::string name, std::string s1, SRGBA s2, int op);
+        CTreeContainer &rgbaColorOps(std::string name, anl::SRGBA s1, anl::SRGBA s2, int op);
+        CTreeContainer &rgbaColorOps(std::string name, anl::SRGBA s1, std::string s2, int op);
+        CTreeContainer &rgbaColorOps(std::string name, std::string s1, anl::SRGBA s2, int op);
         CTreeContainer &rgbaColorOps(std::string name, std::string s1, std::string s2, int op);
 
         CTreeContainer &rgbaCompositeChannels(std::string name, double r, double g, double b, double a, int mode);
@@ -269,34 +267,34 @@ namespace anl
 
         // TODO: RGBACurve
 
-        CTreeContainer &rgbaHSVtoRGBA(std::string name, SRGBA c);
+        CTreeContainer &rgbaHSVtoRGBA(std::string name, anl::SRGBA c);
         CTreeContainer &rgbaHSVtoRGBA(std::string name, std::string c);
 
-        CTreeContainer &rgbaRGBAtoHSV(std::string name, SRGBA c);
+        CTreeContainer &rgbaRGBAtoHSV(std::string name, anl::SRGBA c);
         CTreeContainer &rgbaRGBAtoHSV(std::string name, std::string c);
 
         CTreeContainer &rgbaImplicitGrayscale(std::string name, double s);
         CTreeContainer &rgbaImplicitGrayscale(std::string name, std::string s);
 
-        CTreeContainer &rgbaNormalize(std::string name, SRGBA c);
+        CTreeContainer &rgbaNormalize(std::string name, anl::SRGBA c);
         CTreeContainer &rgbaNormalize(std::string name, std::string c);
 
-        CTreeContainer &rgbaRotateColor(std::string name, SRGBA c, double ax, double ay, double az, double angle);
-        CTreeContainer &rgbaRotateColor(std::string name, SRGBA c, double ax, double ay, double az, std::string angle);
-        CTreeContainer &rgbaRotateColor(std::string name, SRGBA c, double ax, double ay, std::string az, double angle);
-        CTreeContainer &rgbaRotateColor(std::string name, SRGBA c, double ax, double ay, std::string az, std::string angle);
-        CTreeContainer &rgbaRotateColor(std::string name, SRGBA c, double ax, std::string ay, double az, double angle);
-        CTreeContainer &rgbaRotateColor(std::string name, SRGBA c, double ax, std::string ay, double az, std::string angle);
-        CTreeContainer &rgbaRotateColor(std::string name, SRGBA c, double ax, std::string ay, std::string az, double angle);
-        CTreeContainer &rgbaRotateColor(std::string name, SRGBA c, double ax, std::string ay, std::string az, std::string angle);
-        CTreeContainer &rgbaRotateColor(std::string name, SRGBA c, std::string ax, double ay, double az, double angle);
-        CTreeContainer &rgbaRotateColor(std::string name, SRGBA c, std::string ax, double ay, double az, std::string angle);
-        CTreeContainer &rgbaRotateColor(std::string name, SRGBA c, std::string ax, double ay, std::string az, double angle);
-        CTreeContainer &rgbaRotateColor(std::string name, SRGBA c, std::string ax, double ay, std::string az, std::string angle);
-        CTreeContainer &rgbaRotateColor(std::string name, SRGBA c, std::string ax, std::string ay, double az, double angle);
-        CTreeContainer &rgbaRotateColor(std::string name, SRGBA c, std::string ax, std::string ay, double az, std::string angle);
-        CTreeContainer &rgbaRotateColor(std::string name, SRGBA c, std::string ax, std::string ay, std::string az, double angle);
-        CTreeContainer &rgbaRotateColor(std::string name, SRGBA c, std::string ax, std::string ay, std::string az, std::string angle);
+        CTreeContainer &rgbaRotateColor(std::string name, anl::SRGBA c, double ax, double ay, double az, double angle);
+        CTreeContainer &rgbaRotateColor(std::string name, anl::SRGBA c, double ax, double ay, double az, std::string angle);
+        CTreeContainer &rgbaRotateColor(std::string name, anl::SRGBA c, double ax, double ay, std::string az, double angle);
+        CTreeContainer &rgbaRotateColor(std::string name, anl::SRGBA c, double ax, double ay, std::string az, std::string angle);
+        CTreeContainer &rgbaRotateColor(std::string name, anl::SRGBA c, double ax, std::string ay, double az, double angle);
+        CTreeContainer &rgbaRotateColor(std::string name, anl::SRGBA c, double ax, std::string ay, double az, std::string angle);
+        CTreeContainer &rgbaRotateColor(std::string name, anl::SRGBA c, double ax, std::string ay, std::string az, double angle);
+        CTreeContainer &rgbaRotateColor(std::string name, anl::SRGBA c, double ax, std::string ay, std::string az, std::string angle);
+        CTreeContainer &rgbaRotateColor(std::string name, anl::SRGBA c, std::string ax, double ay, double az, double angle);
+        CTreeContainer &rgbaRotateColor(std::string name, anl::SRGBA c, std::string ax, double ay, double az, std::string angle);
+        CTreeContainer &rgbaRotateColor(std::string name, anl::SRGBA c, std::string ax, double ay, std::string az, double angle);
+        CTreeContainer &rgbaRotateColor(std::string name, anl::SRGBA c, std::string ax, double ay, std::string az, std::string angle);
+        CTreeContainer &rgbaRotateColor(std::string name, anl::SRGBA c, std::string ax, std::string ay, double az, double angle);
+        CTreeContainer &rgbaRotateColor(std::string name, anl::SRGBA c, std::string ax, std::string ay, double az, std::string angle);
+        CTreeContainer &rgbaRotateColor(std::string name, anl::SRGBA c, std::string ax, std::string ay, std::string az, double angle);
+        CTreeContainer &rgbaRotateColor(std::string name, anl::SRGBA c, std::string ax, std::string ay, std::string az, std::string angle);
         CTreeContainer &rgbaRotateColor(std::string name, std::string c, double ax, double ay, double az, double angle);
         CTreeContainer &rgbaRotateColor(std::string name, std::string c, double ax, double ay, double az, std::string angle);
         CTreeContainer &rgbaRotateColor(std::string name, std::string c, double ax, double ay, std::string az, double angle);
@@ -314,30 +312,30 @@ namespace anl
         CTreeContainer &rgbaRotateColor(std::string name, std::string c, std::string ax, std::string ay, std::string az, double angle);
         CTreeContainer &rgbaRotateColor(std::string name, std::string c, std::string ax, std::string ay, std::string az, std::string angle);
 
-        CTreeContainer &rgbaSelect(std::string name, SRGBA low, SRGBA high, double control, double threshold, double falloff);
-        CTreeContainer &rgbaSelect(std::string name, SRGBA low, SRGBA high, double control, double threshold, std::string falloff);
-        CTreeContainer &rgbaSelect(std::string name, SRGBA low, SRGBA high, double control, std::string threshold, double falloff);
-        CTreeContainer &rgbaSelect(std::string name, SRGBA low, SRGBA high, double control, std::string threshold, std::string falloff);
-        CTreeContainer &rgbaSelect(std::string name, SRGBA low, SRGBA high, std::string control, double threshold, double falloff);
-        CTreeContainer &rgbaSelect(std::string name, SRGBA low, SRGBA high, std::string control, double threshold, std::string falloff);
-        CTreeContainer &rgbaSelect(std::string name, SRGBA low, SRGBA high, std::string control, std::string threshold, double falloff);
-        CTreeContainer &rgbaSelect(std::string name, SRGBA low, SRGBA high, std::string control, std::string threshold, std::string falloff);
-        CTreeContainer &rgbaSelect(std::string name, SRGBA low, std::string high, double control, double threshold, double falloff);
-        CTreeContainer &rgbaSelect(std::string name, SRGBA low, std::string high, double control, double threshold, std::string falloff);
-        CTreeContainer &rgbaSelect(std::string name, SRGBA low, std::string high, double control, std::string threshold, double falloff);
-        CTreeContainer &rgbaSelect(std::string name, SRGBA low, std::string high, double control, std::string threshold, std::string falloff);
-        CTreeContainer &rgbaSelect(std::string name, SRGBA low, std::string high, std::string control, double threshold, double falloff);
-        CTreeContainer &rgbaSelect(std::string name, SRGBA low, std::string high, std::string control, double threshold, std::string falloff);
-        CTreeContainer &rgbaSelect(std::string name, SRGBA low, std::string high, std::string control, std::string threshold, double falloff);
-        CTreeContainer &rgbaSelect(std::string name, SRGBA low, std::string high, std::string control, std::string threshold, std::string falloff);
-        CTreeContainer &rgbaSelect(std::string name, std::string low, SRGBA high, double control, double threshold, double falloff);
-        CTreeContainer &rgbaSelect(std::string name, std::string low, SRGBA high, double control, double threshold, std::string falloff);
-        CTreeContainer &rgbaSelect(std::string name, std::string low, SRGBA high, double control, std::string threshold, double falloff);
-        CTreeContainer &rgbaSelect(std::string name, std::string low, SRGBA high, double control, std::string threshold, std::string falloff);
-        CTreeContainer &rgbaSelect(std::string name, std::string low, SRGBA high, std::string control, double threshold, double falloff);
-        CTreeContainer &rgbaSelect(std::string name, std::string low, SRGBA high, std::string control, double threshold, std::string falloff);
-        CTreeContainer &rgbaSelect(std::string name, std::string low, SRGBA high, std::string control, std::string threshold, double falloff);
-        CTreeContainer &rgbaSelect(std::string name, std::string low, SRGBA high, std::string control, std::string threshold, std::string falloff);
+        CTreeContainer &rgbaSelect(std::string name, anl::SRGBA low, anl::SRGBA high, double control, double threshold, double falloff);
+        CTreeContainer &rgbaSelect(std::string name, anl::SRGBA low, anl::SRGBA high, double control, double threshold, std::string falloff);
+        CTreeContainer &rgbaSelect(std::string name, anl::SRGBA low, anl::SRGBA high, double control, std::string threshold, double falloff);
+        CTreeContainer &rgbaSelect(std::string name, anl::SRGBA low, anl::SRGBA high, double control, std::string threshold, std::string falloff);
+        CTreeContainer &rgbaSelect(std::string name, anl::SRGBA low, anl::SRGBA high, std::string control, double threshold, double falloff);
+        CTreeContainer &rgbaSelect(std::string name, anl::SRGBA low, anl::SRGBA high, std::string control, double threshold, std::string falloff);
+        CTreeContainer &rgbaSelect(std::string name, anl::SRGBA low, anl::SRGBA high, std::string control, std::string threshold, double falloff);
+        CTreeContainer &rgbaSelect(std::string name, anl::SRGBA low, anl::SRGBA high, std::string control, std::string threshold, std::string falloff);
+        CTreeContainer &rgbaSelect(std::string name, anl::SRGBA low, std::string high, double control, double threshold, double falloff);
+        CTreeContainer &rgbaSelect(std::string name, anl::SRGBA low, std::string high, double control, double threshold, std::string falloff);
+        CTreeContainer &rgbaSelect(std::string name, anl::SRGBA low, std::string high, double control, std::string threshold, double falloff);
+        CTreeContainer &rgbaSelect(std::string name, anl::SRGBA low, std::string high, double control, std::string threshold, std::string falloff);
+        CTreeContainer &rgbaSelect(std::string name, anl::SRGBA low, std::string high, std::string control, double threshold, double falloff);
+        CTreeContainer &rgbaSelect(std::string name, anl::SRGBA low, std::string high, std::string control, double threshold, std::string falloff);
+        CTreeContainer &rgbaSelect(std::string name, anl::SRGBA low, std::string high, std::string control, std::string threshold, double falloff);
+        CTreeContainer &rgbaSelect(std::string name, anl::SRGBA low, std::string high, std::string control, std::string threshold, std::string falloff);
+        CTreeContainer &rgbaSelect(std::string name, std::string low, anl::SRGBA high, double control, double threshold, double falloff);
+        CTreeContainer &rgbaSelect(std::string name, std::string low, anl::SRGBA high, double control, double threshold, std::string falloff);
+        CTreeContainer &rgbaSelect(std::string name, std::string low, anl::SRGBA high, double control, std::string threshold, double falloff);
+        CTreeContainer &rgbaSelect(std::string name, std::string low, anl::SRGBA high, double control, std::string threshold, std::string falloff);
+        CTreeContainer &rgbaSelect(std::string name, std::string low, anl::SRGBA high, std::string control, double threshold, double falloff);
+        CTreeContainer &rgbaSelect(std::string name, std::string low, anl::SRGBA high, std::string control, double threshold, std::string falloff);
+        CTreeContainer &rgbaSelect(std::string name, std::string low, anl::SRGBA high, std::string control, std::string threshold, double falloff);
+        CTreeContainer &rgbaSelect(std::string name, std::string low, anl::SRGBA high, std::string control, std::string threshold, std::string falloff);
         CTreeContainer &rgbaSelect(std::string name, std::string low, std::string high, double control, double threshold, double falloff);
         CTreeContainer &rgbaSelect(std::string name, std::string low, std::string high, double control, double threshold, std::string falloff);
         CTreeContainer &rgbaSelect(std::string name, std::string low, std::string high, double control, std::string threshold, double falloff);
@@ -347,7 +345,7 @@ namespace anl
         CTreeContainer &rgbaSelect(std::string name, std::string low, std::string high, std::string control, std::string threshold, double falloff);
         CTreeContainer &rgbaSelect(std::string name, std::string low, std::string high, std::string control, std::string threshold, std::string falloff);
 		
-		CTreeContainer &implicitBufferImplicitAdapter(std::string name, std::string source, int mapping, SMappingRanges ranges, bool use_z, double z);
+		CTreeContainer &implicitBufferImplicitAdapter(std::string name, std::string source, int mapping, anl::SMappingRanges ranges, bool use_z, double z);
 		CTreeContainer &implicitBufferBlur(std::string name, std::string source, double blursize, bool seamless);
 		CTreeContainer &implicitBufferScaleToRange(std::string name, std::string source, double low, double high);
 		CTreeContainer &implicitBufferBumpMap(std::string name, std::string source, double lx, double ly, double lz, double spacing, bool seamless);
@@ -355,35 +353,17 @@ namespace anl
 		CTreeContainer &implicitBufferSimpleErode(std::string name, std::string source, int numdrops, float power);
 		CTreeContainer &implicitBufferSimpleRainfall(std::string name, std::string source, std::string depth, int iterations);
 		
-		CTreeContainer &rgbaBufferRGBAAdapter(std::string name, std::string source, int mapping, SMappingRanges ranges, bool use_z, double z);
+		CTreeContainer &rgbaBufferRGBAAdapter(std::string name, std::string source, int mapping, anl::SMappingRanges ranges, bool use_z, double z);
 		CTreeContainer &rgbaBufferImplicitBufferAdapter(std::string name, std::string source);
 		CTreeContainer &rgbaBufferBlur(std::string name, std::string source, double blursize, bool seamless);
 		CTreeContainer &rgbaBufferImplicitBufferMultiply(std::string name, std::string rgbasource, std::string implicitsource);
 
-        CImplicitModuleBase *getModuleUnsafe(std::string name);
-        std::shared_ptr<CImplicitModuleBase> getModule(std::string name);
+        anl::CImplicitModuleBase *getModuleUnsafe(std::string name);
+        //std::shared_ptr<CImplicitModuleBase> getModule(std::string name);
 
-        CRGBAModuleBase *getRGBAModuleUnsafe(std::string name);
-        std::shared_ptr<CRGBAModuleBase> getRGBAModule(std::string name);
+        anl::CRGBAModuleBase *getRGBAModuleUnsafe(std::string name);
+        //std::shared_ptr<CRGBAModuleBase> getRGBAModule(std::string name);
 		
-		CImplicitBufferBase *getImplicitBufferUnsafe(std::string name);
-        std::shared_ptr<CImplicitBufferBase> getImplicitBuffer(std::string name);
-		
-		CRGBABufferBase *getRGBABufferUnsafe(std::string name);
-		std::shared_ptr<CRGBABufferBase> getRGBABuffer(std::string name);
-
-        private:
-        std::map<std::string, std::shared_ptr<CImplicitModuleBase> > m_modules;
-        std::map<std::string, std::shared_ptr<CRGBAModuleBase> > m_rgbas;
-        std::map<std::string, std::shared_ptr<CCellularGenerator> > m_cellgen;
-		std::map<std::string, std::shared_ptr<CImplicitBufferBase> > m_implicitbuffers;
-        std::map<std::string, std::shared_ptr<CRGBABufferBase> > m_rgbabuffers;
-
-        std::shared_ptr<CImplicitModuleBase> get(std::string name);
-        double get(double g){return g;}
-        std::shared_ptr<CRGBAModuleBase> getRGBA(std::string name);
-        SRGBA getRGBA(SRGBA c){return c;}
-    };
+		anl::CImplicitBufferBase *getImplicitBufferUnsafe(std::string name);
+	};
 };
-
-#endif

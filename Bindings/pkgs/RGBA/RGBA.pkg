@@ -44,7 +44,7 @@ namespace anl
         void setHighSource(CRGBAModuleBase *m);
         void setLowSource(float r, float g, float b, float a);
         void setHighSource(float r, float g, float b, float a);
-        void setControlSource(CImplicitModuleBase *m);
+        void setControlSource(anl::CImplicitModuleBase *m);
         void setControlSource(double v);
 	};
 	
@@ -87,13 +87,13 @@ namespace anl
 
         void setMode(int mode){m_mode=mode;}
 
-        void setRedSource(CImplicitModuleBase *m);
-        void setGreenSource(CImplicitModuleBase *m);
-        void setBlueSource(CImplicitModuleBase *m);
-        void setHueSource(CImplicitModuleBase *m);
-        void setSatSource(CImplicitModuleBase *m);
-        void setValSource(CImplicitModuleBase *m);
-        void setAlphaSource(CImplicitModuleBase *m);
+        void setRedSource(anl::CImplicitModuleBase *m);
+        void setGreenSource(anl::CImplicitModuleBase *m);
+        void setBlueSource(anl::CImplicitModuleBase *m);
+        void setHueSource(anl::CImplicitModuleBase *m);
+        void setSatSource(anl::CImplicitModuleBase *m);
+        void setValSource(anl::CImplicitModuleBase *m);
+        void setAlphaSource(anl::CImplicitModuleBase *m);
 
         void setRedSource(double r);
         void setGreenSource(double g);
@@ -113,7 +113,7 @@ namespace anl
         void pushPoint(double t, float r, float g, float b, float a);
         void clearCurve();
         void setSource(double t);
-        void setSource(CImplicitModuleBase *m);
+        void setSource(anl::CImplicitModuleBase *m);
         void setInterpType(int type);
 	};
 	
@@ -144,7 +144,7 @@ namespace anl
         CRGBAImplicitGrayscale();
         ~CRGBAImplicitGrayscale();
 
-        void setSource(CImplicitModuleBase *m);
+        void setSource(anl::CImplicitModuleBase *m);
 	};
 	
 	class CRGBANormalize : public CRGBAModuleBase
@@ -170,7 +170,7 @@ namespace anl
         public:
         CRGBARotateColor();
         void setAxis(double ax, double ay, double az);
-        void setAxis(CImplicitModuleBase *ax, CImplicitModuleBase *ay, CImplicitModuleBase *az);
+        void setAxis(anl::CImplicitModuleBase *ax, anl::CImplicitModuleBase *ay, anl::CImplicitModuleBase *az);
         void setAxisX(double ax);
         void setAxisY(double ay);
         void setAxisZ(double az);
@@ -197,9 +197,9 @@ namespace anl
         void setHighSource(CRGBAModuleBase *m);
         void setLowSource(float r, float g, float b, float a);
         void setHighSource(float r, float g, float b, float a);
-        void setControlSource(CImplicitModuleBase *m);
-        void setThreshold(CImplicitModuleBase *m);
-        void setFalloff(CImplicitModuleBase *m);
+        void setControlSource(anl::CImplicitModuleBase *m);
+        void setThreshold(anl::CImplicitModuleBase *m);
+        void setFalloff(anl::CImplicitModuleBase *m);
         void setControlSource(double v);
         void setThreshold(double v);
         void setFalloff(double v);

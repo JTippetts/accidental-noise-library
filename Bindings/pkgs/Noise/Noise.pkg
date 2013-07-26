@@ -312,7 +312,7 @@ namespace anl
         CImplicitExtractRGBAChannel(int channel);
 		~CImplicitExtractRGBAChannel();
 
-        void setSource(CRGBAModuleBase *m);
+        void setSource(anl::CRGBAModuleBase *m);
         void setSource(float r, float g, float b, float a);
 
         void setChannel(int channel);
@@ -419,9 +419,9 @@ namespace anl
         CImplicitRGBADotProduct();
         ~CImplicitRGBADotProduct();
 
-        void setSource1(CRGBAModuleBase *m);
+        void setSource1(anl::CRGBAModuleBase *m);
         void setSource1(float r, float g, float b, float a);
-        void setSource2(CRGBAModuleBase *m);
+        void setSource2(anl::CRGBAModuleBase *m);
         void setSource2(float r, float g, float b, float a);
 	};
 	

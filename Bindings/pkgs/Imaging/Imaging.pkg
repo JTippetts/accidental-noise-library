@@ -250,3 +250,20 @@ namespace anl
 	void rasterizeImplicitTriangle(int u1, int v1, CVec3f p1, int u2, int v2, CVec3f p2, int u3, int v3, CVec3f p3, anl::CArray2Dd *a, anl::CImplicitModuleBase *f);
 	void rasterizeRGBATriangle(int u1, int v1, CVec3f p1, int u2, int v2, CVec3f p2, int u3, int v3, CVec3f p3, anl::CArray2Drgba *a, anl::CRGBAModuleBase *f);
 };
+
+
+// Buffer stuff
+namespace anl
+{
+	class CImplicitBufferBase
+    {
+    public:
+        void get(CArray2Dd &out);
+    };
+	
+	class CRGBABufferBase
+    {
+
+        void get(anl::CArray2Drgba &out);
+    };
+};
