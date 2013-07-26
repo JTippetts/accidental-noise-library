@@ -23,6 +23,9 @@ namespace anl
         double loopx0,loopy0,loopz0, loopx1,loopy1,loopz1;
 
         SMappingRanges();
+		SMappingRanges(SMappingRanges &rhs);
+        SMappingRanges(const anl::SMappingRanges &rhs);
+        SMappingRanges(double x0, double x1, double y0, double y1, double z0=0.0, double z1=1.0);
 		~SMappingRanges();
     };
 	

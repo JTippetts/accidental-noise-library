@@ -15,7 +15,7 @@ namespace anl
         ~CTreeContainer();
 
         CTreeContainer &autoCorrect(std::string name, std::string src, double low=0, double high=1);
-        CTreeContainer &basisFunction(std::string name, int type=GRADIENT, int interp=QUINTIC);
+        CTreeContainer &basisFunction(std::string name, int type=GRADIENT, int interp=QUINTIC, bool rotate=true);
         CTreeContainer &blend(std::string name, double low, double high, double control);
         CTreeContainer &blend(std::string name, double low, double high, std::string control);
         CTreeContainer &blend(std::string name, double low, std::string high, double control);

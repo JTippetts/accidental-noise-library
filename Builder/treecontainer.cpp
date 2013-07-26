@@ -82,10 +82,10 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::basisFunction(std::string name, int type, int interp)
+    CTreeContainer &CTreeContainer::basisFunction(std::string name, int type, int interp, bool rotate)
     {
         if(get(name)) return *this;
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitBasisFunction(type,interp));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitBasisFunction(type,interp,rotate));
         return *this;
     }
 

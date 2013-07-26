@@ -3,6 +3,7 @@
 #include <vector>
 #include <algorithm>
 #include <math.h>
+#include <iostream>
 
 using namespace anl;
 
@@ -254,26 +255,30 @@ unsigned int hash_coords_6(int x, int y, int z, int w, int u, int v, unsigned in
 unsigned int compute_hash_double_2(double x, double y, unsigned int seed)
 {
     double d[3]={x,y,(double)seed};
-    return xor_fold_hash(fnv_32_a_buf(d, sizeof(double)*3/sizeof(unsigned int)));
+	unsigned int s=sizeof(d) / sizeof(unsigned int);
+    return xor_fold_hash(fnv_32_a_buf(d, s));
 }
 
 
 unsigned int compute_hash_double_3(double x, double y, double z, unsigned int seed)
 {
     double d[4]={x,y,z,(double)seed};
-    return xor_fold_hash(fnv_32_a_buf(d, sizeof(double)*4/sizeof(unsigned int)));
+	unsigned int s=sizeof(d) / sizeof(unsigned int);
+    return xor_fold_hash(fnv_32_a_buf(d, s));
 }
 
 unsigned int compute_hash_double_4(double x, double y, double z, double w, unsigned int seed)
 {
     double d[5]={x,y,z,w,(double)seed};
-    return xor_fold_hash(fnv_32_a_buf(d, sizeof(double)*5/sizeof(unsigned int)));
+	unsigned int s=sizeof(d) / sizeof(unsigned int);
+    return xor_fold_hash(fnv_32_a_buf(d, s));
 }
 
 unsigned int compute_hash_double_6(double x, double y, double z, double w, double u, double v, unsigned int seed)
 {
     double d[7]={x,y,z,w,u,v,(double)seed};
-    return xor_fold_hash(fnv_32_a_buf(d, sizeof(double)*7/sizeof(unsigned int)));
+	unsigned int s=sizeof(d) / sizeof(unsigned int);
+    return xor_fold_hash(fnv_32_a_buf(d, s));
 }
 
 
@@ -661,6 +666,7 @@ double anl::white_noise2D(double x, double y, unsigned int seed, interp_func int
 double anl::white_noise3D(double x, double y, double z, unsigned int seed, interp_func interp)
 {
     unsigned char hash=compute_hash_double_3(x,y,z,seed);
+	std::cout << (unsigned int)hash << std::endl;
     return whitenoise_lut[hash];
 }
 
