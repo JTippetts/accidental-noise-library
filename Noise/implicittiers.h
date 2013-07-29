@@ -9,11 +9,11 @@ namespace anl
         public:
         CImplicitTiers();
         CImplicitTiers(double src, int numtiers, bool smooth);
-        CImplicitTiers(std::shared_ptr<CImplicitModuleBase> src, int numtiers, bool smooth);
+        CImplicitTiers(CImplicitModuleBase * src, int numtiers, bool smooth);
         ~CImplicitTiers();
 
         void setSource(double v);
-        void setSource(std::shared_ptr<CImplicitModuleBase> m);
+        void setSource(CImplicitModuleBase * m);
         void setNumTiers(int numtiers);
         void setSmooth(bool smooth);
 

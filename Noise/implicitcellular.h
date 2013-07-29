@@ -10,11 +10,11 @@ class CImplicitCellular : public CImplicitModuleBase
     public:
     CImplicitCellular();
     CImplicitCellular(double a, double b, double c, double d);
-    CImplicitCellular(std::shared_ptr<CCellularGenerator> m, double a=1, double b=0, double c=0, double d=0);
+    CImplicitCellular(CCellularGenerator *m, double a=1, double b=0, double c=0, double d=0);
     ~CImplicitCellular(){}
 
     void setCoefficients(double a, double b, double c, double d);
-    void setCellularSource(std::shared_ptr<CCellularGenerator> m);
+    void setCellularSource(CCellularGenerator *m);
 
     double get(double x, double y);
     double get(double x, double y, double z);
@@ -22,7 +22,7 @@ class CImplicitCellular : public CImplicitModuleBase
     double get(double x, double y, double z, double w, double u, double v);
 
     protected:
-    std::shared_ptr<CCellularGenerator> m_generator;
+    CCellularGenerator *m_generator;
     double m_coefficients[4];
 };
 
@@ -30,7 +30,7 @@ class CImplicitVoronoi : public CImplicitModuleBase
 {
 public:
     CImplicitVoronoi();
-    CImplicitVoronoi(std::shared_ptr<CCellularGenerator> m);
+    CImplicitVoronoi(CCellularGenerator *m);
     ~CImplicitVoronoi();
 
     double get(double x, double y);
@@ -39,7 +39,7 @@ public:
     double get(double x, double y, double z, double w, double u, double v);
 
     protected:
-    std::shared_ptr<CCellularGenerator> m_generator;
+    CCellularGenerator *m_generator;
 };
 };
 

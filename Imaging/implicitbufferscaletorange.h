@@ -9,16 +9,16 @@ namespace anl
     {
     public:
         CImplicitBufferScaleToRange();
-        CImplicitBufferScaleToRange(std::shared_ptr<CImplicitBufferBase> src, double low, double high);
+        CImplicitBufferScaleToRange(CImplicitBufferBase * src, double low, double high);
         ~CImplicitBufferScaleToRange();
 
         void setRange(double low, double high);
-        void setSource(std::shared_ptr<CImplicitBufferBase> src);
+        void setSource(CImplicitBufferBase * src);
 
         void get(CArray2Dd &out);
 
     private:
-        std::shared_ptr<CImplicitBufferBase> m_source;
+        CImplicitBufferBase * m_source;
         double m_low, m_high;
     };
 };

@@ -26,14 +26,14 @@ namespace anl
         public:
         CRGBAParameter() : m_source(0), m_constant(0,0,0,0){}
         CRGBAParameter(SRGBA c) : m_source(0), m_constant(c){}
-        CRGBAParameter(std::shared_ptr<CRGBAModuleBase> c) : m_source(c), m_constant(0,0,0,0){}
+        CRGBAParameter(CRGBAModuleBase * c) : m_source(c), m_constant(0,0,0,0){}
 
         void set(SRGBA c)
         {
             m_source=0;
             m_constant=c;
         }
-        void set(std::shared_ptr<CRGBAModuleBase> m)
+        void set(CRGBAModuleBase * m)
         {
             m_source=m;
         }
@@ -64,7 +64,7 @@ namespace anl
 
 
         protected:
-        std::shared_ptr<CRGBAModuleBase> m_source;
+        CRGBAModuleBase * m_source;
         SRGBA m_constant;
 
     };

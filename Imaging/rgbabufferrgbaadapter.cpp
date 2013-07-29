@@ -6,7 +6,7 @@ namespace anl
     {
     }
 
-    CRGBABufferRGBAAdapter::CRGBABufferRGBAAdapter(std::shared_ptr<CRGBAModuleBase> src, int mapping, SMappingRanges ranges, bool use_z, double z) :
+    CRGBABufferRGBAAdapter::CRGBABufferRGBAAdapter(CRGBAModuleBase * src, int mapping, SMappingRanges ranges, bool use_z, double z) :
         CRGBABufferBase(), m_source(src), m_mapping(mapping), m_ranges(ranges), m_use_z(use_z), m_z(z)
     {
     }
@@ -14,7 +14,7 @@ namespace anl
     {
     }
 
-    void CRGBABufferRGBAAdapter::setSource(std::shared_ptr<CRGBAModuleBase> src)
+    void CRGBABufferRGBAAdapter::setSource(CRGBAModuleBase * src)
     {
         m_source=src;
     }

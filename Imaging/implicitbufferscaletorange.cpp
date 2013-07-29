@@ -6,7 +6,7 @@ namespace anl
     {
     }
 
-    CImplicitBufferScaleToRange::CImplicitBufferScaleToRange(std::shared_ptr<CImplicitBufferBase> src, double low, double high) :
+    CImplicitBufferScaleToRange::CImplicitBufferScaleToRange(CImplicitBufferBase * src, double low, double high) :
         CImplicitBufferBase(), m_source(src), m_low(low), m_high(high)
     {
     }
@@ -21,7 +21,7 @@ namespace anl
         m_high=high;
     }
 
-    void CImplicitBufferScaleToRange::setSource(std::shared_ptr<CImplicitBufferBase> src)
+    void CImplicitBufferScaleToRange::setSource(CImplicitBufferBase * src)
     {
         m_source=src;
     }

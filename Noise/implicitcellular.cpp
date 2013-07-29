@@ -10,7 +10,7 @@ CImplicitCellular::CImplicitCellular(double a, double b, double c, double d) : C
 {
     setCoefficients(a,b,c,d);
 }
-CImplicitCellular::CImplicitCellular(std::shared_ptr<CCellularGenerator> m, double a, double b, double c, double d) : CImplicitModuleBase(), m_generator(m)
+CImplicitCellular::CImplicitCellular(CCellularGenerator* m, double a, double b, double c, double d) : CImplicitModuleBase(), m_generator(m)
 {
     setCoefficients(a,b,c,d);
 }
@@ -23,7 +23,7 @@ void CImplicitCellular::setCoefficients(double a, double b, double c, double d)
     m_coefficients[3]=d;
 }
 
-void CImplicitCellular::setCellularSource(std::shared_ptr<CCellularGenerator> m)
+void CImplicitCellular::setCellularSource(CCellularGenerator* m)
 {
     m_generator=m;
 }
@@ -62,7 +62,7 @@ double CImplicitCellular::get(double x, double y, double z, double w, double u, 
     {
     }
 
-    CImplicitVoronoi::CImplicitVoronoi(std::shared_ptr<CCellularGenerator> m) : CImplicitModuleBase(), m_generator(m)
+    CImplicitVoronoi::CImplicitVoronoi(CCellularGenerator* m) : CImplicitModuleBase(), m_generator(m)
     {
     }
 

@@ -9,7 +9,7 @@ namespace anl
         setLightVector(1.5,3.5,-1.5);
     }
 
-    CImplicitBufferBumpMap::CImplicitBufferBumpMap(std::shared_ptr<CImplicitBufferBase> src, double lx, double ly, double lz, double spacing, bool seamless) :
+    CImplicitBufferBumpMap::CImplicitBufferBumpMap(CImplicitBufferBase * src, double lx, double ly, double lz, double spacing, bool seamless) :
         CImplicitBufferBase(), m_source(src), m_spacing(spacing), m_seamless(seamless)
     {
         setLightVector(lx,ly,lz);
@@ -19,7 +19,7 @@ namespace anl
     {
     }
 
-    void CImplicitBufferBumpMap::setSource(std::shared_ptr<CImplicitBufferBase> src)
+    void CImplicitBufferBumpMap::setSource(CImplicitBufferBase * src)
     {
         m_source=src;
     }

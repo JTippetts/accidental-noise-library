@@ -7,105 +7,105 @@ namespace anl
     CRGBASelect::CRGBASelect(SRGBA low, SRGBA high, double control, double threshold, double falloff) :
         CRGBAModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 
-    CRGBASelect::CRGBASelect(SRGBA low, SRGBA high, double control, double threshold, std::shared_ptr<CImplicitModuleBase> falloff) :
+    CRGBASelect::CRGBASelect(SRGBA low, SRGBA high, double control, double threshold, CImplicitModuleBase * falloff) :
         CRGBAModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 
-    CRGBASelect::CRGBASelect(SRGBA low, SRGBA high, double control, std::shared_ptr<CImplicitModuleBase> threshold, double falloff) :
+    CRGBASelect::CRGBASelect(SRGBA low, SRGBA high, double control, CImplicitModuleBase * threshold, double falloff) :
         CRGBAModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 
-    CRGBASelect::CRGBASelect(SRGBA low, SRGBA high, double control, std::shared_ptr<CImplicitModuleBase> threshold, std::shared_ptr<CImplicitModuleBase> falloff) :
+    CRGBASelect::CRGBASelect(SRGBA low, SRGBA high, double control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff) :
         CRGBAModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 
-    CRGBASelect::CRGBASelect(SRGBA low, SRGBA high, std::shared_ptr<CImplicitModuleBase> control, double threshold, double falloff) :
+    CRGBASelect::CRGBASelect(SRGBA low, SRGBA high, CImplicitModuleBase * control, double threshold, double falloff) :
         CRGBAModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 
-    CRGBASelect::CRGBASelect(SRGBA low, SRGBA high, std::shared_ptr<CImplicitModuleBase> control, double threshold, std::shared_ptr<CImplicitModuleBase> falloff) :
+    CRGBASelect::CRGBASelect(SRGBA low, SRGBA high, CImplicitModuleBase * control, double threshold, CImplicitModuleBase * falloff) :
         CRGBAModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 
-    CRGBASelect::CRGBASelect(SRGBA low, SRGBA high, std::shared_ptr<CImplicitModuleBase> control, std::shared_ptr<CImplicitModuleBase> threshold, double falloff) :
+    CRGBASelect::CRGBASelect(SRGBA low, SRGBA high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, double falloff) :
         CRGBAModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 
-    CRGBASelect::CRGBASelect(SRGBA low, SRGBA high, std::shared_ptr<CImplicitModuleBase> control, std::shared_ptr<CImplicitModuleBase> threshold, std::shared_ptr<CImplicitModuleBase> falloff) :
+    CRGBASelect::CRGBASelect(SRGBA low, SRGBA high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff) :
         CRGBAModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 
-    CRGBASelect::CRGBASelect(SRGBA low, std::shared_ptr<CRGBAModuleBase> high, double control, double threshold, double falloff) :
+    CRGBASelect::CRGBASelect(SRGBA low, CRGBAModuleBase * high, double control, double threshold, double falloff) :
         CRGBAModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 
-    CRGBASelect::CRGBASelect(SRGBA low, std::shared_ptr<CRGBAModuleBase> high, double control, double threshold, std::shared_ptr<CImplicitModuleBase> falloff) :
+    CRGBASelect::CRGBASelect(SRGBA low, CRGBAModuleBase * high, double control, double threshold, CImplicitModuleBase * falloff) :
         CRGBAModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 
-    CRGBASelect::CRGBASelect(SRGBA low, std::shared_ptr<CRGBAModuleBase> high, double control, std::shared_ptr<CImplicitModuleBase> threshold, double falloff) :
+    CRGBASelect::CRGBASelect(SRGBA low, CRGBAModuleBase * high, double control, CImplicitModuleBase * threshold, double falloff) :
         CRGBAModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 
-    CRGBASelect::CRGBASelect(SRGBA low, std::shared_ptr<CRGBAModuleBase> high, double control, std::shared_ptr<CImplicitModuleBase> threshold, std::shared_ptr<CImplicitModuleBase> falloff) :
+    CRGBASelect::CRGBASelect(SRGBA low, CRGBAModuleBase * high, double control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff) :
         CRGBAModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 
-    CRGBASelect::CRGBASelect(SRGBA low, std::shared_ptr<CRGBAModuleBase> high, std::shared_ptr<CImplicitModuleBase> control, double threshold, double falloff) :
+    CRGBASelect::CRGBASelect(SRGBA low, CRGBAModuleBase * high, CImplicitModuleBase * control, double threshold, double falloff) :
         CRGBAModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 
-    CRGBASelect::CRGBASelect(SRGBA low, std::shared_ptr<CRGBAModuleBase> high, std::shared_ptr<CImplicitModuleBase> control, double threshold, std::shared_ptr<CImplicitModuleBase> falloff) :
+    CRGBASelect::CRGBASelect(SRGBA low, CRGBAModuleBase * high, CImplicitModuleBase * control, double threshold, CImplicitModuleBase * falloff) :
         CRGBAModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 
-    CRGBASelect::CRGBASelect(SRGBA low, std::shared_ptr<CRGBAModuleBase> high, std::shared_ptr<CImplicitModuleBase> control, std::shared_ptr<CImplicitModuleBase> threshold, double falloff) :
+    CRGBASelect::CRGBASelect(SRGBA low, CRGBAModuleBase * high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, double falloff) :
         CRGBAModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 
-    CRGBASelect::CRGBASelect(SRGBA low, std::shared_ptr<CRGBAModuleBase> high, std::shared_ptr<CImplicitModuleBase> control, std::shared_ptr<CImplicitModuleBase> threshold, std::shared_ptr<CImplicitModuleBase> falloff) :
+    CRGBASelect::CRGBASelect(SRGBA low, CRGBAModuleBase * high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff) :
         CRGBAModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 
-    CRGBASelect::CRGBASelect(std::shared_ptr<CRGBAModuleBase> low, SRGBA high, double control, double threshold, double falloff) :
+    CRGBASelect::CRGBASelect(CRGBAModuleBase * low, SRGBA high, double control, double threshold, double falloff) :
         CRGBAModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 
-    CRGBASelect::CRGBASelect(std::shared_ptr<CRGBAModuleBase> low, SRGBA high, double control, double threshold, std::shared_ptr<CImplicitModuleBase> falloff) :
+    CRGBASelect::CRGBASelect(CRGBAModuleBase * low, SRGBA high, double control, double threshold, CImplicitModuleBase * falloff) :
         CRGBAModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 
-    CRGBASelect::CRGBASelect(std::shared_ptr<CRGBAModuleBase> low, SRGBA high, double control, std::shared_ptr<CImplicitModuleBase> threshold, double falloff) :
+    CRGBASelect::CRGBASelect(CRGBAModuleBase * low, SRGBA high, double control, CImplicitModuleBase * threshold, double falloff) :
         CRGBAModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 
-    CRGBASelect::CRGBASelect(std::shared_ptr<CRGBAModuleBase> low, SRGBA high, double control, std::shared_ptr<CImplicitModuleBase> threshold, std::shared_ptr<CImplicitModuleBase> falloff) :
+    CRGBASelect::CRGBASelect(CRGBAModuleBase * low, SRGBA high, double control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff) :
         CRGBAModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 
-    CRGBASelect::CRGBASelect(std::shared_ptr<CRGBAModuleBase> low, SRGBA high, std::shared_ptr<CImplicitModuleBase> control, double threshold, double falloff) :
+    CRGBASelect::CRGBASelect(CRGBAModuleBase * low, SRGBA high, CImplicitModuleBase * control, double threshold, double falloff) :
         CRGBAModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 
-    CRGBASelect::CRGBASelect(std::shared_ptr<CRGBAModuleBase> low, SRGBA high, std::shared_ptr<CImplicitModuleBase> control, double threshold, std::shared_ptr<CImplicitModuleBase> falloff) :
+    CRGBASelect::CRGBASelect(CRGBAModuleBase * low, SRGBA high, CImplicitModuleBase * control, double threshold, CImplicitModuleBase * falloff) :
         CRGBAModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 
-    CRGBASelect::CRGBASelect(std::shared_ptr<CRGBAModuleBase> low, SRGBA high, std::shared_ptr<CImplicitModuleBase> control, std::shared_ptr<CImplicitModuleBase> threshold, double falloff) :
+    CRGBASelect::CRGBASelect(CRGBAModuleBase * low, SRGBA high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, double falloff) :
         CRGBAModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 
-    CRGBASelect::CRGBASelect(std::shared_ptr<CRGBAModuleBase> low, SRGBA high, std::shared_ptr<CImplicitModuleBase> control, std::shared_ptr<CImplicitModuleBase> threshold, std::shared_ptr<CImplicitModuleBase> falloff) :
+    CRGBASelect::CRGBASelect(CRGBAModuleBase * low, SRGBA high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff) :
         CRGBAModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 
-    CRGBASelect::CRGBASelect(std::shared_ptr<CRGBAModuleBase> low, std::shared_ptr<CRGBAModuleBase> high, double control, double threshold, double falloff) :
+    CRGBASelect::CRGBASelect(CRGBAModuleBase * low, CRGBAModuleBase * high, double control, double threshold, double falloff) :
         CRGBAModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 
-    CRGBASelect::CRGBASelect(std::shared_ptr<CRGBAModuleBase> low, std::shared_ptr<CRGBAModuleBase> high, double control, double threshold, std::shared_ptr<CImplicitModuleBase> falloff) :
+    CRGBASelect::CRGBASelect(CRGBAModuleBase * low, CRGBAModuleBase * high, double control, double threshold, CImplicitModuleBase * falloff) :
         CRGBAModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 
-    CRGBASelect::CRGBASelect(std::shared_ptr<CRGBAModuleBase> low, std::shared_ptr<CRGBAModuleBase> high, double control, std::shared_ptr<CImplicitModuleBase> threshold, double falloff) :
+    CRGBASelect::CRGBASelect(CRGBAModuleBase * low, CRGBAModuleBase * high, double control, CImplicitModuleBase * threshold, double falloff) :
         CRGBAModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 
-    CRGBASelect::CRGBASelect(std::shared_ptr<CRGBAModuleBase> low, std::shared_ptr<CRGBAModuleBase> high, double control, std::shared_ptr<CImplicitModuleBase> threshold, std::shared_ptr<CImplicitModuleBase> falloff) :
+    CRGBASelect::CRGBASelect(CRGBAModuleBase * low, CRGBAModuleBase * high, double control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff) :
         CRGBAModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 
-    CRGBASelect::CRGBASelect(std::shared_ptr<CRGBAModuleBase> low, std::shared_ptr<CRGBAModuleBase> high, std::shared_ptr<CImplicitModuleBase> control, double threshold, double falloff) :
+    CRGBASelect::CRGBASelect(CRGBAModuleBase * low, CRGBAModuleBase * high, CImplicitModuleBase * control, double threshold, double falloff) :
         CRGBAModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 
-    CRGBASelect::CRGBASelect(std::shared_ptr<CRGBAModuleBase> low, std::shared_ptr<CRGBAModuleBase> high, std::shared_ptr<CImplicitModuleBase> control, double threshold, std::shared_ptr<CImplicitModuleBase> falloff) :
+    CRGBASelect::CRGBASelect(CRGBAModuleBase * low, CRGBAModuleBase * high, CImplicitModuleBase * control, double threshold, CImplicitModuleBase * falloff) :
         CRGBAModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 
-    CRGBASelect::CRGBASelect(std::shared_ptr<CRGBAModuleBase> low, std::shared_ptr<CRGBAModuleBase> high, std::shared_ptr<CImplicitModuleBase> control, std::shared_ptr<CImplicitModuleBase> threshold, double falloff) :
+    CRGBASelect::CRGBASelect(CRGBAModuleBase * low, CRGBAModuleBase * high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, double falloff) :
         CRGBAModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 
-    CRGBASelect::CRGBASelect(std::shared_ptr<CRGBAModuleBase> low, std::shared_ptr<CRGBAModuleBase> high, std::shared_ptr<CImplicitModuleBase> control, std::shared_ptr<CImplicitModuleBase> threshold, std::shared_ptr<CImplicitModuleBase> falloff) :
+    CRGBASelect::CRGBASelect(CRGBAModuleBase * low, CRGBAModuleBase * high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff) :
         CRGBAModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 
 
-    void CRGBASelect::setLowSource(std::shared_ptr<CRGBAModuleBase> m)
+    void CRGBASelect::setLowSource(CRGBAModuleBase * m)
     {
         m_low.set(m);
     }
-    void CRGBASelect::setHighSource(std::shared_ptr<CRGBAModuleBase> m)
+    void CRGBASelect::setHighSource(CRGBAModuleBase * m)
     {
         m_high.set(m);
     }
@@ -117,15 +117,15 @@ namespace anl
     {
         m_high.set(c);
     }
-    void CRGBASelect::setControlSource(std::shared_ptr<CImplicitModuleBase> m)
+    void CRGBASelect::setControlSource(CImplicitModuleBase * m)
     {
         m_control.set(m);
     }
-    void CRGBASelect::setThreshold(std::shared_ptr<CImplicitModuleBase> m)
+    void CRGBASelect::setThreshold(CImplicitModuleBase * m)
     {
         m_threshold.set(m);
     }
-    void CRGBASelect::setFalloff(std::shared_ptr<CImplicitModuleBase> m)
+    void CRGBASelect::setFalloff(CImplicitModuleBase * m)
     {
         m_falloff.set(m);
     }

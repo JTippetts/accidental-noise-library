@@ -1,4 +1,5 @@
 #include "treecontainer.h"
+#include <iostream>
 
 namespace anl
 {
@@ -8,28 +9,27 @@ namespace anl
         m_modules.clear();
     }
 
-    std::shared_ptr<CImplicitModuleBase> CTreeContainer::get(std::string name)
+    CImplicitModuleBase * CTreeContainer::get(std::string name)
     {
         auto i=m_modules.find(name);
         if(i==m_modules.end()) return 0;
-        return i->second;
+        return i->second.get();
     }
 
-    std::shared_ptr<CRGBAModuleBase> CTreeContainer::getRGBA(std::string name)
+    CRGBAModuleBase * CTreeContainer::getRGBA(std::string name)
     {
         auto i=m_rgbas.find(name);
         if(i==m_rgbas.end()) return 0;
-        return i->second;
+        return i->second.get();
     }
 
     CImplicitModuleBase *CTreeContainer::getModuleUnsafe(std::string name)
     {
         auto p=get(name);
-        if(!p) return 0;
-        return p.get();
+        return p;
     }
 
-    std::shared_ptr<CImplicitModuleBase> CTreeContainer::getModule(std::string name)
+    CImplicitModuleBase * CTreeContainer::getModule(std::string name)
     {
         return get(name);
     }
@@ -37,123 +37,122 @@ namespace anl
     CRGBAModuleBase *CTreeContainer::getRGBAModuleUnsafe(std::string name)
     {
         auto p=getRGBA(name);
-        if(!p) return 0;
-        return p.get();
+        return p;
     }
 
-    std::shared_ptr<CRGBAModuleBase> CTreeContainer::getRGBAModule(std::string name)
+    CRGBAModuleBase * CTreeContainer::getRGBAModule(std::string name)
     {
         return getRGBA(name);
     }
-	
-	std::shared_ptr<CImplicitBufferBase> CTreeContainer::getImplicitBuffer(std::string name)
+
+	CImplicitBufferBase * CTreeContainer::getImplicitBuffer(std::string name)
     {
         auto i=m_implicitbuffers.find(name);
         if(i==m_implicitbuffers.end()) return 0;
-        return i->second;
+        return i->second.get();
     }
 
     CImplicitBufferBase *CTreeContainer::getImplicitBufferUnsafe(std::string name)
     {
         auto p=getImplicitBuffer(name);
         if(!p) return 0;
-        return p.get();
+        return p;
     }
 
     CRGBABufferBase *CTreeContainer::getRGBABufferUnsafe(std::string name)
     {
         auto p=getRGBABuffer(name);
         if(!p) return 0;
-        return p.get();
+        return p;
     }
 
-    std::shared_ptr<CRGBABufferBase> CTreeContainer::getRGBABuffer(std::string name)
+    CRGBABufferBase * CTreeContainer::getRGBABuffer(std::string name)
     {
         auto i=m_rgbabuffers.find(name);
         if(i==m_rgbabuffers.end()) return 0;
-        return i->second;
+        return i->second.get();
     }
 
     CTreeContainer &CTreeContainer::autoCorrect(std::string name, std::string src, double low, double high)
     {
         if(get(name)) return *this;
-        std::shared_ptr<CImplicitModuleBase> s=get(src);
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitAutoCorrect(s,low,high));
+        CImplicitModuleBase * s=get(src);
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitAutoCorrect(s,low,high));
         return *this;
     }
 
     CTreeContainer &CTreeContainer::basisFunction(std::string name, int type, int interp, bool rotate)
     {
         if(get(name)) return *this;
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitBasisFunction(type,interp,rotate));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitBasisFunction(type,interp,rotate));
         return *this;
     }
 
     CTreeContainer &CTreeContainer::blend(std::string name, double low, double high, double control)
     {
         if(get(name)) return *this;
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitBlend(low,high,control));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitBlend(low,high,control));
         return *this;
     }
 
     CTreeContainer &CTreeContainer::blend(std::string name, double low, double high, std::string control)
     {
         if(get(name)) return *this;
-        std::shared_ptr<CImplicitModuleBase> c=get(control);
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitBlend(low,high,c));
+        CImplicitModuleBase * c=get(control);
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitBlend(low,high,c));
         return *this;
     }
 
     CTreeContainer &CTreeContainer::blend(std::string name, double low, std::string high, double control)
     {
         if(get(name)) return *this;
-        std::shared_ptr<CImplicitModuleBase> h=get(high);
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitBlend(low,h,control));
+        CImplicitModuleBase * h=get(high);
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitBlend(low,h,control));
         return *this;
     }
 
     CTreeContainer &CTreeContainer::blend(std::string name, double low, std::string high, std::string control)
     {
         if(get(name)) return *this;
-        std::shared_ptr<CImplicitModuleBase> h=get(high);
-        std::shared_ptr<CImplicitModuleBase> c=get(control);
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitBlend(low,h,c));
+        CImplicitModuleBase * h=get(high);
+        CImplicitModuleBase * c=get(control);
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitBlend(low,h,c));
         return *this;
     }
 
     CTreeContainer &CTreeContainer::blend(std::string name, std::string low, double high, double control)
     {
         if(get(name)) return *this;
-        std::shared_ptr<CImplicitModuleBase> l=get(low);
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitBlend(l,high,control));
+        CImplicitModuleBase * l=get(low);
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitBlend(l,high,control));
         return *this;
     }
 
     CTreeContainer &CTreeContainer::blend(std::string name, std::string low, double high, std::string control)
     {
         if(get(name)) return *this;
-        std::shared_ptr<CImplicitModuleBase> l=get(low);
-        std::shared_ptr<CImplicitModuleBase> c=get(control);
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitBlend(l,high,c));
+        CImplicitModuleBase * l=get(low);
+        CImplicitModuleBase * c=get(control);
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitBlend(l,high,c));
         return *this;
     }
 
     CTreeContainer &CTreeContainer::blend(std::string name, std::string low, std::string high, double control)
     {
         if(get(name)) return *this;
-        std::shared_ptr<CImplicitModuleBase> l=get(low);
-        std::shared_ptr<CImplicitModuleBase> h=get(high);
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitBlend(l,h,control));
+        CImplicitModuleBase * l=get(low);
+        CImplicitModuleBase * h=get(high);
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitBlend(l,h,control));
         return *this;
     }
 
     CTreeContainer &CTreeContainer::blend(std::string name, std::string low, std::string high, std::string control)
     {
         if(get(name)) return *this;
-        std::shared_ptr<CImplicitModuleBase> l=get(low);
-        std::shared_ptr<CImplicitModuleBase> h=get(high);
-        std::shared_ptr<CImplicitModuleBase> c=get(control);
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitBlend(l,h,c));
+        CImplicitModuleBase * l=get(low);
+        CImplicitModuleBase * h=get(high);
+        CImplicitModuleBase * c=get(control);
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitBlend(l,h,c));
         return *this;
     }
 
@@ -166,7 +165,7 @@ namespace anl
         auto thresh=get(t);
         auto factor=get(f);
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitBrightContrast(src,bright,thresh,factor));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitBrightContrast(src,bright,thresh,factor));
         return *this;
     }
 
@@ -179,7 +178,7 @@ namespace anl
         auto thresh=get(t);
         auto factor=get(f);
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitBrightContrast(src,bright,thresh,factor));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitBrightContrast(src,bright,thresh,factor));
         return *this;
     }
 
@@ -192,7 +191,7 @@ namespace anl
         auto thresh=get(t);
         auto factor=get(f);
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitBrightContrast(src,bright,thresh,factor));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitBrightContrast(src,bright,thresh,factor));
         return *this;
     }
 
@@ -205,7 +204,7 @@ namespace anl
         auto thresh=get(t);
         auto factor=get(f);
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitBrightContrast(src,bright,thresh,factor));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitBrightContrast(src,bright,thresh,factor));
         return *this;
     }
 
@@ -218,7 +217,7 @@ namespace anl
         auto thresh=get(t);
         auto factor=get(f);
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitBrightContrast(src,bright,thresh,factor));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitBrightContrast(src,bright,thresh,factor));
         return *this;
     }
 
@@ -231,7 +230,7 @@ namespace anl
         auto thresh=get(t);
         auto factor=get(f);
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitBrightContrast(src,bright,thresh,factor));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitBrightContrast(src,bright,thresh,factor));
         return *this;
     }
 
@@ -244,7 +243,7 @@ namespace anl
         auto thresh=get(t);
         auto factor=get(f);
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitBrightContrast(src,bright,thresh,factor));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitBrightContrast(src,bright,thresh,factor));
         return *this;
     }
 
@@ -257,7 +256,7 @@ namespace anl
         auto thresh=get(t);
         auto factor=get(f);
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitBrightContrast(src,bright,thresh,factor));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitBrightContrast(src,bright,thresh,factor));
         return *this;
     }
 
@@ -270,7 +269,7 @@ namespace anl
         auto thresh=get(t);
         auto factor=get(f);
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitBrightContrast(src,bright,thresh,factor));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitBrightContrast(src,bright,thresh,factor));
         return *this;
     }
 
@@ -283,7 +282,7 @@ namespace anl
         auto thresh=get(t);
         auto factor=get(f);
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitBrightContrast(src,bright,thresh,factor));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitBrightContrast(src,bright,thresh,factor));
         return *this;
     }
 
@@ -296,7 +295,7 @@ namespace anl
         auto thresh=get(t);
         auto factor=get(f);
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitBrightContrast(src,bright,thresh,factor));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitBrightContrast(src,bright,thresh,factor));
         return *this;
     }
 
@@ -309,7 +308,7 @@ namespace anl
         auto thresh=get(t);
         auto factor=get(f);
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitBrightContrast(src,bright,thresh,factor));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitBrightContrast(src,bright,thresh,factor));
         return *this;
     }
 
@@ -322,7 +321,7 @@ namespace anl
         auto thresh=get(t);
         auto factor=get(f);
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitBrightContrast(src,bright,thresh,factor));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitBrightContrast(src,bright,thresh,factor));
         return *this;
     }
 
@@ -335,7 +334,7 @@ namespace anl
         auto thresh=get(t);
         auto factor=get(f);
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitBrightContrast(src,bright,thresh,factor));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitBrightContrast(src,bright,thresh,factor));
         return *this;
     }
 
@@ -348,7 +347,7 @@ namespace anl
         auto thresh=get(t);
         auto factor=get(f);
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitBrightContrast(src,bright,thresh,factor));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitBrightContrast(src,bright,thresh,factor));
         return *this;
     }
 
@@ -361,21 +360,21 @@ namespace anl
         auto thresh=get(t);
         auto factor=get(f);
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitBrightContrast(src,bright,thresh,factor));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitBrightContrast(src,bright,thresh,factor));
         return *this;
     }
 
     CTreeContainer &CTreeContainer::cache(std::string name, double v)
     {
         if(get(name)) return *this;
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitCache(v));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitCache(v));
         return *this;
     }
 
     CTreeContainer &CTreeContainer::cache(std::string name, std::string v)
     {
         if(get(name)) return *this;
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitCache(get(v)));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitCache(get(v)));
         return *this;
     }
 
@@ -385,7 +384,7 @@ namespace anl
         auto geni=m_cellgen.find(g);
         if(geni==m_cellgen.end()) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitCellular(geni->second,a,b,c,d));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitCellular(geni->second.get(),a,b,c,d));
         return *this;
     }
 
@@ -402,7 +401,7 @@ namespace anl
     {
         if(get(name)) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitClamp(get(s), get(l), get(h)));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitClamp(get(s), get(l), get(h)));
         return *this;
     }
 
@@ -410,7 +409,7 @@ namespace anl
     {
         if(get(name)) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitClamp(get(s), get(l), get(h)));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitClamp(get(s), get(l), get(h)));
         return *this;
     }
 
@@ -418,7 +417,7 @@ namespace anl
     {
         if(get(name)) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitClamp(get(s), get(l), get(h)));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitClamp(get(s), get(l), get(h)));
         return *this;
     }
 
@@ -426,7 +425,7 @@ namespace anl
     {
         if(get(name)) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitClamp(get(s), get(l), get(h)));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitClamp(get(s), get(l), get(h)));
         return *this;
     }
 
@@ -434,7 +433,7 @@ namespace anl
     {
         if(get(name)) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitClamp(get(s), get(l), get(h)));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitClamp(get(s), get(l), get(h)));
         return *this;
     }
 
@@ -442,7 +441,7 @@ namespace anl
     {
         if(get(name)) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitClamp(get(s), get(l), get(h)));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitClamp(get(s), get(l), get(h)));
         return *this;
     }
 
@@ -450,7 +449,7 @@ namespace anl
     {
         if(get(name)) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitClamp(get(s), get(l), get(h)));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitClamp(get(s), get(l), get(h)));
         return *this;
     }
 
@@ -458,7 +457,7 @@ namespace anl
     {
         if(get(name)) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitClamp(get(s), get(l), get(h)));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitClamp(get(s), get(l), get(h)));
         return *this;
     }
 
@@ -466,7 +465,7 @@ namespace anl
     {
         if(get(name)) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitConstant(v));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitConstant(v));
         return *this;
     }
 
@@ -1064,6 +1063,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, double low, double high, double control, double threshold, double falloff)
     {
+	std::cout << "1" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1072,6 +1072,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, double low, double high, double control, double threshold, std::string falloff)
     {
+	std::cout << "2" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1080,6 +1081,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, double low, double high, double control, std::string threshold, double falloff)
     {
+	std::cout << "3" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1088,6 +1090,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, double low, double high, double control, std::string threshold, std::string falloff)
     {
+	std::cout << "4" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1096,6 +1099,8 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, double low, double high, std::string control, double threshold, double falloff)
     {
+	std::cout << "5" << std::endl;
+		std::cout << "Test" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1104,6 +1109,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, double low, double high, std::string control, double threshold, std::string falloff)
     {
+	std::cout << "6" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1112,6 +1118,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, double low, double high, std::string control, std::string threshold, double falloff)
     {
+	std::cout << "7" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1120,6 +1127,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, double low, double high, std::string control, std::string threshold, std::string falloff)
     {
+	std::cout << "8" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1128,6 +1136,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, double low, std::string high, double control, double threshold, double falloff)
     {
+	std::cout << "9" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1136,6 +1145,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, double low, std::string high, double control, double threshold, std::string falloff)
     {
+	std::cout << "10" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1144,6 +1154,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, double low, std::string high, double control, std::string threshold, double falloff)
     {
+	std::cout << "11" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1152,6 +1163,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, double low, std::string high, double control, std::string threshold, std::string falloff)
     {
+	std::cout << "12" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1160,6 +1172,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, double low, std::string high, std::string control, double threshold, double falloff)
     {
+	std::cout << "13" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1168,6 +1181,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, double low, std::string high, std::string control, double threshold, std::string falloff)
     {
+	std::cout << "14" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1176,6 +1190,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, double low, std::string high, std::string control, std::string threshold, double falloff)
     {
+	std::cout << "15" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1184,6 +1199,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, double low, std::string high, std::string control, std::string threshold, std::string falloff)
     {
+	std::cout << "16" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1192,6 +1208,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, std::string low, double high, double control, double threshold, double falloff)
     {
+	std::cout << "17" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1200,6 +1217,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, std::string low, double high, double control, double threshold, std::string falloff)
     {
+	std::cout << "18" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1208,6 +1226,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, std::string low, double high, double control, std::string threshold, double falloff)
     {
+	std::cout << "19" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1216,6 +1235,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, std::string low, double high, double control, std::string threshold, std::string falloff)
     {
+	std::cout << "20" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1224,6 +1244,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, std::string low, double high, std::string control, double threshold, double falloff)
     {
+	std::cout << "21" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1232,6 +1253,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, std::string low, double high, std::string control, double threshold, std::string falloff)
     {
+	std::cout << "22" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1240,6 +1262,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, std::string low, double high, std::string control, std::string threshold, double falloff)
     {
+	std::cout << "23" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1248,6 +1271,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, std::string low, double high, std::string control, std::string threshold, std::string falloff)
     {
+	std::cout << "24" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1256,6 +1280,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, std::string low, std::string high, double control, double threshold, double falloff)
     {
+	std::cout << "25" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1264,6 +1289,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, std::string low, std::string high, double control, double threshold, std::string falloff)
     {
+	std::cout << "26" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1272,6 +1298,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, std::string low, std::string high, double control, std::string threshold, double falloff)
     {
+	std::cout << "27" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1280,6 +1307,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, std::string low, std::string high, double control, std::string threshold, std::string falloff)
     {
+	std::cout << "28" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1288,6 +1316,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, std::string low, std::string high, std::string control, double threshold, double falloff)
     {
+	std::cout << "29" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1296,6 +1325,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, std::string low, std::string high, std::string control, double threshold, std::string falloff)
     {
+	std::cout << "30" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1304,6 +1334,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, std::string low, std::string high, std::string control, std::string threshold, double falloff)
     {
+	std::cout << "31" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1312,6 +1343,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, std::string low, std::string high, std::string control, std::string threshold, std::string falloff)
     {
+	std::cout << "32" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1466,7 +1498,7 @@ namespace anl
     {
         if(get(name)) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitTranslateDomain(get(src),get(tx),get(ty),get(tz)));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitTranslateDomain(get(src),get(tx),get(ty),get(tz)));
         return *this;
     }
 
@@ -1474,7 +1506,7 @@ namespace anl
     {
         if(get(name)) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitTranslateDomain(get(src),get(tx),get(ty),get(tz)));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitTranslateDomain(get(src),get(tx),get(ty),get(tz)));
         return *this;
     }
 
@@ -1482,7 +1514,7 @@ namespace anl
     {
         if(get(name)) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitTranslateDomain(get(src),get(tx),get(ty),get(tz)));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitTranslateDomain(get(src),get(tx),get(ty),get(tz)));
         return *this;
     }
 
@@ -1490,7 +1522,7 @@ namespace anl
     {
         if(get(name)) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitTranslateDomain(get(src),get(tx),get(ty),get(tz)));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitTranslateDomain(get(src),get(tx),get(ty),get(tz)));
         return *this;
     }
 
@@ -1498,7 +1530,7 @@ namespace anl
     {
         if(get(name)) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitTranslateDomain(get(src),get(tx),get(ty),get(tz)));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitTranslateDomain(get(src),get(tx),get(ty),get(tz)));
         return *this;
     }
 
@@ -1506,7 +1538,7 @@ namespace anl
     {
         if(get(name)) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitTranslateDomain(get(src),get(tx),get(ty),get(tz)));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitTranslateDomain(get(src),get(tx),get(ty),get(tz)));
         return *this;
     }
 
@@ -1514,7 +1546,7 @@ namespace anl
     {
         if(get(name)) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitTranslateDomain(get(src),get(tx),get(ty),get(tz)));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitTranslateDomain(get(src),get(tx),get(ty),get(tz)));
         return *this;
     }
 
@@ -1522,7 +1554,7 @@ namespace anl
     {
         if(get(name)) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitTranslateDomain(get(src),get(tx),get(ty),get(tz)));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitTranslateDomain(get(src),get(tx),get(ty),get(tz)));
         return *this;
     }
 
@@ -1530,7 +1562,7 @@ namespace anl
     {
         if(get(name)) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitTranslateDomain(get(src),get(tx),get(ty),get(tz)));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitTranslateDomain(get(src),get(tx),get(ty),get(tz)));
         return *this;
     }
 
@@ -1538,7 +1570,7 @@ namespace anl
     {
         if(get(name)) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitTranslateDomain(get(src),get(tx),get(ty),get(tz)));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitTranslateDomain(get(src),get(tx),get(ty),get(tz)));
         return *this;
     }
 
@@ -1546,7 +1578,7 @@ namespace anl
     {
         if(get(name)) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitTranslateDomain(get(src),get(tx),get(ty),get(tz)));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitTranslateDomain(get(src),get(tx),get(ty),get(tz)));
         return *this;
     }
 
@@ -1554,7 +1586,7 @@ namespace anl
     {
         if(get(name)) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitTranslateDomain(get(src),get(tx),get(ty),get(tz)));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitTranslateDomain(get(src),get(tx),get(ty),get(tz)));
         return *this;
     }
 
@@ -1562,7 +1594,7 @@ namespace anl
     {
         if(get(name)) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitTranslateDomain(get(src),get(tx),get(ty),get(tz)));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitTranslateDomain(get(src),get(tx),get(ty),get(tz)));
         return *this;
     }
 
@@ -1570,7 +1602,7 @@ namespace anl
     {
         if(get(name)) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitTranslateDomain(get(src),get(tx),get(ty),get(tz)));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitTranslateDomain(get(src),get(tx),get(ty),get(tz)));
         return *this;
     }
 
@@ -1578,7 +1610,7 @@ namespace anl
     {
         if(get(name)) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitTranslateDomain(get(src),get(tx),get(ty),get(tz)));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitTranslateDomain(get(src),get(tx),get(ty),get(tz)));
         return *this;
     }
 
@@ -1586,7 +1618,7 @@ namespace anl
     {
         if(get(name)) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitTranslateDomain(get(src),get(tx),get(ty),get(tz)));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitTranslateDomain(get(src),get(tx),get(ty),get(tz)));
         return *this;
     }
 
@@ -1594,7 +1626,7 @@ namespace anl
     {
         if(get(name)) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitTriangle(get(src),get(period),get(offset)));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitTriangle(get(src),get(period),get(offset)));
         return *this;
     }
 
@@ -1602,7 +1634,7 @@ namespace anl
     {
         if(get(name)) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitTriangle(get(src),get(period),get(offset)));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitTriangle(get(src),get(period),get(offset)));
         return *this;
     }
 
@@ -1610,7 +1642,7 @@ namespace anl
     {
         if(get(name)) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitTriangle(get(src),get(period),get(offset)));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitTriangle(get(src),get(period),get(offset)));
         return *this;
     }
 
@@ -1618,7 +1650,7 @@ namespace anl
     {
         if(get(name)) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitTriangle(get(src),get(period),get(offset)));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitTriangle(get(src),get(period),get(offset)));
         return *this;
     }
 
@@ -1626,7 +1658,7 @@ namespace anl
     {
         if(get(name)) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitTriangle(get(src),get(period),get(offset)));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitTriangle(get(src),get(period),get(offset)));
         return *this;
     }
 
@@ -1634,7 +1666,7 @@ namespace anl
     {
         if(get(name)) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitTriangle(get(src),get(period),get(offset)));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitTriangle(get(src),get(period),get(offset)));
         return *this;
     }
 
@@ -1642,7 +1674,7 @@ namespace anl
     {
         if(get(name)) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitTriangle(get(src),get(period),get(offset)));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitTriangle(get(src),get(period),get(offset)));
         return *this;
     }
 
@@ -1650,7 +1682,7 @@ namespace anl
     {
         if(get(name)) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase> (new CImplicitTriangle(get(src),get(period),get(offset)));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitTriangle(get(src),get(period),get(offset)));
         return *this;
     }
 
@@ -1658,7 +1690,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBABlend(get(control), getRGBA(low), getRGBA(high)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBABlend(get(control), getRGBA(low), getRGBA(high)));
         return *this;
     }
 
@@ -1666,7 +1698,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBABlend(get(control), getRGBA(low), getRGBA(high)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBABlend(get(control), getRGBA(low), getRGBA(high)));
         return *this;
     }
 
@@ -1674,7 +1706,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBABlend(get(control), getRGBA(low), getRGBA(high)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBABlend(get(control), getRGBA(low), getRGBA(high)));
         return *this;
     }
 
@@ -1682,7 +1714,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBABlend(get(control), getRGBA(low), getRGBA(high)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBABlend(get(control), getRGBA(low), getRGBA(high)));
         return *this;
     }
 
@@ -1690,7 +1722,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBABlend(get(control), getRGBA(low), getRGBA(high)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBABlend(get(control), getRGBA(low), getRGBA(high)));
         return *this;
     }
 
@@ -1698,7 +1730,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBABlend(get(control), getRGBA(low), getRGBA(high)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBABlend(get(control), getRGBA(low), getRGBA(high)));
         return *this;
     }
 
@@ -1706,7 +1738,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBABlend(get(control), getRGBA(low), getRGBA(high)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBABlend(get(control), getRGBA(low), getRGBA(high)));
         return *this;
     }
 
@@ -1714,7 +1746,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBABlend(get(control), getRGBA(low), getRGBA(high)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBABlend(get(control), getRGBA(low), getRGBA(high)));
         return *this;
     }
 
@@ -1722,7 +1754,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBABlendOps(getRGBA(s1), getRGBA(s2), op1, op2));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBABlendOps(getRGBA(s1), getRGBA(s2), op1, op2));
         return *this;
     }
 
@@ -1730,7 +1762,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBABlendOps(getRGBA(s1), getRGBA(s2), op1, op2));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBABlendOps(getRGBA(s1), getRGBA(s2), op1, op2));
         return *this;
     }
 
@@ -1738,7 +1770,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBABlendOps(getRGBA(s1), getRGBA(s2), op1, op2));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBABlendOps(getRGBA(s1), getRGBA(s2), op1, op2));
         return *this;
     }
 
@@ -1746,7 +1778,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBABlendOps(getRGBA(s1), getRGBA(s2), op1, op2));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBABlendOps(getRGBA(s1), getRGBA(s2), op1, op2));
         return *this;
     }
 
@@ -1754,7 +1786,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBAColorOps(getRGBA(s1), getRGBA(s2), op));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBAColorOps(getRGBA(s1), getRGBA(s2), op));
         return *this;
     }
 
@@ -1762,7 +1794,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBAColorOps(getRGBA(s1), getRGBA(s2), op));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBAColorOps(getRGBA(s1), getRGBA(s2), op));
         return *this;
     }
 
@@ -1770,7 +1802,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBAColorOps(getRGBA(s1), getRGBA(s2), op));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBAColorOps(getRGBA(s1), getRGBA(s2), op));
         return *this;
     }
 
@@ -1778,7 +1810,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBAColorOps(getRGBA(s1), getRGBA(s2), op));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBAColorOps(getRGBA(s1), getRGBA(s2), op));
         return *this;
     }
 
@@ -1786,7 +1818,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBACompositeChannels(get(r),get(g),get(b),get(a),mode));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBACompositeChannels(get(r),get(g),get(b),get(a),mode));
         return *this;
     }
 
@@ -1794,7 +1826,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBACompositeChannels(get(r),get(g),get(b),get(a),mode));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBACompositeChannels(get(r),get(g),get(b),get(a),mode));
         return *this;
     }
 
@@ -1802,7 +1834,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBACompositeChannels(get(r),get(g),get(b),get(a),mode));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBACompositeChannels(get(r),get(g),get(b),get(a),mode));
         return *this;
     }
 
@@ -1810,7 +1842,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBACompositeChannels(get(r),get(g),get(b),get(a),mode));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBACompositeChannels(get(r),get(g),get(b),get(a),mode));
         return *this;
     }
 
@@ -1818,7 +1850,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBACompositeChannels(get(r),get(g),get(b),get(a),mode));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBACompositeChannels(get(r),get(g),get(b),get(a),mode));
         return *this;
     }
 
@@ -1826,7 +1858,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBACompositeChannels(get(r),get(g),get(b),get(a),mode));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBACompositeChannels(get(r),get(g),get(b),get(a),mode));
         return *this;
     }
 
@@ -1834,7 +1866,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBACompositeChannels(get(r),get(g),get(b),get(a),mode));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBACompositeChannels(get(r),get(g),get(b),get(a),mode));
         return *this;
     }
 
@@ -1842,7 +1874,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBACompositeChannels(get(r),get(g),get(b),get(a),mode));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBACompositeChannels(get(r),get(g),get(b),get(a),mode));
         return *this;
     }
 
@@ -1850,7 +1882,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBACompositeChannels(get(r),get(g),get(b),get(a),mode));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBACompositeChannels(get(r),get(g),get(b),get(a),mode));
         return *this;
     }
 
@@ -1858,7 +1890,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBACompositeChannels(get(r),get(g),get(b),get(a),mode));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBACompositeChannels(get(r),get(g),get(b),get(a),mode));
         return *this;
     }
 
@@ -1866,7 +1898,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBACompositeChannels(get(r),get(g),get(b),get(a),mode));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBACompositeChannels(get(r),get(g),get(b),get(a),mode));
         return *this;
     }
 
@@ -1874,7 +1906,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBACompositeChannels(get(r),get(g),get(b),get(a),mode));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBACompositeChannels(get(r),get(g),get(b),get(a),mode));
         return *this;
     }
 
@@ -1882,7 +1914,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBACompositeChannels(get(r),get(g),get(b),get(a),mode));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBACompositeChannels(get(r),get(g),get(b),get(a),mode));
         return *this;
     }
 
@@ -1890,7 +1922,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBACompositeChannels(get(r),get(g),get(b),get(a),mode));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBACompositeChannels(get(r),get(g),get(b),get(a),mode));
         return *this;
     }
 
@@ -1898,7 +1930,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBACompositeChannels(get(r),get(g),get(b),get(a),mode));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBACompositeChannels(get(r),get(g),get(b),get(a),mode));
         return *this;
     }
 
@@ -1906,7 +1938,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBACompositeChannels(get(r),get(g),get(b),get(a),mode));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBACompositeChannels(get(r),get(g),get(b),get(a),mode));
         return *this;
     }
 
@@ -1914,7 +1946,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBAHSVToRGBA(getRGBA(c)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBAHSVToRGBA(getRGBA(c)));
         return *this;
     }
 
@@ -1922,7 +1954,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBAHSVToRGBA(getRGBA(c)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBAHSVToRGBA(getRGBA(c)));
         return *this;
     }
 
@@ -1930,7 +1962,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBARGBAToHSV(getRGBA(c)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBARGBAToHSV(getRGBA(c)));
         return *this;
     }
 
@@ -1938,7 +1970,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBARGBAToHSV(getRGBA(c)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBARGBAToHSV(getRGBA(c)));
         return *this;
     }
 
@@ -1946,7 +1978,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBAImplicitGrayscale(get(s)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBAImplicitGrayscale(get(s)));
         return *this;
     }
 
@@ -1954,7 +1986,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBAImplicitGrayscale(get(s)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBAImplicitGrayscale(get(s)));
         return *this;
     }
 
@@ -1962,7 +1994,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBANormalize(getRGBA(c)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBANormalize(getRGBA(c)));
         return *this;
     }
 
@@ -1970,7 +2002,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBANormalize(getRGBA(c)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBANormalize(getRGBA(c)));
         return *this;
     }
 
@@ -1978,7 +2010,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
         return *this;
     }
 
@@ -1986,7 +2018,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
         return *this;
     }
 
@@ -1994,7 +2026,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
         return *this;
     }
 
@@ -2002,7 +2034,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
         return *this;
     }
 
@@ -2010,7 +2042,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
         return *this;
     }
 
@@ -2018,7 +2050,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
         return *this;
     }
 
@@ -2026,7 +2058,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
         return *this;
     }
 
@@ -2034,7 +2066,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
         return *this;
     }
 
@@ -2042,7 +2074,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
         return *this;
     }
 
@@ -2050,7 +2082,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
         return *this;
     }
 
@@ -2058,7 +2090,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
         return *this;
     }
 
@@ -2066,7 +2098,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
         return *this;
     }
 
@@ -2074,7 +2106,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
         return *this;
     }
 
@@ -2082,7 +2114,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
         return *this;
     }
 
@@ -2090,7 +2122,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
         return *this;
     }
 
@@ -2098,7 +2130,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
         return *this;
     }
 
@@ -2106,7 +2138,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
         return *this;
     }
 
@@ -2114,7 +2146,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
         return *this;
     }
 
@@ -2122,7 +2154,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
         return *this;
     }
 
@@ -2130,7 +2162,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
         return *this;
     }
 
@@ -2138,7 +2170,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
         return *this;
     }
 
@@ -2146,7 +2178,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
         return *this;
     }
 
@@ -2154,7 +2186,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
         return *this;
     }
 
@@ -2162,7 +2194,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
         return *this;
     }
 
@@ -2170,7 +2202,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
         return *this;
     }
 
@@ -2178,7 +2210,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
         return *this;
     }
 
@@ -2186,7 +2218,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
         return *this;
     }
 
@@ -2194,7 +2226,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
         return *this;
     }
 
@@ -2202,7 +2234,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
         return *this;
     }
 
@@ -2210,7 +2242,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
         return *this;
     }
 
@@ -2218,7 +2250,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
         return *this;
     }
 
@@ -2226,7 +2258,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBARotateColor(getRGBA(c), get(ax), get(ay), get(az), get(angle)));
         return *this;
     }
 
@@ -2234,7 +2266,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
         return *this;
     }
 
@@ -2242,7 +2274,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
         return *this;
     }
 
@@ -2250,7 +2282,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
         return *this;
     }
 
@@ -2258,7 +2290,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
         return *this;
     }
 
@@ -2266,7 +2298,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
         return *this;
     }
 
@@ -2274,7 +2306,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
         return *this;
     }
 
@@ -2282,7 +2314,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
         return *this;
     }
 
@@ -2290,7 +2322,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
         return *this;
     }
 
@@ -2298,7 +2330,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
         return *this;
     }
 
@@ -2306,7 +2338,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
         return *this;
     }
 
@@ -2314,7 +2346,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
         return *this;
     }
 
@@ -2322,7 +2354,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
         return *this;
     }
 
@@ -2330,7 +2362,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
         return *this;
     }
 
@@ -2338,7 +2370,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
         return *this;
     }
 
@@ -2346,7 +2378,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
         return *this;
     }
 
@@ -2354,7 +2386,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
         return *this;
     }
 
@@ -2362,7 +2394,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
         return *this;
     }
 
@@ -2370,7 +2402,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
         return *this;
     }
 
@@ -2378,7 +2410,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
         return *this;
     }
 
@@ -2386,7 +2418,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
         return *this;
     }
 
@@ -2394,7 +2426,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
         return *this;
     }
 
@@ -2402,7 +2434,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
         return *this;
     }
 
@@ -2410,7 +2442,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
         return *this;
     }
 
@@ -2418,7 +2450,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
         return *this;
     }
 
@@ -2426,7 +2458,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
         return *this;
     }
 
@@ -2434,7 +2466,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
         return *this;
     }
 
@@ -2442,7 +2474,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
         return *this;
     }
 
@@ -2450,7 +2482,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
         return *this;
     }
 
@@ -2458,14 +2490,14 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
         return *this;
     }
     CTreeContainer &CTreeContainer::rgbaSelect(std::string name, std::string low, std::string high, std::string control, double threshold, std::string falloff)
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
         return *this;
     }
 
@@ -2473,7 +2505,7 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
         return *this;
     }
 
@@ -2481,10 +2513,10 @@ namespace anl
     {
         if(getRGBA(name)) return *this;
 
-        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase> (new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
+        m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
         return *this;
     }
-	
+
 	CTreeContainer &CTreeContainer::implicitBufferImplicitAdapter(std::string name, std::string source, int mapping, SMappingRanges ranges, bool use_z, double z)
     {
         if(getImplicitBuffer(name)) return *this;
@@ -2493,7 +2525,7 @@ namespace anl
 
         m_implicitbuffers[name]=std::shared_ptr<CImplicitBufferBase>( new CImplicitBufferImplicitAdapter(src,mapping,ranges,use_z,z));
 
-      
+
         return *this;
     }
 
@@ -2503,9 +2535,9 @@ namespace anl
         auto src=getImplicitBuffer(source);
         if(!src) return *this;
 
-        m_implicitbuffers[name]=std::shared_ptr<CImplicitBufferBase> (new CImplicitBufferBlur(src,blursize,seamless));
+        m_implicitbuffers[name]=std::shared_ptr<CImplicitBufferBase>(new CImplicitBufferBlur(src,blursize,seamless));
 
-       
+
         return *this;
     }
 
@@ -2515,9 +2547,9 @@ namespace anl
         auto src=getImplicitBuffer(source);
         if(!src) return *this;
 
-        m_implicitbuffers[name]=std::shared_ptr<CImplicitBufferBase> (new CImplicitBufferScaleToRange(src,low,high));
+        m_implicitbuffers[name]=std::shared_ptr<CImplicitBufferBase>(new CImplicitBufferScaleToRange(src,low,high));
 
-        
+
         return *this;
     }
 
@@ -2527,9 +2559,9 @@ namespace anl
         auto src=getImplicitBuffer(source);
         if(!src) return *this;
 
-        m_implicitbuffers[name]=std::shared_ptr<CImplicitBufferBase> (new CImplicitBufferBumpMap(src,lx,ly,lz,spacing,seamless));
+        m_implicitbuffers[name]=std::shared_ptr<CImplicitBufferBase>(new CImplicitBufferBumpMap(src,lx,ly,lz,spacing,seamless));
 
-        
+
 
         return *this;
     }
@@ -2540,9 +2572,9 @@ namespace anl
         auto src=getImplicitBuffer(source);
         if(!src) return *this;
 
-        m_implicitbuffers[name]=std::shared_ptr<CImplicitBufferBase> (new CImplicitBufferUnaryMath(src,op));
+        m_implicitbuffers[name]=std::shared_ptr<CImplicitBufferBase>(new CImplicitBufferUnaryMath(src,op));
 
-       
+
         return *this;
     }
 
@@ -2552,9 +2584,9 @@ namespace anl
         auto src=getImplicitBuffer(source);
         if(!src) return *this;
 
-        m_implicitbuffers[name]=std::shared_ptr<CImplicitBufferBase> (new CImplicitBufferSimpleErode(src,numdrops,power));
+        m_implicitbuffers[name]=std::shared_ptr<CImplicitBufferBase>(new CImplicitBufferSimpleErode(src,numdrops,power));
 
-        
+
 
         return *this;
     }
@@ -2567,9 +2599,9 @@ namespace anl
         auto dep=getImplicitBuffer(depth);
         if(!dep) return *this;
 
-        m_implicitbuffers[name]=std::shared_ptr<CImplicitBufferBase> (new CImplicitBufferSimpleRainfall(src,dep,iterations));
+        m_implicitbuffers[name]=std::shared_ptr<CImplicitBufferBase>(new CImplicitBufferSimpleRainfall(src,dep,iterations));
 
-        
+
 
         return *this;
     }
@@ -2582,9 +2614,9 @@ namespace anl
         auto src=getRGBA(source);
         if(!src) return *this;
 
-        m_rgbabuffers[name]=std::shared_ptr<CRGBABufferBase> (new CRGBABufferRGBAAdapter(src,mapping,ranges,use_z,z));
+        m_rgbabuffers[name]=std::shared_ptr<CRGBABufferBase>(new CRGBABufferRGBAAdapter(src,mapping,ranges,use_z,z));
 
-        
+
         return *this;
     }
 
@@ -2594,9 +2626,9 @@ namespace anl
         auto src=getImplicitBuffer(source);
         if(!src) return *this;
 
-        m_rgbabuffers[name]=std::shared_ptr<CRGBABufferBase> (new CRGBABufferImplicitBufferAdapter(src));
+        m_rgbabuffers[name]=std::shared_ptr<CRGBABufferBase>(new CRGBABufferImplicitBufferAdapter(src));
 
-        
+
         return *this;
     }
 
@@ -2606,7 +2638,7 @@ namespace anl
         auto src=getRGBABuffer(source);
         if(!src) return *this;
 
-        m_rgbabuffers[name]=std::shared_ptr<CRGBABufferBase> (new CRGBABufferBlur(src,blursize,seamless));
+        m_rgbabuffers[name]=std::shared_ptr<CRGBABufferBase>(new CRGBABufferBlur(src,blursize,seamless));
 
         return *this;
     }
@@ -2620,7 +2652,7 @@ namespace anl
         auto impsrc=getImplicitBuffer(implicitsource);
         if(!impsrc) return *this;
 
-        m_rgbabuffers[name]=std::shared_ptr<CRGBABufferBase> (new CRGBABufferImplicitBufferMultiply(rgbasrc,impsrc));
+        m_rgbabuffers[name]=std::shared_ptr<CRGBABufferBase>(new CRGBABufferImplicitBufferMultiply(rgbasrc,impsrc));
 
         return *this;
     }

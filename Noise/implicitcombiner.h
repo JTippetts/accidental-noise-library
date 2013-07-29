@@ -19,14 +19,14 @@ namespace anl
         CImplicitCombiner(unsigned int type);
         void setType(unsigned int type);
         void clearAllSources();
-        void setSource(int which, std::shared_ptr<CImplicitModuleBase> b);
+        void setSource(int which, CImplicitModuleBase * b);
         double get(double x, double y);
         double get(double x, double y, double z);
         double get(double x, double y, double z, double w);
         double get(double x, double y, double z, double w, double u, double v);
 
         protected:
-        std::shared_ptr<CImplicitModuleBase> m_sources[MaxSources];
+        CImplicitModuleBase * m_sources[MaxSources];
         unsigned int m_type;
 
         double Add_get(double x, double y);

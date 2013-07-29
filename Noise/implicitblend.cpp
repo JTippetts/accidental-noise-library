@@ -6,27 +6,27 @@ namespace anl
 
     CImplicitBlend::CImplicitBlend(): CImplicitModuleBase(), m_low(0.0), m_high(0.0), m_control(0.0){}
     CImplicitBlend::CImplicitBlend(double low, double high, double control) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control){}
-    CImplicitBlend::CImplicitBlend(double low, double high, std::shared_ptr<CImplicitModuleBase> control) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control){}
-    CImplicitBlend::CImplicitBlend(double low, std::shared_ptr<CImplicitModuleBase> high, double control) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control){}
-    CImplicitBlend::CImplicitBlend(std::shared_ptr<CImplicitModuleBase> low, double high, double control) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control){}
-    CImplicitBlend::CImplicitBlend(double low, std::shared_ptr<CImplicitModuleBase> high, std::shared_ptr<CImplicitModuleBase> control) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control){}
-    CImplicitBlend::CImplicitBlend(std::shared_ptr<CImplicitModuleBase> low, double high, std::shared_ptr<CImplicitModuleBase> control) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control){}
-    CImplicitBlend::CImplicitBlend(std::shared_ptr<CImplicitModuleBase> low, std::shared_ptr<CImplicitModuleBase> high, double control) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control){}
-    CImplicitBlend::CImplicitBlend(std::shared_ptr<CImplicitModuleBase> low, std::shared_ptr<CImplicitModuleBase> high, std::shared_ptr<CImplicitModuleBase> control) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control){}
+    CImplicitBlend::CImplicitBlend(double low, double high, CImplicitModuleBase * control) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control){}
+    CImplicitBlend::CImplicitBlend(double low, CImplicitModuleBase * high, double control) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control){}
+    CImplicitBlend::CImplicitBlend(CImplicitModuleBase * low, double high, double control) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control){}
+    CImplicitBlend::CImplicitBlend(double low, CImplicitModuleBase * high, CImplicitModuleBase * control) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control){}
+    CImplicitBlend::CImplicitBlend(CImplicitModuleBase * low, double high, CImplicitModuleBase * control) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control){}
+    CImplicitBlend::CImplicitBlend(CImplicitModuleBase * low, CImplicitModuleBase * high, double control) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control){}
+    CImplicitBlend::CImplicitBlend(CImplicitModuleBase * low, CImplicitModuleBase * high, CImplicitModuleBase * control) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control){}
 
 	CImplicitBlend::~CImplicitBlend(){}
 
-	void CImplicitBlend::setLowSource(std::shared_ptr<CImplicitModuleBase> b)
+	void CImplicitBlend::setLowSource(CImplicitModuleBase * b)
 	{
 		m_low.set(b);
 	}
 
-	void CImplicitBlend::setHighSource(std::shared_ptr<CImplicitModuleBase> b)
+	void CImplicitBlend::setHighSource(CImplicitModuleBase * b)
 	{
 	    m_high.set(b);
 	}
 
-	void CImplicitBlend::setControlSource(std::shared_ptr<CImplicitModuleBase> b)
+	void CImplicitBlend::setControlSource(CImplicitModuleBase * b)
 	{
 	    m_control.set(b);
 	}

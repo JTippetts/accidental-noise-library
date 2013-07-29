@@ -8,16 +8,16 @@ namespace anl
     {
     public:
         CImplicitBufferUnaryMath();
-        CImplicitBufferUnaryMath(std::shared_ptr<CImplicitBufferBase> source, int op);
+        CImplicitBufferUnaryMath(CImplicitBufferBase * source, int op);
         ~CImplicitBufferUnaryMath();
 
-        void setSource(std::shared_ptr<CImplicitBufferBase> source);
+        void setSource(CImplicitBufferBase * source);
         void setOp(int op);
 
         void get(CArray2Dd &out);
 
     private:
-        std::shared_ptr<CImplicitBufferBase> m_source;
+        CImplicitBufferBase * m_source;
         int m_op;
     };
 };

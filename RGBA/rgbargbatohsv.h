@@ -9,11 +9,11 @@ namespace anl
         public:
         CRGBARGBAToHSV();
         CRGBARGBAToHSV(SRGBA s);
-        CRGBARGBAToHSV(std::shared_ptr<CRGBAModuleBase> s);
+        CRGBARGBAToHSV(CRGBAModuleBase * s);
 
         ~CRGBARGBAToHSV(){}
 
-        void setSource(std::shared_ptr<CRGBAModuleBase> m);
+        void setSource(CRGBAModuleBase * m);
         void setSource(SRGBA c);
 
         SRGBA get(double x, double y);

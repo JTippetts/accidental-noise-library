@@ -6,13 +6,13 @@ namespace anl
     CRGBABlendOps::CRGBABlendOps(SRGBA s1, SRGBA s2, int src1mode, int src2mode) :
         CRGBAModuleBase(), m_source1(s1), m_source2(s2), m_src1blend(src1mode), m_src2blend(src2mode){}
 
-    CRGBABlendOps::CRGBABlendOps(SRGBA s1, std::shared_ptr<CRGBAModuleBase> s2, int src1mode, int src2mode) :
+    CRGBABlendOps::CRGBABlendOps(SRGBA s1, CRGBAModuleBase * s2, int src1mode, int src2mode) :
         CRGBAModuleBase(), m_source1(s1), m_source2(s2), m_src1blend(src1mode), m_src2blend(src2mode){}
 
-    CRGBABlendOps::CRGBABlendOps(std::shared_ptr<CRGBAModuleBase> s1, SRGBA s2, int src1mode, int src2mode) :
+    CRGBABlendOps::CRGBABlendOps(CRGBAModuleBase * s1, SRGBA s2, int src1mode, int src2mode) :
         CRGBAModuleBase(), m_source1(s1), m_source2(s2), m_src1blend(src1mode), m_src2blend(src2mode){}
 
-    CRGBABlendOps::CRGBABlendOps(std::shared_ptr<CRGBAModuleBase> s1, std::shared_ptr<CRGBAModuleBase> s2, int src1mode, int src2mode) :
+    CRGBABlendOps::CRGBABlendOps(CRGBAModuleBase * s1, CRGBAModuleBase * s2, int src1mode, int src2mode) :
         CRGBAModuleBase(), m_source1(s1), m_source2(s2), m_src1blend(src1mode), m_src2blend(src2mode){}
 
 
@@ -26,11 +26,11 @@ namespace anl
     {
         m_src2blend=mode;
     }
-    void CRGBABlendOps::setSource1(std::shared_ptr<CRGBAModuleBase> m)
+    void CRGBABlendOps::setSource1(CRGBAModuleBase * m)
     {
         m_source1.set(m);
     }
-    void CRGBABlendOps::setSource2(std::shared_ptr<CRGBAModuleBase> m)
+    void CRGBABlendOps::setSource2(CRGBAModuleBase * m)
     {
         m_source2.set(m);
     }

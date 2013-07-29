@@ -5,10 +5,10 @@ namespace anl
     CRGBAImplicitGrayscale::CRGBAImplicitGrayscale() : m_source(0.0){}
 
     CRGBAImplicitGrayscale::CRGBAImplicitGrayscale(double s) : CRGBAModuleBase(), m_source(s){}
-    CRGBAImplicitGrayscale::CRGBAImplicitGrayscale(std::shared_ptr<CImplicitModuleBase> s) : CRGBAModuleBase(), m_source(s){}
+    CRGBAImplicitGrayscale::CRGBAImplicitGrayscale(CImplicitModuleBase * s) : CRGBAModuleBase(), m_source(s){}
 
     CRGBAImplicitGrayscale::~CRGBAImplicitGrayscale(){}
-    void CRGBAImplicitGrayscale::setSource(std::shared_ptr<CImplicitModuleBase> m)
+    void CRGBAImplicitGrayscale::setSource(CImplicitModuleBase * m)
     {
         m_source.set(m);
     }

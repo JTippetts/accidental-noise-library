@@ -6,7 +6,7 @@ namespace anl
     {
     }
 
-    CImplicitBufferBlur::CImplicitBufferBlur(std::shared_ptr<CImplicitBufferBase> src, double blursize, bool seamless) :
+    CImplicitBufferBlur::CImplicitBufferBlur(CImplicitBufferBase * src, double blursize, bool seamless) :
         CImplicitBufferBase(), m_source(src), m_blursize(blursize), m_seamless(seamless)
     {
     }
@@ -15,7 +15,7 @@ namespace anl
     {
     }
 
-    void CImplicitBufferBlur::setSource(std::shared_ptr<CImplicitBufferBase> src)
+    void CImplicitBufferBlur::setSource(CImplicitBufferBase * src)
     {
         m_source=src;
     }

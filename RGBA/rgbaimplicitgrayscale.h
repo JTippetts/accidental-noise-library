@@ -17,10 +17,10 @@ namespace anl
         public:
         CRGBAImplicitGrayscale();
         CRGBAImplicitGrayscale(double s);
-        CRGBAImplicitGrayscale(std::shared_ptr<CImplicitModuleBase> s);
+        CRGBAImplicitGrayscale(CImplicitModuleBase * s);
         ~CRGBAImplicitGrayscale();
 
-        void setSource(std::shared_ptr<CImplicitModuleBase> m);
+        void setSource(CImplicitModuleBase * m);
         void setSource(double s);
 
         SRGBA get(double x, double y);

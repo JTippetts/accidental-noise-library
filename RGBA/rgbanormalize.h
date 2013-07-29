@@ -9,10 +9,10 @@ namespace anl
         public:
         CRGBANormalize();
         CRGBANormalize(SRGBA s);
-        CRGBANormalize(std::shared_ptr<CRGBAModuleBase> s);
+        CRGBANormalize(CRGBAModuleBase * s);
         ~CRGBANormalize();
 
-        void setSource(std::shared_ptr<CRGBAModuleBase> m);
+        void setSource(CRGBAModuleBase * m);
         void setSource(SRGBA c);
 
         SRGBA get(double x, double y);

@@ -17,10 +17,10 @@ namespace anl
         public:
         CImplicitCache();
         CImplicitCache(double v);
-        CImplicitCache(std::shared_ptr<CImplicitModuleBase> v);
+        CImplicitCache(CImplicitModuleBase * v);
         ~CImplicitCache();
 
-        void setSource(std::shared_ptr<CImplicitModuleBase> m);
+        void setSource(CImplicitModuleBase * m);
         void setSource(double v);
 
         double get(double x, double y);
@@ -29,7 +29,7 @@ namespace anl
         double get(double x, double y, double z, double w, double u, double v);
 
         protected:
-        //std::shared_ptr<CImplicitModuleBase> m_source;
+        //CImplicitModuleBase * m_source;
         CScalarParameter m_source;
         SCache m_c2, m_c3, m_c4, m_c6;
     };

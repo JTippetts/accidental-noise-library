@@ -1,5 +1,6 @@
 #include "implicitselect.h"
 #include "utility.h"
+#include <iostream>
 
 namespace anl
 {
@@ -9,49 +10,49 @@ namespace anl
 	}
 
 	CImplicitSelect::CImplicitSelect(double low, double high, double control, double threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(double low, double high, double control, double threshold, std::shared_ptr<CImplicitModuleBase> falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(double low, double high, double control, std::shared_ptr<CImplicitModuleBase> threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(double low, double high, double control, std::shared_ptr<CImplicitModuleBase> threshold, std::shared_ptr<CImplicitModuleBase> falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(double low, double high, std::shared_ptr<CImplicitModuleBase> control, double threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(double low, double high, std::shared_ptr<CImplicitModuleBase> control, double threshold, std::shared_ptr<CImplicitModuleBase> falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(double low, double high, std::shared_ptr<CImplicitModuleBase> control, std::shared_ptr<CImplicitModuleBase> threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(double low, double high, std::shared_ptr<CImplicitModuleBase> control, std::shared_ptr<CImplicitModuleBase> threshold, std::shared_ptr<CImplicitModuleBase> falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(double low, std::shared_ptr<CImplicitModuleBase> high, double control, double threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(double low, std::shared_ptr<CImplicitModuleBase> high, double control, double threshold, std::shared_ptr<CImplicitModuleBase> falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(double low, std::shared_ptr<CImplicitModuleBase> high, double control, std::shared_ptr<CImplicitModuleBase> threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(double low, std::shared_ptr<CImplicitModuleBase> high, double control, std::shared_ptr<CImplicitModuleBase> threshold, std::shared_ptr<CImplicitModuleBase> falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(double low, std::shared_ptr<CImplicitModuleBase> high, std::shared_ptr<CImplicitModuleBase> control, double threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(double low, std::shared_ptr<CImplicitModuleBase> high, std::shared_ptr<CImplicitModuleBase> control, double threshold, std::shared_ptr<CImplicitModuleBase> falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(double low, std::shared_ptr<CImplicitModuleBase> high, std::shared_ptr<CImplicitModuleBase> control, std::shared_ptr<CImplicitModuleBase> threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(double low, std::shared_ptr<CImplicitModuleBase> high, std::shared_ptr<CImplicitModuleBase> control, std::shared_ptr<CImplicitModuleBase> threshold, std::shared_ptr<CImplicitModuleBase> falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(std::shared_ptr<CImplicitModuleBase> low, double high, double control, double threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(std::shared_ptr<CImplicitModuleBase> low, double high, double control, double threshold, std::shared_ptr<CImplicitModuleBase> falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(std::shared_ptr<CImplicitModuleBase> low, double high, double control, std::shared_ptr<CImplicitModuleBase> threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(std::shared_ptr<CImplicitModuleBase> low, double high, double control, std::shared_ptr<CImplicitModuleBase> threshold, std::shared_ptr<CImplicitModuleBase> falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(std::shared_ptr<CImplicitModuleBase> low, double high, std::shared_ptr<CImplicitModuleBase> control, double threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(std::shared_ptr<CImplicitModuleBase> low, double high, std::shared_ptr<CImplicitModuleBase> control, double threshold, std::shared_ptr<CImplicitModuleBase> falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(std::shared_ptr<CImplicitModuleBase> low, double high, std::shared_ptr<CImplicitModuleBase> control, std::shared_ptr<CImplicitModuleBase> threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(std::shared_ptr<CImplicitModuleBase> low, double high, std::shared_ptr<CImplicitModuleBase> control, std::shared_ptr<CImplicitModuleBase> threshold, std::shared_ptr<CImplicitModuleBase> falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(std::shared_ptr<CImplicitModuleBase> low, std::shared_ptr<CImplicitModuleBase> high, double control, double threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(std::shared_ptr<CImplicitModuleBase> low, std::shared_ptr<CImplicitModuleBase> high, double control, double threshold, std::shared_ptr<CImplicitModuleBase> falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(std::shared_ptr<CImplicitModuleBase> low, std::shared_ptr<CImplicitModuleBase> high, double control, std::shared_ptr<CImplicitModuleBase> threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(std::shared_ptr<CImplicitModuleBase> low, std::shared_ptr<CImplicitModuleBase> high, double control, std::shared_ptr<CImplicitModuleBase> threshold, std::shared_ptr<CImplicitModuleBase> falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(std::shared_ptr<CImplicitModuleBase> low, std::shared_ptr<CImplicitModuleBase> high, std::shared_ptr<CImplicitModuleBase> control, double threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(std::shared_ptr<CImplicitModuleBase> low, std::shared_ptr<CImplicitModuleBase> high, std::shared_ptr<CImplicitModuleBase> control, double threshold, std::shared_ptr<CImplicitModuleBase> falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(std::shared_ptr<CImplicitModuleBase> low, std::shared_ptr<CImplicitModuleBase> high, std::shared_ptr<CImplicitModuleBase> control, std::shared_ptr<CImplicitModuleBase> threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(std::shared_ptr<CImplicitModuleBase> low, std::shared_ptr<CImplicitModuleBase> high, std::shared_ptr<CImplicitModuleBase> control, std::shared_ptr<CImplicitModuleBase> threshold, std::shared_ptr<CImplicitModuleBase> falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(double low, double high, double control, double threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(double low, double high, double control, CImplicitModuleBase * threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(double low, double high, double control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(double low, double high, CImplicitModuleBase * control, double threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(double low, double high, CImplicitModuleBase * control, double threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(double low, double high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(double low, double high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(double low, CImplicitModuleBase * high, double control, double threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(double low, CImplicitModuleBase * high, double control, double threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(double low, CImplicitModuleBase * high, double control, CImplicitModuleBase * threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(double low, CImplicitModuleBase * high, double control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(double low, CImplicitModuleBase * high, CImplicitModuleBase * control, double threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(double low, CImplicitModuleBase * high, CImplicitModuleBase * control, double threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(double low, CImplicitModuleBase * high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(double low, CImplicitModuleBase * high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, double high, double control, double threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, double high, double control, double threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, double high, double control, CImplicitModuleBase * threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, double high, double control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, double high, CImplicitModuleBase * control, double threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, double high, CImplicitModuleBase * control, double threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, double high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, double high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, CImplicitModuleBase * high, double control, double threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, CImplicitModuleBase * high, double control, double threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, CImplicitModuleBase * high, double control, CImplicitModuleBase * threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, CImplicitModuleBase * high, double control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, CImplicitModuleBase * high, CImplicitModuleBase * control, double threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, CImplicitModuleBase * high, CImplicitModuleBase * control, double threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, CImplicitModuleBase * high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, CImplicitModuleBase * high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 
 	CImplicitSelect::~CImplicitSelect(){}
 
-	void CImplicitSelect::setLowSource(std::shared_ptr<CImplicitModuleBase> b)
+	void CImplicitSelect::setLowSource(CImplicitModuleBase * b)
 	{
 		m_low.set(b);
 	}
-	void CImplicitSelect::setHighSource(std::shared_ptr<CImplicitModuleBase> b)
+	void CImplicitSelect::setHighSource(CImplicitModuleBase * b)
 	{
 		m_high.set(b);
 	}
-	void CImplicitSelect::setControlSource(std::shared_ptr<CImplicitModuleBase> b)
+	void CImplicitSelect::setControlSource(CImplicitModuleBase * b)
 	{
 		m_control.set(b);
 	}
@@ -79,11 +80,11 @@ namespace anl
 		//m_falloff=f;
 		m_falloff.set(f);
 	}
-	void CImplicitSelect::setThreshold(std::shared_ptr<CImplicitModuleBase> m)
+	void CImplicitSelect::setThreshold(CImplicitModuleBase * m)
 	{
 	    m_threshold.set(m);
 	}
-	void CImplicitSelect::setFalloff(std::shared_ptr<CImplicitModuleBase> m)
+	void CImplicitSelect::setFalloff(CImplicitModuleBase * m)
 	{
 	    m_falloff.set(m);
 	}
@@ -151,6 +152,7 @@ namespace anl
         }
         else
         {
+			std::cout << "Control: " << control << " Threshold: " << threshold << " Low: " << m_low.get(x,y,z) << " High: " << m_high.get(x,y,z) << std::endl;
             if(control<threshold) return m_low.get(x,y,z);
             else return m_high.get(x,y,z);
         }

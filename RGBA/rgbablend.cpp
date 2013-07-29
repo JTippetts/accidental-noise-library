@@ -5,22 +5,22 @@ namespace anl
     CRGBABlend::CRGBABlend() : m_low(), m_high(), m_control(0.0){}
 
     CRGBABlend::CRGBABlend(double control, SRGBA low, SRGBA high) : CRGBAModuleBase(), m_low(low), m_high(high), m_control(control){}
-    CRGBABlend::CRGBABlend(double control, SRGBA low, std::shared_ptr<CRGBAModuleBase> high) : CRGBAModuleBase(), m_low(low), m_high(high), m_control(control){}
-    CRGBABlend::CRGBABlend(double control, std::shared_ptr<CRGBAModuleBase> low, SRGBA high) : CRGBAModuleBase(), m_low(low), m_high(high), m_control(control){}
-    CRGBABlend::CRGBABlend(double control, std::shared_ptr<CRGBAModuleBase> low, std::shared_ptr<CRGBAModuleBase> high) : CRGBAModuleBase(), m_low(low), m_high(high), m_control(control){}
-    CRGBABlend::CRGBABlend(std::shared_ptr<CImplicitModuleBase> control, SRGBA low, SRGBA high) : CRGBAModuleBase(), m_low(low), m_high(high), m_control(control){}
-    CRGBABlend::CRGBABlend(std::shared_ptr<CImplicitModuleBase> control, SRGBA low, std::shared_ptr<CRGBAModuleBase> high) : CRGBAModuleBase(), m_low(low), m_high(high), m_control(control){}
-    CRGBABlend::CRGBABlend(std::shared_ptr<CImplicitModuleBase> control, std::shared_ptr<CRGBAModuleBase> low, SRGBA high) : CRGBAModuleBase(), m_low(low), m_high(high), m_control(control){}
-    CRGBABlend::CRGBABlend(std::shared_ptr<CImplicitModuleBase> control, std::shared_ptr<CRGBAModuleBase> low, std::shared_ptr<CRGBAModuleBase> high) : CRGBAModuleBase(), m_low(low), m_high(high), m_control(control){}
+    CRGBABlend::CRGBABlend(double control, SRGBA low, CRGBAModuleBase * high) : CRGBAModuleBase(), m_low(low), m_high(high), m_control(control){}
+    CRGBABlend::CRGBABlend(double control, CRGBAModuleBase * low, SRGBA high) : CRGBAModuleBase(), m_low(low), m_high(high), m_control(control){}
+    CRGBABlend::CRGBABlend(double control, CRGBAModuleBase * low, CRGBAModuleBase * high) : CRGBAModuleBase(), m_low(low), m_high(high), m_control(control){}
+    CRGBABlend::CRGBABlend(CImplicitModuleBase * control, SRGBA low, SRGBA high) : CRGBAModuleBase(), m_low(low), m_high(high), m_control(control){}
+    CRGBABlend::CRGBABlend(CImplicitModuleBase * control, SRGBA low, CRGBAModuleBase * high) : CRGBAModuleBase(), m_low(low), m_high(high), m_control(control){}
+    CRGBABlend::CRGBABlend(CImplicitModuleBase * control, CRGBAModuleBase * low, SRGBA high) : CRGBAModuleBase(), m_low(low), m_high(high), m_control(control){}
+    CRGBABlend::CRGBABlend(CImplicitModuleBase * control, CRGBAModuleBase * low, CRGBAModuleBase * high) : CRGBAModuleBase(), m_low(low), m_high(high), m_control(control){}
 
     CRGBABlend::~CRGBABlend(){}
 
-    void CRGBABlend::setLowSource(std::shared_ptr<CRGBAModuleBase> m)
+    void CRGBABlend::setLowSource(CRGBAModuleBase * m)
     {
         m_low.set(m);
     }
 
-    void CRGBABlend::setHighSource(std::shared_ptr<CRGBAModuleBase> m)
+    void CRGBABlend::setHighSource(CRGBAModuleBase * m)
     {
         m_high.set(m);
     }
@@ -35,7 +35,7 @@ namespace anl
         m_high.set(c);
     }
 
-    void CRGBABlend::setControlSource(std::shared_ptr<CImplicitModuleBase> m)
+    void CRGBABlend::setControlSource(CImplicitModuleBase * m)
     {
         m_control.set(m);
     }

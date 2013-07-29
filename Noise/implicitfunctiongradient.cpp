@@ -4,14 +4,14 @@ namespace anl
 {
     CImplicitFunctionGradient::CImplicitFunctionGradient() : CImplicitModuleBase(), m_source(0.0), m_axis(X_AXIS), m_spacing(0.001){}
     CImplicitFunctionGradient::CImplicitFunctionGradient(double s, int axis, double spacing) : CImplicitModuleBase(), m_source(s), m_axis(axis), m_spacing(spacing){}
-    CImplicitFunctionGradient::CImplicitFunctionGradient(std::shared_ptr<CImplicitModuleBase> s, int axis, double spacing) : CImplicitModuleBase(), m_source(s), m_axis(axis), m_spacing(spacing){}
+    CImplicitFunctionGradient::CImplicitFunctionGradient(CImplicitModuleBase * s, int axis, double spacing) : CImplicitModuleBase(), m_source(s), m_axis(axis), m_spacing(spacing){}
     CImplicitFunctionGradient::~CImplicitFunctionGradient(){}
 
     void CImplicitFunctionGradient::setSource(double v)
     {
         m_source.set(v);
     }
-    void CImplicitFunctionGradient::setSource(std::shared_ptr<CImplicitModuleBase> m)
+    void CImplicitFunctionGradient::setSource(CImplicitModuleBase * m)
     {
         m_source.set(m);
     }

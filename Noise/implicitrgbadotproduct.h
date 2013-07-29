@@ -11,9 +11,9 @@ namespace anl
         CImplicitRGBADotProduct();
         ~CImplicitRGBADotProduct();
 
-        void setSource1(std::shared_ptr<CRGBAModuleBase> m);
+        void setSource1(CRGBAModuleBase * m);
         void setSource1(SRGBA c);
-        void setSource2(std::shared_ptr<CRGBAModuleBase> m);
+        void setSource2(CRGBAModuleBase * m);
         void setSource2(SRGBA c);
 
         double get(double x, double y);

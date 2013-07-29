@@ -6,9 +6,9 @@ namespace anl
     CRGBAHSVToRGBA::CRGBAHSVToRGBA() : CRGBAModuleBase(), m_source(){}
 
     CRGBAHSVToRGBA::CRGBAHSVToRGBA(SRGBA s) : CRGBAModuleBase(), m_source(s){}
-    CRGBAHSVToRGBA::CRGBAHSVToRGBA(std::shared_ptr<CRGBAModuleBase> s) : CRGBAModuleBase(), m_source(s){}
+    CRGBAHSVToRGBA::CRGBAHSVToRGBA(CRGBAModuleBase * s) : CRGBAModuleBase(), m_source(s){}
 
-    void CRGBAHSVToRGBA::setSource(std::shared_ptr<CRGBAModuleBase> m)
+    void CRGBAHSVToRGBA::setSource(CRGBAModuleBase * m)
     {
         m_source.set(m);
     }

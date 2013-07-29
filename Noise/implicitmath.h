@@ -48,15 +48,15 @@ namespace anl
         public:
         CImplicitMath();
         CImplicitMath(unsigned int op, double source=1, double p=1);
-        CImplicitMath(unsigned int op, std::shared_ptr<CImplicitModuleBase> source=0, double p=1);
-        CImplicitMath(unsigned int op, double source=0, std::shared_ptr<CImplicitModuleBase> p=0);
-        CImplicitMath(unsigned int op, std::shared_ptr<CImplicitModuleBase> source=0, std::shared_ptr<CImplicitModuleBase> p=0);
+        CImplicitMath(unsigned int op, CImplicitModuleBase * source=0, double p=1);
+        CImplicitMath(unsigned int op, double source=0, CImplicitModuleBase * p=0);
+        CImplicitMath(unsigned int op, CImplicitModuleBase * source=0, CImplicitModuleBase * p=0);
         ~CImplicitMath();
 
         void setSource(double v);
-        void setSource(std::shared_ptr<CImplicitModuleBase> b);
+        void setSource(CImplicitModuleBase * b);
         void setParameter(double v);
-        void setParameter(std::shared_ptr<CImplicitModuleBase> b);
+        void setParameter(CImplicitModuleBase * b);
         void setOperation(unsigned int op);
 
         double get(double x, double y);

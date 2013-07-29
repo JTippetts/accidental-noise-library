@@ -5,9 +5,9 @@ namespace anl
     CImplicitRGBADotProduct::CImplicitRGBADotProduct() : CImplicitModuleBase(), m_source1(), m_source2(){}
     CImplicitRGBADotProduct::~CImplicitRGBADotProduct(){}
 
-    void CImplicitRGBADotProduct::setSource1(std::shared_ptr<CRGBAModuleBase> m){m_source1.set(m);}
+    void CImplicitRGBADotProduct::setSource1(CRGBAModuleBase * m){m_source1.set(m);}
     void CImplicitRGBADotProduct::setSource1(SRGBA c){m_source1.set(c);}
-    void CImplicitRGBADotProduct::setSource2(std::shared_ptr<CRGBAModuleBase> m){m_source2.set(m);}
+    void CImplicitRGBADotProduct::setSource2(CRGBAModuleBase * m){m_source2.set(m);}
     void CImplicitRGBADotProduct::setSource2(SRGBA c){m_source2.set(c);}
     double CImplicitRGBADotProduct::get(double x, double y)
     {

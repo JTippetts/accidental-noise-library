@@ -16,7 +16,7 @@ namespace anl
         void pushPoint(double t, float r, float g, float b, float a);
         void clearCurve();
         void setSource(double t);
-        void setSource(std::shared_ptr<CImplicitModuleBase> m);
+        void setSource(CImplicitModuleBase * m);
         void setInterpType(int type);
 
         SRGBA get(double x, double y);

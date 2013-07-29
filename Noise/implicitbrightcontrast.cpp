@@ -4,32 +4,32 @@ namespace anl
 {
     CImplicitBrightContrast::CImplicitBrightContrast() : CImplicitModuleBase(), m_source(0.0), m_bright(0.0), m_threshold(0.0), m_factor(1.0){}
     CImplicitBrightContrast::CImplicitBrightContrast(double s,double b,double t,double f) : CImplicitModuleBase(), m_source(s), m_bright(b), m_threshold(t), m_factor(f) {}
-    CImplicitBrightContrast::CImplicitBrightContrast(double s,double b,double t,std::shared_ptr<CImplicitModuleBase>  f) : CImplicitModuleBase(), m_source(s), m_bright(b), m_threshold(t), m_factor(f) {}
-    CImplicitBrightContrast::CImplicitBrightContrast(double s,double b,std::shared_ptr<CImplicitModuleBase>  t,double f) : CImplicitModuleBase(), m_source(s), m_bright(b), m_threshold(t), m_factor(f) {}
-    CImplicitBrightContrast::CImplicitBrightContrast(double s,double b,std::shared_ptr<CImplicitModuleBase>  t,std::shared_ptr<CImplicitModuleBase>  f) : CImplicitModuleBase(), m_source(s), m_bright(b), m_threshold(t), m_factor(f) {}
-    CImplicitBrightContrast::CImplicitBrightContrast(double s,std::shared_ptr<CImplicitModuleBase>  b,double t,double f) : CImplicitModuleBase(), m_source(s), m_bright(b), m_threshold(t), m_factor(f) {}
-    CImplicitBrightContrast::CImplicitBrightContrast(double s,std::shared_ptr<CImplicitModuleBase>  b,double t,std::shared_ptr<CImplicitModuleBase>  f) : CImplicitModuleBase(), m_source(s), m_bright(b), m_threshold(t), m_factor(f) {}
-    CImplicitBrightContrast::CImplicitBrightContrast(double s,std::shared_ptr<CImplicitModuleBase>  b,std::shared_ptr<CImplicitModuleBase>  t,double f) : CImplicitModuleBase(), m_source(s), m_bright(b), m_threshold(t), m_factor(f) {}
-    CImplicitBrightContrast::CImplicitBrightContrast(double s,std::shared_ptr<CImplicitModuleBase>  b,std::shared_ptr<CImplicitModuleBase>  t,std::shared_ptr<CImplicitModuleBase>  f) : CImplicitModuleBase(), m_source(s), m_bright(b), m_threshold(t), m_factor(f) {}
-    CImplicitBrightContrast::CImplicitBrightContrast(std::shared_ptr<CImplicitModuleBase>  s,double b,double t,double f) : CImplicitModuleBase(), m_source(s), m_bright(b), m_threshold(t), m_factor(f) {}
-    CImplicitBrightContrast::CImplicitBrightContrast(std::shared_ptr<CImplicitModuleBase>  s,double b,double t,std::shared_ptr<CImplicitModuleBase>  f) : CImplicitModuleBase(), m_source(s), m_bright(b), m_threshold(t), m_factor(f) {}
-    CImplicitBrightContrast::CImplicitBrightContrast(std::shared_ptr<CImplicitModuleBase>  s,double b,std::shared_ptr<CImplicitModuleBase>  t,double f) : CImplicitModuleBase(), m_source(s), m_bright(b), m_threshold(t), m_factor(f) {}
-    CImplicitBrightContrast::CImplicitBrightContrast(std::shared_ptr<CImplicitModuleBase>  s,double b,std::shared_ptr<CImplicitModuleBase>  t,std::shared_ptr<CImplicitModuleBase>  f) : CImplicitModuleBase(), m_source(s), m_bright(b), m_threshold(t), m_factor(f) {}
-    CImplicitBrightContrast::CImplicitBrightContrast(std::shared_ptr<CImplicitModuleBase>  s,std::shared_ptr<CImplicitModuleBase>  b,double t,double f) : CImplicitModuleBase(), m_source(s), m_bright(b), m_threshold(t), m_factor(f) {}
-    CImplicitBrightContrast::CImplicitBrightContrast(std::shared_ptr<CImplicitModuleBase>  s,std::shared_ptr<CImplicitModuleBase>  b,double t,std::shared_ptr<CImplicitModuleBase>  f) : CImplicitModuleBase(), m_source(s), m_bright(b), m_threshold(t), m_factor(f) {}
-    CImplicitBrightContrast::CImplicitBrightContrast(std::shared_ptr<CImplicitModuleBase>  s,std::shared_ptr<CImplicitModuleBase>  b,std::shared_ptr<CImplicitModuleBase>  t,double f) : CImplicitModuleBase(), m_source(s), m_bright(b), m_threshold(t), m_factor(f) {}
-    CImplicitBrightContrast::CImplicitBrightContrast(std::shared_ptr<CImplicitModuleBase>  s,std::shared_ptr<CImplicitModuleBase>  b,std::shared_ptr<CImplicitModuleBase>  t,std::shared_ptr<CImplicitModuleBase>  f) : CImplicitModuleBase(), m_source(s), m_bright(b), m_threshold(t), m_factor(f) {}
+    CImplicitBrightContrast::CImplicitBrightContrast(double s,double b,double t,CImplicitModuleBase *  f) : CImplicitModuleBase(), m_source(s), m_bright(b), m_threshold(t), m_factor(f) {}
+    CImplicitBrightContrast::CImplicitBrightContrast(double s,double b,CImplicitModuleBase *  t,double f) : CImplicitModuleBase(), m_source(s), m_bright(b), m_threshold(t), m_factor(f) {}
+    CImplicitBrightContrast::CImplicitBrightContrast(double s,double b,CImplicitModuleBase *  t,CImplicitModuleBase *  f) : CImplicitModuleBase(), m_source(s), m_bright(b), m_threshold(t), m_factor(f) {}
+    CImplicitBrightContrast::CImplicitBrightContrast(double s,CImplicitModuleBase *  b,double t,double f) : CImplicitModuleBase(), m_source(s), m_bright(b), m_threshold(t), m_factor(f) {}
+    CImplicitBrightContrast::CImplicitBrightContrast(double s,CImplicitModuleBase *  b,double t,CImplicitModuleBase *  f) : CImplicitModuleBase(), m_source(s), m_bright(b), m_threshold(t), m_factor(f) {}
+    CImplicitBrightContrast::CImplicitBrightContrast(double s,CImplicitModuleBase *  b,CImplicitModuleBase *  t,double f) : CImplicitModuleBase(), m_source(s), m_bright(b), m_threshold(t), m_factor(f) {}
+    CImplicitBrightContrast::CImplicitBrightContrast(double s,CImplicitModuleBase *  b,CImplicitModuleBase *  t,CImplicitModuleBase *  f) : CImplicitModuleBase(), m_source(s), m_bright(b), m_threshold(t), m_factor(f) {}
+    CImplicitBrightContrast::CImplicitBrightContrast(CImplicitModuleBase *  s,double b,double t,double f) : CImplicitModuleBase(), m_source(s), m_bright(b), m_threshold(t), m_factor(f) {}
+    CImplicitBrightContrast::CImplicitBrightContrast(CImplicitModuleBase *  s,double b,double t,CImplicitModuleBase *  f) : CImplicitModuleBase(), m_source(s), m_bright(b), m_threshold(t), m_factor(f) {}
+    CImplicitBrightContrast::CImplicitBrightContrast(CImplicitModuleBase *  s,double b,CImplicitModuleBase *  t,double f) : CImplicitModuleBase(), m_source(s), m_bright(b), m_threshold(t), m_factor(f) {}
+    CImplicitBrightContrast::CImplicitBrightContrast(CImplicitModuleBase *  s,double b,CImplicitModuleBase *  t,CImplicitModuleBase *  f) : CImplicitModuleBase(), m_source(s), m_bright(b), m_threshold(t), m_factor(f) {}
+    CImplicitBrightContrast::CImplicitBrightContrast(CImplicitModuleBase *  s,CImplicitModuleBase *  b,double t,double f) : CImplicitModuleBase(), m_source(s), m_bright(b), m_threshold(t), m_factor(f) {}
+    CImplicitBrightContrast::CImplicitBrightContrast(CImplicitModuleBase *  s,CImplicitModuleBase *  b,double t,CImplicitModuleBase *  f) : CImplicitModuleBase(), m_source(s), m_bright(b), m_threshold(t), m_factor(f) {}
+    CImplicitBrightContrast::CImplicitBrightContrast(CImplicitModuleBase *  s,CImplicitModuleBase *  b,CImplicitModuleBase *  t,double f) : CImplicitModuleBase(), m_source(s), m_bright(b), m_threshold(t), m_factor(f) {}
+    CImplicitBrightContrast::CImplicitBrightContrast(CImplicitModuleBase *  s,CImplicitModuleBase *  b,CImplicitModuleBase *  t,CImplicitModuleBase *  f) : CImplicitModuleBase(), m_source(s), m_bright(b), m_threshold(t), m_factor(f) {}
     CImplicitBrightContrast::~CImplicitBrightContrast(){}
 
-    void CImplicitBrightContrast::setSource(std::shared_ptr<CImplicitModuleBase> m){m_source.set(m);}
+    void CImplicitBrightContrast::setSource(CImplicitModuleBase * m){m_source.set(m);}
     void CImplicitBrightContrast::setSource(double v){m_source.set(v);}
 
     void CImplicitBrightContrast::setBrightness(double b){m_bright.set(b);}
     void CImplicitBrightContrast::setContrastThreshold(double t){m_threshold.set(t);}
     void CImplicitBrightContrast::setContrastFactor(double t){m_factor.set(t);}
-    void CImplicitBrightContrast::setBrightness(std::shared_ptr<CImplicitModuleBase> b){m_bright.set(b);}
-    void CImplicitBrightContrast::setContrastThreshold(std::shared_ptr<CImplicitModuleBase> t){m_threshold.set(t);}
-    void CImplicitBrightContrast::setContrastFactor(std::shared_ptr<CImplicitModuleBase> t){m_factor.set(t);}
+    void CImplicitBrightContrast::setBrightness(CImplicitModuleBase * b){m_bright.set(b);}
+    void CImplicitBrightContrast::setContrastThreshold(CImplicitModuleBase * t){m_threshold.set(t);}
+    void CImplicitBrightContrast::setContrastFactor(CImplicitModuleBase * t){m_factor.set(t);}
 
     double CImplicitBrightContrast::get(double x, double y)
     {

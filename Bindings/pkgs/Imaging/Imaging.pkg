@@ -261,7 +261,7 @@ namespace anl
 	class CImplicitBufferBase
     {
     public:
-        void get(CArray2Dd &out);
+        void get(anl::CArray2Dd &out);
     };
 	
 	class CRGBABufferBase
@@ -269,4 +269,128 @@ namespace anl
 
         void get(anl::CArray2Drgba &out);
     };
+	
+	class CImplicitBufferBlur : public CImplicitBufferBase
+    {
+    public:
+      CImplicitBufferBlur();
+      CImplicitBufferBlur(CImplicitBufferBase *src, double blursize, bool seamless=false);
+      ~CImplicitBufferBlur();
+
+      void setSource(CImplicitBufferBase *src);
+      void setBlurSize(double blursize);
+      void setSeamless(bool seamless);
+	};
+	 
+	class CImplicitBufferBumpMap : public CImplicitBufferBase
+    {
+    public:
+        CImplicitBufferBumpMap();
+        CImplicitBufferBumpMap(CImplicitBufferBase * src, double lx, double ly, double lz, double spacing, bool seamless);
+        ~CImplicitBufferBumpMap();
+
+        void setSource(CImplicitBufferBase * src);
+        void setLightVector(double vx, double vy, double vz);
+        void setSpacing(double spacing);
+        void setSeamless(bool seamless);
+	};
+	
+	class CImplicitBufferImplicitAdapter : public CImplicitBufferBase
+    {
+    public:
+        CImplicitBufferImplicitAdapter();
+        CImplicitBufferImplicitAdapter(anl::CImplicitModuleBase * src, int mapping=anl::SEAMLESS_NONE, SMappingRanges ranges=SMappingRanges(), bool use_z=false, double zvalue=0.0);
+        ~CImplicitBufferImplicitAdapter();
+
+        void setSource(anl::CImplicitModuleBase * src);
+        void setMapping(int mapping);
+        void setRanges(SMappingRanges &ranges);
+        void setUseZ(bool use_z);
+        void setZ(double z);
+	};
+	
+	class CImplicitBufferScaleToRange : public CImplicitBufferBase
+    {
+    public:
+        CImplicitBufferScaleToRange();
+        CImplicitBufferScaleToRange(CImplicitBufferBase * src, double low, double high);
+        ~CImplicitBufferScaleToRange();
+
+        void setRange(double low, double high);
+        void setSource(CImplicitBufferBase * src);
+	};
+	
+	class CImplicitBufferSimpleErode : public CImplicitBufferBase
+    {
+    public:
+        CImplicitBufferSimpleErode();
+        CImplicitBufferSimpleErode(CImplicitBufferBase * src, int numdrops, float power);
+        ~CImplicitBufferSimpleErode();
+
+        void setSource(CImplicitBufferBase * src);
+        void setNumDrops(int drops);
+        void setPower(float power);
+	};
+	
+	class CImplicitBufferUnaryMath : public CImplicitBufferBase
+    {
+    public:
+        CImplicitBufferUnaryMath();
+        CImplicitBufferUnaryMath(CImplicitBufferBase * source, int op);
+        ~CImplicitBufferUnaryMath();
+
+        void setSource(CImplicitBufferBase * source);
+        void setOp(int op);
+	};
+	
+	
+	
+	
+	class CRGBABufferBlur : public CRGBABufferBase
+    {
+    public:
+        CRGBABufferBlur();
+        CRGBABufferBlur(CRGBABufferBase * src, double blursize, bool seamless);
+        ~CRGBABufferBlur();
+
+        void setSource(CRGBABufferBase * src);
+        void setBlurSize(double blursize);
+        void setSeamless(bool seamless);
+	};
+	
+	class CRGBABufferImplicitBufferAdapter : public CRGBABufferBase
+    {
+    public:
+        CRGBABufferImplicitBufferAdapter();
+        CRGBABufferImplicitBufferAdapter(CImplicitBufferBase * src);
+        ~CRGBABufferImplicitBufferAdapter();
+
+        void setSource(CImplicitBufferBase * src);
+	};
+	
+	class CRGBABufferImplicitBufferMultiply : public CRGBABufferBase
+    {
+    public:
+        CRGBABufferImplicitBufferMultiply();
+        CRGBABufferImplicitBufferMultiply(CRGBABufferBase * rgbasrc, CImplicitBufferBase * impsrc);
+        ~CRGBABufferImplicitBufferMultiply();
+
+        void setRGBASource(CRGBABufferBase * src);
+        void setImplicitSource(CImplicitBufferBase * src);
+	};
+	
+	class CRGBABufferRGBAAdapter : public CRGBABufferBase
+    {
+    public:
+        CRGBABufferRGBAAdapter();
+        CRGBABufferRGBAAdapter(anl::CRGBAModuleBase * src, int mapping=anl::SEAMLESS_NONE, SMappingRanges ranges=SMappingRanges(), bool use_z=false, double zvalue=0.0);
+        ~CRGBABufferRGBAAdapter();
+
+        void setSource(anl::CRGBAModuleBase * src);
+        void setMapping(int mapping);
+        void setRanges(SMappingRanges &ranges);
+        void setUseZ(bool use_z);
+        void setZ(double z);
+	};
+
 };

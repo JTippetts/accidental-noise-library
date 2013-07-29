@@ -6,7 +6,7 @@ namespace anl
     {
     }
 
-    CRGBABufferBlur::CRGBABufferBlur(std::shared_ptr<CRGBABufferBase> src, double blursize, bool seamless) :
+    CRGBABufferBlur::CRGBABufferBlur(CRGBABufferBase * src, double blursize, bool seamless) :
         CRGBABufferBase(), m_source(src), m_blursize(blursize), m_seamless(seamless)
     {
     }
@@ -15,7 +15,7 @@ namespace anl
     {
     }
 
-    void CRGBABufferBlur::setSource(std::shared_ptr<CRGBABufferBase> src)
+    void CRGBABufferBlur::setSource(CRGBABufferBase * src)
     {
         m_source=src;
     }

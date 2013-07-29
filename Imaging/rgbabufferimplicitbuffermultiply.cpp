@@ -6,7 +6,7 @@ namespace anl
     {
     }
 
-    CRGBABufferImplicitBufferMultiply::CRGBABufferImplicitBufferMultiply(std::shared_ptr<CRGBABufferBase> rgbasrc, std::shared_ptr<CImplicitBufferBase> impsrc) :
+    CRGBABufferImplicitBufferMultiply::CRGBABufferImplicitBufferMultiply(CRGBABufferBase * rgbasrc, CImplicitBufferBase * impsrc) :
         CRGBABufferBase(), m_rgbasource(rgbasrc), m_implicitsource(impsrc)
     {
     }
@@ -15,12 +15,12 @@ namespace anl
     {
     }
 
-    void CRGBABufferImplicitBufferMultiply::setRGBASource(std::shared_ptr<CRGBABufferBase> src)
+    void CRGBABufferImplicitBufferMultiply::setRGBASource(CRGBABufferBase * src)
     {
         m_rgbasource=src;
     }
 
-    void CRGBABufferImplicitBufferMultiply::setImplicitSource(std::shared_ptr<CImplicitBufferBase> src)
+    void CRGBABufferImplicitBufferMultiply::setImplicitSource(CImplicitBufferBase * src)
     {
         m_implicitsource=src;
     }

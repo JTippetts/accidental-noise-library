@@ -5,9 +5,9 @@ namespace anl
 {
     CRGBARGBAToHSV::CRGBARGBAToHSV() : CRGBAModuleBase(), m_source(){}
     CRGBARGBAToHSV::CRGBARGBAToHSV(SRGBA s) : CRGBAModuleBase(), m_source(s){}
-    CRGBARGBAToHSV::CRGBARGBAToHSV(std::shared_ptr<CRGBAModuleBase> s) : CRGBAModuleBase(), m_source(s){}
+    CRGBARGBAToHSV::CRGBARGBAToHSV(CRGBAModuleBase * s) : CRGBAModuleBase(), m_source(s){}
 
-    void CRGBARGBAToHSV::setSource(std::shared_ptr<CRGBAModuleBase> m)
+    void CRGBARGBAToHSV::setSource(CRGBAModuleBase * m)
     {
         m_source.set(m);
     }

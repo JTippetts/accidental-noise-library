@@ -8,9 +8,9 @@ namespace anl
     CImplicitMath::CImplicitMath() : CImplicitModuleBase(), m_op(ABS), m_source(0.0), m_parameter(0.0){}
 
     CImplicitMath::CImplicitMath(unsigned int op, double source, double p) : CImplicitModuleBase(), m_op(op), m_source(source), m_parameter(p){}
-    CImplicitMath::CImplicitMath(unsigned int op, std::shared_ptr<CImplicitModuleBase> source, double p) : CImplicitModuleBase(), m_op(op), m_source(source), m_parameter(p){}
-    CImplicitMath::CImplicitMath(unsigned int op, double source, std::shared_ptr<CImplicitModuleBase> p) : CImplicitModuleBase(), m_op(op), m_source(source), m_parameter(p){}
-    CImplicitMath::CImplicitMath(unsigned int op, std::shared_ptr<CImplicitModuleBase> source, std::shared_ptr<CImplicitModuleBase> p) : CImplicitModuleBase(), m_op(op), m_source(source), m_parameter(p){}
+    CImplicitMath::CImplicitMath(unsigned int op, CImplicitModuleBase * source, double p) : CImplicitModuleBase(), m_op(op), m_source(source), m_parameter(p){}
+    CImplicitMath::CImplicitMath(unsigned int op, double source, CImplicitModuleBase * p) : CImplicitModuleBase(), m_op(op), m_source(source), m_parameter(p){}
+    CImplicitMath::CImplicitMath(unsigned int op, CImplicitModuleBase * source, CImplicitModuleBase * p) : CImplicitModuleBase(), m_op(op), m_source(source), m_parameter(p){}
     CImplicitMath::~CImplicitMath() {}
 
     void CImplicitMath::setSource(double v)
@@ -18,7 +18,7 @@ namespace anl
         m_source.set(v);
     }
 
-    void CImplicitMath::setSource(std::shared_ptr<CImplicitModuleBase> b)
+    void CImplicitMath::setSource(CImplicitModuleBase * b)
     {
         m_source.set(b);
     }
@@ -28,7 +28,7 @@ namespace anl
         m_parameter.set(v);
     }
 
-    void CImplicitMath::setParameter(std::shared_ptr<CImplicitModuleBase> b)
+    void CImplicitMath::setParameter(CImplicitModuleBase * b)
     {
         m_parameter.set(b);
     }

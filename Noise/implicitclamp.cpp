@@ -3,14 +3,15 @@
 
 namespace anl
 {
+	CImplicitClamp::CImplicitClamp():CImplicitModuleBase(), m_source(0.0), m_low(0.0), m_high(1.0){};
     CImplicitClamp::CImplicitClamp(double source, double low, double high) : CImplicitModuleBase(), m_source(source), m_low(low), m_high(high){}
-    CImplicitClamp::CImplicitClamp(double source, double low, std::shared_ptr<CImplicitModuleBase>  high) : CImplicitModuleBase(), m_source(source), m_low(low), m_high(high){}
-    CImplicitClamp::CImplicitClamp(double source, std::shared_ptr<CImplicitModuleBase>  low, double high) : CImplicitModuleBase(), m_source(source), m_low(low), m_high(high){}
-    CImplicitClamp::CImplicitClamp(double source, std::shared_ptr<CImplicitModuleBase>  low, std::shared_ptr<CImplicitModuleBase>  high) : CImplicitModuleBase(), m_source(source), m_low(low), m_high(high){}
-    CImplicitClamp::CImplicitClamp(std::shared_ptr<CImplicitModuleBase>  source, double low, double high) : CImplicitModuleBase(), m_source(source), m_low(low), m_high(high){}
-    CImplicitClamp::CImplicitClamp(std::shared_ptr<CImplicitModuleBase>  source, double low, std::shared_ptr<CImplicitModuleBase>  high) : CImplicitModuleBase(), m_source(source), m_low(low), m_high(high){}
-    CImplicitClamp::CImplicitClamp(std::shared_ptr<CImplicitModuleBase>  source, std::shared_ptr<CImplicitModuleBase>  low, double high) : CImplicitModuleBase(), m_source(source), m_low(low), m_high(high){}
-    CImplicitClamp::CImplicitClamp(std::shared_ptr<CImplicitModuleBase>  source, std::shared_ptr<CImplicitModuleBase>  low, std::shared_ptr<CImplicitModuleBase>  high) : CImplicitModuleBase(), m_source(source), m_low(low), m_high(high){}
+    CImplicitClamp::CImplicitClamp(double source, double low, CImplicitModuleBase *  high) : CImplicitModuleBase(), m_source(source), m_low(low), m_high(high){}
+    CImplicitClamp::CImplicitClamp(double source, CImplicitModuleBase *  low, double high) : CImplicitModuleBase(), m_source(source), m_low(low), m_high(high){}
+    CImplicitClamp::CImplicitClamp(double source, CImplicitModuleBase *  low, CImplicitModuleBase *  high) : CImplicitModuleBase(), m_source(source), m_low(low), m_high(high){}
+    CImplicitClamp::CImplicitClamp(CImplicitModuleBase *  source, double low, double high) : CImplicitModuleBase(), m_source(source), m_low(low), m_high(high){}
+    CImplicitClamp::CImplicitClamp(CImplicitModuleBase *  source, double low, CImplicitModuleBase *  high) : CImplicitModuleBase(), m_source(source), m_low(low), m_high(high){}
+    CImplicitClamp::CImplicitClamp(CImplicitModuleBase *  source, CImplicitModuleBase *  low, double high) : CImplicitModuleBase(), m_source(source), m_low(low), m_high(high){}
+    CImplicitClamp::CImplicitClamp(CImplicitModuleBase *  source, CImplicitModuleBase *  low, CImplicitModuleBase *  high) : CImplicitModuleBase(), m_source(source), m_low(low), m_high(high){}
     CImplicitClamp::~CImplicitClamp(){}
 
     void CImplicitClamp::setRange(double low, double high)
@@ -19,19 +20,19 @@ namespace anl
         m_high.set(high);
     }
 
-    void CImplicitClamp::setRange(double low, std::shared_ptr<CImplicitModuleBase> high)
+    void CImplicitClamp::setRange(double low, CImplicitModuleBase * high)
     {
         m_low.set(low);
         m_high.set(high);
     }
 
-    void CImplicitClamp::setRange(std::shared_ptr<CImplicitModuleBase> low, double high)
+    void CImplicitClamp::setRange(CImplicitModuleBase * low, double high)
     {
         m_low.set(low);
         m_high.set(high);
     }
 
-    void CImplicitClamp::setRange(std::shared_ptr<CImplicitModuleBase> low, std::shared_ptr<CImplicitModuleBase> high)
+    void CImplicitClamp::setRange(CImplicitModuleBase * low, CImplicitModuleBase * high)
     {
         m_low.set(low);
         m_high.set(high);
@@ -43,7 +44,7 @@ namespace anl
         m_source.set(b);
     }
 
-    void CImplicitClamp::setSource(std::shared_ptr<CImplicitModuleBase> b)
+    void CImplicitClamp::setSource(CImplicitModuleBase * b)
     {
         m_source.set(b);
     }

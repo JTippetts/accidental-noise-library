@@ -6,11 +6,11 @@ namespace anl
 {
     CImplicitTiers::CImplicitTiers() : CImplicitModuleBase(), m_source(0.0), m_numtiers(0.0), m_smooth(true){}
     CImplicitTiers::CImplicitTiers(double src, int numtiers, bool smooth) : CImplicitModuleBase(), m_source(src), m_numtiers(numtiers), m_smooth(smooth){}
-    CImplicitTiers::CImplicitTiers(std::shared_ptr<CImplicitModuleBase> src, int numtiers, bool smooth) : CImplicitModuleBase(), m_source(src), m_numtiers(numtiers), m_smooth(smooth){}
+    CImplicitTiers::CImplicitTiers(CImplicitModuleBase * src, int numtiers, bool smooth) : CImplicitModuleBase(), m_source(src), m_numtiers(numtiers), m_smooth(smooth){}
     CImplicitTiers::~CImplicitTiers(){}
 
     void CImplicitTiers::setSource(double v){m_source.set(v);}
-    void CImplicitTiers::setSource(std::shared_ptr<CImplicitModuleBase> m){m_source.set(m);}
+    void CImplicitTiers::setSource(CImplicitModuleBase * m){m_source.set(m);}
     void CImplicitTiers::setNumTiers(int numtiers){m_numtiers=numtiers;}
     void CImplicitTiers::setSmooth(bool smooth){m_smooth=smooth;}
 

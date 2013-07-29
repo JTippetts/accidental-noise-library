@@ -9,30 +9,30 @@ namespace anl
         public:
         CImplicitTranslateDomain();
         CImplicitTranslateDomain(double src, double tx, double ty, double tz);
-        CImplicitTranslateDomain(double src, double tx, double ty, std::shared_ptr<CImplicitModuleBase> tz);
-        CImplicitTranslateDomain(double src, double tx, std::shared_ptr<CImplicitModuleBase> ty, double tz);
-        CImplicitTranslateDomain(double src, double tx, std::shared_ptr<CImplicitModuleBase> ty, std::shared_ptr<CImplicitModuleBase> tz);
-        CImplicitTranslateDomain(double src, std::shared_ptr<CImplicitModuleBase> tx, double ty, double tz);
-        CImplicitTranslateDomain(double src, std::shared_ptr<CImplicitModuleBase> tx, double ty, std::shared_ptr<CImplicitModuleBase> tz);
-        CImplicitTranslateDomain(double src, std::shared_ptr<CImplicitModuleBase> tx, std::shared_ptr<CImplicitModuleBase> ty, double tz);
-        CImplicitTranslateDomain(double src, std::shared_ptr<CImplicitModuleBase> tx, std::shared_ptr<CImplicitModuleBase> ty, std::shared_ptr<CImplicitModuleBase> tz);
-        CImplicitTranslateDomain(std::shared_ptr<CImplicitModuleBase> src, double tx, double ty, double tz);
-        CImplicitTranslateDomain(std::shared_ptr<CImplicitModuleBase> src, double tx, double ty, std::shared_ptr<CImplicitModuleBase> tz);
-        CImplicitTranslateDomain(std::shared_ptr<CImplicitModuleBase> src, double tx, std::shared_ptr<CImplicitModuleBase> ty, double tz);
-        CImplicitTranslateDomain(std::shared_ptr<CImplicitModuleBase> src, double tx, std::shared_ptr<CImplicitModuleBase> ty, std::shared_ptr<CImplicitModuleBase> tz);
-        CImplicitTranslateDomain(std::shared_ptr<CImplicitModuleBase> src, std::shared_ptr<CImplicitModuleBase> tx, double ty, double tz);
-        CImplicitTranslateDomain(std::shared_ptr<CImplicitModuleBase> src, std::shared_ptr<CImplicitModuleBase> tx, double ty, std::shared_ptr<CImplicitModuleBase> tz);
-        CImplicitTranslateDomain(std::shared_ptr<CImplicitModuleBase> src, std::shared_ptr<CImplicitModuleBase> tx, std::shared_ptr<CImplicitModuleBase> ty, double tz);
-        CImplicitTranslateDomain(std::shared_ptr<CImplicitModuleBase> src, std::shared_ptr<CImplicitModuleBase> tx, std::shared_ptr<CImplicitModuleBase> ty, std::shared_ptr<CImplicitModuleBase> tz);
+        CImplicitTranslateDomain(double src, double tx, double ty, CImplicitModuleBase * tz);
+        CImplicitTranslateDomain(double src, double tx, CImplicitModuleBase * ty, double tz);
+        CImplicitTranslateDomain(double src, double tx, CImplicitModuleBase * ty, CImplicitModuleBase * tz);
+        CImplicitTranslateDomain(double src, CImplicitModuleBase * tx, double ty, double tz);
+        CImplicitTranslateDomain(double src, CImplicitModuleBase * tx, double ty, CImplicitModuleBase * tz);
+        CImplicitTranslateDomain(double src, CImplicitModuleBase * tx, CImplicitModuleBase * ty, double tz);
+        CImplicitTranslateDomain(double src, CImplicitModuleBase * tx, CImplicitModuleBase * ty, CImplicitModuleBase * tz);
+        CImplicitTranslateDomain(CImplicitModuleBase * src, double tx, double ty, double tz);
+        CImplicitTranslateDomain(CImplicitModuleBase * src, double tx, double ty, CImplicitModuleBase * tz);
+        CImplicitTranslateDomain(CImplicitModuleBase * src, double tx, CImplicitModuleBase * ty, double tz);
+        CImplicitTranslateDomain(CImplicitModuleBase * src, double tx, CImplicitModuleBase * ty, CImplicitModuleBase * tz);
+        CImplicitTranslateDomain(CImplicitModuleBase * src, CImplicitModuleBase * tx, double ty, double tz);
+        CImplicitTranslateDomain(CImplicitModuleBase * src, CImplicitModuleBase * tx, double ty, CImplicitModuleBase * tz);
+        CImplicitTranslateDomain(CImplicitModuleBase * src, CImplicitModuleBase * tx, CImplicitModuleBase * ty, double tz);
+        CImplicitTranslateDomain(CImplicitModuleBase * src, CImplicitModuleBase * tx, CImplicitModuleBase * ty, CImplicitModuleBase * tz);
 
         ~CImplicitTranslateDomain();
 
-        void setXAxisSource(std::shared_ptr<CImplicitModuleBase> m);
-        void setYAxisSource(std::shared_ptr<CImplicitModuleBase> m);
-        void setZAxisSource(std::shared_ptr<CImplicitModuleBase> m);
-        void setWAxisSource(std::shared_ptr<CImplicitModuleBase> m);
-        void setUAxisSource(std::shared_ptr<CImplicitModuleBase> m);
-        void setVAxisSource(std::shared_ptr<CImplicitModuleBase> m);
+        void setXAxisSource(CImplicitModuleBase * m);
+        void setYAxisSource(CImplicitModuleBase * m);
+        void setZAxisSource(CImplicitModuleBase * m);
+        void setWAxisSource(CImplicitModuleBase * m);
+        void setUAxisSource(CImplicitModuleBase * m);
+        void setVAxisSource(CImplicitModuleBase * m);
 
         void setXAxisSource(double v);
         void setYAxisSource(double v);
@@ -41,7 +41,7 @@ namespace anl
         void setUAxisSource(double v);
         void setVAxisSource(double v);
 
-        void setSource(std::shared_ptr<CImplicitModuleBase> m);
+        void setSource(CImplicitModuleBase * m);
         void setSource(double v);
 
         double get(double x, double y);

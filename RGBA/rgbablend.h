@@ -10,21 +10,21 @@ namespace anl
         public:
         CRGBABlend();
         CRGBABlend(double control, SRGBA low, SRGBA high);
-        CRGBABlend(double control, SRGBA low, std::shared_ptr<CRGBAModuleBase> high);
-        CRGBABlend(double control, std::shared_ptr<CRGBAModuleBase> low, SRGBA high);
-        CRGBABlend(double control, std::shared_ptr<CRGBAModuleBase> low, std::shared_ptr<CRGBAModuleBase> high);
-        CRGBABlend(std::shared_ptr<CImplicitModuleBase> control, SRGBA low, SRGBA high);
-        CRGBABlend(std::shared_ptr<CImplicitModuleBase> control, SRGBA low, std::shared_ptr<CRGBAModuleBase> high);
-        CRGBABlend(std::shared_ptr<CImplicitModuleBase> control, std::shared_ptr<CRGBAModuleBase> low, SRGBA high);
-        CRGBABlend(std::shared_ptr<CImplicitModuleBase> control, std::shared_ptr<CRGBAModuleBase> low, std::shared_ptr<CRGBAModuleBase> high);
+        CRGBABlend(double control, SRGBA low, CRGBAModuleBase * high);
+        CRGBABlend(double control, CRGBAModuleBase * low, SRGBA high);
+        CRGBABlend(double control, CRGBAModuleBase * low, CRGBAModuleBase * high);
+        CRGBABlend(CImplicitModuleBase * control, SRGBA low, SRGBA high);
+        CRGBABlend(CImplicitModuleBase * control, SRGBA low, CRGBAModuleBase * high);
+        CRGBABlend(CImplicitModuleBase * control, CRGBAModuleBase * low, SRGBA high);
+        CRGBABlend(CImplicitModuleBase * control, CRGBAModuleBase * low, CRGBAModuleBase * high);
 
         ~CRGBABlend();
 
-        void setLowSource(std::shared_ptr<CRGBAModuleBase> m);
-        void setHighSource(std::shared_ptr<CRGBAModuleBase> m);
+        void setLowSource(CRGBAModuleBase * m);
+        void setHighSource(CRGBAModuleBase * m);
         void setLowSource(SRGBA c);
         void setHighSource(SRGBA c);
-        void setControlSource(std::shared_ptr<CImplicitModuleBase> m);
+        void setControlSource(CImplicitModuleBase * m);
         void setControlSource(double v);
 
         SRGBA get(double x, double y);

@@ -9,33 +9,33 @@ namespace anl
         public:
         CImplicitBrightContrast();
         CImplicitBrightContrast(double s,double b,double t,double f);
-        CImplicitBrightContrast(double s,double b,double t,std::shared_ptr<CImplicitModuleBase>  f);
-        CImplicitBrightContrast(double s,double b,std::shared_ptr<CImplicitModuleBase>  t,double f);
-        CImplicitBrightContrast(double s,double b,std::shared_ptr<CImplicitModuleBase>  t,std::shared_ptr<CImplicitModuleBase>  f);
-        CImplicitBrightContrast(double s,std::shared_ptr<CImplicitModuleBase>  b,double t,double f);
-        CImplicitBrightContrast(double s,std::shared_ptr<CImplicitModuleBase>  b,double t,std::shared_ptr<CImplicitModuleBase>  f);
-        CImplicitBrightContrast(double s,std::shared_ptr<CImplicitModuleBase>  b,std::shared_ptr<CImplicitModuleBase>  t,double f);
-        CImplicitBrightContrast(double s,std::shared_ptr<CImplicitModuleBase>  b,std::shared_ptr<CImplicitModuleBase>  t,std::shared_ptr<CImplicitModuleBase>  f);
-        CImplicitBrightContrast(std::shared_ptr<CImplicitModuleBase>  s,double b,double t,double f);
-        CImplicitBrightContrast(std::shared_ptr<CImplicitModuleBase>  s,double b,double t,std::shared_ptr<CImplicitModuleBase>  f);
-        CImplicitBrightContrast(std::shared_ptr<CImplicitModuleBase>  s,double b,std::shared_ptr<CImplicitModuleBase>  t,double f);
-        CImplicitBrightContrast(std::shared_ptr<CImplicitModuleBase>  s,double b,std::shared_ptr<CImplicitModuleBase>  t,std::shared_ptr<CImplicitModuleBase>  f);
-        CImplicitBrightContrast(std::shared_ptr<CImplicitModuleBase>  s,std::shared_ptr<CImplicitModuleBase>  b,double t,double f);
-        CImplicitBrightContrast(std::shared_ptr<CImplicitModuleBase>  s,std::shared_ptr<CImplicitModuleBase>  b,double t,std::shared_ptr<CImplicitModuleBase>  f);
-        CImplicitBrightContrast(std::shared_ptr<CImplicitModuleBase>  s,std::shared_ptr<CImplicitModuleBase>  b,std::shared_ptr<CImplicitModuleBase>  t,double f);
-        CImplicitBrightContrast(std::shared_ptr<CImplicitModuleBase>  s,std::shared_ptr<CImplicitModuleBase>  b,std::shared_ptr<CImplicitModuleBase>  t,std::shared_ptr<CImplicitModuleBase>  f);
+        CImplicitBrightContrast(double s,double b,double t,CImplicitModuleBase *  f);
+        CImplicitBrightContrast(double s,double b,CImplicitModuleBase *  t,double f);
+        CImplicitBrightContrast(double s,double b,CImplicitModuleBase *  t,CImplicitModuleBase *  f);
+        CImplicitBrightContrast(double s,CImplicitModuleBase *  b,double t,double f);
+        CImplicitBrightContrast(double s,CImplicitModuleBase *  b,double t,CImplicitModuleBase *  f);
+        CImplicitBrightContrast(double s,CImplicitModuleBase *  b,CImplicitModuleBase *  t,double f);
+        CImplicitBrightContrast(double s,CImplicitModuleBase *  b,CImplicitModuleBase *  t,CImplicitModuleBase *  f);
+        CImplicitBrightContrast(CImplicitModuleBase *  s,double b,double t,double f);
+        CImplicitBrightContrast(CImplicitModuleBase *  s,double b,double t,CImplicitModuleBase *  f);
+        CImplicitBrightContrast(CImplicitModuleBase *  s,double b,CImplicitModuleBase *  t,double f);
+        CImplicitBrightContrast(CImplicitModuleBase *  s,double b,CImplicitModuleBase *  t,CImplicitModuleBase *  f);
+        CImplicitBrightContrast(CImplicitModuleBase *  s,CImplicitModuleBase *  b,double t,double f);
+        CImplicitBrightContrast(CImplicitModuleBase *  s,CImplicitModuleBase *  b,double t,CImplicitModuleBase *  f);
+        CImplicitBrightContrast(CImplicitModuleBase *  s,CImplicitModuleBase *  b,CImplicitModuleBase *  t,double f);
+        CImplicitBrightContrast(CImplicitModuleBase *  s,CImplicitModuleBase *  b,CImplicitModuleBase *  t,CImplicitModuleBase *  f);
 
         ~CImplicitBrightContrast();
 
-        void setSource(std::shared_ptr<CImplicitModuleBase> m);
+        void setSource(CImplicitModuleBase * m);
         void setSource(double v);
 
         void setBrightness(double b);
         void setContrastThreshold(double t);
         void setContrastFactor(double t);
-        void setBrightness(std::shared_ptr<CImplicitModuleBase> m);
-        void setContrastThreshold(std::shared_ptr<CImplicitModuleBase> m);
-        void setContrastFactor(std::shared_ptr<CImplicitModuleBase> m);
+        void setBrightness(CImplicitModuleBase * m);
+        void setContrastThreshold(CImplicitModuleBase * m);
+        void setContrastFactor(CImplicitModuleBase * m);
 
         double get(double x, double y);
         double get(double x, double y, double z);

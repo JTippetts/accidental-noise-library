@@ -9,10 +9,10 @@ namespace anl
     {
     public:
         CRGBABufferRGBAAdapter();
-        CRGBABufferRGBAAdapter(std::shared_ptr<CRGBAModuleBase> src, int mapping=anl::SEAMLESS_NONE, SMappingRanges ranges=SMappingRanges(), bool use_z=false, double zvalue=0.0);
+        CRGBABufferRGBAAdapter(CRGBAModuleBase * src, int mapping=anl::SEAMLESS_NONE, SMappingRanges ranges=SMappingRanges(), bool use_z=false, double zvalue=0.0);
         ~CRGBABufferRGBAAdapter();
 
-        void setSource(std::shared_ptr<CRGBAModuleBase> src);
+        void setSource(CRGBAModuleBase * src);
         void setMapping(int mapping);
         void setRanges(SMappingRanges &ranges);
         void setUseZ(bool use_z);
@@ -20,7 +20,7 @@ namespace anl
 
         void get(CArray2Drgba &out);
     private:
-        std::shared_ptr<CRGBAModuleBase> m_source;
+        CRGBAModuleBase * m_source;
         int m_mapping;
         SMappingRanges m_ranges;
         bool m_use_z;

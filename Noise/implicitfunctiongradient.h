@@ -19,11 +19,11 @@ namespace anl
         public:
         CImplicitFunctionGradient();
         CImplicitFunctionGradient(double s, int axis=X_AXIS, double spacing=0.001);
-        CImplicitFunctionGradient(std::shared_ptr<CImplicitModuleBase> s, int axis=X_AXIS, double spacing=0.001);
+        CImplicitFunctionGradient(CImplicitModuleBase * s, int axis=X_AXIS, double spacing=0.001);
         ~CImplicitFunctionGradient();
 
         void setSource(double v);
-        void setSource(std::shared_ptr<CImplicitModuleBase> m);
+        void setSource(CImplicitModuleBase * m);
         void setAxis(int axis);
         void setSpacing(double s);
 

@@ -10,15 +10,15 @@ namespace anl
         public:
         CImplicitNormalizeCoords();
         CImplicitNormalizeCoords(double s, double l);
-        CImplicitNormalizeCoords(double s, std::shared_ptr<CImplicitModuleBase>  l);
-        CImplicitNormalizeCoords(std::shared_ptr<CImplicitModuleBase> s, double l);
-        CImplicitNormalizeCoords(std::shared_ptr<CImplicitModuleBase> s, std::shared_ptr<CImplicitModuleBase> l);
+        CImplicitNormalizeCoords(double s, CImplicitModuleBase *  l);
+        CImplicitNormalizeCoords(CImplicitModuleBase * s, double l);
+        CImplicitNormalizeCoords(CImplicitModuleBase * s, CImplicitModuleBase * l);
 
         void setSource(double v);
-        void setSource(std::shared_ptr<CImplicitModuleBase> v);
+        void setSource(CImplicitModuleBase * v);
 
         void setLength(double v);
-        void setLength(std::shared_ptr<CImplicitModuleBase> v);
+        void setLength(CImplicitModuleBase * v);
 
         double get(double x, double y);
         double get(double x, double y, double z);

@@ -6,7 +6,7 @@ namespace anl
     CImplicitBufferSimpleErode::CImplicitBufferSimpleErode() : CImplicitBufferBase(), m_source(), m_numdrops(0), m_power(0.5)
     {
     }
-    CImplicitBufferSimpleErode::CImplicitBufferSimpleErode(std::shared_ptr<CImplicitBufferBase> src, int numdrops, float power) :
+    CImplicitBufferSimpleErode::CImplicitBufferSimpleErode(CImplicitBufferBase * src, int numdrops, float power) :
         CImplicitBufferBase(), m_source(src), m_numdrops(numdrops), m_power(power)
     {
     }
@@ -15,7 +15,7 @@ namespace anl
     {
     }
 
-    void CImplicitBufferSimpleErode::setSource(std::shared_ptr<CImplicitBufferBase> src)
+    void CImplicitBufferSimpleErode::setSource(CImplicitBufferBase * src)
     {
         m_source=src;
     }
@@ -42,7 +42,7 @@ namespace anl
     {
     }
 
-    CImplicitBufferSimpleRainfall::CImplicitBufferSimpleRainfall(std::shared_ptr<CImplicitBufferBase> src, std::shared_ptr<CImplicitBufferBase> depth, int iterations) :
+    CImplicitBufferSimpleRainfall::CImplicitBufferSimpleRainfall(CImplicitBufferBase * src, CImplicitBufferBase * depth, int iterations) :
         CImplicitBufferBase(), m_source(src), m_depth(depth), m_iterations(iterations)
     {
     }
@@ -51,12 +51,12 @@ namespace anl
     {
     }
 
-    void CImplicitBufferSimpleRainfall::setSource(std::shared_ptr<CImplicitBufferBase> src)
+    void CImplicitBufferSimpleRainfall::setSource(CImplicitBufferBase * src)
     {
         m_source=src;
     }
 
-    void CImplicitBufferSimpleRainfall::setDepth(std::shared_ptr<CImplicitBufferBase> src)
+    void CImplicitBufferSimpleRainfall::setDepth(CImplicitBufferBase * src)
     {
         m_depth=src;
     }

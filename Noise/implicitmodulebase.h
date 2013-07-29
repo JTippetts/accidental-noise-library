@@ -7,7 +7,7 @@
 #define MaxSources 20
 namespace anl
 {
-	
+
 class CImplicitModuleBase
 {
 public:
@@ -49,7 +49,7 @@ class CScalarParameter
 {
     public:
     CScalarParameter(double v) : m_val(v), m_source(0){}
-    CScalarParameter(std::shared_ptr<CImplicitModuleBase> b) : m_val(0), m_source(b){}
+    CScalarParameter(CImplicitModuleBase * b) : m_val(0), m_source(b){}
     CScalarParameter(const CScalarParameter &p) {m_source=p.m_source; m_val=p.m_val;}
     ~CScalarParameter(){}
 
@@ -59,7 +59,7 @@ class CScalarParameter
         m_val=v;
     }
 
-    void set(std::shared_ptr<CImplicitModuleBase> m)
+    void set(CImplicitModuleBase * m)
     {
         m_source=m;
     }
@@ -90,7 +90,7 @@ class CScalarParameter
 
     protected:
     double m_val;
-    std::shared_ptr<CImplicitModuleBase> m_source;
+    CImplicitModuleBase * m_source;
 };
 };
 #endif

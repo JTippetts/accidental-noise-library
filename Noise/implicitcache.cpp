@@ -4,9 +4,9 @@ namespace anl
 {
     CImplicitCache::CImplicitCache() : CImplicitModuleBase(), m_source(0.0) {}
     CImplicitCache::CImplicitCache(double v) : CImplicitModuleBase(), m_source(v) {}
-    CImplicitCache::CImplicitCache(std::shared_ptr<CImplicitModuleBase> v) : CImplicitModuleBase(), m_source(v) {}
+    CImplicitCache::CImplicitCache(CImplicitModuleBase * v) : CImplicitModuleBase(), m_source(v) {}
     CImplicitCache::~CImplicitCache() {}
-    void CImplicitCache::setSource(std::shared_ptr<CImplicitModuleBase> m)
+    void CImplicitCache::setSource(CImplicitModuleBase * m)
     {
         m_source.set(m);
     }

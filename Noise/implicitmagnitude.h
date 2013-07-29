@@ -18,12 +18,12 @@ class CImplicitMagnitude : public CImplicitModuleBase
     void setU(double f);
     void setV(double f);
 
-    void setX(std::shared_ptr<CImplicitModuleBase> f);
-    void setY(std::shared_ptr<CImplicitModuleBase> f);
-    void setZ(std::shared_ptr<CImplicitModuleBase> f);
-    void setW(std::shared_ptr<CImplicitModuleBase> f);
-    void setU(std::shared_ptr<CImplicitModuleBase> f);
-    void setV(std::shared_ptr<CImplicitModuleBase> f);
+    void setX(CImplicitModuleBase * f);
+    void setY(CImplicitModuleBase * f);
+    void setZ(CImplicitModuleBase * f);
+    void setW(CImplicitModuleBase * f);
+    void setU(CImplicitModuleBase * f);
+    void setV(CImplicitModuleBase * f);
 
     double get(double x, double y);
     double get(double x, double y, double z);

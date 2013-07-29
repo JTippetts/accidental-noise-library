@@ -6,9 +6,9 @@ namespace anl
 
     CImplicitAutoCorrect::CImplicitAutoCorrect() : CImplicitModuleBase(), m_source(0), m_low(-1.0), m_high(1.0){}
     CImplicitAutoCorrect::CImplicitAutoCorrect(double low, double high) : CImplicitModuleBase(), m_source(0), m_low(low), m_high(high){calculate();}
-    CImplicitAutoCorrect::CImplicitAutoCorrect(std::shared_ptr<CImplicitModuleBase> m, double low, double high) : CImplicitModuleBase(), m_source(m), m_low(low), m_high(high){calculate();}
+    CImplicitAutoCorrect::CImplicitAutoCorrect(CImplicitModuleBase * m, double low, double high) : CImplicitModuleBase(), m_source(m), m_low(low), m_high(high){calculate();}
 
-    void CImplicitAutoCorrect::setSource(std::shared_ptr<CImplicitModuleBase> m)
+    void CImplicitAutoCorrect::setSource(CImplicitModuleBase * m)
     {
         m_source=m;
         calculate();

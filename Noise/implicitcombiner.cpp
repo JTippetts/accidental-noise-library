@@ -18,7 +18,7 @@ namespace anl
 		for(int c=0; c<MaxSources; ++c) m_sources[c]=0;
 	}
 
-	void CImplicitCombiner::setSource(int which, std::shared_ptr<CImplicitModuleBase> b)
+	void CImplicitCombiner::setSource(int which, CImplicitModuleBase * b)
 	{
 		if(which<0 || which>=MaxSources) return;
 		m_sources[which]=b;

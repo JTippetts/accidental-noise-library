@@ -10,17 +10,17 @@ namespace anl
     {
     public:
         CRGBABufferImplicitBufferMultiply();
-        CRGBABufferImplicitBufferMultiply(std::shared_ptr<CRGBABufferBase> rgbasrc, std::shared_ptr<CImplicitBufferBase> impsrc);
+        CRGBABufferImplicitBufferMultiply(CRGBABufferBase * rgbasrc, CImplicitBufferBase * impsrc);
         ~CRGBABufferImplicitBufferMultiply();
 
-        void setRGBASource(std::shared_ptr<CRGBABufferBase> src);
-        void setImplicitSource(std::shared_ptr<CImplicitBufferBase> src);
+        void setRGBASource(CRGBABufferBase * src);
+        void setImplicitSource(CImplicitBufferBase * src);
 
         void get(CArray2Drgba &out);
 
     private:
-        std::shared_ptr<CRGBABufferBase> m_rgbasource;
-        std::shared_ptr<CImplicitBufferBase> m_implicitsource;
+        CRGBABufferBase * m_rgbasource;
+        CImplicitBufferBase * m_implicitsource;
     };
 };
 

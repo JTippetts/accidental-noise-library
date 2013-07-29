@@ -22,17 +22,17 @@ namespace anl
         public:
         CRGBAColorOps();
         CRGBAColorOps(SRGBA s1, SRGBA s2, int op);
-        CRGBAColorOps(SRGBA s1, std::shared_ptr<CRGBAModuleBase> s2, int op);
-        CRGBAColorOps(std::shared_ptr<CRGBAModuleBase> s1, SRGBA s2, int op);
-        CRGBAColorOps(std::shared_ptr<CRGBAModuleBase> s1, std::shared_ptr<CRGBAModuleBase> s2, int op);
+        CRGBAColorOps(SRGBA s1, CRGBAModuleBase * s2, int op);
+        CRGBAColorOps(CRGBAModuleBase * s1, SRGBA s2, int op);
+        CRGBAColorOps(CRGBAModuleBase * s1, CRGBAModuleBase * s2, int op);
         ~CRGBAColorOps();
 
         void setOperation(int op);
 
         void setSource1(SRGBA c);
-        void setSource1(std::shared_ptr<CRGBAModuleBase> m);
+        void setSource1(CRGBAModuleBase * m);
         void setSource2(SRGBA c);
-        void setSource2(std::shared_ptr<CRGBAModuleBase> m);
+        void setSource2(CRGBAModuleBase * m);
 
         SRGBA get(double x, double y);
         SRGBA get(double x, double y, double z);

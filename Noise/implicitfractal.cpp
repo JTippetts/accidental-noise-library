@@ -57,7 +57,7 @@ void CImplicitFractal::setType(unsigned int t)
         //if(!m_rotatedomain) m_basis[which]->setRotationAngle(1,0,0,0);
     }
 
-	void CImplicitFractal::overrideSource(int which, std::shared_ptr<CImplicitModuleBase> b)
+	void CImplicitFractal::overrideSource(int which, CImplicitModuleBase * b)
 	{
 		if(which<0 || which>=MaxSources) return;
 		m_source[which]=b;
@@ -67,14 +67,14 @@ void CImplicitFractal::setType(unsigned int t)
 	{
 		if(which<0 || which>=MaxSources) return;
 		if(!m_basis[which]) return;
-		m_source[which]=m_basis[which];
+		m_source[which]=m_basis[which].get();
 	}
 
 	void CImplicitFractal::resetAllSources()
 	{
 		for(int c=0; c<MaxSources; ++c)
         {
-            m_source[c] = m_basis[c];
+            m_source[c] = m_basis[c].get();
             //if(!m_rotatedomain) m_basis[c]->setRotationAngle(1,0,0,0);
         }
 	}
@@ -90,10 +90,10 @@ void CImplicitFractal::setType(unsigned int t)
         }
 	}
 
-	std::shared_ptr<CImplicitModuleBase> CImplicitFractal::getBasis(int which)
+	CImplicitModuleBase * CImplicitFractal::getBasis(int which)
 	{
 		if(which<0 || which>=MaxSources) return 0;
-		return m_basis[which];
+		return m_basis[which].get();
 	}
 
 	double CImplicitFractal::get(double x, double y)

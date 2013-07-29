@@ -7,9 +7,9 @@ namespace anl
     CRGBAColorOps::CRGBAColorOps() : m_source1(), m_source2(), m_op(SOFTLIGHT){}
 
     CRGBAColorOps::CRGBAColorOps(SRGBA s1, SRGBA s2, int op) : CRGBAModuleBase(), m_source1(s1), m_source2(s2), m_op(op){}
-    CRGBAColorOps::CRGBAColorOps(SRGBA s1, std::shared_ptr<CRGBAModuleBase> s2, int op) : CRGBAModuleBase(), m_source1(s1), m_source2(s2), m_op(op){}
-    CRGBAColorOps::CRGBAColorOps(std::shared_ptr<CRGBAModuleBase> s1, SRGBA s2, int op) : CRGBAModuleBase(), m_source1(s1), m_source2(s2), m_op(op){}
-    CRGBAColorOps::CRGBAColorOps(std::shared_ptr<CRGBAModuleBase> s1, std::shared_ptr<CRGBAModuleBase> s2, int op) : CRGBAModuleBase(), m_source1(s1), m_source2(s2), m_op(op){}
+    CRGBAColorOps::CRGBAColorOps(SRGBA s1, CRGBAModuleBase * s2, int op) : CRGBAModuleBase(), m_source1(s1), m_source2(s2), m_op(op){}
+    CRGBAColorOps::CRGBAColorOps(CRGBAModuleBase * s1, SRGBA s2, int op) : CRGBAModuleBase(), m_source1(s1), m_source2(s2), m_op(op){}
+    CRGBAColorOps::CRGBAColorOps(CRGBAModuleBase * s1, CRGBAModuleBase * s2, int op) : CRGBAModuleBase(), m_source1(s1), m_source2(s2), m_op(op){}
 
     CRGBAColorOps::~CRGBAColorOps(){}
     void CRGBAColorOps::setOperation(int op)
@@ -23,7 +23,7 @@ namespace anl
     {
         m_source1.set(c);
     }
-    void CRGBAColorOps::setSource1(std::shared_ptr<CRGBAModuleBase> m)
+    void CRGBAColorOps::setSource1(CRGBAModuleBase * m)
     {
         m_source1.set(m);
     }
@@ -31,7 +31,7 @@ namespace anl
     {
         m_source2.set(c);
     }
-    void CRGBAColorOps::setSource2(std::shared_ptr<CRGBAModuleBase> m)
+    void CRGBAColorOps::setSource2(CRGBAModuleBase * m)
     {
         m_source2.set(m);
     }

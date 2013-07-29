@@ -4,16 +4,16 @@ namespace anl
 {
     CImplicitScaleOffset::CImplicitScaleOffset() : CImplicitModuleBase(), m_source(0.0), m_scale(1.0), m_offset(0.0){}
     CImplicitScaleOffset::CImplicitScaleOffset(double source, double scale, double offset) : CImplicitModuleBase(), m_source(source), m_scale(scale), m_offset(offset){}
-    CImplicitScaleOffset::CImplicitScaleOffset(double source, double scale, std::shared_ptr<CImplicitModuleBase> offset) : CImplicitModuleBase(), m_source(source), m_scale(scale), m_offset(offset){}
-    CImplicitScaleOffset::CImplicitScaleOffset(double source, std::shared_ptr<CImplicitModuleBase> scale, double offset) : CImplicitModuleBase(), m_source(source), m_scale(scale), m_offset(offset){}
-    CImplicitScaleOffset::CImplicitScaleOffset(double source, std::shared_ptr<CImplicitModuleBase> scale, std::shared_ptr<CImplicitModuleBase> offset) : CImplicitModuleBase(), m_source(source), m_scale(scale), m_offset(offset){}
-    CImplicitScaleOffset::CImplicitScaleOffset(std::shared_ptr<CImplicitModuleBase> source, double scale, double offset) : CImplicitModuleBase(), m_source(source), m_scale(scale), m_offset(offset){}
-    CImplicitScaleOffset::CImplicitScaleOffset(std::shared_ptr<CImplicitModuleBase> source, double scale, std::shared_ptr<CImplicitModuleBase> offset) : CImplicitModuleBase(), m_source(source), m_scale(scale), m_offset(offset){}
-    CImplicitScaleOffset::CImplicitScaleOffset(std::shared_ptr<CImplicitModuleBase> source, std::shared_ptr<CImplicitModuleBase> scale, double offset) : CImplicitModuleBase(), m_source(source), m_scale(scale), m_offset(offset){}
-    CImplicitScaleOffset::CImplicitScaleOffset(std::shared_ptr<CImplicitModuleBase> source, std::shared_ptr<CImplicitModuleBase> scale, std::shared_ptr<CImplicitModuleBase> offset) : CImplicitModuleBase(), m_source(source), m_scale(scale), m_offset(offset){}
+    CImplicitScaleOffset::CImplicitScaleOffset(double source, double scale, CImplicitModuleBase * offset) : CImplicitModuleBase(), m_source(source), m_scale(scale), m_offset(offset){}
+    CImplicitScaleOffset::CImplicitScaleOffset(double source, CImplicitModuleBase * scale, double offset) : CImplicitModuleBase(), m_source(source), m_scale(scale), m_offset(offset){}
+    CImplicitScaleOffset::CImplicitScaleOffset(double source, CImplicitModuleBase * scale, CImplicitModuleBase * offset) : CImplicitModuleBase(), m_source(source), m_scale(scale), m_offset(offset){}
+    CImplicitScaleOffset::CImplicitScaleOffset(CImplicitModuleBase * source, double scale, double offset) : CImplicitModuleBase(), m_source(source), m_scale(scale), m_offset(offset){}
+    CImplicitScaleOffset::CImplicitScaleOffset(CImplicitModuleBase * source, double scale, CImplicitModuleBase * offset) : CImplicitModuleBase(), m_source(source), m_scale(scale), m_offset(offset){}
+    CImplicitScaleOffset::CImplicitScaleOffset(CImplicitModuleBase * source, CImplicitModuleBase * scale, double offset) : CImplicitModuleBase(), m_source(source), m_scale(scale), m_offset(offset){}
+    CImplicitScaleOffset::CImplicitScaleOffset(CImplicitModuleBase * source, CImplicitModuleBase * scale, CImplicitModuleBase * offset) : CImplicitModuleBase(), m_source(source), m_scale(scale), m_offset(offset){}
     CImplicitScaleOffset::~CImplicitScaleOffset(){}
 
-    void CImplicitScaleOffset::setSource(std::shared_ptr<CImplicitModuleBase> b){m_source.set(b);}
+    void CImplicitScaleOffset::setSource(CImplicitModuleBase * b){m_source.set(b);}
     void CImplicitScaleOffset::setSource(double v){m_source.set(v);}
 
     void CImplicitScaleOffset::setScale(double scale)
@@ -24,11 +24,11 @@ namespace anl
     {
         m_offset.set(offset);
     }
-    void CImplicitScaleOffset::setScale(std::shared_ptr<CImplicitModuleBase> scale)
+    void CImplicitScaleOffset::setScale(CImplicitModuleBase * scale)
     {
         m_scale.set(scale);
     }
-    void CImplicitScaleOffset::setOffset(std::shared_ptr<CImplicitModuleBase> offset)
+    void CImplicitScaleOffset::setOffset(CImplicitModuleBase * offset)
     {
         m_offset.set(offset);
     }

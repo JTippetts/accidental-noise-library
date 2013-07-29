@@ -26,7 +26,7 @@ namespace anl
     {
         m_source.set(t);
     }
-    void CRGBACurve::setSource(std::shared_ptr<CImplicitModuleBase> m)
+    void CRGBACurve::setSource(CImplicitModuleBase * m)
     {
         m_source.set(m);
     }

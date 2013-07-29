@@ -6,7 +6,7 @@ namespace anl
     {
     }
 
-    CRGBABufferImplicitBufferAdapter::CRGBABufferImplicitBufferAdapter(std::shared_ptr<CImplicitBufferBase> src) :
+    CRGBABufferImplicitBufferAdapter::CRGBABufferImplicitBufferAdapter(CImplicitBufferBase * src) :
         CRGBABufferBase(), m_source(src)
     {
     }
@@ -15,7 +15,7 @@ namespace anl
     {
     }
 
-    void CRGBABufferImplicitBufferAdapter::setSource(std::shared_ptr<CImplicitBufferBase> src)
+    void CRGBABufferImplicitBufferAdapter::setSource(CImplicitBufferBase * src)
     {
         m_source=src;
     }

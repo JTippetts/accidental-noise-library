@@ -6,10 +6,10 @@ namespace anl
 {
     CRGBANormalize::CRGBANormalize() : CRGBAModuleBase(), m_source(){}
     CRGBANormalize::CRGBANormalize(SRGBA s) : CRGBAModuleBase(), m_source(s){}
-    CRGBANormalize::CRGBANormalize(std::shared_ptr<CRGBAModuleBase> s) : CRGBAModuleBase(), m_source(s){}
+    CRGBANormalize::CRGBANormalize(CRGBAModuleBase * s) : CRGBAModuleBase(), m_source(s){}
     CRGBANormalize::~CRGBANormalize(){}
 
-    void CRGBANormalize::setSource(std::shared_ptr<CRGBAModuleBase> m){m_source.set(m);}
+    void CRGBANormalize::setSource(CRGBAModuleBase * m){m_source.set(m);}
     void CRGBANormalize::setSource(SRGBA c){m_source.set(c);}
 
     SRGBA CRGBANormalize::get(double x, double y)

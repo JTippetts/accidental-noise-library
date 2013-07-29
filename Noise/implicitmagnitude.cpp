@@ -12,12 +12,12 @@ namespace anl
     void CImplicitMagnitude::setU(double f){m_u.set(f);}
     void CImplicitMagnitude::setV(double f){m_v.set(f);}
 
-    void CImplicitMagnitude::setX(std::shared_ptr<CImplicitModuleBase> f){m_x.set(f);}
-    void CImplicitMagnitude::setY(std::shared_ptr<CImplicitModuleBase> f){m_y.set(f);}
-    void CImplicitMagnitude::setZ(std::shared_ptr<CImplicitModuleBase> f){m_z.set(f);}
-    void CImplicitMagnitude::setW(std::shared_ptr<CImplicitModuleBase> f){m_w.set(f);}
-    void CImplicitMagnitude::setU(std::shared_ptr<CImplicitModuleBase> f){m_u.set(f);}
-    void CImplicitMagnitude::setV(std::shared_ptr<CImplicitModuleBase> f){m_v.set(f);}
+    void CImplicitMagnitude::setX(CImplicitModuleBase * f){m_x.set(f);}
+    void CImplicitMagnitude::setY(CImplicitModuleBase * f){m_y.set(f);}
+    void CImplicitMagnitude::setZ(CImplicitModuleBase * f){m_z.set(f);}
+    void CImplicitMagnitude::setW(CImplicitModuleBase * f){m_w.set(f);}
+    void CImplicitMagnitude::setU(CImplicitModuleBase * f){m_u.set(f);}
+    void CImplicitMagnitude::setV(CImplicitModuleBase * f){m_v.set(f);}
 
     double CImplicitMagnitude::get(double x, double y)
     {

@@ -9,157 +9,157 @@ namespace anl
     {
     }
 
-    CImplicitRotateDomain::CImplicitRotateDomain(double src, double ax, double ay, double az, std::shared_ptr<CImplicitModuleBase> angle_deg) :
+    CImplicitRotateDomain::CImplicitRotateDomain(double src, double ax, double ay, double az, CImplicitModuleBase * angle_deg) :
         CImplicitModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle_deg), m_source(src)
     {
     }
 
-    CImplicitRotateDomain::CImplicitRotateDomain(double src, double ax, double ay, std::shared_ptr<CImplicitModuleBase> az, double angle_deg) :
+    CImplicitRotateDomain::CImplicitRotateDomain(double src, double ax, double ay, CImplicitModuleBase * az, double angle_deg) :
         CImplicitModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle_deg), m_source(src)
     {
     }
 
-    CImplicitRotateDomain::CImplicitRotateDomain(double src, double ax, double ay, std::shared_ptr<CImplicitModuleBase> az, std::shared_ptr<CImplicitModuleBase> angle_deg) :
+    CImplicitRotateDomain::CImplicitRotateDomain(double src, double ax, double ay, CImplicitModuleBase * az, CImplicitModuleBase * angle_deg) :
         CImplicitModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle_deg), m_source(src)
     {
     }
 
-    CImplicitRotateDomain::CImplicitRotateDomain(double src, double ax, std::shared_ptr<CImplicitModuleBase> ay, double az, double angle_deg) :
+    CImplicitRotateDomain::CImplicitRotateDomain(double src, double ax, CImplicitModuleBase * ay, double az, double angle_deg) :
         CImplicitModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle_deg), m_source(src)
     {
     }
 
-    CImplicitRotateDomain::CImplicitRotateDomain(double src, double ax, std::shared_ptr<CImplicitModuleBase> ay, double az, std::shared_ptr<CImplicitModuleBase> angle_deg) :
+    CImplicitRotateDomain::CImplicitRotateDomain(double src, double ax, CImplicitModuleBase * ay, double az, CImplicitModuleBase * angle_deg) :
         CImplicitModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle_deg), m_source(src)
     {
     }
 
-    CImplicitRotateDomain::CImplicitRotateDomain(double src, double ax, std::shared_ptr<CImplicitModuleBase> ay, std::shared_ptr<CImplicitModuleBase> az, double angle_deg) :
+    CImplicitRotateDomain::CImplicitRotateDomain(double src, double ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, double angle_deg) :
         CImplicitModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle_deg), m_source(src)
     {
     }
 
-    CImplicitRotateDomain::CImplicitRotateDomain(double src, double ax, std::shared_ptr<CImplicitModuleBase> ay, std::shared_ptr<CImplicitModuleBase> az, std::shared_ptr<CImplicitModuleBase> angle_deg) :
+    CImplicitRotateDomain::CImplicitRotateDomain(double src, double ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, CImplicitModuleBase * angle_deg) :
         CImplicitModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle_deg), m_source(src)
     {
     }
 
-    CImplicitRotateDomain::CImplicitRotateDomain(double src, std::shared_ptr<CImplicitModuleBase> ax, double ay, double az, double angle_deg) :
+    CImplicitRotateDomain::CImplicitRotateDomain(double src, CImplicitModuleBase * ax, double ay, double az, double angle_deg) :
         CImplicitModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle_deg), m_source(src)
     {
     }
 
-    CImplicitRotateDomain::CImplicitRotateDomain(double src, std::shared_ptr<CImplicitModuleBase> ax, double ay, double az, std::shared_ptr<CImplicitModuleBase> angle_deg) :
+    CImplicitRotateDomain::CImplicitRotateDomain(double src, CImplicitModuleBase * ax, double ay, double az, CImplicitModuleBase * angle_deg) :
         CImplicitModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle_deg), m_source(src)
     {
     }
 
-    CImplicitRotateDomain::CImplicitRotateDomain(double src, std::shared_ptr<CImplicitModuleBase> ax, double ay, std::shared_ptr<CImplicitModuleBase> az, double angle_deg) :
+    CImplicitRotateDomain::CImplicitRotateDomain(double src, CImplicitModuleBase * ax, double ay, CImplicitModuleBase * az, double angle_deg) :
         CImplicitModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle_deg), m_source(src)
     {
     }
 
-    CImplicitRotateDomain::CImplicitRotateDomain(double src, std::shared_ptr<CImplicitModuleBase> ax, double ay, std::shared_ptr<CImplicitModuleBase> az, std::shared_ptr<CImplicitModuleBase> angle_deg) :
+    CImplicitRotateDomain::CImplicitRotateDomain(double src, CImplicitModuleBase * ax, double ay, CImplicitModuleBase * az, CImplicitModuleBase * angle_deg) :
         CImplicitModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle_deg), m_source(src)
     {
     }
 
-    CImplicitRotateDomain::CImplicitRotateDomain(double src, std::shared_ptr<CImplicitModuleBase> ax, std::shared_ptr<CImplicitModuleBase> ay, double az, double angle_deg) :
+    CImplicitRotateDomain::CImplicitRotateDomain(double src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, double az, double angle_deg) :
         CImplicitModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle_deg), m_source(src)
     {
     }
 
-    CImplicitRotateDomain::CImplicitRotateDomain(double src, std::shared_ptr<CImplicitModuleBase> ax, std::shared_ptr<CImplicitModuleBase> ay, double az, std::shared_ptr<CImplicitModuleBase> angle_deg) :
+    CImplicitRotateDomain::CImplicitRotateDomain(double src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, double az, CImplicitModuleBase * angle_deg) :
         CImplicitModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle_deg), m_source(src)
     {
     }
 
-    CImplicitRotateDomain::CImplicitRotateDomain(double src, std::shared_ptr<CImplicitModuleBase> ax, std::shared_ptr<CImplicitModuleBase> ay, std::shared_ptr<CImplicitModuleBase> az, double angle_deg) :
+    CImplicitRotateDomain::CImplicitRotateDomain(double src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, double angle_deg) :
         CImplicitModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle_deg), m_source(src)
     {
     }
 
-    CImplicitRotateDomain::CImplicitRotateDomain(double src, std::shared_ptr<CImplicitModuleBase> ax, std::shared_ptr<CImplicitModuleBase> ay, std::shared_ptr<CImplicitModuleBase> az, std::shared_ptr<CImplicitModuleBase> angle_deg) :
+    CImplicitRotateDomain::CImplicitRotateDomain(double src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, CImplicitModuleBase * angle_deg) :
         CImplicitModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle_deg), m_source(src)
     {
     }
 
-    CImplicitRotateDomain::CImplicitRotateDomain(std::shared_ptr<CImplicitModuleBase> src, double ax, double ay, double az, double angle_deg) :
+    CImplicitRotateDomain::CImplicitRotateDomain(CImplicitModuleBase * src, double ax, double ay, double az, double angle_deg) :
         CImplicitModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle_deg), m_source(src)
     {
     }
 
-    CImplicitRotateDomain::CImplicitRotateDomain(std::shared_ptr<CImplicitModuleBase> src, double ax, double ay, double az, std::shared_ptr<CImplicitModuleBase> angle_deg) :
+    CImplicitRotateDomain::CImplicitRotateDomain(CImplicitModuleBase * src, double ax, double ay, double az, CImplicitModuleBase * angle_deg) :
         CImplicitModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle_deg), m_source(src)
     {
     }
 
-    CImplicitRotateDomain::CImplicitRotateDomain(std::shared_ptr<CImplicitModuleBase> src, double ax, double ay, std::shared_ptr<CImplicitModuleBase> az, double angle_deg) :
+    CImplicitRotateDomain::CImplicitRotateDomain(CImplicitModuleBase * src, double ax, double ay, CImplicitModuleBase * az, double angle_deg) :
         CImplicitModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle_deg), m_source(src)
     {
     }
 
-    CImplicitRotateDomain::CImplicitRotateDomain(std::shared_ptr<CImplicitModuleBase> src, double ax, double ay, std::shared_ptr<CImplicitModuleBase> az, std::shared_ptr<CImplicitModuleBase> angle_deg) :
+    CImplicitRotateDomain::CImplicitRotateDomain(CImplicitModuleBase * src, double ax, double ay, CImplicitModuleBase * az, CImplicitModuleBase * angle_deg) :
         CImplicitModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle_deg), m_source(src)
     {
     }
 
-    CImplicitRotateDomain::CImplicitRotateDomain(std::shared_ptr<CImplicitModuleBase> src, double ax, std::shared_ptr<CImplicitModuleBase> ay, double az, double angle_deg) :
+    CImplicitRotateDomain::CImplicitRotateDomain(CImplicitModuleBase * src, double ax, CImplicitModuleBase * ay, double az, double angle_deg) :
         CImplicitModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle_deg), m_source(src)
     {
     }
 
-    CImplicitRotateDomain::CImplicitRotateDomain(std::shared_ptr<CImplicitModuleBase> src, double ax, std::shared_ptr<CImplicitModuleBase> ay, double az, std::shared_ptr<CImplicitModuleBase> angle_deg) :
+    CImplicitRotateDomain::CImplicitRotateDomain(CImplicitModuleBase * src, double ax, CImplicitModuleBase * ay, double az, CImplicitModuleBase * angle_deg) :
         CImplicitModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle_deg), m_source(src)
     {
     }
 
-    CImplicitRotateDomain::CImplicitRotateDomain(std::shared_ptr<CImplicitModuleBase> src, double ax, std::shared_ptr<CImplicitModuleBase> ay, std::shared_ptr<CImplicitModuleBase> az, double angle_deg) :
+    CImplicitRotateDomain::CImplicitRotateDomain(CImplicitModuleBase * src, double ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, double angle_deg) :
         CImplicitModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle_deg), m_source(src)
     {
     }
 
-    CImplicitRotateDomain::CImplicitRotateDomain(std::shared_ptr<CImplicitModuleBase> src, double ax, std::shared_ptr<CImplicitModuleBase> ay, std::shared_ptr<CImplicitModuleBase> az, std::shared_ptr<CImplicitModuleBase> angle_deg) :
+    CImplicitRotateDomain::CImplicitRotateDomain(CImplicitModuleBase * src, double ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, CImplicitModuleBase * angle_deg) :
         CImplicitModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle_deg), m_source(src)
     {
     }
 
-    CImplicitRotateDomain::CImplicitRotateDomain(std::shared_ptr<CImplicitModuleBase> src, std::shared_ptr<CImplicitModuleBase> ax, double ay, double az, double angle_deg) :
+    CImplicitRotateDomain::CImplicitRotateDomain(CImplicitModuleBase * src, CImplicitModuleBase * ax, double ay, double az, double angle_deg) :
         CImplicitModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle_deg), m_source(src)
     {
     }
 
-    CImplicitRotateDomain::CImplicitRotateDomain(std::shared_ptr<CImplicitModuleBase> src, std::shared_ptr<CImplicitModuleBase> ax, double ay, double az, std::shared_ptr<CImplicitModuleBase> angle_deg) :
+    CImplicitRotateDomain::CImplicitRotateDomain(CImplicitModuleBase * src, CImplicitModuleBase * ax, double ay, double az, CImplicitModuleBase * angle_deg) :
         CImplicitModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle_deg), m_source(src)
     {
     }
 
-    CImplicitRotateDomain::CImplicitRotateDomain(std::shared_ptr<CImplicitModuleBase> src, std::shared_ptr<CImplicitModuleBase> ax, double ay, std::shared_ptr<CImplicitModuleBase> az, double angle_deg) :
+    CImplicitRotateDomain::CImplicitRotateDomain(CImplicitModuleBase * src, CImplicitModuleBase * ax, double ay, CImplicitModuleBase * az, double angle_deg) :
         CImplicitModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle_deg), m_source(src)
     {
     }
 
-    CImplicitRotateDomain::CImplicitRotateDomain(std::shared_ptr<CImplicitModuleBase> src, std::shared_ptr<CImplicitModuleBase> ax, double ay, std::shared_ptr<CImplicitModuleBase> az, std::shared_ptr<CImplicitModuleBase> angle_deg) :
+    CImplicitRotateDomain::CImplicitRotateDomain(CImplicitModuleBase * src, CImplicitModuleBase * ax, double ay, CImplicitModuleBase * az, CImplicitModuleBase * angle_deg) :
         CImplicitModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle_deg), m_source(src)
     {
     }
 
-    CImplicitRotateDomain::CImplicitRotateDomain(std::shared_ptr<CImplicitModuleBase> src, std::shared_ptr<CImplicitModuleBase> ax, std::shared_ptr<CImplicitModuleBase> ay, double az, double angle_deg) :
+    CImplicitRotateDomain::CImplicitRotateDomain(CImplicitModuleBase * src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, double az, double angle_deg) :
         CImplicitModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle_deg), m_source(src)
     {
     }
 
-    CImplicitRotateDomain::CImplicitRotateDomain(std::shared_ptr<CImplicitModuleBase> src, std::shared_ptr<CImplicitModuleBase> ax, std::shared_ptr<CImplicitModuleBase> ay, double az, std::shared_ptr<CImplicitModuleBase> angle_deg) :
+    CImplicitRotateDomain::CImplicitRotateDomain(CImplicitModuleBase * src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, double az, CImplicitModuleBase * angle_deg) :
         CImplicitModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle_deg), m_source(src)
     {
     }
 
-    CImplicitRotateDomain::CImplicitRotateDomain(std::shared_ptr<CImplicitModuleBase> src, std::shared_ptr<CImplicitModuleBase> ax, std::shared_ptr<CImplicitModuleBase> ay, std::shared_ptr<CImplicitModuleBase> az, double angle_deg) :
+    CImplicitRotateDomain::CImplicitRotateDomain(CImplicitModuleBase * src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, double angle_deg) :
         CImplicitModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle_deg), m_source(src)
     {
     }
 
-    CImplicitRotateDomain::CImplicitRotateDomain(std::shared_ptr<CImplicitModuleBase> src, std::shared_ptr<CImplicitModuleBase> ax, std::shared_ptr<CImplicitModuleBase> ay, std::shared_ptr<CImplicitModuleBase> az, std::shared_ptr<CImplicitModuleBase> angle_deg) :
+    CImplicitRotateDomain::CImplicitRotateDomain(CImplicitModuleBase * src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, CImplicitModuleBase * angle_deg) :
         CImplicitModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle_deg), m_source(src)
     {
     }
@@ -167,7 +167,7 @@ namespace anl
 
     CImplicitRotateDomain::~CImplicitRotateDomain(){}
 
-    void CImplicitRotateDomain::setSource(std::shared_ptr<CImplicitModuleBase> m){m_source.set(m);}
+    void CImplicitRotateDomain::setSource(CImplicitModuleBase * m){m_source.set(m);}
     void CImplicitRotateDomain::setSource(double v){m_source.set(v);}
 
     void CImplicitRotateDomain::calculateRotMatrix(double x, double y)
@@ -266,7 +266,7 @@ namespace anl
         m_az.set(az);
     }
 
-    void CImplicitRotateDomain::setAxis(std::shared_ptr<CImplicitModuleBase> ax, std::shared_ptr<CImplicitModuleBase> ay, std::shared_ptr<CImplicitModuleBase> az)
+    void CImplicitRotateDomain::setAxis(CImplicitModuleBase * ax, CImplicitModuleBase * ay, CImplicitModuleBase * az)
     {
         m_ax.set(ax);
         m_ay.set(ay);
@@ -284,15 +284,15 @@ namespace anl
     {
         m_az.set(az);
     }
-    void CImplicitRotateDomain::setAxisX(std::shared_ptr<CImplicitModuleBase> ax)
+    void CImplicitRotateDomain::setAxisX(CImplicitModuleBase * ax)
     {
         m_ax.set(ax);
     }
-    void CImplicitRotateDomain::setAxisY(std::shared_ptr<CImplicitModuleBase> ay)
+    void CImplicitRotateDomain::setAxisY(CImplicitModuleBase * ay)
     {
         m_ay.set(ay);
     }
-    void CImplicitRotateDomain::setAxisZ(std::shared_ptr<CImplicitModuleBase> az)
+    void CImplicitRotateDomain::setAxisZ(CImplicitModuleBase * az)
     {
         m_az.set(az);
     }
@@ -301,7 +301,7 @@ namespace anl
     {
         m_angledeg.set(a);
     }
-    void CImplicitRotateDomain::setAngle(std::shared_ptr<CImplicitModuleBase> a)
+    void CImplicitRotateDomain::setAngle(CImplicitModuleBase * a)
     {
         m_angledeg.set(a);
     }

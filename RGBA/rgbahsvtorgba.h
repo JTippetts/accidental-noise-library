@@ -9,9 +9,9 @@ namespace anl
         public:
         CRGBAHSVToRGBA();
         CRGBAHSVToRGBA(SRGBA s);
-        CRGBAHSVToRGBA(std::shared_ptr<CRGBAModuleBase> s);
+        CRGBAHSVToRGBA(CRGBAModuleBase * s);
 
-        void setSource(std::shared_ptr<CRGBAModuleBase> m);
+        void setSource(CRGBAModuleBase * m);
         void setSource(SRGBA c);
 
         SRGBA get(double x, double y);

@@ -10,54 +10,54 @@ namespace anl
         public:
         CRGBARotateColor();
         CRGBARotateColor(SRGBA src, double ax, double ay, double az, double angle);
-        CRGBARotateColor(SRGBA src, double ax, double ay, double az, std::shared_ptr<CImplicitModuleBase> angle);
-        CRGBARotateColor(SRGBA src, double ax, double ay, std::shared_ptr<CImplicitModuleBase> az, double angle);
-        CRGBARotateColor(SRGBA src, double ax, double ay, std::shared_ptr<CImplicitModuleBase> az, std::shared_ptr<CImplicitModuleBase> angle);
-        CRGBARotateColor(SRGBA src, double ax, std::shared_ptr<CImplicitModuleBase> ay, double az, double angle);
-        CRGBARotateColor(SRGBA src, double ax, std::shared_ptr<CImplicitModuleBase> ay, double az, std::shared_ptr<CImplicitModuleBase> angle);
-        CRGBARotateColor(SRGBA src, double ax, std::shared_ptr<CImplicitModuleBase> ay, std::shared_ptr<CImplicitModuleBase> az, double angle);
-        CRGBARotateColor(SRGBA src, double ax, std::shared_ptr<CImplicitModuleBase> ay, std::shared_ptr<CImplicitModuleBase> az, std::shared_ptr<CImplicitModuleBase> angle);
-        CRGBARotateColor(SRGBA src, std::shared_ptr<CImplicitModuleBase> ax, double ay, double az, double angle);
-        CRGBARotateColor(SRGBA src, std::shared_ptr<CImplicitModuleBase> ax, double ay, double az, std::shared_ptr<CImplicitModuleBase> angle);
-        CRGBARotateColor(SRGBA src, std::shared_ptr<CImplicitModuleBase> ax, double ay, std::shared_ptr<CImplicitModuleBase> az, double angle);
-        CRGBARotateColor(SRGBA src, std::shared_ptr<CImplicitModuleBase> ax, double ay, std::shared_ptr<CImplicitModuleBase> az, std::shared_ptr<CImplicitModuleBase> angle);
-        CRGBARotateColor(SRGBA src, std::shared_ptr<CImplicitModuleBase> ax, std::shared_ptr<CImplicitModuleBase> ay, double az, double angle);
-        CRGBARotateColor(SRGBA src, std::shared_ptr<CImplicitModuleBase> ax, std::shared_ptr<CImplicitModuleBase> ay, double az, std::shared_ptr<CImplicitModuleBase> angle);
-        CRGBARotateColor(SRGBA src, std::shared_ptr<CImplicitModuleBase> ax, std::shared_ptr<CImplicitModuleBase> ay, std::shared_ptr<CImplicitModuleBase> az, double angle);
-        CRGBARotateColor(SRGBA src, std::shared_ptr<CImplicitModuleBase> ax, std::shared_ptr<CImplicitModuleBase> ay, std::shared_ptr<CImplicitModuleBase> az, std::shared_ptr<CImplicitModuleBase> angle);
-        CRGBARotateColor(std::shared_ptr<CRGBAModuleBase> src, double ax, double ay, double az, double angle);
-        CRGBARotateColor(std::shared_ptr<CRGBAModuleBase> src, double ax, double ay, double az, std::shared_ptr<CImplicitModuleBase> angle);
-        CRGBARotateColor(std::shared_ptr<CRGBAModuleBase> src, double ax, double ay, std::shared_ptr<CImplicitModuleBase> az, double angle);
-        CRGBARotateColor(std::shared_ptr<CRGBAModuleBase> src, double ax, double ay, std::shared_ptr<CImplicitModuleBase> az, std::shared_ptr<CImplicitModuleBase> angle);
-        CRGBARotateColor(std::shared_ptr<CRGBAModuleBase> src, double ax, std::shared_ptr<CImplicitModuleBase> ay, double az, double angle);
-        CRGBARotateColor(std::shared_ptr<CRGBAModuleBase> src, double ax, std::shared_ptr<CImplicitModuleBase> ay, double az, std::shared_ptr<CImplicitModuleBase> angle);
-        CRGBARotateColor(std::shared_ptr<CRGBAModuleBase> src, double ax, std::shared_ptr<CImplicitModuleBase> ay, std::shared_ptr<CImplicitModuleBase> az, double angle);
-        CRGBARotateColor(std::shared_ptr<CRGBAModuleBase> src, double ax, std::shared_ptr<CImplicitModuleBase> ay, std::shared_ptr<CImplicitModuleBase> az, std::shared_ptr<CImplicitModuleBase> angle);
-        CRGBARotateColor(std::shared_ptr<CRGBAModuleBase> src, std::shared_ptr<CImplicitModuleBase> ax, double ay, double az, double angle);
-        CRGBARotateColor(std::shared_ptr<CRGBAModuleBase> src, std::shared_ptr<CImplicitModuleBase> ax, double ay, double az, std::shared_ptr<CImplicitModuleBase> angle);
-        CRGBARotateColor(std::shared_ptr<CRGBAModuleBase> src, std::shared_ptr<CImplicitModuleBase> ax, double ay, std::shared_ptr<CImplicitModuleBase> az, double angle);
-        CRGBARotateColor(std::shared_ptr<CRGBAModuleBase> src, std::shared_ptr<CImplicitModuleBase> ax, double ay, std::shared_ptr<CImplicitModuleBase> az, std::shared_ptr<CImplicitModuleBase> angle);
-        CRGBARotateColor(std::shared_ptr<CRGBAModuleBase> src, std::shared_ptr<CImplicitModuleBase> ax, std::shared_ptr<CImplicitModuleBase> ay, double az, double angle);
-        CRGBARotateColor(std::shared_ptr<CRGBAModuleBase> src, std::shared_ptr<CImplicitModuleBase> ax, std::shared_ptr<CImplicitModuleBase> ay, double az, std::shared_ptr<CImplicitModuleBase> angle);
-        CRGBARotateColor(std::shared_ptr<CRGBAModuleBase> src, std::shared_ptr<CImplicitModuleBase> ax, std::shared_ptr<CImplicitModuleBase> ay, std::shared_ptr<CImplicitModuleBase> az, double angle);
-        CRGBARotateColor(std::shared_ptr<CRGBAModuleBase> src, std::shared_ptr<CImplicitModuleBase> ax, std::shared_ptr<CImplicitModuleBase> ay, std::shared_ptr<CImplicitModuleBase> az, std::shared_ptr<CImplicitModuleBase> angle);
+        CRGBARotateColor(SRGBA src, double ax, double ay, double az, CImplicitModuleBase * angle);
+        CRGBARotateColor(SRGBA src, double ax, double ay, CImplicitModuleBase * az, double angle);
+        CRGBARotateColor(SRGBA src, double ax, double ay, CImplicitModuleBase * az, CImplicitModuleBase * angle);
+        CRGBARotateColor(SRGBA src, double ax, CImplicitModuleBase * ay, double az, double angle);
+        CRGBARotateColor(SRGBA src, double ax, CImplicitModuleBase * ay, double az, CImplicitModuleBase * angle);
+        CRGBARotateColor(SRGBA src, double ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, double angle);
+        CRGBARotateColor(SRGBA src, double ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, CImplicitModuleBase * angle);
+        CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, double ay, double az, double angle);
+        CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, double ay, double az, CImplicitModuleBase * angle);
+        CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, double ay, CImplicitModuleBase * az, double angle);
+        CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, double ay, CImplicitModuleBase * az, CImplicitModuleBase * angle);
+        CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, double az, double angle);
+        CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, double az, CImplicitModuleBase * angle);
+        CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, double angle);
+        CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, CImplicitModuleBase * angle);
+        CRGBARotateColor(CRGBAModuleBase * src, double ax, double ay, double az, double angle);
+        CRGBARotateColor(CRGBAModuleBase * src, double ax, double ay, double az, CImplicitModuleBase * angle);
+        CRGBARotateColor(CRGBAModuleBase * src, double ax, double ay, CImplicitModuleBase * az, double angle);
+        CRGBARotateColor(CRGBAModuleBase * src, double ax, double ay, CImplicitModuleBase * az, CImplicitModuleBase * angle);
+        CRGBARotateColor(CRGBAModuleBase * src, double ax, CImplicitModuleBase * ay, double az, double angle);
+        CRGBARotateColor(CRGBAModuleBase * src, double ax, CImplicitModuleBase * ay, double az, CImplicitModuleBase * angle);
+        CRGBARotateColor(CRGBAModuleBase * src, double ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, double angle);
+        CRGBARotateColor(CRGBAModuleBase * src, double ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, CImplicitModuleBase * angle);
+        CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, double ay, double az, double angle);
+        CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, double ay, double az, CImplicitModuleBase * angle);
+        CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, double ay, CImplicitModuleBase * az, double angle);
+        CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, double ay, CImplicitModuleBase * az, CImplicitModuleBase * angle);
+        CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, double az, double angle);
+        CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, double az, CImplicitModuleBase * angle);
+        CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, double angle);
+        CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, CImplicitModuleBase * angle);
 
 
         void setAxis(double ax, double ay, double az);
-        void setAxis(std::shared_ptr<CImplicitModuleBase> ax, std::shared_ptr<CImplicitModuleBase> ay, std::shared_ptr<CImplicitModuleBase> az);
+        void setAxis(CImplicitModuleBase * ax, CImplicitModuleBase * ay, CImplicitModuleBase * az);
         void setAxisX(double ax);
         void setAxisY(double ay);
         void setAxisZ(double az);
-        void setAxisX(std::shared_ptr<CImplicitModuleBase> ax);
-        void setAxisY(std::shared_ptr<CImplicitModuleBase> ay);
-        void setAxisZ(std::shared_ptr<CImplicitModuleBase> az);
+        void setAxisX(CImplicitModuleBase * ax);
+        void setAxisY(CImplicitModuleBase * ay);
+        void setAxisZ(CImplicitModuleBase * az);
 
         void setNormalizeAxis(bool n){m_normalizeaxis=n;}
 
         void setAngle(double a);
-        void setAngle(std::shared_ptr<CImplicitModuleBase> a);
+        void setAngle(CImplicitModuleBase * a);
 
-        void setSource(std::shared_ptr<CRGBAModuleBase> m);
+        void setSource(CRGBAModuleBase * m);
         void setSource(SRGBA c);
 
         SRGBA get(double x, double y);

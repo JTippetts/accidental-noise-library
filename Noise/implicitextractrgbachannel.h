@@ -19,7 +19,7 @@ namespace anl
         CImplicitExtractRGBAChannel();
         CImplicitExtractRGBAChannel(int channel);
 
-        void setSource(std::shared_ptr<CRGBAModuleBase> m);
+        void setSource(CRGBAModuleBase * m);
         void setSource(SRGBA c);
 
         void setChannel(int channel);

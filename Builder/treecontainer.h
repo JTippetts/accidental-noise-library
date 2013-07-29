@@ -346,7 +346,7 @@ namespace anl
         CTreeContainer &rgbaSelect(std::string name, std::string low, std::string high, std::string control, double threshold, std::string falloff);
         CTreeContainer &rgbaSelect(std::string name, std::string low, std::string high, std::string control, std::string threshold, double falloff);
         CTreeContainer &rgbaSelect(std::string name, std::string low, std::string high, std::string control, std::string threshold, std::string falloff);
-		
+
 		CTreeContainer &implicitBufferImplicitAdapter(std::string name, std::string source, int mapping, SMappingRanges ranges, bool use_z, double z);
 		CTreeContainer &implicitBufferBlur(std::string name, std::string source, double blursize, bool seamless);
 		CTreeContainer &implicitBufferScaleToRange(std::string name, std::string source, double low, double high);
@@ -354,23 +354,23 @@ namespace anl
 		CTreeContainer &implicitBufferUnaryMath(std::string name, std::string source, int op);
 		CTreeContainer &implicitBufferSimpleErode(std::string name, std::string source, int numdrops, float power);
 		CTreeContainer &implicitBufferSimpleRainfall(std::string name, std::string source, std::string depth, int iterations);
-		
+
 		CTreeContainer &rgbaBufferRGBAAdapter(std::string name, std::string source, int mapping, SMappingRanges ranges, bool use_z, double z);
 		CTreeContainer &rgbaBufferImplicitBufferAdapter(std::string name, std::string source);
 		CTreeContainer &rgbaBufferBlur(std::string name, std::string source, double blursize, bool seamless);
 		CTreeContainer &rgbaBufferImplicitBufferMultiply(std::string name, std::string rgbasource, std::string implicitsource);
 
         CImplicitModuleBase *getModuleUnsafe(std::string name);
-        std::shared_ptr<CImplicitModuleBase> getModule(std::string name);
+        CImplicitModuleBase * getModule(std::string name);
 
         CRGBAModuleBase *getRGBAModuleUnsafe(std::string name);
-        std::shared_ptr<CRGBAModuleBase> getRGBAModule(std::string name);
-		
+        CRGBAModuleBase * getRGBAModule(std::string name);
+
 		CImplicitBufferBase *getImplicitBufferUnsafe(std::string name);
-        std::shared_ptr<CImplicitBufferBase> getImplicitBuffer(std::string name);
-		
+        CImplicitBufferBase * getImplicitBuffer(std::string name);
+
 		CRGBABufferBase *getRGBABufferUnsafe(std::string name);
-		std::shared_ptr<CRGBABufferBase> getRGBABuffer(std::string name);
+		CRGBABufferBase * getRGBABuffer(std::string name);
 
         private:
         std::map<std::string, std::shared_ptr<CImplicitModuleBase> > m_modules;
@@ -379,9 +379,9 @@ namespace anl
 		std::map<std::string, std::shared_ptr<CImplicitBufferBase> > m_implicitbuffers;
         std::map<std::string, std::shared_ptr<CRGBABufferBase> > m_rgbabuffers;
 
-        std::shared_ptr<CImplicitModuleBase> get(std::string name);
+        CImplicitModuleBase * get(std::string name);
         double get(double g){return g;}
-        std::shared_ptr<CRGBAModuleBase> getRGBA(std::string name);
+        CRGBAModuleBase * getRGBA(std::string name);
         SRGBA getRGBA(SRGBA c){return c;}
     };
 };

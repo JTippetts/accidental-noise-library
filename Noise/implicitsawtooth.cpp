@@ -4,14 +4,14 @@ namespace anl
 {
     CImplicitSawtooth::CImplicitSawtooth() : CImplicitModuleBase(), m_source(0.0), m_period(0.0){}
     CImplicitSawtooth::CImplicitSawtooth(double source, double period) : CImplicitModuleBase(), m_source(source), m_period(period){}
-    CImplicitSawtooth::CImplicitSawtooth(double source, std::shared_ptr<CImplicitModuleBase> period) : CImplicitModuleBase(), m_source(source), m_period(period){}
-    CImplicitSawtooth::CImplicitSawtooth(std::shared_ptr<CImplicitModuleBase> source, double period) : CImplicitModuleBase(), m_source(source), m_period(period){}
-    CImplicitSawtooth::CImplicitSawtooth(std::shared_ptr<CImplicitModuleBase> source, std::shared_ptr<CImplicitModuleBase> period) : CImplicitModuleBase(), m_source(source), m_period(period){}
+    CImplicitSawtooth::CImplicitSawtooth(double source, CImplicitModuleBase * period) : CImplicitModuleBase(), m_source(source), m_period(period){}
+    CImplicitSawtooth::CImplicitSawtooth(CImplicitModuleBase * source, double period) : CImplicitModuleBase(), m_source(source), m_period(period){}
+    CImplicitSawtooth::CImplicitSawtooth(CImplicitModuleBase * source, CImplicitModuleBase * period) : CImplicitModuleBase(), m_source(source), m_period(period){}
 CImplicitSawtooth::~CImplicitSawtooth()
 {
 }
 
-void CImplicitSawtooth::setSource(std::shared_ptr<CImplicitModuleBase> s)
+void CImplicitSawtooth::setSource(CImplicitModuleBase * s)
 {
     m_source.set(s);
 }
@@ -21,7 +21,7 @@ void CImplicitSawtooth::setSource(double s)
     m_source.set(s);
 }
 
-void CImplicitSawtooth::setPeriod(std::shared_ptr<CImplicitModuleBase> p)
+void CImplicitSawtooth::setPeriod(CImplicitModuleBase * p)
 {
     m_period.set(p);
 }

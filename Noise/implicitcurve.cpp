@@ -4,7 +4,7 @@ namespace anl
 {
     CImplicitCurve::CImplicitCurve() : CImplicitModuleBase(), m_source(0.0), m_type(LINEAR){}
     CImplicitCurve::CImplicitCurve(double s, int interptype) : CImplicitModuleBase(), m_source(s), m_type(interptype){}
-    CImplicitCurve::CImplicitCurve(std::shared_ptr<CImplicitModuleBase> s, int interptype) : CImplicitModuleBase(), m_source(s), m_type(interptype){}
+    CImplicitCurve::CImplicitCurve(CImplicitModuleBase * s, int interptype) : CImplicitModuleBase(), m_source(s), m_type(interptype){}
     CImplicitCurve::~CImplicitCurve(){}
 
     void CImplicitCurve::pushPoint(double t, double v)
@@ -28,7 +28,7 @@ namespace anl
     {
         m_source.set(t);
     }
-    void CImplicitCurve::setSource(std::shared_ptr<CImplicitModuleBase> m)
+    void CImplicitCurve::setSource(CImplicitModuleBase * m)
     {
         m_source.set(m);
     }

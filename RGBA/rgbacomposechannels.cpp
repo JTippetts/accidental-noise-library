@@ -8,80 +8,80 @@ namespace anl
     CRGBACompositeChannels::CRGBACompositeChannels(double r, double g, double b, double a, int mode) :
         CRGBAModuleBase(), m_c1(r), m_c2(g), m_c3(b), m_c4(a), m_mode(mode){}
 
-    CRGBACompositeChannels::CRGBACompositeChannels(double r, double g, double b, std::shared_ptr<CImplicitModuleBase> a, int mode) :
+    CRGBACompositeChannels::CRGBACompositeChannels(double r, double g, double b, CImplicitModuleBase * a, int mode) :
         CRGBAModuleBase(), m_c1(r), m_c2(g), m_c3(b), m_c4(a), m_mode(mode){}
 
-    CRGBACompositeChannels::CRGBACompositeChannels(double r, double g, std::shared_ptr<CImplicitModuleBase> b, double a, int mode) :
+    CRGBACompositeChannels::CRGBACompositeChannels(double r, double g, CImplicitModuleBase * b, double a, int mode) :
         CRGBAModuleBase(), m_c1(r), m_c2(g), m_c3(b), m_c4(a), m_mode(mode){}
 
-    CRGBACompositeChannels::CRGBACompositeChannels(double r, double g, std::shared_ptr<CImplicitModuleBase> b, std::shared_ptr<CImplicitModuleBase> a, int mode) :
+    CRGBACompositeChannels::CRGBACompositeChannels(double r, double g, CImplicitModuleBase * b, CImplicitModuleBase * a, int mode) :
         CRGBAModuleBase(), m_c1(r), m_c2(g), m_c3(b), m_c4(a), m_mode(mode){}
 
-    CRGBACompositeChannels::CRGBACompositeChannels(double r, std::shared_ptr<CImplicitModuleBase> g, double b, double a, int mode) :
+    CRGBACompositeChannels::CRGBACompositeChannels(double r, CImplicitModuleBase * g, double b, double a, int mode) :
         CRGBAModuleBase(), m_c1(r), m_c2(g), m_c3(b), m_c4(a), m_mode(mode){}
 
-    CRGBACompositeChannels::CRGBACompositeChannels(double r, std::shared_ptr<CImplicitModuleBase> g, double b, std::shared_ptr<CImplicitModuleBase> a, int mode) :
+    CRGBACompositeChannels::CRGBACompositeChannels(double r, CImplicitModuleBase * g, double b, CImplicitModuleBase * a, int mode) :
         CRGBAModuleBase(), m_c1(r), m_c2(g), m_c3(b), m_c4(a), m_mode(mode){}
 
-    CRGBACompositeChannels::CRGBACompositeChannels(double r, std::shared_ptr<CImplicitModuleBase> g, std::shared_ptr<CImplicitModuleBase> b, double a, int mode) :
+    CRGBACompositeChannels::CRGBACompositeChannels(double r, CImplicitModuleBase * g, CImplicitModuleBase * b, double a, int mode) :
         CRGBAModuleBase(), m_c1(r), m_c2(g), m_c3(b), m_c4(a), m_mode(mode){}
 
-    CRGBACompositeChannels::CRGBACompositeChannels(double r, std::shared_ptr<CImplicitModuleBase> g, std::shared_ptr<CImplicitModuleBase> b, std::shared_ptr<CImplicitModuleBase> a, int mode) :
+    CRGBACompositeChannels::CRGBACompositeChannels(double r, CImplicitModuleBase * g, CImplicitModuleBase * b, CImplicitModuleBase * a, int mode) :
         CRGBAModuleBase(), m_c1(r), m_c2(g), m_c3(b), m_c4(a), m_mode(mode){}
 
-    CRGBACompositeChannels::CRGBACompositeChannels(std::shared_ptr<CImplicitModuleBase> r, double g, double b, double a, int mode) :
+    CRGBACompositeChannels::CRGBACompositeChannels(CImplicitModuleBase * r, double g, double b, double a, int mode) :
         CRGBAModuleBase(), m_c1(r), m_c2(g), m_c3(b), m_c4(a), m_mode(mode){}
 
-    CRGBACompositeChannels::CRGBACompositeChannels(std::shared_ptr<CImplicitModuleBase> r, double g, double b, std::shared_ptr<CImplicitModuleBase> a, int mode) :
+    CRGBACompositeChannels::CRGBACompositeChannels(CImplicitModuleBase * r, double g, double b, CImplicitModuleBase * a, int mode) :
         CRGBAModuleBase(), m_c1(r), m_c2(g), m_c3(b), m_c4(a), m_mode(mode){}
 
-    CRGBACompositeChannels::CRGBACompositeChannels(std::shared_ptr<CImplicitModuleBase> r, double g, std::shared_ptr<CImplicitModuleBase> b, double a, int mode) :
+    CRGBACompositeChannels::CRGBACompositeChannels(CImplicitModuleBase * r, double g, CImplicitModuleBase * b, double a, int mode) :
         CRGBAModuleBase(), m_c1(r), m_c2(g), m_c3(b), m_c4(a), m_mode(mode){}
 
-    CRGBACompositeChannels::CRGBACompositeChannels(std::shared_ptr<CImplicitModuleBase> r, double g, std::shared_ptr<CImplicitModuleBase> b, std::shared_ptr<CImplicitModuleBase> a, int mode) :
+    CRGBACompositeChannels::CRGBACompositeChannels(CImplicitModuleBase * r, double g, CImplicitModuleBase * b, CImplicitModuleBase * a, int mode) :
         CRGBAModuleBase(), m_c1(r), m_c2(g), m_c3(b), m_c4(a), m_mode(mode){}
 
-    CRGBACompositeChannels::CRGBACompositeChannels(std::shared_ptr<CImplicitModuleBase> r, std::shared_ptr<CImplicitModuleBase> g, double b, double a, int mode) :
+    CRGBACompositeChannels::CRGBACompositeChannels(CImplicitModuleBase * r, CImplicitModuleBase * g, double b, double a, int mode) :
         CRGBAModuleBase(), m_c1(r), m_c2(g), m_c3(b), m_c4(a), m_mode(mode){}
 
-    CRGBACompositeChannels::CRGBACompositeChannels(std::shared_ptr<CImplicitModuleBase> r, std::shared_ptr<CImplicitModuleBase> g, double b, std::shared_ptr<CImplicitModuleBase> a, int mode) :
+    CRGBACompositeChannels::CRGBACompositeChannels(CImplicitModuleBase * r, CImplicitModuleBase * g, double b, CImplicitModuleBase * a, int mode) :
         CRGBAModuleBase(), m_c1(r), m_c2(g), m_c3(b), m_c4(a), m_mode(mode){}
 
-    CRGBACompositeChannels::CRGBACompositeChannels(std::shared_ptr<CImplicitModuleBase> r, std::shared_ptr<CImplicitModuleBase> g, std::shared_ptr<CImplicitModuleBase> b, double a, int mode) :
+    CRGBACompositeChannels::CRGBACompositeChannels(CImplicitModuleBase * r, CImplicitModuleBase * g, CImplicitModuleBase * b, double a, int mode) :
         CRGBAModuleBase(), m_c1(r), m_c2(g), m_c3(b), m_c4(a), m_mode(mode){}
 
-    CRGBACompositeChannels::CRGBACompositeChannels(std::shared_ptr<CImplicitModuleBase> r, std::shared_ptr<CImplicitModuleBase> g, std::shared_ptr<CImplicitModuleBase> b, std::shared_ptr<CImplicitModuleBase> a, int mode) :
+    CRGBACompositeChannels::CRGBACompositeChannels(CImplicitModuleBase * r, CImplicitModuleBase * g, CImplicitModuleBase * b, CImplicitModuleBase * a, int mode) :
         CRGBAModuleBase(), m_c1(r), m_c2(g), m_c3(b), m_c4(a), m_mode(mode){}
 
 
 
     CRGBACompositeChannels::~CRGBACompositeChannels(){}
 
-    void CRGBACompositeChannels::setRedSource(std::shared_ptr<CImplicitModuleBase> m)
+    void CRGBACompositeChannels::setRedSource(CImplicitModuleBase * m)
     {
         m_c1.set(m);
     }
-    void CRGBACompositeChannels::setGreenSource(std::shared_ptr<CImplicitModuleBase> m)
+    void CRGBACompositeChannels::setGreenSource(CImplicitModuleBase * m)
     {
         m_c2.set(m);
     }
-    void CRGBACompositeChannels::setBlueSource(std::shared_ptr<CImplicitModuleBase> m)
+    void CRGBACompositeChannels::setBlueSource(CImplicitModuleBase * m)
     {
         m_c3.set(m);
     }
-    void CRGBACompositeChannels::setHueSource(std::shared_ptr<CImplicitModuleBase> m)
+    void CRGBACompositeChannels::setHueSource(CImplicitModuleBase * m)
     {
         m_c1.set(m);
     }
-    void CRGBACompositeChannels::setSatSource(std::shared_ptr<CImplicitModuleBase> m)
+    void CRGBACompositeChannels::setSatSource(CImplicitModuleBase * m)
     {
         m_c2.set(m);
     }
-    void CRGBACompositeChannels::setValSource(std::shared_ptr<CImplicitModuleBase> m)
+    void CRGBACompositeChannels::setValSource(CImplicitModuleBase * m)
     {
         m_c3.set(m);
     }
-    void CRGBACompositeChannels::setAlphaSource(std::shared_ptr<CImplicitModuleBase> m)
+    void CRGBACompositeChannels::setAlphaSource(CImplicitModuleBase * m)
     {
         m_c4.set(m);
     }

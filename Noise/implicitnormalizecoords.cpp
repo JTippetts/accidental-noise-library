@@ -5,15 +5,15 @@ namespace anl
 {
     CImplicitNormalizeCoords::CImplicitNormalizeCoords() : CImplicitModuleBase(), m_source(0.0), m_length(1.0){}
     CImplicitNormalizeCoords::CImplicitNormalizeCoords(double s, double l) : CImplicitModuleBase(), m_source(s), m_length(l){}
-    CImplicitNormalizeCoords::CImplicitNormalizeCoords(double s, std::shared_ptr<CImplicitModuleBase>  l) : CImplicitModuleBase(), m_source(s), m_length(l){}
-    CImplicitNormalizeCoords::CImplicitNormalizeCoords(std::shared_ptr<CImplicitModuleBase> s, double l) : CImplicitModuleBase(), m_source(s), m_length(l){}
-    CImplicitNormalizeCoords::CImplicitNormalizeCoords(std::shared_ptr<CImplicitModuleBase> s, std::shared_ptr<CImplicitModuleBase> l) : CImplicitModuleBase(), m_source(s), m_length(l){}
+    CImplicitNormalizeCoords::CImplicitNormalizeCoords(double s, CImplicitModuleBase *  l) : CImplicitModuleBase(), m_source(s), m_length(l){}
+    CImplicitNormalizeCoords::CImplicitNormalizeCoords(CImplicitModuleBase * s, double l) : CImplicitModuleBase(), m_source(s), m_length(l){}
+    CImplicitNormalizeCoords::CImplicitNormalizeCoords(CImplicitModuleBase * s, CImplicitModuleBase * l) : CImplicitModuleBase(), m_source(s), m_length(l){}
 
     void CImplicitNormalizeCoords::setSource(double v)
     {
         m_source.set(v);
     }
-    void CImplicitNormalizeCoords::setSource(std::shared_ptr<CImplicitModuleBase> v)
+    void CImplicitNormalizeCoords::setSource(CImplicitModuleBase * v)
     {
         m_source.set(v);
     }
@@ -22,7 +22,7 @@ namespace anl
     {
         m_length.set(v);
     }
-    void CImplicitNormalizeCoords::setLength(std::shared_ptr<CImplicitModuleBase> v)
+    void CImplicitNormalizeCoords::setLength(CImplicitModuleBase * v)
     {
         m_length.set(v);
     }

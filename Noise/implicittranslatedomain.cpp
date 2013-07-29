@@ -8,76 +8,76 @@ namespace anl
     CImplicitTranslateDomain::CImplicitTranslateDomain(double src, double tx, double ty, double tz) :
         CImplicitModuleBase(), m_source(src), m_ax(tx), m_ay(ty), m_az(tz), m_aw(0.0), m_au(0.0), m_av(0.0){}
 
-    CImplicitTranslateDomain::CImplicitTranslateDomain(double src, double tx, double ty, std::shared_ptr<CImplicitModuleBase> tz) :
+    CImplicitTranslateDomain::CImplicitTranslateDomain(double src, double tx, double ty, CImplicitModuleBase * tz) :
         CImplicitModuleBase(), m_source(src), m_ax(tx), m_ay(ty), m_az(tz), m_aw(0.0), m_au(0.0), m_av(0.0){}
 
-    CImplicitTranslateDomain::CImplicitTranslateDomain(double src, double tx, std::shared_ptr<CImplicitModuleBase> ty, double tz) :
+    CImplicitTranslateDomain::CImplicitTranslateDomain(double src, double tx, CImplicitModuleBase * ty, double tz) :
         CImplicitModuleBase(), m_source(src), m_ax(tx), m_ay(ty), m_az(tz), m_aw(0.0), m_au(0.0), m_av(0.0){}
 
-    CImplicitTranslateDomain::CImplicitTranslateDomain(double src, double tx, std::shared_ptr<CImplicitModuleBase> ty, std::shared_ptr<CImplicitModuleBase> tz) :
+    CImplicitTranslateDomain::CImplicitTranslateDomain(double src, double tx, CImplicitModuleBase * ty, CImplicitModuleBase * tz) :
         CImplicitModuleBase(), m_source(src), m_ax(tx), m_ay(ty), m_az(tz), m_aw(0.0), m_au(0.0), m_av(0.0){}
 
-    CImplicitTranslateDomain::CImplicitTranslateDomain(double src, std::shared_ptr<CImplicitModuleBase> tx, double ty, double tz) :
+    CImplicitTranslateDomain::CImplicitTranslateDomain(double src, CImplicitModuleBase * tx, double ty, double tz) :
         CImplicitModuleBase(), m_source(src), m_ax(tx), m_ay(ty), m_az(tz), m_aw(0.0), m_au(0.0), m_av(0.0){}
 
-    CImplicitTranslateDomain::CImplicitTranslateDomain(double src, std::shared_ptr<CImplicitModuleBase> tx, double ty, std::shared_ptr<CImplicitModuleBase> tz) :
+    CImplicitTranslateDomain::CImplicitTranslateDomain(double src, CImplicitModuleBase * tx, double ty, CImplicitModuleBase * tz) :
         CImplicitModuleBase(), m_source(src), m_ax(tx), m_ay(ty), m_az(tz), m_aw(0.0), m_au(0.0), m_av(0.0){}
 
-    CImplicitTranslateDomain::CImplicitTranslateDomain(double src, std::shared_ptr<CImplicitModuleBase> tx, std::shared_ptr<CImplicitModuleBase> ty, double tz) :
+    CImplicitTranslateDomain::CImplicitTranslateDomain(double src, CImplicitModuleBase * tx, CImplicitModuleBase * ty, double tz) :
         CImplicitModuleBase(), m_source(src), m_ax(tx), m_ay(ty), m_az(tz), m_aw(0.0), m_au(0.0), m_av(0.0){}
 
-    CImplicitTranslateDomain::CImplicitTranslateDomain(double src, std::shared_ptr<CImplicitModuleBase> tx, std::shared_ptr<CImplicitModuleBase> ty, std::shared_ptr<CImplicitModuleBase> tz) :
+    CImplicitTranslateDomain::CImplicitTranslateDomain(double src, CImplicitModuleBase * tx, CImplicitModuleBase * ty, CImplicitModuleBase * tz) :
         CImplicitModuleBase(), m_source(src), m_ax(tx), m_ay(ty), m_az(tz), m_aw(0.0), m_au(0.0), m_av(0.0){}
 
-    CImplicitTranslateDomain::CImplicitTranslateDomain(std::shared_ptr<CImplicitModuleBase> src, double tx, double ty, double tz) :
+    CImplicitTranslateDomain::CImplicitTranslateDomain(CImplicitModuleBase * src, double tx, double ty, double tz) :
         CImplicitModuleBase(), m_source(src), m_ax(tx), m_ay(ty), m_az(tz), m_aw(0.0), m_au(0.0), m_av(0.0){}
 
-    CImplicitTranslateDomain::CImplicitTranslateDomain(std::shared_ptr<CImplicitModuleBase> src, double tx, double ty, std::shared_ptr<CImplicitModuleBase> tz) :
+    CImplicitTranslateDomain::CImplicitTranslateDomain(CImplicitModuleBase * src, double tx, double ty, CImplicitModuleBase * tz) :
         CImplicitModuleBase(), m_source(src), m_ax(tx), m_ay(ty), m_az(tz), m_aw(0.0), m_au(0.0), m_av(0.0){}
 
-    CImplicitTranslateDomain::CImplicitTranslateDomain(std::shared_ptr<CImplicitModuleBase> src, double tx, std::shared_ptr<CImplicitModuleBase> ty, double tz) :
+    CImplicitTranslateDomain::CImplicitTranslateDomain(CImplicitModuleBase * src, double tx, CImplicitModuleBase * ty, double tz) :
         CImplicitModuleBase(), m_source(src), m_ax(tx), m_ay(ty), m_az(tz), m_aw(0.0), m_au(0.0), m_av(0.0){}
 
-    CImplicitTranslateDomain::CImplicitTranslateDomain(std::shared_ptr<CImplicitModuleBase> src, double tx, std::shared_ptr<CImplicitModuleBase> ty, std::shared_ptr<CImplicitModuleBase> tz) :
+    CImplicitTranslateDomain::CImplicitTranslateDomain(CImplicitModuleBase * src, double tx, CImplicitModuleBase * ty, CImplicitModuleBase * tz) :
         CImplicitModuleBase(), m_source(src), m_ax(tx), m_ay(ty), m_az(tz), m_aw(0.0), m_au(0.0), m_av(0.0){}
 
-    CImplicitTranslateDomain::CImplicitTranslateDomain(std::shared_ptr<CImplicitModuleBase> src, std::shared_ptr<CImplicitModuleBase> tx, double ty, double tz) :
+    CImplicitTranslateDomain::CImplicitTranslateDomain(CImplicitModuleBase * src, CImplicitModuleBase * tx, double ty, double tz) :
         CImplicitModuleBase(), m_source(src), m_ax(tx), m_ay(ty), m_az(tz), m_aw(0.0), m_au(0.0), m_av(0.0){}
 
-    CImplicitTranslateDomain::CImplicitTranslateDomain(std::shared_ptr<CImplicitModuleBase> src, std::shared_ptr<CImplicitModuleBase> tx, double ty, std::shared_ptr<CImplicitModuleBase> tz) :
+    CImplicitTranslateDomain::CImplicitTranslateDomain(CImplicitModuleBase * src, CImplicitModuleBase * tx, double ty, CImplicitModuleBase * tz) :
         CImplicitModuleBase(), m_source(src), m_ax(tx), m_ay(ty), m_az(tz), m_aw(0.0), m_au(0.0), m_av(0.0){}
 
-    CImplicitTranslateDomain::CImplicitTranslateDomain(std::shared_ptr<CImplicitModuleBase> src, std::shared_ptr<CImplicitModuleBase> tx, std::shared_ptr<CImplicitModuleBase> ty, double tz) :
+    CImplicitTranslateDomain::CImplicitTranslateDomain(CImplicitModuleBase * src, CImplicitModuleBase * tx, CImplicitModuleBase * ty, double tz) :
         CImplicitModuleBase(), m_source(src), m_ax(tx), m_ay(ty), m_az(tz), m_aw(0.0), m_au(0.0), m_av(0.0){}
 
-    CImplicitTranslateDomain::CImplicitTranslateDomain(std::shared_ptr<CImplicitModuleBase> src, std::shared_ptr<CImplicitModuleBase> tx, std::shared_ptr<CImplicitModuleBase> ty, std::shared_ptr<CImplicitModuleBase> tz) :
+    CImplicitTranslateDomain::CImplicitTranslateDomain(CImplicitModuleBase * src, CImplicitModuleBase * tx, CImplicitModuleBase * ty, CImplicitModuleBase * tz) :
         CImplicitModuleBase(), m_source(src), m_ax(tx), m_ay(ty), m_az(tz), m_aw(0.0), m_au(0.0), m_av(0.0){}
 
 
 
     CImplicitTranslateDomain::~CImplicitTranslateDomain(){}
 
-    void CImplicitTranslateDomain::setXAxisSource(std::shared_ptr<CImplicitModuleBase> m)
+    void CImplicitTranslateDomain::setXAxisSource(CImplicitModuleBase * m)
     {
         m_ax.set(m);
     }
-    void CImplicitTranslateDomain::setYAxisSource(std::shared_ptr<CImplicitModuleBase> m)
+    void CImplicitTranslateDomain::setYAxisSource(CImplicitModuleBase * m)
     {
         m_ay.set(m);
     }
-    void CImplicitTranslateDomain::setZAxisSource(std::shared_ptr<CImplicitModuleBase> m)
+    void CImplicitTranslateDomain::setZAxisSource(CImplicitModuleBase * m)
     {
         m_az.set(m);
     }
-    void CImplicitTranslateDomain::setWAxisSource(std::shared_ptr<CImplicitModuleBase> m)
+    void CImplicitTranslateDomain::setWAxisSource(CImplicitModuleBase * m)
     {
         m_aw.set(m);
     }
-    void CImplicitTranslateDomain::setUAxisSource(std::shared_ptr<CImplicitModuleBase> m)
+    void CImplicitTranslateDomain::setUAxisSource(CImplicitModuleBase * m)
     {
         m_au.set(m);
     }
-    void CImplicitTranslateDomain::setVAxisSource(std::shared_ptr<CImplicitModuleBase> m)
+    void CImplicitTranslateDomain::setVAxisSource(CImplicitModuleBase * m)
     {
         m_av.set(m);
     }
@@ -105,7 +105,7 @@ namespace anl
     {
         m_av.set(v);
     }
-    void CImplicitTranslateDomain::setSource(std::shared_ptr<CImplicitModuleBase> m)
+    void CImplicitTranslateDomain::setSource(CImplicitModuleBase * m)
     {
         m_source.set(m);
     }

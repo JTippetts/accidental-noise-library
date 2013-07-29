@@ -25,16 +25,16 @@ namespace anl
         public:
         CRGBABlendOps();
         CRGBABlendOps(SRGBA s1, SRGBA s2, int src1mode, int src2mode);
-        CRGBABlendOps(SRGBA s1, std::shared_ptr<CRGBAModuleBase> s2, int src1mode, int src2mode);
-        CRGBABlendOps(std::shared_ptr<CRGBAModuleBase> s1, SRGBA s2, int src1mode, int src2mode);
-        CRGBABlendOps(std::shared_ptr<CRGBAModuleBase> s1, std::shared_ptr<CRGBAModuleBase> s2, int src1mode, int src2mode);
+        CRGBABlendOps(SRGBA s1, CRGBAModuleBase * s2, int src1mode, int src2mode);
+        CRGBABlendOps(CRGBAModuleBase * s1, SRGBA s2, int src1mode, int src2mode);
+        CRGBABlendOps(CRGBAModuleBase * s1, CRGBAModuleBase * s2, int src1mode, int src2mode);
 
         ~CRGBABlendOps();
 
         void setSrc1Mode(int mode);
         void setSrc2Mode(int mode);
-        void setSource1(std::shared_ptr<CRGBAModuleBase> m);
-        void setSource2(std::shared_ptr<CRGBAModuleBase> m);
+        void setSource1(CRGBAModuleBase * m);
+        void setSource2(CRGBAModuleBase * m);
         void setSource1(SRGBA c);
         void setSource2(SRGBA c);
 

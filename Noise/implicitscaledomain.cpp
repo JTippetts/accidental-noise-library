@@ -7,49 +7,49 @@ namespace anl
     CImplicitScaleDomain::CImplicitScaleDomain(double src, double x, double y, double z, double w, double u, double v):
         CImplicitModuleBase(), m_source(src), m_sx(x), m_sy(y), m_sz(z), m_sw(1), m_su(u), m_sv(v){}
 
-    CImplicitScaleDomain::CImplicitScaleDomain(double src, double x, double y, std::shared_ptr<CImplicitModuleBase> z, double w, double u, double v):
+    CImplicitScaleDomain::CImplicitScaleDomain(double src, double x, double y, CImplicitModuleBase * z, double w, double u, double v):
         CImplicitModuleBase(), m_source(src), m_sx(x), m_sy(y), m_sz(z), m_sw(1), m_su(u), m_sv(v){}
 
-    CImplicitScaleDomain::CImplicitScaleDomain(double src, double x, std::shared_ptr<CImplicitModuleBase> y, double z, double w, double u, double v):
+    CImplicitScaleDomain::CImplicitScaleDomain(double src, double x, CImplicitModuleBase * y, double z, double w, double u, double v):
         CImplicitModuleBase(), m_source(src), m_sx(x), m_sy(y), m_sz(z), m_sw(1), m_su(u), m_sv(v){}
 
-    CImplicitScaleDomain::CImplicitScaleDomain(double src, double x, std::shared_ptr<CImplicitModuleBase> y, std::shared_ptr<CImplicitModuleBase> z, double w, double u, double v):
+    CImplicitScaleDomain::CImplicitScaleDomain(double src, double x, CImplicitModuleBase * y, CImplicitModuleBase * z, double w, double u, double v):
         CImplicitModuleBase(), m_source(src), m_sx(x), m_sy(y), m_sz(z), m_sw(1), m_su(u), m_sv(v){}
 
-    CImplicitScaleDomain::CImplicitScaleDomain(double src, std::shared_ptr<CImplicitModuleBase> x, double y, double z, double w, double u, double v):
+    CImplicitScaleDomain::CImplicitScaleDomain(double src, CImplicitModuleBase * x, double y, double z, double w, double u, double v):
         CImplicitModuleBase(), m_source(src), m_sx(x), m_sy(y), m_sz(z), m_sw(1), m_su(u), m_sv(v){}
 
-    CImplicitScaleDomain::CImplicitScaleDomain(double src, std::shared_ptr<CImplicitModuleBase> x, double y, std::shared_ptr<CImplicitModuleBase> z, double w, double u, double v):
+    CImplicitScaleDomain::CImplicitScaleDomain(double src, CImplicitModuleBase * x, double y, CImplicitModuleBase * z, double w, double u, double v):
         CImplicitModuleBase(), m_source(src), m_sx(x), m_sy(y), m_sz(z), m_sw(1), m_su(u), m_sv(v){}
 
-    CImplicitScaleDomain::CImplicitScaleDomain(double src, std::shared_ptr<CImplicitModuleBase> x, std::shared_ptr<CImplicitModuleBase> y, double z, double w, double u, double v):
+    CImplicitScaleDomain::CImplicitScaleDomain(double src, CImplicitModuleBase * x, CImplicitModuleBase * y, double z, double w, double u, double v):
         CImplicitModuleBase(), m_source(src), m_sx(x), m_sy(y), m_sz(z), m_sw(1), m_su(u), m_sv(v){}
 
-    CImplicitScaleDomain::CImplicitScaleDomain(double src, std::shared_ptr<CImplicitModuleBase> x, std::shared_ptr<CImplicitModuleBase> y, std::shared_ptr<CImplicitModuleBase> z, double w, double u, double v):
+    CImplicitScaleDomain::CImplicitScaleDomain(double src, CImplicitModuleBase * x, CImplicitModuleBase * y, CImplicitModuleBase * z, double w, double u, double v):
         CImplicitModuleBase(), m_source(src), m_sx(x), m_sy(y), m_sz(z), m_sw(1), m_su(u), m_sv(v){}
 
-    CImplicitScaleDomain::CImplicitScaleDomain(std::shared_ptr<CImplicitModuleBase> src, double x, double y, double z, double w, double u, double v):
+    CImplicitScaleDomain::CImplicitScaleDomain(CImplicitModuleBase * src, double x, double y, double z, double w, double u, double v):
         CImplicitModuleBase(), m_source(src), m_sx(x), m_sy(y), m_sz(z), m_sw(1), m_su(u), m_sv(v){}
 
-    CImplicitScaleDomain::CImplicitScaleDomain(std::shared_ptr<CImplicitModuleBase> src, double x, double y, std::shared_ptr<CImplicitModuleBase> z, double w, double u, double v):
+    CImplicitScaleDomain::CImplicitScaleDomain(CImplicitModuleBase * src, double x, double y, CImplicitModuleBase * z, double w, double u, double v):
         CImplicitModuleBase(), m_source(src), m_sx(x), m_sy(y), m_sz(z), m_sw(1), m_su(u), m_sv(v){}
 
-    CImplicitScaleDomain::CImplicitScaleDomain(std::shared_ptr<CImplicitModuleBase> src, double x, std::shared_ptr<CImplicitModuleBase> y, double z, double w, double u, double v):
+    CImplicitScaleDomain::CImplicitScaleDomain(CImplicitModuleBase * src, double x, CImplicitModuleBase * y, double z, double w, double u, double v):
         CImplicitModuleBase(), m_source(src), m_sx(x), m_sy(y), m_sz(z), m_sw(1), m_su(u), m_sv(v){}
 
-    CImplicitScaleDomain::CImplicitScaleDomain(std::shared_ptr<CImplicitModuleBase> src, double x, std::shared_ptr<CImplicitModuleBase> y, std::shared_ptr<CImplicitModuleBase> z, double w, double u, double v):
+    CImplicitScaleDomain::CImplicitScaleDomain(CImplicitModuleBase * src, double x, CImplicitModuleBase * y, CImplicitModuleBase * z, double w, double u, double v):
         CImplicitModuleBase(), m_source(src), m_sx(x), m_sy(y), m_sz(z), m_sw(1), m_su(u), m_sv(v){}
 
-    CImplicitScaleDomain::CImplicitScaleDomain(std::shared_ptr<CImplicitModuleBase> src, std::shared_ptr<CImplicitModuleBase> x, double y, double z, double w, double u, double v):
+    CImplicitScaleDomain::CImplicitScaleDomain(CImplicitModuleBase * src, CImplicitModuleBase * x, double y, double z, double w, double u, double v):
         CImplicitModuleBase(), m_source(src), m_sx(x), m_sy(y), m_sz(z), m_sw(1), m_su(u), m_sv(v){}
 
-    CImplicitScaleDomain::CImplicitScaleDomain(std::shared_ptr<CImplicitModuleBase> src, std::shared_ptr<CImplicitModuleBase> x, double y, std::shared_ptr<CImplicitModuleBase> z, double w, double u, double v):
+    CImplicitScaleDomain::CImplicitScaleDomain(CImplicitModuleBase * src, CImplicitModuleBase * x, double y, CImplicitModuleBase * z, double w, double u, double v):
         CImplicitModuleBase(), m_source(src), m_sx(x), m_sy(y), m_sz(z), m_sw(1), m_su(u), m_sv(v){}
 
-    CImplicitScaleDomain::CImplicitScaleDomain(std::shared_ptr<CImplicitModuleBase> src, std::shared_ptr<CImplicitModuleBase> x, std::shared_ptr<CImplicitModuleBase> y, double z, double w, double u, double v):
+    CImplicitScaleDomain::CImplicitScaleDomain(CImplicitModuleBase * src, CImplicitModuleBase * x, CImplicitModuleBase * y, double z, double w, double u, double v):
         CImplicitModuleBase(), m_source(src), m_sx(x), m_sy(y), m_sz(z), m_sw(1), m_su(u), m_sv(v){}
 
-    CImplicitScaleDomain::CImplicitScaleDomain(std::shared_ptr<CImplicitModuleBase> src, std::shared_ptr<CImplicitModuleBase> x, std::shared_ptr<CImplicitModuleBase> y, std::shared_ptr<CImplicitModuleBase> z, double w, double u, double v):
+    CImplicitScaleDomain::CImplicitScaleDomain(CImplicitModuleBase * src, CImplicitModuleBase * x, CImplicitModuleBase * y, CImplicitModuleBase * z, double w, double u, double v):
         CImplicitModuleBase(), m_source(src), m_sx(x), m_sy(y), m_sz(z), m_sw(1), m_su(u), m_sv(v){}
 
 
@@ -65,15 +65,15 @@ namespace anl
     void CImplicitScaleDomain::setWScale(double x){m_sw.set(x);}
     void CImplicitScaleDomain::setUScale(double x){m_su.set(x);}
     void CImplicitScaleDomain::setVScale(double x){m_sv.set(x);}
-    void CImplicitScaleDomain::setXScale(std::shared_ptr<CImplicitModuleBase> x){m_sx.set(x);}
-    void CImplicitScaleDomain::setYScale(std::shared_ptr<CImplicitModuleBase> y){m_sy.set(y);}
-    void CImplicitScaleDomain::setZScale(std::shared_ptr<CImplicitModuleBase> z){m_sz.set(z);}
-    void CImplicitScaleDomain::setWScale(std::shared_ptr<CImplicitModuleBase> w){m_sw.set(w);}
-    void CImplicitScaleDomain::setUScale(std::shared_ptr<CImplicitModuleBase> u){m_su.set(u);}
-    void CImplicitScaleDomain::setVScale(std::shared_ptr<CImplicitModuleBase> v){m_sv.set(v);}
+    void CImplicitScaleDomain::setXScale(CImplicitModuleBase * x){m_sx.set(x);}
+    void CImplicitScaleDomain::setYScale(CImplicitModuleBase * y){m_sy.set(y);}
+    void CImplicitScaleDomain::setZScale(CImplicitModuleBase * z){m_sz.set(z);}
+    void CImplicitScaleDomain::setWScale(CImplicitModuleBase * w){m_sw.set(w);}
+    void CImplicitScaleDomain::setUScale(CImplicitModuleBase * u){m_su.set(u);}
+    void CImplicitScaleDomain::setVScale(CImplicitModuleBase * v){m_sv.set(v);}
 
 
-    void CImplicitScaleDomain::setSource(std::shared_ptr<CImplicitModuleBase> m)
+    void CImplicitScaleDomain::setSource(CImplicitModuleBase * m)
     {
         m_source.set(m);
     }

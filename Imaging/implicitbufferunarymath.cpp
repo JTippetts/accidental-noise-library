@@ -7,7 +7,7 @@ namespace anl
     {
     }
 
-    CImplicitBufferUnaryMath::CImplicitBufferUnaryMath(std::shared_ptr<CImplicitBufferBase> source, int op) :
+    CImplicitBufferUnaryMath::CImplicitBufferUnaryMath(CImplicitBufferBase * source, int op) :
         CImplicitBufferBase(), m_source(source), m_op(op)
     {
     }
@@ -16,7 +16,7 @@ namespace anl
     {
     }
 
-    void CImplicitBufferUnaryMath::setSource(std::shared_ptr<CImplicitBufferBase> source)
+    void CImplicitBufferUnaryMath::setSource(CImplicitBufferBase * source)
     {
         m_source=source;
     }

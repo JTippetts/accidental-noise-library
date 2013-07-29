@@ -5,7 +5,7 @@ namespace anl
     CImplicitExtractRGBAChannel::CImplicitExtractRGBAChannel() : CImplicitModuleBase(), m_source(SRGBA(0,0,0,0)), m_channel(RED){}
     CImplicitExtractRGBAChannel::CImplicitExtractRGBAChannel(int channel) : CImplicitModuleBase(), m_source(SRGBA(0,0,0,0)), m_channel(channel){}
 
-    void CImplicitExtractRGBAChannel::setSource(std::shared_ptr<CRGBAModuleBase> m)
+    void CImplicitExtractRGBAChannel::setSource(CRGBAModuleBase * m)
     {
         m_source.set(m);
     }

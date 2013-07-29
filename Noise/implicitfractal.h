@@ -34,11 +34,11 @@ namespace anl
         void setType(unsigned int t);
         void setAllSourceTypes(unsigned int basis_type, unsigned int interp);
         void setSourceType(int which, unsigned int type, unsigned int interp);
-        void overrideSource(int which, std::shared_ptr<CImplicitModuleBase>  b);
+        void overrideSource(int which, CImplicitModuleBase *  b);
         void resetSource(int which);
         void resetAllSources();
         void setSeed(unsigned int seed);
-        std::shared_ptr<CImplicitModuleBase> getBasis(int which);
+        CImplicitModuleBase * getBasis(int which);
         double get(double x, double y);
         double get(double x, double y, double z);
         double get(double x, double y, double z, double w);
@@ -46,7 +46,7 @@ namespace anl
 
         protected:
         std::shared_ptr<CImplicitBasisFunction> m_basis[MaxSources];
-        std::shared_ptr<CImplicitModuleBase>  m_source[MaxSources];
+        CImplicitModuleBase *  m_source[MaxSources];
         double m_exparray[MaxSources];
         double m_correct[MaxSources][2];
 

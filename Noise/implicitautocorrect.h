@@ -19,10 +19,10 @@ namespace anl
         public:
         CImplicitAutoCorrect();
         CImplicitAutoCorrect(double low, double high);
-        CImplicitAutoCorrect(std::shared_ptr<CImplicitModuleBase> m, double low, double high);
+        CImplicitAutoCorrect(CImplicitModuleBase * m, double low, double high);
         ~CImplicitAutoCorrect(){}
 
-        void setSource(std::shared_ptr<CImplicitModuleBase> m);
+        void setSource(CImplicitModuleBase * m);
         void setRange(double low, double high);
         void calculate();
 
@@ -32,7 +32,7 @@ namespace anl
         double get(double x, double y, double z, double w, double u, double v);
 
         protected:
-        std::shared_ptr<CImplicitModuleBase> m_source;
+        CImplicitModuleBase * m_source;
         double m_low, m_high;
         double m_scale2, m_offset2;
         double m_scale3, m_offset3;

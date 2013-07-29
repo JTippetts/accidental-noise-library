@@ -10,14 +10,14 @@ namespace anl
     {
     public:
         CRGBABufferImplicitBufferAdapter();
-        CRGBABufferImplicitBufferAdapter(std::shared_ptr<CImplicitBufferBase> src);
+        CRGBABufferImplicitBufferAdapter(CImplicitBufferBase * src);
         ~CRGBABufferImplicitBufferAdapter();
 
-        void setSource(std::shared_ptr<CImplicitBufferBase> src);
+        void setSource(CImplicitBufferBase * src);
 
         void get(CArray2Drgba &out);
     private:
-        std::shared_ptr<CImplicitBufferBase> m_source;
+        CImplicitBufferBase * m_source;
     };
 };
 

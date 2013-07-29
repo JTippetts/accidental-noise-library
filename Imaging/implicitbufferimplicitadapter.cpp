@@ -6,7 +6,7 @@ namespace anl
     {
     }
 
-    CImplicitBufferImplicitAdapter::CImplicitBufferImplicitAdapter(std::shared_ptr<CImplicitModuleBase> src, int mapping, SMappingRanges ranges, bool use_z, double z) :
+    CImplicitBufferImplicitAdapter::CImplicitBufferImplicitAdapter(CImplicitModuleBase * src, int mapping, SMappingRanges ranges, bool use_z, double z) :
         CImplicitBufferBase(), m_source(src), m_mapping(mapping), m_ranges(ranges), m_use_z(use_z), m_z(z)
     {
     }
@@ -14,7 +14,7 @@ namespace anl
     {
     }
 
-    void CImplicitBufferImplicitAdapter::setSource(std::shared_ptr<CImplicitModuleBase> src)
+    void CImplicitBufferImplicitAdapter::setSource(CImplicitModuleBase * src)
     {
         m_source=src;
     }

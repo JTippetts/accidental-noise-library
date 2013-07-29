@@ -9,14 +9,14 @@ class CImplicitSawtooth : public CImplicitModuleBase
     public:
     CImplicitSawtooth();
     CImplicitSawtooth(double source, double period);
-    CImplicitSawtooth(double source, std::shared_ptr<CImplicitModuleBase> period);
-    CImplicitSawtooth(std::shared_ptr<CImplicitModuleBase> source, double period);
-    CImplicitSawtooth(std::shared_ptr<CImplicitModuleBase> source, std::shared_ptr<CImplicitModuleBase> period);
+    CImplicitSawtooth(double source, CImplicitModuleBase * period);
+    CImplicitSawtooth(CImplicitModuleBase * source, double period);
+    CImplicitSawtooth(CImplicitModuleBase * source, CImplicitModuleBase * period);
     ~CImplicitSawtooth();
 
-    void setSource(std::shared_ptr<CImplicitModuleBase> s);
+    void setSource(CImplicitModuleBase * s);
     void setSource(double s);
-    void setPeriod(std::shared_ptr<CImplicitModuleBase> p);
+    void setPeriod(CImplicitModuleBase * p);
     void setPeriod(double p);
 
     double get(double x, double y);

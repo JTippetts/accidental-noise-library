@@ -10,22 +10,22 @@ namespace anl
 
     CImplicitTriangle::CImplicitTriangle() : CImplicitModuleBase(), m_source(0.0), m_period(0.0), m_offset(0.0){}
     CImplicitTriangle::CImplicitTriangle(double source, double period, double offset) : CImplicitModuleBase(), m_source(source), m_period(period), m_offset(offset){}
-    CImplicitTriangle::CImplicitTriangle(double source, double period, std::shared_ptr<CImplicitModuleBase> offset) : CImplicitModuleBase(), m_source(source), m_period(period), m_offset(offset){}
-    CImplicitTriangle::CImplicitTriangle(double source, std::shared_ptr<CImplicitModuleBase> period, double offset) : CImplicitModuleBase(), m_source(source), m_period(period), m_offset(offset){}
-    CImplicitTriangle::CImplicitTriangle(double source, std::shared_ptr<CImplicitModuleBase> period, std::shared_ptr<CImplicitModuleBase> offset) : CImplicitModuleBase(), m_source(source), m_period(period), m_offset(offset){}
-    CImplicitTriangle::CImplicitTriangle(std::shared_ptr<CImplicitModuleBase> source, double period, double offset) : CImplicitModuleBase(), m_source(source), m_period(period), m_offset(offset){}
-    CImplicitTriangle::CImplicitTriangle(std::shared_ptr<CImplicitModuleBase> source, double period, std::shared_ptr<CImplicitModuleBase> offset) : CImplicitModuleBase(), m_source(source), m_period(period), m_offset(offset){}
-    CImplicitTriangle::CImplicitTriangle(std::shared_ptr<CImplicitModuleBase> source, std::shared_ptr<CImplicitModuleBase> period, double offset) : CImplicitModuleBase(), m_source(source), m_period(period), m_offset(offset){}
-    CImplicitTriangle::CImplicitTriangle(std::shared_ptr<CImplicitModuleBase> source, std::shared_ptr<CImplicitModuleBase> period, std::shared_ptr<CImplicitModuleBase> offset) : CImplicitModuleBase(), m_source(source), m_period(period), m_offset(offset){}
+    CImplicitTriangle::CImplicitTriangle(double source, double period, CImplicitModuleBase * offset) : CImplicitModuleBase(), m_source(source), m_period(period), m_offset(offset){}
+    CImplicitTriangle::CImplicitTriangle(double source, CImplicitModuleBase * period, double offset) : CImplicitModuleBase(), m_source(source), m_period(period), m_offset(offset){}
+    CImplicitTriangle::CImplicitTriangle(double source, CImplicitModuleBase * period, CImplicitModuleBase * offset) : CImplicitModuleBase(), m_source(source), m_period(period), m_offset(offset){}
+    CImplicitTriangle::CImplicitTriangle(CImplicitModuleBase * source, double period, double offset) : CImplicitModuleBase(), m_source(source), m_period(period), m_offset(offset){}
+    CImplicitTriangle::CImplicitTriangle(CImplicitModuleBase * source, double period, CImplicitModuleBase * offset) : CImplicitModuleBase(), m_source(source), m_period(period), m_offset(offset){}
+    CImplicitTriangle::CImplicitTriangle(CImplicitModuleBase * source, CImplicitModuleBase * period, double offset) : CImplicitModuleBase(), m_source(source), m_period(period), m_offset(offset){}
+    CImplicitTriangle::CImplicitTriangle(CImplicitModuleBase * source, CImplicitModuleBase * period, CImplicitModuleBase * offset) : CImplicitModuleBase(), m_source(source), m_period(period), m_offset(offset){}
 
     CImplicitTriangle::~CImplicitTriangle(){}
 
     void CImplicitTriangle::setSource(double s){m_source.set(s);}
-    void CImplicitTriangle::setSource(std::shared_ptr<CImplicitModuleBase> s){m_source.set(s);}
+    void CImplicitTriangle::setSource(CImplicitModuleBase * s){m_source.set(s);}
     void CImplicitTriangle::setPeriod(double p){m_period.set(p);}
-    void CImplicitTriangle::setPeriod(std::shared_ptr<CImplicitModuleBase> p){m_period.set(p);}
+    void CImplicitTriangle::setPeriod(CImplicitModuleBase * p){m_period.set(p);}
     void CImplicitTriangle::setOffset(double o){m_offset.set(o);}
-    void CImplicitTriangle::setOffset(std::shared_ptr<CImplicitModuleBase> o){m_offset.set(o);}
+    void CImplicitTriangle::setOffset(CImplicitModuleBase * o){m_offset.set(o);}
 
     double CImplicitTriangle::get(double x, double y)
     {
