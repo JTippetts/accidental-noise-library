@@ -770,5 +770,12 @@ class CImplicitSphere : public CImplicitModuleBase
         void setOffset(CImplicitModuleBase * o);
 	};
 	
+class CImplicitVoronoi : public CImplicitModuleBase
+{
+public:
+    CImplicitVoronoi();
+    CImplicitVoronoi(CCellularGenerator *m);
+    ~CImplicitVoronoi();
+};
 
 };

@@ -152,7 +152,7 @@ namespace anl
         }
         else
         {
-			std::cout << "Control: " << control << " Threshold: " << threshold << " Low: " << m_low.get(x,y,z) << " High: " << m_high.get(x,y,z) << std::endl;
+			//std::cout << "Control: " << control << " Threshold: " << threshold << " Low: " << m_low.get(x,y,z) << " High: " << m_high.get(x,y,z) << std::endl;
             if(control<threshold) return m_low.get(x,y,z);
             else return m_high.get(x,y,z);
         }

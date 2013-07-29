@@ -1,10 +1,10 @@
 -- Accidental Noise Library
 -- Generate basic Value noise illustration
 
-b1=anl.CImplicitBasisFunction(anl.GRADIENT, anl.QUINTIC, false)
-b2=anl.CImplicitBasisFunction(anl.GRADIENT, anl.CUBIC, false)
-b3=anl.CImplicitBasisFunction(anl.GRADIENT, anl.LINEAR, false)
-b4=anl.CImplicitBasisFunction(anl.GRADIENT, anl.NONE, false)
+b1=anl.CImplicitBasisFunction(anl.GRADVAL, anl.QUINTIC, false)
+b2=anl.CImplicitBasisFunction(anl.GRADVAL, anl.CUBIC, false)
+b3=anl.CImplicitBasisFunction(anl.GRADVAL, anl.LINEAR, false)
+b4=anl.CImplicitBasisFunction(anl.GRADVAL, anl.NONE, false)
 
 ac1=anl.CImplicitAutoCorrect(b1,0,1)
 ac2=anl.CImplicitAutoCorrect(b2,0,1)
