@@ -11,6 +11,7 @@ namespace anl
     {
         public:
         CRGBACurve();
+		CRGBACurve(CImplicitModuleBase *src, int interp);
         ~CRGBACurve();
 
         void pushPoint(double t, float r, float g, float b, float a);

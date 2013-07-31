@@ -3,6 +3,11 @@
 namespace anl
 {
     CRGBACurve::CRGBACurve() : m_source(0.0), m_type(LINEAR){}
+	
+	CRGBACurve::CRGBACurve(CImplicitModuleBase *src, int interp) : m_source(src), m_type(interp)
+	{
+	}
+	
     CRGBACurve::~CRGBACurve(){}
 
     void CRGBACurve::pushPoint(double t,float r, float g, float b, float a)
