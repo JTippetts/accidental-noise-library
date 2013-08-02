@@ -1,0 +1,57 @@
+Changes for PolyVox version 0.2
+===============================
+This is the first revision for which we have produced a changelog, as we are now trying to streamline our development and release process. Hence this changelog entry is not going to be as structured as we hope they will be in the future. We're writing it from memory, rather than having carefully kept track of all the relevant changes as we made them.
+
+Deprecated functionality
+------------------------
+The following functionality is considered deprecated in this release of PolyVox and will probably be removed in future versions.
+
+MeshDecimator: The mesh decimator was intended to reduce the amount of triangles in generated meshes but it has always had problems. It's far too slow and not very robust. For cubic meshes it is no longer needed anyway as the CubicSurfaceExtractor has built in decimation which is much more effective. For smooth (marching cubes) meshes there is no single alternative. You can consider downsampling the volume before you run the surface extractor (see the SmoothLODExample), and in the future we may add support for an external mesh processing library.
+
+SimpleInterface: This was added so that people could create volumes without knowing about templates, and also to provide a target which was easier to wrap with SWIG. But overall we'd rather focus on getting the real SWIG bindings to work. The SimpleInterface is also extremely limited in the functionality it provides.
+
+Serialisation: This is a difficult one. The current serialisation is rather old and only deals with loading/saving a whole volume at a time. It would make much more sense if it could serialise regions instead of whole volumes, and if it could handle compression. It would then be useful for serialising the data which is paged into and out of the LargeVolume, as well as other uses. Both these changes would likely require breaking the current format and interface. It is likely that serialisation will return to PolyVox in the future, but for now we would suggest just implementing your own.
+
+VolumeChangeTracker: The idea behind this was was to provide a utility class to help the user keep track of which regions have been modified so they know when they need the surface extractor to be run again. But overall we'd rather keep such higher level functionality in user code as there are multiple ways it can be implemented. The current implementation is also old and does not support very large/infinite volumes, for example.
+
+Refactor of basic voxel types
+-----------------------------
+Previous versions of PolyVox provided classes representing voxel data, such as MaterialDensityPair88. These classes were required to expose certain functions such as getDensity() and getMaterial(). This is no longer the case as now even primitive data types such as floats and ints can be used as voxels. You can also create new classes to represent voxel data and it is entirely up to you what kind of properties they have.
+
+As an example, imagine you might want to store lighting values in a volume and propagate them according to some algorithm you devise. In this case the voxel data has no concept of densities or materials and there is no need to provide them. Algorithms which conceptually operate on densities (such as the MarchingCubesSurfaceExtractor) will not be able to operate on your lighting data but this would not make sense anyway.
+
+Because algorithms now know nothing about the structure of the underlying voxels, some utility functions/classes are required. The principle is similar to the std::sort algorithm, which knows nothing about the type of data it is operating on but is told how to compare any two values via a comparator function object. In this sense, it will be useful to have an understanding of how algorithms such as std::sort are used.
+
+We have continued to provide the Density, Material, and MaterialDensityPair classes to ease the transition into the new system, but really they should just be considered as examples of how you might create your own voxel types.
+
+Some algorithms assume that basic mathematical operations can be applied to voxel types. For example, the LowPassFilter needs to compute the average of a set of voxels, and to do this it needs to be possible to add voxels together and divide by an integer. Obviously these operations are provided by primitive types, but it means that if you want to use the LowPassfilter on custom voxel types then these types need to provide operator+=, operator/=, etc. These have been added to the Density and MaterialDensityPair classes, but not to the Material class. This reflects the fact that applying a low pass filter to a material volume does not make conceptual sense.
+
+Changes to build system
+-----------------------
+In order to make the build system easier to use, a number of CMake variables were changed to be more consistent. See :doc:`install` for details on the new variable naming.
+
+Changes to CubicSurfaceExtractor
+--------------------------------
+The behaviour of the CubicSurfaceExtractor has been changed such that it no longer handles some edge cases. Because each generated quad lies between two voxels it can be unclear which region should 'own' a quad when the two voxels are from different regions. The previous version of the CubicSurfaceExtractor would attempt to handle this automatically, but as a result it was possible to get two quads existing at the same position in space. This can cause problems with transparency and with physics, as well as making it harder to decide which regions need to be updated when a voxel is changed.
+
+The new system simplifies the behaviour of this surface extractor but does require a bit of care on the part of the user. You should be clear on the rules controlling when quads are generated and to which regions they will belong. To aid with this we have significantly improved the API documentation for the CubicSurfaceExtractor so be sure to have a look.
+
+Changes to Raycast
+------------------
+The raycasting functionality was previously in a class (Raycast) but now it is provided by standalone functions. This is basically because there is no need for it to be a class, and it complicated usage. The new functions are called 'raycastWithDirection' and 'raycastWithEndpoints' which helps remove the previous ambiguity regarding the meaning of the two vectors which are passed as parameters.
+
+The callback functionality (called for each processed voxel to determine whether to continue and also perform additional processing) is no longer implemented as an std::function. Instead the standard STL approach is used, in  which a function or function object is used a a template parameter. This is faster than the std::function solution and should also be easier to integrate with other languages.
+
+Usage of the new raycasting is demonstrated by a unit test.
+
+Changes to AmbientOcclusionCalculator
+-------------------------------------
+The AmbientOcclusionCalculator has also been unclassed and is now called calculateAmbientOcclusion. The unit test has been updated to demonstrate the new usage.
+
+Changes to A* pathfinder
+------------------------
+The A* pathfinder has always had different (but equally valid) results when building in Visual Studio vs. GCC. This is now fixed and results are consistent between platforms.
+
+Copy and move semantics
+-----------------------
+All volume classes now have protected copy constructors and assignment operators to prevent you from accidentally copying them (which is expensive). Look at the VolumeResampler if you really do want to copy some volume data.
