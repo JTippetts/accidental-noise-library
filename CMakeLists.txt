@@ -104,6 +104,7 @@ file (MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/Bin)
 add_subdirectory(ThirdParty/Lua)
 add_subdirectory(ThirdParty/Tolua++/src/bin)
 add_subdirectory(ThirdParty/Tolua++/src/lib)
+add_subdirectory(ThirdParty/polyvox)
 
 add_subdirectory(Noise)
 add_subdirectory(RGBA)
