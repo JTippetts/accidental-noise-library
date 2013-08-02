@@ -1,0 +1,20 @@
+// Volume.pkg
+
+$#include "volumeadapter.h"
+
+namespace anl
+{
+	class CVolumeAdapter
+	{
+		public:
+		CVolumeAdapter();
+		CVolumeAdapter(anl::CImplicitModuleBase *src, int seamlessmode=anl::SEAMLESS_NONE, anl::SMappingRanges ranges=anl::SMappingRanges(0,1,0,1,0,1));
+		~CVolumeAdapter();
+		
+		void setSeamlessMode(int mode);
+		void setMappingRanges(anl::SMappingRanges ranges);
+		void setSource(anl::CImplicitModuleBase *src);
+		
+		void get(anl::CArray3Dd &a);
+	};
+};

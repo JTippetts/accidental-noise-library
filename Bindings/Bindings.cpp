@@ -4,6 +4,7 @@ int  tolua_Noise_open (lua_State* tolua_S);
 int  tolua_RGBA_open (lua_State* tolua_S);
 int  tolua_Imaging_open (lua_State* tolua_S);
 int  tolua_Builder_open (lua_State* tolua_S);
+int  tolua_Volume_open( lua_State* tolua_S);
 
 void loadANLBindings(lua_State *l)
 {
@@ -11,4 +12,5 @@ void loadANLBindings(lua_State *l)
     tolua_RGBA_open(l);
 	tolua_Imaging_open(l);
 	tolua_Builder_open(l);
+	tolua_Volume_open(l);
 }
