@@ -22,7 +22,7 @@ set (SOURCE_FILES ${SOURCE_FILES} generated/Noise.cpp generated/RGBA.cpp generat
 # Define dependency libs
 set (LIBS ../Noise ../RGBA ../Imaging ../Builder ../Volume)
 set (LINK_LIBS_ONLY tolua++_static)
-set (INCLUDE_DIRS_ONLY . ../Noise ../RGBA ../Imaging ../Builder ../Volume ../ThirdParty/tolua++/include ../ThirdParty/Lua/src)
+set (INCLUDE_DIRS_ONLY . ../Noise ../RGBA ../Imaging ../Builder ../Volume ../ThirdParty/tolua++/include ../ThirdParty/Lua/src ../ThirdParty/polyvox/library/PolyVoxCore/include ../ThirdParty/polyvox/library/PolyVoxUtil/include)
 
 # Setup target
 
