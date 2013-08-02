@@ -34,9 +34,9 @@ SET_PROPERTY(GLOBAL PROPERTY USE_FOLDERS ON)
 include(FeatureSummary)
 
 FIND_PACKAGE(Doxygen)
-OPTION(ENABLE_EXAMPLES "Should the examples be built" ON)
+OPTION(ENABLE_EXAMPLES "Should the examples be built" OFF)
 
-SET(LIBRARY_TYPE "DYNAMIC" CACHE STRING "Should the library be STATIC or DYNAMIC")
+SET(LIBRARY_TYPE "STATIC" CACHE STRING "Should the library be STATIC or DYNAMIC")
 SET_PROPERTY(CACHE LIBRARY_TYPE PROPERTY STRINGS DYNAMIC STATIC)
 IF(WIN32)
 	SET(LIBRARY_TYPE "STATIC")
@@ -71,7 +71,7 @@ endif()
 
 ADD_SUBDIRECTORY(library)
 
-OPTION(ENABLE_EXAMPLES "Should the examples be built" ON)
+OPTION(ENABLE_EXAMPLES "Should the examples be built" OFF)
 IF(ENABLE_EXAMPLES AND QT_QTOPENGL_FOUND)
 	ADD_SUBDIRECTORY(examples/Basic)
 	ADD_SUBDIRECTORY(examples/Paging)
@@ -84,7 +84,7 @@ ENDIF()
 
 INCLUDE(Packaging.cmake)
 
-OPTION(ENABLE_TESTS "Should the tests be built" ON)
+OPTION(ENABLE_TESTS "Should the tests be built" OFF)
 IF(ENABLE_TESTS AND QT_QTTEST_FOUND)
 	INCLUDE(CTest)
 	MARK_AS_ADVANCED(FORCE DART_TESTING_TIMEOUT) #This is only needed to hide the variable in the GUI (CMake bug) until 2.8.5
