@@ -19,5 +19,6 @@ namespace anl
 		void get(anl::CArray3Dd &a);
 	};
 	
-	void marchDensityFieldOBJ(anl::CArray3Dd &df, float iso, std::string name);
+	void marchDensityFieldCubeOBJ(anl::CArray3Dd &df, float iso, std::string name);
+	void marchDensityFieldSmoothOBJ(anl::CArray3Dd &df, float iso, std::string name);
 };

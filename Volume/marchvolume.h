@@ -9,7 +9,8 @@
 
 namespace anl
 {
-	void marchDensityFieldOBJ(CArray3Dd &df, float iso, std::string name);
+	void marchDensityFieldCubeOBJ(CArray3Dd &df, float iso, std::string name);
+	void marchDensityFieldSmoothOBJ(CArray3Dd &df, float iso, std::string name);
 };
 
 #endif
