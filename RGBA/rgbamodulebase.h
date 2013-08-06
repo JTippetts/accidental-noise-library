@@ -3,7 +3,7 @@
 //#include "rgba.h"
 
 #include <memory>
-#include "../Noise/vectortypes.h"
+#include "../Imaging/vectortypes.h"
 
 namespace anl
 {

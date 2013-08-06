@@ -3,7 +3,7 @@
 #include "rgbamodulebase.h"
 #include "../Noise/implicitmodulebase.h"
 #include "../Noise/implicitbasisfunction.h"
-#include "../Noise/templates/tcurve.h"
+#include "../Imaging/templates/tcurve.h"
 
 namespace anl
 {

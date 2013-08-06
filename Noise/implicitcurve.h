@@ -2,7 +2,7 @@
 #define IMPLICIT_CURVE_H
 #include "implicitmodulebase.h"
 #include "implicitbasisfunction.h"
-#include "templates/tcurve.h"
+#include "../Imaging/templates/tcurve.h"
 
 #include <vector>
 namespace anl
