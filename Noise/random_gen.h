@@ -23,6 +23,7 @@ THE SOFTWARE.
 #define RANDOM_GEN_H
 #include <ctime>
 #include <algorithm>
+#include <climits>
 
 namespace anl
 {
@@ -57,7 +58,7 @@ namespace anl
 
         double get01()
         {
-            return ((double)get() / (double)(4294967295UL));
+            return ((double)get() / (double)(UINT_MAX));
         }
     };
 
@@ -83,13 +84,11 @@ namespace anl
         unsigned int m_state;
     };
 
-    // Setup a static, global LCG for seeding other generators.
-    static LCG lcg;
 
 
 
     // The following generators are based on generators created by George Marsaglia
-    // They use the static lcg created above for seeding, to initialize various
+    // They use the an LCG object for seeding, to initialize various
     // state and tables. Seeding them is a bit more involved than an LCG.
     class Xorshift : public CBasePRNG
     {
@@ -101,6 +100,7 @@ namespace anl
 
         void setSeed(unsigned int s)
         {
+			LCG lcg;
             lcg.setSeed(s);
             m_x=lcg.get();
             m_y=lcg.get();
@@ -131,6 +131,7 @@ namespace anl
 
         void setSeed(unsigned int s)
         {
+			LCG lcg;
             lcg.setSeed(s);
             for(int i=0; i<256; ++i)
             {
@@ -161,6 +162,7 @@ namespace anl
 
         void setSeed(unsigned int s)
         {
+			LCG lcg;
             lcg.setSeed(s);   // Seed the global random source
 
             // Seed the table
@@ -199,6 +201,7 @@ namespace anl
 
         void setSeed(unsigned int s)
         {
+			LCG lcg;
             lcg.setSeed(s);
             z=lcg.get();
             w=lcg.get();

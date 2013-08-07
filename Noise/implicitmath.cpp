@@ -83,7 +83,7 @@ namespace anl
             case POW: return pow(v,p); break;
             case EXP: return exp(v); break;
             case LOG10: return log10(v); break;
-            case LOG2: return log2(v); break;
+            case LOG2: return log(v)/log(2.0); break;
             case LOGN: return log(v); break;
             case FMOD: return fmod(v,p); break;
             case BIAS: return bias(p,v); break;

@@ -49,7 +49,7 @@ namespace anl
                     case CEIL: out.set(x,y,ceil(v)); break;
                     case EXP: out.set(x,y,exp(v)); break;
                     case LOG10: out.set(x,y,log10(v)); break;
-                    case LOG2: out.set(x,y,log2(v)); break;
+                    case LOG2: out.set(x,y,log(v)/log(2.0)); break;
                     case LOGN: out.set(x,y,log(v)); break;
                     case ONEMINUS: out.set(x,y, 1.0-v); break;
                     case SQRT: out.set(x,y,sqrt(v)); break;

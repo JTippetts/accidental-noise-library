@@ -10,11 +10,11 @@ set (SOURCE_FILES ${CPP_FILES} ${H_FILES})
 file (MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/generated)
 file (GLOB_RECURSE PKG_FILES ${CMAKE_CURRENT_SOURCE_DIR}/pkgs/*.pkg)
 add_custom_command (OUTPUT generated/Noise.cpp generated/RGBA.cpp generated/Imaging.cpp generated/Builder.cpp generated/Volume.cpp
-    COMMAND ${PROJECT_BINARY_DIR}/ThirdParty/Tolua++/src/bin/tolua++ -o ${CMAKE_CURRENT_BINARY_DIR}/generated/Noise.cpp Noise/Noise.pkg DEPENDS ${PKG_FILES}
-    COMMAND ${PROJECT_BINARY_DIR}/ThirdParty/Tolua++/src/bin/tolua++ -o ${CMAKE_CURRENT_BINARY_DIR}/generated/RGBA.cpp RGBA/RGBA.pkg
-    COMMAND ${PROJECT_BINARY_DIR}/ThirdParty/Tolua++/src/bin/tolua++ -o ${CMAKE_CURRENT_BINARY_DIR}/generated/Imaging.cpp Imaging/Imaging.pkg
-	COMMAND ${PROJECT_BINARY_DIR}/ThirdParty/Tolua++/src/bin/tolua++ -o ${CMAKE_CURRENT_BINARY_DIR}/generated/Builder.cpp Builder/Builder.pkg
-	COMMAND ${PROJECT_BINARY_DIR}/ThirdParty/Tolua++/src/bin/tolua++ -o ${CMAKE_CURRENT_BINARY_DIR}/generated/Volume.cpp Volume/Volume.pkg
+    COMMAND ${PROJECT_BINARY_DIR}/Bin/tolua++ -o ${CMAKE_CURRENT_BINARY_DIR}/generated/Noise.cpp Noise/Noise.pkg DEPENDS ${PKG_FILES}
+    COMMAND ${PROJECT_BINARY_DIR}/Bin/tolua++ -o ${CMAKE_CURRENT_BINARY_DIR}/generated/RGBA.cpp RGBA/RGBA.pkg
+    COMMAND ${PROJECT_BINARY_DIR}/Bin/tolua++ -o ${CMAKE_CURRENT_BINARY_DIR}/generated/Imaging.cpp Imaging/Imaging.pkg
+	COMMAND ${PROJECT_BINARY_DIR}/Bin/tolua++ -o ${CMAKE_CURRENT_BINARY_DIR}/generated/Builder.cpp Builder/Builder.pkg
+	COMMAND ${PROJECT_BINARY_DIR}/Bin/tolua++ -o ${CMAKE_CURRENT_BINARY_DIR}/generated/Volume.cpp Volume/Volume.pkg
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/pkgs
     COMMENT "Generate Lua API binding on the fly")
 set (SOURCE_FILES ${SOURCE_FILES} generated/Noise.cpp generated/RGBA.cpp generated/Imaging.cpp generated/Builder.cpp generated/Volume.cpp)
