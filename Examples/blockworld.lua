@@ -144,9 +144,13 @@ stonesel=anl.CImplicitSelect(dirtsel, goldsel, grad, 0.6, 0)
 obsidiansel=anl.CImplicitSelect(stonesel, blocktypes.Obsidian, grad, 0.85, 0)
 bedrocksel=anl.CImplicitSelect(obsidiansel, blocktypes.Bedrock, grad, 0.94, 0)
 
--- Set up an attenutation factor to scale off the caves as they near the surface
+-- Set up an attenutation factor to scale off the caves as they near the surface.
 caveattenuate=anl.CImplicitScaleOffset(grad, 0.65, 0.0)
 caveattenuateclamp=anl.CImplicitClamp(caveattenuate, 0.0, 1.0)
+
+-- Caves are done as 2 ridged multi-fractal, single-octave noise functions multiplied by the attenuation function, then
+-- used to select between open and solid. They are then multiplied together. This multiplied function is then called
+-- from another domain translation unit that applies the twisting turbulence that forms the shape of the ground.
 
 caverm1=anl.CImplicitFractal(anl.RIDGEDMULTI, anl.GRADIENT, anl.QUINTIC, 1, (1/chunkwidth)*2, true)
 caveac1=anl.CImplicitAutoCorrect(caverm1, 0, 1)
@@ -163,17 +167,25 @@ cavemul=anl.CImplicitMath(anl.MULTIPLY, cavesel1, cavesel2)
 caveturb=anl.CImplicitTranslateDomain(cavemul,0.0,applytwist,0.0)
 
 
+-- Caves in the Obsidian and lower regions are filled with magma, so set up a selection that uses the perturbed gradient to
+-- select between lava and air.
+
 lavaselect=anl.CImplicitSelect(blocktypes.Air, blocktypes.Lava, grad, 0.86, 0.0)
 
 
-
+-- The final function selectis between cave and not-cave using the caveturb function.
 cave=anl.CImplicitSelect(bedrocksel, lavaselect, caveturb, 0.5, 0)
+
+-- A helper function for visualizing the caves as a solid cube structure.
 cavevis=anl.CImplicitSelect(blocktypes.Air, blocktypes.Stone, caveturb, 0.5, 0)
 
-
+-- The bottom-most layer of the world is solid bedrock, to keep people from digging through to the abyss. Set
+-- up a select function that uses the base, non-perturbed, gradient with a high threshold to select for the last row
+-- being bedrock.
 bedrockclamp=anl.CImplicitSelect(cave, blocktypes.Bedrock, gradient, 0.996, 0)
 
 
+-- Change this seed to generate a new world
 seed=10456
 
 
@@ -184,8 +196,13 @@ goldfractal:setSeed(seed+40)
 ironfractal:setSeed(seed+50)
 twistiness:setSeed(seed+60)
 
-chunkx,chunkz=12,20
+-- The world is split into chunks, each chunk sized (chunkwidth, chunkheight, chunkdepth)
+-- This pair of values denotes the chunk coordinate to generate.
+chunkx,chunkz=4000, 2331
 
+-- Call build_chunk with the final function and the chunk coordinates to generate the chunk at (chunkx, chunkz)
 local chunk=build_chunk(chunkx,chunkz, bedrockclamp)
 
+-- Export the block type meshes sequentially to .OBJ files. Files will be saved as <terraintype>_<chunkx>x<chunkz>.obj in the
+-- execution directory.
 export_block_meshes(chunk,chunkx,chunkz)
