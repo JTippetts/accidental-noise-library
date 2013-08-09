@@ -54,6 +54,8 @@ namespace anl
         SQRT,
         INTEGER,
         FRACTIONAL,
+		EASECUBIC,
+		EASEQUINTIC,
         SUM,
         MULTIPLY,
         DIVIDE,

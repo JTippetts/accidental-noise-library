@@ -93,6 +93,8 @@ namespace anl
             case SQRT: return sqrt(v); break;
             case INTEGER: return (double)(int)v; break;
             case FRACTIONAL: return v-(double)(int)v; break;
+			case EASECUBIC: return hermite_blend(v); break;
+			case EASEQUINTIC: return quintic_blend(v); break;
             case SUM: return v+p; break;
             case MULTIPLY: return v*p; break;
             case DIVIDE: return v/p; break;

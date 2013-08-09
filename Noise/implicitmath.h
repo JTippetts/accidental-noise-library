@@ -25,12 +25,14 @@ namespace anl
         ONEMINUS,
         SQRT,
         INTEGER,
-        FRACTIONAL
+        FRACTIONAL,
+		EASECUBIC,
+		EASEQUINTIC,
     };
 
     enum EBinaryMathOperation
     {
-        POW=FRACTIONAL+1,
+        POW=EASEQUINTIC+1,
         FMOD,
         BIAS,
         GAIN,
