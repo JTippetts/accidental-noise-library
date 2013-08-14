@@ -25,14 +25,14 @@ SDrop find_lowest_neighbor(anl::CMWC4096 &rnd, anl::CArray2Dd &map, int x, int y
 
     static SDrop dirs[8]=
     {
-        {-1,-1},
-        {0,-1},
-        {1,-1},
-        {-1,0},
-        {1,0},
-        {-1,1},
-        {0,1},
-        {1,1}
+        SDrop(-1,-1),
+        SDrop(0,-1),
+        SDrop(1,-1),
+        SDrop(-1,0),
+        SDrop(1,0),
+        SDrop(-1,1),
+        SDrop(0,1),
+        SDrop(1,1)
 
     };
 
