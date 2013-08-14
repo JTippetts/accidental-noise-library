@@ -23,21 +23,9 @@ namespace anl
         return i->second.get();
     }
 
-    CImplicitModuleBase *CTreeContainer::getModuleUnsafe(std::string name)
-    {
-        auto p=get(name);
-        return p;
-    }
-
-    CImplicitModuleBase * CTreeContainer::getModule(std::string name)
+    CImplicitModuleBase * CTreeContainer::getImplicitModule(std::string name)
     {
         return get(name);
-    }
-
-    CRGBAModuleBase *CTreeContainer::getRGBAModuleUnsafe(std::string name)
-    {
-        auto p=getRGBA(name);
-        return p;
     }
 
     CRGBAModuleBase * CTreeContainer::getRGBAModule(std::string name)
@@ -50,20 +38,6 @@ namespace anl
         auto i=m_implicitbuffers.find(name);
         if(i==m_implicitbuffers.end()) return 0;
         return i->second.get();
-    }
-
-    CImplicitBufferBase *CTreeContainer::getImplicitBufferUnsafe(std::string name)
-    {
-        auto p=getImplicitBuffer(name);
-        if(!p) return 0;
-        return p;
-    }
-
-    CRGBABufferBase *CTreeContainer::getRGBABufferUnsafe(std::string name)
-    {
-        auto p=getRGBABuffer(name);
-        if(!p) return 0;
-        return p;
     }
 
     CRGBABufferBase * CTreeContainer::getRGBABuffer(std::string name)

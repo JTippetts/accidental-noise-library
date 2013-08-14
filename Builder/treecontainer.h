@@ -360,16 +360,9 @@ namespace anl
 		CTreeContainer &rgbaBufferBlur(std::string name, std::string source, double blursize, bool seamless);
 		CTreeContainer &rgbaBufferImplicitBufferMultiply(std::string name, std::string rgbasource, std::string implicitsource);
 
-        CImplicitModuleBase *getModuleUnsafe(std::string name);
-        CImplicitModuleBase * getModule(std::string name);
-
-        CRGBAModuleBase *getRGBAModuleUnsafe(std::string name);
+        CImplicitModuleBase * getImplicitModule(std::string name);
         CRGBAModuleBase * getRGBAModule(std::string name);
-
-		CImplicitBufferBase *getImplicitBufferUnsafe(std::string name);
         CImplicitBufferBase * getImplicitBuffer(std::string name);
-
-		CRGBABufferBase *getRGBABufferUnsafe(std::string name);
 		CRGBABufferBase * getRGBABuffer(std::string name);
 
         private:
