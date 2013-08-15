@@ -365,11 +365,15 @@ namespace anl
 		CTreeContainer &implicitBufferUnaryMath(std::string name, std::string source, int op);
 		CTreeContainer &implicitBufferSimpleErode(std::string name, std::string source, int numdrops, float power);
 		CTreeContainer &implicitBufferSimpleRainfall(std::string name, std::string source, std::string depth, int iterations);
+		CTreeContainer &implicitBufferSelect(std::string name, std::string low, std::string high, std::string control, double threshold, double falloff);
+
 
 		CTreeContainer &rgbaBufferRGBAAdapter(std::string name, std::string source, int mapping, anl::SMappingRanges ranges, bool use_z, double z);
 		CTreeContainer &rgbaBufferImplicitBufferAdapter(std::string name, std::string source);
 		CTreeContainer &rgbaBufferBlur(std::string name, std::string source, double blursize, bool seamless);
 		CTreeContainer &rgbaBufferImplicitBufferMultiply(std::string name, std::string rgbasource, std::string implicitsource);
+		CTreeContainer &rgbaBufferSelect(std::string name, std::string low, std::string high, std::string control, double threshold, double falloff);
+
 
         anl::CImplicitModuleBase *getImplicitModule(std::string name);
         anl::CRGBAModuleBase *getRGBAModule(std::string name);

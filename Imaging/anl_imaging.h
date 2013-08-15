@@ -16,12 +16,14 @@
 #include "implicitbufferbumpmap.h"
 #include "implicitbufferunarymath.h"
 #include "implicitbuffersimpleerode.h"
+#include "implicitbufferselect.h"
 
 #include "rgbabufferbase.h"
 #include "rgbabufferrgbaadapter.h"
 #include "rgbabufferimplicitbufferadapter.h"
 #include "rgbabufferblur.h"
 #include "rgbabufferimplicitbuffermultiply.h"
+#include "rgbabufferselect.h"
 
 #endif
 

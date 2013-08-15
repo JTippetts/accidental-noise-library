@@ -2579,6 +2579,18 @@ namespace anl
 
         return *this;
     }
+	
+	CTreeContainer &CTreeContainer::implicitBufferSelect(std::string name, std::string low, std::string high, std::string control, double threshold, double falloff)
+	{
+		if(getImplicitBuffer(name) || get(name) || getRGBA(name) || getRGBABuffer(name)) return *this;
+		auto l=getImplicitBuffer(low);
+		auto h=getImplicitBuffer(high);
+		auto c=getImplicitBuffer(control);
+		if(!l || !h || !c) return *this;
+		
+		m_implicitbuffers[name]=std::shared_ptr<CImplicitBufferBase>(new CImplicitBufferSelect(l,h,c,threshold,falloff));
+		return *this;
+	}
 
 
 
@@ -2630,6 +2642,22 @@ namespace anl
 
         return *this;
     }
+	
+	CTreeContainer &CTreeContainer::rgbaBufferSelect(std::string name, std::string low, std::string high, std::string control, double threshold, double falloff)
+	{
+		if(getImplicitBuffer(name) || get(name) || getRGBA(name) || getRGBABuffer(name)) return *this;
+		auto l=getRGBABuffer(low);
+		auto h=getRGBABuffer(high);
+		auto c=getImplicitBuffer(control);
+		if(!l || !h || !c) return *this;
+		
+		m_rgbabuffers[name]=std::shared_ptr<CRGBABufferBase>(new CRGBABufferSelect(l,h,c,threshold,falloff));
+		return *this;
+	}
+
+
+
+
 
 };
 

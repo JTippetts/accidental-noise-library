@@ -343,6 +343,19 @@ namespace anl
         void setOp(int op);
 	};
 	
+	class CImplicitBufferSelect : public CImplicitBufferBase
+	{
+		public:
+		CImplicitBufferSelect();
+		CImplicitBufferSelect(CImplicitBufferBase *low, CImplicitBufferBase *high, CImplicitBufferBase *ctrl, double thresh, double fall);
+		~CImplicitBufferSelect();
+		
+		void setControl(CImplicitBufferBase *c);
+		void setLow(CImplicitBufferBase *l);
+		void setHigh(CImplicitBufferBase *h);
+		void setThreshold(double t);
+		void setFalloff(double f);
+	};
 	
 	
 	
@@ -391,6 +404,19 @@ namespace anl
         void setRanges(SMappingRanges &ranges);
         void setUseZ(bool use_z);
         void setZ(double z);
+	};
+	
+	class CRGBABufferSelect : public CRGBABufferBase
+	{
+		CRGBABufferSelect();
+		CRGBABufferSelect(CRGBABufferBase *low, CRGBABufferBase *high, CImplicitBufferBase *ctrl, double thresh, double fall);
+		~CRGBABufferSelect();
+		
+		void setControl(CImplicitBufferBase *c);
+		void setLow(CRGBABufferBase *l);
+		void setHigh(CRGBABufferBase *h);
+		void setThreshold(double t);
+		void setFalloff(double f);
 	};
 
 };
