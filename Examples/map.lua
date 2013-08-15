@@ -32,18 +32,16 @@ fbm3=anl.CImplicitFractal(anl.FBM, anl.GRADIENT, anl.QUINTIC, 6,0.25,true)
 fbmac3=anl.CImplicitAutoCorrect(fbm3,0,1)
 fbm3:setSeed(rnd:get())
 
-fbm4=anl.CImplicitFractal(anl.FBM, anl.GRADIENT, anl.QUINTIC, 4, 1, true)
-fbmac4=anl.CImplicitAutoCorrect(fbm4, 0.25,0.45)
-fbm4:setSeed(rnd:get())
+groundfbm=anl.CImplicitFractal(anl.FBM, anl.GRADIENT, anl.QUINTIC, 4, 1, true)
+groundfbmac=anl.CImplicitAutoCorrect(groundfbm, 0.25,0.45)
+groundfbm:setSeed(rnd:get())
 
-mtnselect=anl.CImplicitSelect(fbmac4, mtnelev, fbmac3, 0.7, 0.125)
+
 
 groundcolor=anl.CRGBACurve(fbmac3,anl.LINEAR)
 groundcolor:pushPoint(0,130/255,106/255,89/255,1)
 groundcolor:pushPoint(0.25,130/255,106/255,89/255,1)
 groundcolor:pushPoint(1,26/255,131/255,12/255,1)
-
-mtncolorselect=anl.CRGBASelect(groundcolor, mtncolor, fbmac3, 0.7, 0.125)
 
 sandcolor=anl.CRGBACurve(fbmac3, anl.LINEAR)
 sandcolor:pushPoint(0,222/255,187/255,132/255,1)
@@ -57,8 +55,25 @@ sandfbm:setSeed(rnd:get())
 waterselectfbm=anl.CImplicitFractal(anl.FBM, anl.GRADIENT, anl.QUINTIC, 6, 0.125, true)
 waterselectfbmac=anl.CImplicitAutoCorrect(waterselectfbm, 0, 1)
 
-sandselect=anl.CImplicitSelect(sandscaledomain, mtnselect, waterselectfbmac, 0.45, 0.25)
-sandcolorselect=anl.CRGBASelect(sandcolor, mtncolorselect, waterselectfbmac, 0.45, 0.25)
+sandselect=anl.CImplicitSelect(sandscaledomain, groundfbmac, waterselectfbmac, 0.45, 0.25)
+sandcolorselect=anl.CRGBASelect(sandcolor, groundcolor, waterselectfbmac, 0.45, 0.25)
+
+forestfbm=anl.CImplicitFractal(anl.FBM, anl.GRADIENT, anl.QUINTIC, 1, 32, true)
+forestfbmac=anl.CImplicitAutoCorrect(forestfbm, 0.35,0.45)
+forestfbm:setSeed(rnd:get())
+
+forestcolor=anl.CRGBAConstant(20/255, 119/255, 30/255, 1)
+
+forestselectfbm=anl.CImplicitFractal(anl.RIDGEDMULTI, anl.GRADIENT, anl.QUINTIC, 6, 0.25, true)
+forestselectac=anl.CImplicitAutoCorrect(forestselectfbm, 0, 1)
+
+forestselect=anl.CImplicitSelect(sandselect, forestfbmac, forestselectac, 0.75, 0.05)
+forestcolorselect=anl.CRGBASelect(sandcolorselect, forestcolor, forestselectac, 0.75, 0.05)
+
+mtnselect=anl.CImplicitSelect(forestselect, mtnelev, fbmac3, 0.7, 0.125)
+
+mtncolorselect=anl.CRGBASelect(forestcolorselect, mtncolor, fbmac3, 0.7, 0.125)
+
 
 
 waterfrac=anl.CImplicitFractal(anl.BILLOW, anl.GRADIENT, anl.QUINTIC, 6, 0.125, true)
@@ -70,8 +85,8 @@ watercolor=anl.CRGBACurve(fbmac3, anl.LINEAR)
 watercolor:pushPoint(0,17/255,121/255,193/255,1)
 watercolor:pushPoint(1,101/255,188/255,249/255,1)
 
-waterselect=anl.CImplicitSelect(waterscaledomain, sandselect, waterselectfbmac, 0.25, 0.0625)
-watercolorselect=anl.CRGBASelect(watercolor, sandcolorselect, waterselectfbmac, 0.25, 0.0625)
+waterselect=anl.CImplicitSelect(waterscaledomain, mtnselect, waterselectfbmac, 0.25, 0.025)
+watercolorselect=anl.CRGBASelect(watercolor, mtncolorselect, waterselectfbmac, 0.25, 0.025)
 
 elevationbuf=anl.CImplicitBufferImplicitAdapter(waterselect,anl.SEAMLESS_NONE,range,true,0)
 elevationscale=anl.CImplicitBufferScaleToRange(elevationbuf,0,1)
