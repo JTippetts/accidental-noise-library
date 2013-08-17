@@ -6,7 +6,7 @@ namespace anl
     {
     }
 
-    CRGBABufferBlur::CRGBABufferBlur(CRGBABufferBase * src, double blursize, bool seamless) :
+    CRGBABufferBlur::CRGBABufferBlur(CRGBABufferBase * src, ANLFloatType blursize, bool seamless) :
         CRGBABufferBase(), m_source(src), m_blursize(blursize), m_seamless(seamless)
     {
     }
@@ -20,7 +20,7 @@ namespace anl
         m_source=src;
     }
 
-    void CRGBABufferBlur::setBlurSize(double blursize)
+    void CRGBABufferBlur::setBlurSize(ANLFloatType blursize)
     {
         m_blursize=blursize;
         if(m_blursize<3) m_blursize=3;

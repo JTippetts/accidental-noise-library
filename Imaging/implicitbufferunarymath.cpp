@@ -35,7 +35,7 @@ namespace anl
         {
             for(int y=0; y<out.height(); ++y)
             {
-                double v=out.get(x,y);
+                ANLFloatType v=out.get(x,y);
                 switch(m_op)
                 {
                     case ACOS: out.set(x,y,acos(v)); break;
@@ -54,7 +54,7 @@ namespace anl
                     case ONEMINUS: out.set(x,y, 1.0-v); break;
                     case SQRT: out.set(x,y,sqrt(v)); break;
                     case INTEGER: out.set(x,y,(int)v); break;
-                    case FRACTIONAL: out.set(x,y,v-(double)(int)v); break;
+                    case FRACTIONAL: out.set(x,y,v-(ANLFloatType)(int)v); break;
                     default: break;
                 };
             }

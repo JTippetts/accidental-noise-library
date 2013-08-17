@@ -11,24 +11,24 @@ namespace anl
     {
         public:
         CImplicitCurve();
-        CImplicitCurve(double s, int interptype=LINEAR);
+        CImplicitCurve(ANLFloatType s, int interptype=LINEAR);
         CImplicitCurve(CImplicitModuleBase * s, int interptype=LINEAR);
 
         ~CImplicitCurve();
 
-        void pushPoint(double t, double v);
+        void pushPoint(ANLFloatType t, ANLFloatType v);
         void clearCurve();
-        void setSource(double t);
+        void setSource(ANLFloatType t);
         void setSource(CImplicitModuleBase * m);
         void setInterpType(int type);
 
-        double get(double x, double y);
-        double get(double x, double y, double z);
-        double get(double x, double y, double z, double w);
-        double get(double x, double y, double z, double w, double u, double v);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
 
         protected:
-        TCurve<double> m_curve;
+        TCurve<ANLFloatType> m_curve;
         CScalarParameter m_source;
         int m_type;
     };

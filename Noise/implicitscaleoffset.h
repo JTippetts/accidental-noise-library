@@ -8,33 +8,33 @@ namespace anl
 {
     public:
     CImplicitScaleOffset();
-    CImplicitScaleOffset(double source, double scale, double offset);
-    CImplicitScaleOffset(double source, double scale, CImplicitModuleBase * offset);
-    CImplicitScaleOffset(double source, CImplicitModuleBase * scale, double offset);
-    CImplicitScaleOffset(double source, CImplicitModuleBase * scale, CImplicitModuleBase * offset);
-    CImplicitScaleOffset(CImplicitModuleBase * source, double scale, double offset);
-    CImplicitScaleOffset(CImplicitModuleBase * source, double scale, CImplicitModuleBase * offset);
-    CImplicitScaleOffset(CImplicitModuleBase * source, CImplicitModuleBase * scale, double offset);
+    CImplicitScaleOffset(ANLFloatType source, ANLFloatType scale, ANLFloatType offset);
+    CImplicitScaleOffset(ANLFloatType source, ANLFloatType scale, CImplicitModuleBase * offset);
+    CImplicitScaleOffset(ANLFloatType source, CImplicitModuleBase * scale, ANLFloatType offset);
+    CImplicitScaleOffset(ANLFloatType source, CImplicitModuleBase * scale, CImplicitModuleBase * offset);
+    CImplicitScaleOffset(CImplicitModuleBase * source, ANLFloatType scale, ANLFloatType offset);
+    CImplicitScaleOffset(CImplicitModuleBase * source, ANLFloatType scale, CImplicitModuleBase * offset);
+    CImplicitScaleOffset(CImplicitModuleBase * source, CImplicitModuleBase * scale, ANLFloatType offset);
     CImplicitScaleOffset(CImplicitModuleBase * source, CImplicitModuleBase * scale, CImplicitModuleBase * offset);
 
     ~CImplicitScaleOffset();
 
     void setSource(CImplicitModuleBase * b);
-    void setSource(double v);
-    void setScale(double scale);
-    void setOffset(double offset);
+    void setSource(ANLFloatType v);
+    void setScale(ANLFloatType scale);
+    void setOffset(ANLFloatType offset);
     void setScale(CImplicitModuleBase * scale);
     void setOffset(CImplicitModuleBase * offset);
 
-    double get(double x, double y);
-    double get(double x, double y, double z);
-    double get(double x, double y, double z, double w);
-    double get(double x, double y, double z, double w, double u, double v);
+    ANLFloatType get(ANLFloatType x, ANLFloatType y);
+    ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+    ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+    ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
 
     protected:
     //CImplicitModuleBase * m_source;
     CScalarParameter m_source;
-    //double m_scale, m_offset;
+    //ANLFloatType m_scale, m_offset;
     CScalarParameter m_scale, m_offset;
 };
 };

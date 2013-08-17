@@ -6,97 +6,97 @@ namespace anl
 {
     CRGBARotateColor::CRGBARotateColor() : m_ax(0.0), m_ay(0.0), m_az(1.0), m_angledeg(0.0), m_source(), m_normalizeaxis(false){}
 
-    CRGBARotateColor::CRGBARotateColor(SRGBA src, double ax, double ay, double az, double angle) :
+    CRGBARotateColor::CRGBARotateColor(SRGBA src, ANLFloatType ax, ANLFloatType ay, ANLFloatType az, ANLFloatType angle) :
         CRGBAModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle), m_source(src), m_normalizeaxis(false){}
 
-    CRGBARotateColor::CRGBARotateColor(SRGBA src, double ax, double ay, double az, CImplicitModuleBase * angle) :
+    CRGBARotateColor::CRGBARotateColor(SRGBA src, ANLFloatType ax, ANLFloatType ay, ANLFloatType az, CImplicitModuleBase * angle) :
         CRGBAModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle), m_source(src), m_normalizeaxis(false){}
 
-    CRGBARotateColor::CRGBARotateColor(SRGBA src, double ax, double ay, CImplicitModuleBase * az, double angle) :
+    CRGBARotateColor::CRGBARotateColor(SRGBA src, ANLFloatType ax, ANLFloatType ay, CImplicitModuleBase * az, ANLFloatType angle) :
         CRGBAModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle), m_source(src), m_normalizeaxis(false){}
 
-    CRGBARotateColor::CRGBARotateColor(SRGBA src, double ax, double ay, CImplicitModuleBase * az, CImplicitModuleBase * angle) :
+    CRGBARotateColor::CRGBARotateColor(SRGBA src, ANLFloatType ax, ANLFloatType ay, CImplicitModuleBase * az, CImplicitModuleBase * angle) :
         CRGBAModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle), m_source(src), m_normalizeaxis(false){}
 
-    CRGBARotateColor::CRGBARotateColor(SRGBA src, double ax, CImplicitModuleBase * ay, double az, double angle) :
+    CRGBARotateColor::CRGBARotateColor(SRGBA src, ANLFloatType ax, CImplicitModuleBase * ay, ANLFloatType az, ANLFloatType angle) :
         CRGBAModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle), m_source(src), m_normalizeaxis(false){}
 
-    CRGBARotateColor::CRGBARotateColor(SRGBA src, double ax, CImplicitModuleBase * ay, double az, CImplicitModuleBase * angle) :
+    CRGBARotateColor::CRGBARotateColor(SRGBA src, ANLFloatType ax, CImplicitModuleBase * ay, ANLFloatType az, CImplicitModuleBase * angle) :
         CRGBAModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle), m_source(src), m_normalizeaxis(false){}
 
-    CRGBARotateColor::CRGBARotateColor(SRGBA src, double ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, double angle) :
+    CRGBARotateColor::CRGBARotateColor(SRGBA src, ANLFloatType ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, ANLFloatType angle) :
         CRGBAModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle), m_source(src), m_normalizeaxis(false){}
 
-    CRGBARotateColor::CRGBARotateColor(SRGBA src, double ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, CImplicitModuleBase * angle) :
+    CRGBARotateColor::CRGBARotateColor(SRGBA src, ANLFloatType ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, CImplicitModuleBase * angle) :
         CRGBAModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle), m_source(src), m_normalizeaxis(false){}
 
-    CRGBARotateColor::CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, double ay, double az, double angle) :
+    CRGBARotateColor::CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, ANLFloatType ay, ANLFloatType az, ANLFloatType angle) :
         CRGBAModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle), m_source(src), m_normalizeaxis(false){}
 
-    CRGBARotateColor::CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, double ay, double az, CImplicitModuleBase * angle) :
+    CRGBARotateColor::CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, ANLFloatType ay, ANLFloatType az, CImplicitModuleBase * angle) :
         CRGBAModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle), m_source(src), m_normalizeaxis(false){}
 
-    CRGBARotateColor::CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, double ay, CImplicitModuleBase * az, double angle) :
+    CRGBARotateColor::CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, ANLFloatType ay, CImplicitModuleBase * az, ANLFloatType angle) :
         CRGBAModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle), m_source(src), m_normalizeaxis(false){}
 
-    CRGBARotateColor::CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, double ay, CImplicitModuleBase * az, CImplicitModuleBase * angle) :
+    CRGBARotateColor::CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, ANLFloatType ay, CImplicitModuleBase * az, CImplicitModuleBase * angle) :
         CRGBAModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle), m_source(src), m_normalizeaxis(false){}
 
-    CRGBARotateColor::CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, double az, double angle) :
+    CRGBARotateColor::CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, ANLFloatType az, ANLFloatType angle) :
         CRGBAModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle), m_source(src), m_normalizeaxis(false){}
 
-    CRGBARotateColor::CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, double az, CImplicitModuleBase * angle) :
+    CRGBARotateColor::CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, ANLFloatType az, CImplicitModuleBase * angle) :
         CRGBAModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle), m_source(src), m_normalizeaxis(false){}
 
-    CRGBARotateColor::CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, double angle) :
+    CRGBARotateColor::CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, ANLFloatType angle) :
         CRGBAModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle), m_source(src), m_normalizeaxis(false){}
 
     CRGBARotateColor::CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, CImplicitModuleBase * angle) :
         CRGBAModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle), m_source(src), m_normalizeaxis(false){}
 
-    CRGBARotateColor::CRGBARotateColor(CRGBAModuleBase * src, double ax, double ay, double az, double angle) :
+    CRGBARotateColor::CRGBARotateColor(CRGBAModuleBase * src, ANLFloatType ax, ANLFloatType ay, ANLFloatType az, ANLFloatType angle) :
         CRGBAModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle), m_source(src), m_normalizeaxis(false){}
 
-    CRGBARotateColor::CRGBARotateColor(CRGBAModuleBase * src, double ax, double ay, double az, CImplicitModuleBase * angle) :
+    CRGBARotateColor::CRGBARotateColor(CRGBAModuleBase * src, ANLFloatType ax, ANLFloatType ay, ANLFloatType az, CImplicitModuleBase * angle) :
         CRGBAModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle), m_source(src), m_normalizeaxis(false){}
 
-    CRGBARotateColor::CRGBARotateColor(CRGBAModuleBase * src, double ax, double ay, CImplicitModuleBase * az, double angle) :
+    CRGBARotateColor::CRGBARotateColor(CRGBAModuleBase * src, ANLFloatType ax, ANLFloatType ay, CImplicitModuleBase * az, ANLFloatType angle) :
         CRGBAModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle), m_source(src), m_normalizeaxis(false){}
 
-    CRGBARotateColor::CRGBARotateColor(CRGBAModuleBase * src, double ax, double ay, CImplicitModuleBase * az, CImplicitModuleBase * angle) :
+    CRGBARotateColor::CRGBARotateColor(CRGBAModuleBase * src, ANLFloatType ax, ANLFloatType ay, CImplicitModuleBase * az, CImplicitModuleBase * angle) :
         CRGBAModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle), m_source(src), m_normalizeaxis(false){}
 
-    CRGBARotateColor::CRGBARotateColor(CRGBAModuleBase * src, double ax, CImplicitModuleBase * ay, double az, double angle) :
+    CRGBARotateColor::CRGBARotateColor(CRGBAModuleBase * src, ANLFloatType ax, CImplicitModuleBase * ay, ANLFloatType az, ANLFloatType angle) :
         CRGBAModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle), m_source(src), m_normalizeaxis(false){}
 
-    CRGBARotateColor::CRGBARotateColor(CRGBAModuleBase * src, double ax, CImplicitModuleBase * ay, double az, CImplicitModuleBase * angle) :
+    CRGBARotateColor::CRGBARotateColor(CRGBAModuleBase * src, ANLFloatType ax, CImplicitModuleBase * ay, ANLFloatType az, CImplicitModuleBase * angle) :
         CRGBAModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle), m_source(src), m_normalizeaxis(false){}
 
-    CRGBARotateColor::CRGBARotateColor(CRGBAModuleBase * src, double ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, double angle) :
+    CRGBARotateColor::CRGBARotateColor(CRGBAModuleBase * src, ANLFloatType ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, ANLFloatType angle) :
         CRGBAModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle), m_source(src), m_normalizeaxis(false){}
 
-    CRGBARotateColor::CRGBARotateColor(CRGBAModuleBase * src, double ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, CImplicitModuleBase * angle) :
+    CRGBARotateColor::CRGBARotateColor(CRGBAModuleBase * src, ANLFloatType ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, CImplicitModuleBase * angle) :
         CRGBAModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle), m_source(src), m_normalizeaxis(false){}
 
-    CRGBARotateColor::CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, double ay, double az, double angle) :
+    CRGBARotateColor::CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, ANLFloatType ay, ANLFloatType az, ANLFloatType angle) :
         CRGBAModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle), m_source(src), m_normalizeaxis(false){}
 
-    CRGBARotateColor::CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, double ay, double az, CImplicitModuleBase * angle) :
+    CRGBARotateColor::CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, ANLFloatType ay, ANLFloatType az, CImplicitModuleBase * angle) :
         CRGBAModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle), m_source(src), m_normalizeaxis(false){}
 
-    CRGBARotateColor::CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, double ay, CImplicitModuleBase * az, double angle) :
+    CRGBARotateColor::CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, ANLFloatType ay, CImplicitModuleBase * az, ANLFloatType angle) :
         CRGBAModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle), m_source(src), m_normalizeaxis(false){}
 
-    CRGBARotateColor::CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, double ay, CImplicitModuleBase * az, CImplicitModuleBase * angle) :
+    CRGBARotateColor::CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, ANLFloatType ay, CImplicitModuleBase * az, CImplicitModuleBase * angle) :
         CRGBAModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle), m_source(src), m_normalizeaxis(false){}
 
-    CRGBARotateColor::CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, double az, double angle) :
+    CRGBARotateColor::CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, ANLFloatType az, ANLFloatType angle) :
         CRGBAModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle), m_source(src), m_normalizeaxis(false){}
 
-    CRGBARotateColor::CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, double az, CImplicitModuleBase * angle) :
+    CRGBARotateColor::CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, ANLFloatType az, CImplicitModuleBase * angle) :
         CRGBAModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle), m_source(src), m_normalizeaxis(false){}
 
-    CRGBARotateColor::CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, double angle) :
+    CRGBARotateColor::CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, ANLFloatType angle) :
         CRGBAModuleBase(), m_ax(ax), m_ay(ay), m_az(az), m_angledeg(angle), m_source(src), m_normalizeaxis(false){}
 
     CRGBARotateColor::CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, CImplicitModuleBase * angle) :
@@ -104,7 +104,7 @@ namespace anl
 
 
 
-    void CRGBARotateColor::setAxis(double ax, double ay, double az)
+    void CRGBARotateColor::setAxis(ANLFloatType ax, ANLFloatType ay, ANLFloatType az)
     {
         m_ax.set(ax);
         m_ay.set(ay);
@@ -116,15 +116,15 @@ namespace anl
         m_ay.set(ay);
         m_az.set(az);
     }
-    void CRGBARotateColor::setAxisX(double ax)
+    void CRGBARotateColor::setAxisX(ANLFloatType ax)
     {
         m_ax.set(ax);
     }
-    void CRGBARotateColor::setAxisY(double ay)
+    void CRGBARotateColor::setAxisY(ANLFloatType ay)
     {
         m_ay.set(ay);
     }
-    void CRGBARotateColor::setAxisZ(double az)
+    void CRGBARotateColor::setAxisZ(ANLFloatType az)
     {
         m_az.set(az);
     }
@@ -140,7 +140,7 @@ namespace anl
     {
         m_az.set(az);
     }
-    void CRGBARotateColor::setAngle(double a)
+    void CRGBARotateColor::setAngle(ANLFloatType a)
     {
         m_angledeg.set(a);
     }
@@ -156,7 +156,7 @@ namespace anl
     {
         m_source.set(c);
     }
-    SRGBA CRGBARotateColor::get(double x, double y)
+    SRGBA CRGBARotateColor::get(ANLFloatType x, ANLFloatType y)
     {
         SRGBA s=m_source.get(x,y);
         calculateRotMatrix(x,y);
@@ -179,7 +179,7 @@ namespace anl
         return s;
 
     }
-    SRGBA CRGBARotateColor::get(double x, double y, double z)
+    SRGBA CRGBARotateColor::get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
     {
         SRGBA s=m_source.get(x,y,z);
         calculateRotMatrix(x,y,z);
@@ -201,7 +201,7 @@ namespace anl
 
         return s;
     }
-    SRGBA CRGBARotateColor::get(double x, double y, double z, double w)
+    SRGBA CRGBARotateColor::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
     {
         SRGBA s=m_source.get(x,y,z,w);
         calculateRotMatrix(x,y,z,w);
@@ -223,7 +223,7 @@ namespace anl
 
         return s;
     }
-    SRGBA CRGBARotateColor::get(double x, double y, double z, double w, double u, double v)
+    SRGBA CRGBARotateColor::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
     {
         SRGBA s=m_source.get(x,y,z,w,u,v);
         calculateRotMatrix(x,y,z,w,u,v);
@@ -246,23 +246,23 @@ namespace anl
         return s;
     }
 
-    void CRGBARotateColor::calculateRotMatrix(double x, double y)
+    void CRGBARotateColor::calculateRotMatrix(ANLFloatType x, ANLFloatType y)
     {
-        double angle=m_angledeg.get(x,y)*360.0 * 3.14159265/180.0;
-        double ax=m_ax.get(x,y);
-        double ay=m_ay.get(x,y);
-        double az=m_az.get(x,y);
+        ANLFloatType angle=m_angledeg.get(x,y)*360.0 * 3.14159265/180.0;
+        ANLFloatType ax=m_ax.get(x,y);
+        ANLFloatType ay=m_ay.get(x,y);
+        ANLFloatType az=m_az.get(x,y);
 
         if(m_normalizeaxis)
         {
-            double len=sqrt(ax*ax+ay*ay+az*az);
+            ANLFloatType len=sqrt(ax*ax+ay*ay+az*az);
             ax/=len;
             ay/=len;
             az/=len;
         }
 
-        double cosangle=cos(angle);
-        double sinangle=sin(angle);
+        ANLFloatType cosangle=cos(angle);
+        ANLFloatType sinangle=sin(angle);
 
         m_rotmatrix[0][0] = 1.0 + (1.0-cosangle)*(ax*ax-1.0);
         m_rotmatrix[1][0] = -az*sinangle+(1.0-cosangle)*ax*ay;
@@ -277,22 +277,22 @@ namespace anl
         m_rotmatrix[2][2] = 1.0 + (1.0-cosangle)*(az*az-1.0);
     }
 
-    void CRGBARotateColor::calculateRotMatrix(double x, double y, double z)
+    void CRGBARotateColor::calculateRotMatrix(ANLFloatType x, ANLFloatType y, ANLFloatType z)
     {
-        double angle=m_angledeg.get(x,y,z)*360.0 * 3.14159265/180.0;
-        double ax=m_ax.get(x,y,z);
-        double ay=m_ay.get(x,y,z);
-        double az=m_az.get(x,y,z);
+        ANLFloatType angle=m_angledeg.get(x,y,z)*360.0 * 3.14159265/180.0;
+        ANLFloatType ax=m_ax.get(x,y,z);
+        ANLFloatType ay=m_ay.get(x,y,z);
+        ANLFloatType az=m_az.get(x,y,z);
         if(m_normalizeaxis)
         {
-            double len=sqrt(ax*ax+ay*ay+az*az);
+            ANLFloatType len=sqrt(ax*ax+ay*ay+az*az);
             ax/=len;
             ay/=len;
             az/=len;
         }
 
-        double cosangle=cos(angle);
-        double sinangle=sin(angle);
+        ANLFloatType cosangle=cos(angle);
+        ANLFloatType sinangle=sin(angle);
 
         m_rotmatrix[0][0] = 1.0 + (1.0-cosangle)*(ax*ax-1.0);
         m_rotmatrix[1][0] = -az*sinangle+(1.0-cosangle)*ax*ay;
@@ -307,22 +307,22 @@ namespace anl
         m_rotmatrix[2][2] = 1.0 + (1.0-cosangle)*(az*az-1.0);
     }
 
-    void CRGBARotateColor::calculateRotMatrix(double x, double y, double z, double w)
+    void CRGBARotateColor::calculateRotMatrix(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
     {
-        double angle=m_angledeg.get(x,y,z,w)*360.0 * 3.14159265/180.0;
-        double ax=m_ax.get(x,y,z,w);
-        double ay=m_ay.get(x,y,z,w);
-        double az=m_az.get(x,y,z,w);
+        ANLFloatType angle=m_angledeg.get(x,y,z,w)*360.0 * 3.14159265/180.0;
+        ANLFloatType ax=m_ax.get(x,y,z,w);
+        ANLFloatType ay=m_ay.get(x,y,z,w);
+        ANLFloatType az=m_az.get(x,y,z,w);
         if(m_normalizeaxis)
         {
-            double len=sqrt(ax*ax+ay*ay+az*az);
+            ANLFloatType len=sqrt(ax*ax+ay*ay+az*az);
             ax/=len;
             ay/=len;
             az/=len;
         }
 
-        double cosangle=cos(angle);
-        double sinangle=sin(angle);
+        ANLFloatType cosangle=cos(angle);
+        ANLFloatType sinangle=sin(angle);
 
         m_rotmatrix[0][0] = 1.0 + (1.0-cosangle)*(ax*ax-1.0);
         m_rotmatrix[1][0] = -az*sinangle+(1.0-cosangle)*ax*ay;
@@ -336,22 +336,22 @@ namespace anl
         m_rotmatrix[1][2] = ax*sinangle+(1.0-cosangle)*ay*az;
         m_rotmatrix[2][2] = 1.0 + (1.0-cosangle)*(az*az-1.0);
     }
-    void CRGBARotateColor::calculateRotMatrix(double x, double y, double z, double w, double u, double v)
+    void CRGBARotateColor::calculateRotMatrix(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
     {
-        double angle=m_angledeg.get(x,y,z,w,u,v)*360.0 * 3.14159265/180.0;
-        double ax=m_ax.get(x,y,z,w,u,v);
-        double ay=m_ay.get(x,y,z,w,u,v);
-        double az=m_az.get(x,y,z,w,u,v);
+        ANLFloatType angle=m_angledeg.get(x,y,z,w,u,v)*360.0 * 3.14159265/180.0;
+        ANLFloatType ax=m_ax.get(x,y,z,w,u,v);
+        ANLFloatType ay=m_ay.get(x,y,z,w,u,v);
+        ANLFloatType az=m_az.get(x,y,z,w,u,v);
         if(m_normalizeaxis)
         {
-            double len=sqrt(ax*ax+ay*ay+az*az);
+            ANLFloatType len=sqrt(ax*ax+ay*ay+az*az);
             ax/=len;
             ay/=len;
             az/=len;
         }
 
-        double cosangle=cos(angle);
-        double sinangle=sin(angle);
+        ANLFloatType cosangle=cos(angle);
+        ANLFloatType sinangle=sin(angle);
 
         m_rotmatrix[0][0] = 1.0 + (1.0-cosangle)*(ax*ax-1.0);
         m_rotmatrix[1][0] = -az*sinangle+(1.0-cosangle)*ax*ay;

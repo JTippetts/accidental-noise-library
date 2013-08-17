@@ -9,71 +9,71 @@ namespace anl
     {
         public:
         CRGBARotateColor();
-        CRGBARotateColor(SRGBA src, double ax, double ay, double az, double angle);
-        CRGBARotateColor(SRGBA src, double ax, double ay, double az, CImplicitModuleBase * angle);
-        CRGBARotateColor(SRGBA src, double ax, double ay, CImplicitModuleBase * az, double angle);
-        CRGBARotateColor(SRGBA src, double ax, double ay, CImplicitModuleBase * az, CImplicitModuleBase * angle);
-        CRGBARotateColor(SRGBA src, double ax, CImplicitModuleBase * ay, double az, double angle);
-        CRGBARotateColor(SRGBA src, double ax, CImplicitModuleBase * ay, double az, CImplicitModuleBase * angle);
-        CRGBARotateColor(SRGBA src, double ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, double angle);
-        CRGBARotateColor(SRGBA src, double ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, CImplicitModuleBase * angle);
-        CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, double ay, double az, double angle);
-        CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, double ay, double az, CImplicitModuleBase * angle);
-        CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, double ay, CImplicitModuleBase * az, double angle);
-        CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, double ay, CImplicitModuleBase * az, CImplicitModuleBase * angle);
-        CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, double az, double angle);
-        CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, double az, CImplicitModuleBase * angle);
-        CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, double angle);
+        CRGBARotateColor(SRGBA src, ANLFloatType ax, ANLFloatType ay, ANLFloatType az, ANLFloatType angle);
+        CRGBARotateColor(SRGBA src, ANLFloatType ax, ANLFloatType ay, ANLFloatType az, CImplicitModuleBase * angle);
+        CRGBARotateColor(SRGBA src, ANLFloatType ax, ANLFloatType ay, CImplicitModuleBase * az, ANLFloatType angle);
+        CRGBARotateColor(SRGBA src, ANLFloatType ax, ANLFloatType ay, CImplicitModuleBase * az, CImplicitModuleBase * angle);
+        CRGBARotateColor(SRGBA src, ANLFloatType ax, CImplicitModuleBase * ay, ANLFloatType az, ANLFloatType angle);
+        CRGBARotateColor(SRGBA src, ANLFloatType ax, CImplicitModuleBase * ay, ANLFloatType az, CImplicitModuleBase * angle);
+        CRGBARotateColor(SRGBA src, ANLFloatType ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, ANLFloatType angle);
+        CRGBARotateColor(SRGBA src, ANLFloatType ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, CImplicitModuleBase * angle);
+        CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, ANLFloatType ay, ANLFloatType az, ANLFloatType angle);
+        CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, ANLFloatType ay, ANLFloatType az, CImplicitModuleBase * angle);
+        CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, ANLFloatType ay, CImplicitModuleBase * az, ANLFloatType angle);
+        CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, ANLFloatType ay, CImplicitModuleBase * az, CImplicitModuleBase * angle);
+        CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, ANLFloatType az, ANLFloatType angle);
+        CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, ANLFloatType az, CImplicitModuleBase * angle);
+        CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, ANLFloatType angle);
         CRGBARotateColor(SRGBA src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, CImplicitModuleBase * angle);
-        CRGBARotateColor(CRGBAModuleBase * src, double ax, double ay, double az, double angle);
-        CRGBARotateColor(CRGBAModuleBase * src, double ax, double ay, double az, CImplicitModuleBase * angle);
-        CRGBARotateColor(CRGBAModuleBase * src, double ax, double ay, CImplicitModuleBase * az, double angle);
-        CRGBARotateColor(CRGBAModuleBase * src, double ax, double ay, CImplicitModuleBase * az, CImplicitModuleBase * angle);
-        CRGBARotateColor(CRGBAModuleBase * src, double ax, CImplicitModuleBase * ay, double az, double angle);
-        CRGBARotateColor(CRGBAModuleBase * src, double ax, CImplicitModuleBase * ay, double az, CImplicitModuleBase * angle);
-        CRGBARotateColor(CRGBAModuleBase * src, double ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, double angle);
-        CRGBARotateColor(CRGBAModuleBase * src, double ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, CImplicitModuleBase * angle);
-        CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, double ay, double az, double angle);
-        CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, double ay, double az, CImplicitModuleBase * angle);
-        CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, double ay, CImplicitModuleBase * az, double angle);
-        CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, double ay, CImplicitModuleBase * az, CImplicitModuleBase * angle);
-        CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, double az, double angle);
-        CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, double az, CImplicitModuleBase * angle);
-        CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, double angle);
+        CRGBARotateColor(CRGBAModuleBase * src, ANLFloatType ax, ANLFloatType ay, ANLFloatType az, ANLFloatType angle);
+        CRGBARotateColor(CRGBAModuleBase * src, ANLFloatType ax, ANLFloatType ay, ANLFloatType az, CImplicitModuleBase * angle);
+        CRGBARotateColor(CRGBAModuleBase * src, ANLFloatType ax, ANLFloatType ay, CImplicitModuleBase * az, ANLFloatType angle);
+        CRGBARotateColor(CRGBAModuleBase * src, ANLFloatType ax, ANLFloatType ay, CImplicitModuleBase * az, CImplicitModuleBase * angle);
+        CRGBARotateColor(CRGBAModuleBase * src, ANLFloatType ax, CImplicitModuleBase * ay, ANLFloatType az, ANLFloatType angle);
+        CRGBARotateColor(CRGBAModuleBase * src, ANLFloatType ax, CImplicitModuleBase * ay, ANLFloatType az, CImplicitModuleBase * angle);
+        CRGBARotateColor(CRGBAModuleBase * src, ANLFloatType ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, ANLFloatType angle);
+        CRGBARotateColor(CRGBAModuleBase * src, ANLFloatType ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, CImplicitModuleBase * angle);
+        CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, ANLFloatType ay, ANLFloatType az, ANLFloatType angle);
+        CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, ANLFloatType ay, ANLFloatType az, CImplicitModuleBase * angle);
+        CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, ANLFloatType ay, CImplicitModuleBase * az, ANLFloatType angle);
+        CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, ANLFloatType ay, CImplicitModuleBase * az, CImplicitModuleBase * angle);
+        CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, ANLFloatType az, ANLFloatType angle);
+        CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, ANLFloatType az, CImplicitModuleBase * angle);
+        CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, ANLFloatType angle);
         CRGBARotateColor(CRGBAModuleBase * src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, CImplicitModuleBase * angle);
 
 
-        void setAxis(double ax, double ay, double az);
+        void setAxis(ANLFloatType ax, ANLFloatType ay, ANLFloatType az);
         void setAxis(CImplicitModuleBase * ax, CImplicitModuleBase * ay, CImplicitModuleBase * az);
-        void setAxisX(double ax);
-        void setAxisY(double ay);
-        void setAxisZ(double az);
+        void setAxisX(ANLFloatType ax);
+        void setAxisY(ANLFloatType ay);
+        void setAxisZ(ANLFloatType az);
         void setAxisX(CImplicitModuleBase * ax);
         void setAxisY(CImplicitModuleBase * ay);
         void setAxisZ(CImplicitModuleBase * az);
 
         void setNormalizeAxis(bool n){m_normalizeaxis=n;}
 
-        void setAngle(double a);
+        void setAngle(ANLFloatType a);
         void setAngle(CImplicitModuleBase * a);
 
         void setSource(CRGBAModuleBase * m);
         void setSource(SRGBA c);
 
-        SRGBA get(double x, double y);
-        SRGBA get(double x, double y, double z);
-        SRGBA get(double x, double y, double z, double w);
-        SRGBA get(double x, double y, double z, double w, double u, double v);
+        SRGBA get(ANLFloatType x, ANLFloatType y);
+        SRGBA get(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+        SRGBA get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+        SRGBA get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
 
         protected:
         CScalarParameter m_ax, m_ay, m_az, m_angledeg;
         CRGBAParameter m_source;
         bool m_normalizeaxis;
-        double m_rotmatrix[3][3];
-        void calculateRotMatrix(double x, double y);
-        void calculateRotMatrix(double x, double y, double z);
-        void calculateRotMatrix(double x, double y, double z, double w);
-        void calculateRotMatrix(double x, double y, double z, double w, double u, double v);
+        ANLFloatType m_rotmatrix[3][3];
+        void calculateRotMatrix(ANLFloatType x, ANLFloatType y);
+        void calculateRotMatrix(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+        void calculateRotMatrix(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+        void calculateRotMatrix(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
     };
 };
 

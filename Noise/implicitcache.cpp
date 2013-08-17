@@ -3,18 +3,18 @@
 namespace anl
 {
     CImplicitCache::CImplicitCache() : CImplicitModuleBase(), m_source(0.0) {}
-    CImplicitCache::CImplicitCache(double v) : CImplicitModuleBase(), m_source(v) {}
+    CImplicitCache::CImplicitCache(ANLFloatType v) : CImplicitModuleBase(), m_source(v) {}
     CImplicitCache::CImplicitCache(CImplicitModuleBase * v) : CImplicitModuleBase(), m_source(v) {}
     CImplicitCache::~CImplicitCache() {}
     void CImplicitCache::setSource(CImplicitModuleBase * m)
     {
         m_source.set(m);
     }
-    void CImplicitCache::setSource(double v)
+    void CImplicitCache::setSource(ANLFloatType v)
     {
         m_source.set(v);
     }
-    double CImplicitCache::get(double x, double y)
+    ANLFloatType CImplicitCache::get(ANLFloatType x, ANLFloatType y)
     {
         if(!m_c2.valid || m_c2.x!=x || m_c2.y!=y)
         {
@@ -26,7 +26,7 @@ namespace anl
         return m_c2.val;
     }
 
-    double CImplicitCache::get(double x, double y, double z)
+    ANLFloatType CImplicitCache::get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
     {
         if(!m_c3.valid || m_c3.x!=x || m_c3.y!=y || m_c3.z!=z)
         {
@@ -39,7 +39,7 @@ namespace anl
         return m_c3.val;
     }
 
-    double CImplicitCache::get(double x, double y, double z, double w)
+    ANLFloatType CImplicitCache::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
     {
         if(!m_c4.valid || m_c4.x!=x || m_c4.y!=y || m_c4.z!=z || m_c4.w!=w)
         {
@@ -53,7 +53,7 @@ namespace anl
         return m_c4.val;
     }
 
-    double CImplicitCache::get(double x, double y, double z, double w, double u, double v)
+    ANLFloatType CImplicitCache::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
     {
         if(!m_c6.valid || m_c6.x!=x || m_c6.y!=y || m_c6.z!=z || m_c6.w!=w || m_c6.u!=u || m_c6.v!=v)
         {

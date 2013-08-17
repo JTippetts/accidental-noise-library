@@ -18,24 +18,24 @@ namespace anl
     {
         public:
         CImplicitFunctionGradient();
-        CImplicitFunctionGradient(double s, int axis=X_AXIS, double spacing=0.001);
-        CImplicitFunctionGradient(CImplicitModuleBase * s, int axis=X_AXIS, double spacing=0.001);
+        CImplicitFunctionGradient(ANLFloatType s, int axis=X_AXIS, ANLFloatType spacing=0.001);
+        CImplicitFunctionGradient(CImplicitModuleBase * s, int axis=X_AXIS, ANLFloatType spacing=0.001);
         ~CImplicitFunctionGradient();
 
-        void setSource(double v);
+        void setSource(ANLFloatType v);
         void setSource(CImplicitModuleBase * m);
         void setAxis(int axis);
-        void setSpacing(double s);
+        void setSpacing(ANLFloatType s);
 
-        double get(double x, double y);
-        double get(double x, double y, double z);
-        double get(double x, double y, double z, double w);
-        double get(double x, double y, double z, double w, double u, double v);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
 
         protected:
         CScalarParameter m_source;
         int m_axis;
-        double m_spacing;
+        ANLFloatType m_spacing;
 
     };
 };

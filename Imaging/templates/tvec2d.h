@@ -195,7 +195,7 @@ class TVec2D
 
     inline void set_x(T x) { vec[0]=x;}
     inline void set_y(T y) { vec[1]=y;}
-	
+
 	inline void set(T x, T y) {vec[0]=x; vec[1]=y;}
 
 

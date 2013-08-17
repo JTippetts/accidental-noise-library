@@ -3,14 +3,14 @@
 namespace anl
 {
     CRGBACurve::CRGBACurve() : m_source(0.0), m_type(LINEAR){}
-	
+
 	CRGBACurve::CRGBACurve(CImplicitModuleBase *src, int interp) : m_source(src), m_type(interp)
 	{
 	}
-	
+
     CRGBACurve::~CRGBACurve(){}
 
-    void CRGBACurve::pushPoint(double t,float r, float g, float b, float a)
+    void CRGBACurve::pushPoint(ANLFloatType t,float r, float g, float b, float a)
     {
         m_curve.pushPoint(t,SRGBA(r,g,b,a));
     }
@@ -27,7 +27,7 @@ namespace anl
         if(m_type>QUINTIC) m_type=QUINTIC;
     }
 
-    void CRGBACurve::setSource(double t)
+    void CRGBACurve::setSource(ANLFloatType t)
     {
         m_source.set(t);
     }
@@ -36,9 +36,9 @@ namespace anl
         m_source.set(m);
     }
 
-    SRGBA CRGBACurve::get(double x, double y)
+    SRGBA CRGBACurve::get(ANLFloatType x, ANLFloatType y)
     {
-        double t=m_source.get(x,y);
+        ANLFloatType t=m_source.get(x,y);
         switch(m_type)
         {
             case NONE: return m_curve.noInterp(t); break;
@@ -49,9 +49,9 @@ namespace anl
         }
     }
 
-    SRGBA CRGBACurve::get(double x, double y, double z)
+    SRGBA CRGBACurve::get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
     {
-        double t=m_source.get(x,y,z);
+        ANLFloatType t=m_source.get(x,y,z);
         switch(m_type)
         {
             case NONE: return m_curve.noInterp(t); break;
@@ -62,9 +62,9 @@ namespace anl
         }
     }
 
-    SRGBA CRGBACurve::get(double x, double y, double z, double w)
+    SRGBA CRGBACurve::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
     {
-        double t=m_source.get(x,y,z,w);
+        ANLFloatType t=m_source.get(x,y,z,w);
         switch(m_type)
         {
             case NONE: return m_curve.noInterp(t); break;
@@ -75,9 +75,9 @@ namespace anl
         }
     }
 
-    SRGBA CRGBACurve::get(double x, double y, double z, double w, double u, double v)
+    SRGBA CRGBACurve::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
     {
-        double t=m_source.get(x,y,z,w,u,v);
+        ANLFloatType t=m_source.get(x,y,z,w,u,v);
         switch(m_type)
         {
             case NONE: return m_curve.noInterp(t); break;

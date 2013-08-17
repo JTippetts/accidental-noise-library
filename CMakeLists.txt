@@ -13,6 +13,11 @@ if (COMMAND cmake_policy)
     cmake_policy (SET CMP0003 NEW)
 endif ()
 
+# Set floating type to use
+# Uncomment to use double base type, leave commented to use float
+ add_definitions(-DANL_DOUBLE_PRECISION)
+
+
 # Enable 64-bit build. Disabled by default. On Visual Studio, depends on the generator used
 if (NOT MSVC)
     # set (ENABLE_64BIT 1)
@@ -22,6 +27,8 @@ else ()
     endif ()
 endif ()
 
+SET(ENABLE_SSE 1)
+
 if (MSVC)
     # Visual Studio-specific setup
     if (ENABLE_64BIT)
@@ -29,7 +36,7 @@ if (MSVC)
     endif ()
     add_definitions (-D_CRT_SECURE_NO_WARNINGS)
     set (CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} /MTd")
-    set (CMAKE_C_FLAGS_RELWITHDEBINFO "${CMAKE_C_FLAGS_RELEASE} /MT /Zi /GS-")
+    set (CMAKE_C_FLAGS_RELWITHDEBINFO "${CMAKE_C_FLAGS_RELEASE} /MT /Zi /GS- /arch:SSE2")
     set (CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELWITHDEBINFO}")
     set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
     set (CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELEASE} /MT /Zi /GS- /D _SECURE_SCL=0")
@@ -37,6 +44,11 @@ if (MSVC)
     
     set (CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO "${CMAKE_EXE_LINKER_FLAGS_RELEASE} /OPT:REF /OPT:ICF /DEBUG")
     set (CMAKE_EXE_LINKER_FLAGS_RELEASE "${CMAKE_EXE_LINKER_FLAGS_RELEASE} /OPT:REF /OPT:ICF")
+	
+	if (ENABLE_SSE AND NOT ENABLE_64BIT)
+        set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /arch:SSE2")
+        set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /arch:SSE2")
+    endif ()
 else ()
     # GCC-specific setup
     set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O2 ")
@@ -45,8 +57,8 @@ else ()
         set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -m64")
         set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m64")
     else ()
-        set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -m32")
-        set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m32")
+        set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -m32 -msse2")
+        set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m32 -msse2")
     endif ()
     if (WIN32)
         set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -static-libgcc")
@@ -54,6 +66,11 @@ else ()
     endif ()
     set (CMAKE_C_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D_DEBUG")
     set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D_DEBUG")
+	
+	if (ENABLE_SSE) 
+        set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -msse2")
+        set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -msse2")        
+    endif ()
 endif ()
 
 # Macro for setting up dependency lib for compilation and linking of a target

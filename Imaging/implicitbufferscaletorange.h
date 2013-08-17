@@ -9,17 +9,17 @@ namespace anl
     {
     public:
         CImplicitBufferScaleToRange();
-        CImplicitBufferScaleToRange(CImplicitBufferBase * src, double low, double high);
+        CImplicitBufferScaleToRange(CImplicitBufferBase * src, ANLFloatType low, ANLFloatType high);
         ~CImplicitBufferScaleToRange();
 
-        void setRange(double low, double high);
+        void setRange(ANLFloatType low, ANLFloatType high);
         void setSource(CImplicitBufferBase * src);
 
         void get(CArray2Dd &out);
 
     private:
         CImplicitBufferBase * m_source;
-        double m_low, m_high;
+        ANLFloatType m_low, m_high;
     };
 };
 

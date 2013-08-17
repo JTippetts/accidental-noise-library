@@ -5,22 +5,22 @@
 
 namespace anl
 {
-   void map2D(int seamlessmode, CArray2Dd &a, CImplicitModuleBase &m, SMappingRanges &ranges, double z)
+   void map2D(int seamlessmode, CArray2Dd &a, CImplicitModuleBase &m, SMappingRanges &ranges, ANLFloatType z)
    {
         int w=a.width();
         int h=a.height();
-        static double pi2=3.141592*2.0;
+        static ANLFloatType pi2=3.141592*2.0;
 
         int x,y;
         for(x=0; x<w; ++x)
         {
             for(y=0; y<h; ++y)
             {
-                double p=(double)x / (double)w;
-                double q=(double)y / (double)h;
-                double r;
-                double nx,ny,nz,nw,nu,nv,val=0.0;
-                double dx, dy, dz;
+                ANLFloatType p=(ANLFloatType)x / (ANLFloatType)w;
+                ANLFloatType q=(ANLFloatType)y / (ANLFloatType)h;
+                ANLFloatType r;
+                ANLFloatType nx,ny,nz,nw,nu,nv,val=0.0;
+                ANLFloatType dx, dy, dz;
                 switch(seamlessmode)
                 {
                     case SEAMLESS_NONE:
@@ -60,7 +60,7 @@ namespace anl
                         nx=ranges.mapx0 + p*dx;
                         ny=ranges.mapy0 + p*dx;
                         r=(z-ranges.mapz0)/(ranges.mapz1-ranges.mapz0);
-                        double zval=r*(ranges.mapz1-ranges.mapz0)/(ranges.loopz1-ranges.loopz0);
+                        ANLFloatType zval=r*(ranges.mapz1-ranges.mapz0)/(ranges.loopz1-ranges.loopz0);
                         nz=ranges.loopz0 + cos(zval*pi2) * dz/pi2;
                         nw=ranges.loopz0 + sin(zval*pi2) * dz/pi2;
                         val=m.get(nx,ny,nz,nw);
@@ -84,7 +84,7 @@ namespace anl
                         dy=ranges.mapy1-ranges.mapy0;
                         dz=ranges.loopz1-ranges.loopz0;
                         r=(z-ranges.mapz0)/(ranges.mapz1-ranges.mapz0);
-                        double zval=r*(ranges.mapx1-ranges.mapz0)/(ranges.loopz1-ranges.loopz0);
+                        ANLFloatType zval=r*(ranges.mapx1-ranges.mapz0)/(ranges.loopz1-ranges.loopz0);
                         p=p*(ranges.mapx1-ranges.mapx0)/(ranges.loopx1-ranges.loopx0);
                         nx=ranges.loopx0 + cos(p*pi2) * dx/pi2;
                         ny=ranges.loopx0 + sin(p*pi2) *dx/pi2;
@@ -99,7 +99,7 @@ namespace anl
                         dy=ranges.loopy1-ranges.loopy0;
                         dz=ranges.loopz1-ranges.loopz0;
                         r=(z-ranges.mapz0)/(ranges.mapz1-ranges.mapz0);
-                        double zval=r*(ranges.mapz1-ranges.mapz0)/(ranges.loopz1-ranges.loopz0);
+                        ANLFloatType zval=r*(ranges.mapz1-ranges.mapz0)/(ranges.loopz1-ranges.loopz0);
                         q=q*(ranges.mapy1-ranges.mapy0)/(ranges.loopy1-ranges.loopy0);
                         nx=ranges.mapx0+p*dx;
                         ny=ranges.loopy0 + cos(q*pi2) * dy/pi2;
@@ -116,7 +116,7 @@ namespace anl
                         p=p*(ranges.mapx1-ranges.mapx0)/(ranges.loopx1-ranges.loopx0);
                         q=q*(ranges.mapy1-ranges.mapy0)/(ranges.loopy1-ranges.loopy0);
                         r=(z-ranges.mapz0)/(ranges.mapz1-ranges.mapz0);
-                        double zval=r*(ranges.mapz1-ranges.mapz0)/(ranges.loopz1-ranges.loopz0);
+                        ANLFloatType zval=r*(ranges.mapz1-ranges.mapz0)/(ranges.loopz1-ranges.loopz0);
                         nx=ranges.loopx0 + cos(p*pi2)*dx/pi2;
                         ny=ranges.loopx0 + sin(p*pi2)*dx/pi2;
                         nz=ranges.loopy0 + cos(q*pi2)*dy/pi2;
@@ -137,17 +137,17 @@ namespace anl
    {
         int w=a.width();
         int h=a.height();
-        static double pi2=3.141592*2.0;
+        static ANLFloatType pi2=3.141592*2.0;
 
         int x,y;
         for(x=0; x<w; ++x)
         {
             for(y=0; y<h; ++y)
             {
-                double p=(double)x / (double)w;
-                double q=(double)y / (double)h;
-                double nx,ny,nz,nw,val=0.0;
-                double dx, dy;
+                ANLFloatType p=(ANLFloatType)x / (ANLFloatType)w;
+                ANLFloatType q=(ANLFloatType)y / (ANLFloatType)h;
+                ANLFloatType nx,ny,nz,nw,val=0.0;
+                ANLFloatType dx, dy;
                 switch(seamlessmode)
                 {
                     case SEAMLESS_NONE:
@@ -203,19 +203,19 @@ namespace anl
         int d=a.depth();
 
         int x,y,z;
-        static double pi2=3.14159265 * 2.0;
+        static ANLFloatType pi2=3.14159265 * 2.0;
         for(x=0; x<w; ++x)
         {
             for(y=0; y<h; ++y)
             {
                 for(z=0; z<d; ++z)
                 {
-                    double p=(double)x/(double)w;
-                    double q=(double)y/(double)h;
-                    double r=(double)z/(double)d;
-                    double nx,ny,nz,nw,nu,nv;
-                    double dx,dy,dz;
-                    double val=0.0;
+                    ANLFloatType p=(ANLFloatType)x/(ANLFloatType)w;
+                    ANLFloatType q=(ANLFloatType)y/(ANLFloatType)h;
+                    ANLFloatType r=(ANLFloatType)z/(ANLFloatType)d;
+                    ANLFloatType nx,ny,nz,nw,nu,nv;
+                    ANLFloatType dx,dy,dz;
+                    ANLFloatType val=0.0;
 
                     switch(seamlessmode)
                     {
@@ -334,23 +334,23 @@ namespace anl
 
 
 
-    void mapRGBA2D(int seamlessmode, CArray2Drgba &a, CRGBAModuleBase &m, SMappingRanges &ranges, double z)
+    void mapRGBA2D(int seamlessmode, CArray2Drgba &a, CRGBAModuleBase &m, SMappingRanges &ranges, ANLFloatType z)
    {
         int w=a.width();
         int h=a.height();
-        static double pi2=3.141592*2.0;
+        static ANLFloatType pi2=3.141592*2.0;
 
         int x,y;
         for(x=0; x<w; ++x)
         {
             for(y=0; y<h; ++y)
             {
-                double p=(double)x / (double)w;
-                double q=(double)y / (double)h;
-                double r;
-                double nx,ny,nz,nw,nu,nv=0.0;
+                ANLFloatType p=(ANLFloatType)x / (ANLFloatType)w;
+                ANLFloatType q=(ANLFloatType)y / (ANLFloatType)h;
+                ANLFloatType r;
+                ANLFloatType nx,ny,nz,nw,nu,nv=0.0;
                 SRGBA val;
-                double dx, dy, dz;
+                ANLFloatType dx, dy, dz;
                 switch(seamlessmode)
                 {
                     case SEAMLESS_NONE:
@@ -390,7 +390,7 @@ namespace anl
                         nx=ranges.mapx0 + p*dx;
                         ny=ranges.mapy0 + p*dx;
                         r=(z-ranges.mapz0)/(ranges.mapz1-ranges.mapz0);
-                        double zval=r*(ranges.mapz1-ranges.mapz0)/(ranges.loopz1-ranges.loopz0);
+                        ANLFloatType zval=r*(ranges.mapz1-ranges.mapz0)/(ranges.loopz1-ranges.loopz0);
                         nz=ranges.loopz0 + cos(zval*pi2) * dz/pi2;
                         nw=ranges.loopz0 + sin(zval*pi2) * dz/pi2;
                         val=m.get(nx,ny,nz,nw);
@@ -414,7 +414,7 @@ namespace anl
                         dy=ranges.mapy1-ranges.mapy0;
                         dz=ranges.loopz1-ranges.loopz0;
                         r=(z-ranges.mapz0)/(ranges.mapz1-ranges.mapz0);
-                        double zval=r*(ranges.mapx1-ranges.mapz0)/(ranges.loopz1-ranges.loopz0);
+                        ANLFloatType zval=r*(ranges.mapx1-ranges.mapz0)/(ranges.loopz1-ranges.loopz0);
                         p=p*(ranges.mapx1-ranges.mapx0)/(ranges.loopx1-ranges.loopx0);
                         nx=ranges.loopx0 + cos(p*pi2) * dx/pi2;
                         ny=ranges.loopx0 + sin(p*pi2) *dx/pi2;
@@ -429,7 +429,7 @@ namespace anl
                         dy=ranges.loopy1-ranges.loopy0;
                         dz=ranges.loopz1-ranges.loopz0;
                         r=(z-ranges.mapz0)/(ranges.mapz1-ranges.mapz0);
-                        double zval=r*(ranges.mapz1-ranges.mapz0)/(ranges.loopz1-ranges.loopz0);
+                        ANLFloatType zval=r*(ranges.mapz1-ranges.mapz0)/(ranges.loopz1-ranges.loopz0);
                         q=q*(ranges.mapy1-ranges.mapy0)/(ranges.loopy1-ranges.loopy0);
                         nx=ranges.mapx0+p*dx;
                         ny=ranges.loopy0 + cos(q*pi2) * dy/pi2;
@@ -446,7 +446,7 @@ namespace anl
                         p=p*(ranges.mapx1-ranges.mapx0)/(ranges.loopx1-ranges.loopx0);
                         q=q*(ranges.mapy1-ranges.mapy0)/(ranges.loopy1-ranges.loopy0);
                         r=(z-ranges.mapz0)/(ranges.mapz1-ranges.mapz0);
-                        double zval=r*(ranges.mapz1-ranges.mapz0)/(ranges.loopz1-ranges.loopz0);
+                        ANLFloatType zval=r*(ranges.mapz1-ranges.mapz0)/(ranges.loopz1-ranges.loopz0);
                         nx=ranges.loopx0 + cos(p*pi2)*dx/pi2;
                         ny=ranges.loopx0 + sin(p*pi2)*dx/pi2;
                         nz=ranges.loopy0 + cos(q*pi2)*dy/pi2;
@@ -467,18 +467,18 @@ namespace anl
    {
         int w=a.width();
         int h=a.height();
-        static double pi2=3.141592*2.0;
+        static ANLFloatType pi2=3.141592*2.0;
 
         int x,y;
         for(x=0; x<w; ++x)
         {
             for(y=0; y<h; ++y)
             {
-                double p=(double)x / (double)w;
-                double q=(double)y / (double)h;
-                double nx,ny,nz,nw=0.0;
+                ANLFloatType p=(ANLFloatType)x / (ANLFloatType)w;
+                ANLFloatType q=(ANLFloatType)y / (ANLFloatType)h;
+                ANLFloatType nx,ny,nz,nw=0.0;
                 SRGBA val;
-                double dx, dy;
+                ANLFloatType dx, dy;
                 switch(seamlessmode)
                 {
                     case SEAMLESS_NONE:
@@ -534,18 +534,18 @@ namespace anl
         int d=a.depth();
 
         int x,y,z;
-        static double pi2=3.14159265 * 2.0;
+        static ANLFloatType pi2=3.14159265 * 2.0;
         for(x=0; x<w; ++x)
         {
             for(y=0; y<h; ++y)
             {
                 for(z=0; z<d; ++z)
                 {
-                    double p=(double)x/(double)w;
-                    double q=(double)y/(double)h;
-                    double r=(double)z/(double)d;
-                    double nx,ny,nz,nw,nu,nv;
-                    double dx,dy,dz;
+                    ANLFloatType p=(ANLFloatType)x/(ANLFloatType)w;
+                    ANLFloatType q=(ANLFloatType)y/(ANLFloatType)h;
+                    ANLFloatType r=(ANLFloatType)z/(ANLFloatType)d;
+                    ANLFloatType nx,ny,nz,nw,nu,nv;
+                    ANLFloatType dx,dy,dz;
                     SRGBA val;
 
                     switch(seamlessmode)
@@ -666,7 +666,7 @@ namespace anl
 
 
 
-    void saveDoubleArray(char *filename, TArray2D<double> *array)
+    void saveDoubleArray(char *filename, TArray2D<ANLFloatType> *array)
 {
     if(!array) return;
     int width=array->width();
@@ -696,8 +696,8 @@ namespace anl
 	{
 	    for(int x=0; x<width; ++x)
 	    {
-	        double val=array->get(x,y);
-	        val=std::max(0.0,std::min(1.0,val));
+	        ANLFloatType val=array->get(x,y);
+	        val=std::max((ANLFloatType)0.0,std::min((ANLFloatType)1.0,val));
 	        unsigned char col[3];
 	        col[0]=col[1]=col[2]=(unsigned char)(val*255.0);
 	        File.write((char *) &col, 3);

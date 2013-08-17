@@ -49,29 +49,29 @@ namespace anl
     {
         public:
         CImplicitMath();
-        CImplicitMath(unsigned int op, double source=1, double p=1);
-        CImplicitMath(unsigned int op, CImplicitModuleBase * source=0, double p=1);
-        CImplicitMath(unsigned int op, double source=0, CImplicitModuleBase * p=0);
+        CImplicitMath(unsigned int op, ANLFloatType source=1, ANLFloatType p=1);
+        CImplicitMath(unsigned int op, CImplicitModuleBase * source=0, ANLFloatType p=1);
+        CImplicitMath(unsigned int op, ANLFloatType source=0, CImplicitModuleBase * p=0);
         CImplicitMath(unsigned int op, CImplicitModuleBase * source=0, CImplicitModuleBase * p=0);
         ~CImplicitMath();
 
-        void setSource(double v);
+        void setSource(ANLFloatType v);
         void setSource(CImplicitModuleBase * b);
-        void setParameter(double v);
+        void setParameter(ANLFloatType v);
         void setParameter(CImplicitModuleBase * b);
         void setOperation(unsigned int op);
 
-        double get(double x, double y);
-        double get(double x, double y, double z);
-        double get(double x, double y, double z, double w);
-        double get(double x, double y, double z, double w, double u, double v);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
 
         protected:
         unsigned int m_op;
         CScalarParameter m_source;
         CScalarParameter m_parameter;
 
-        double applyOp(double v, double p);
+        ANLFloatType applyOp(ANLFloatType v, ANLFloatType p);
     };
 };
 

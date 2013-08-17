@@ -16,28 +16,28 @@ namespace anl
         m_source.set(c);
     }
 
-    SRGBA CRGBARGBAToHSV::get(double x, double y)
+    SRGBA CRGBARGBAToHSV::get(ANLFloatType x, ANLFloatType y)
     {
         SRGBA s=m_source.get(x,y);
         SRGBA d;
         RGBAtoHSV(s,d);
         return d;
     }
-    SRGBA CRGBARGBAToHSV::get(double x, double y, double z)
+    SRGBA CRGBARGBAToHSV::get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
     {
         SRGBA s=m_source.get(x,y,z);
         SRGBA d;
         RGBAtoHSV(s,d);
         return d;
     }
-    SRGBA CRGBARGBAToHSV::get(double x, double y, double z, double w)
+    SRGBA CRGBARGBAToHSV::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
     {
         SRGBA s=m_source.get(x,y,z,w);
         SRGBA d;
         RGBAtoHSV(s,d);
         return d;
     }
-    SRGBA CRGBARGBAToHSV::get(double x, double y, double z, double w, double u, double v)
+    SRGBA CRGBARGBAToHSV::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
     {
         SRGBA s=m_source.get(x,y,z,w,u,v);
         SRGBA d;

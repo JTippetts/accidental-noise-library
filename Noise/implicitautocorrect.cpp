@@ -5,8 +5,8 @@ namespace anl
 {
 
     CImplicitAutoCorrect::CImplicitAutoCorrect() : CImplicitModuleBase(), m_source(0), m_low(-1.0), m_high(1.0){}
-    CImplicitAutoCorrect::CImplicitAutoCorrect(double low, double high) : CImplicitModuleBase(), m_source(0), m_low(low), m_high(high){calculate();}
-    CImplicitAutoCorrect::CImplicitAutoCorrect(CImplicitModuleBase * m, double low, double high) : CImplicitModuleBase(), m_source(m), m_low(low), m_high(high){calculate();}
+    CImplicitAutoCorrect::CImplicitAutoCorrect(ANLFloatType low, ANLFloatType high) : CImplicitModuleBase(), m_source(0), m_low(low), m_high(high){calculate();}
+    CImplicitAutoCorrect::CImplicitAutoCorrect(CImplicitModuleBase * m, ANLFloatType low, ANLFloatType high) : CImplicitModuleBase(), m_source(m), m_low(low), m_high(high){calculate();}
 
     void CImplicitAutoCorrect::setSource(CImplicitModuleBase * m)
     {
@@ -14,7 +14,7 @@ namespace anl
         calculate();
     }
 
-    void CImplicitAutoCorrect::setRange(double low, double high)
+    void CImplicitAutoCorrect::setRange(ANLFloatType low, ANLFloatType high)
     {
         m_low=low; m_high=high;
         calculate();
@@ -23,7 +23,7 @@ namespace anl
     void CImplicitAutoCorrect::calculate()
     {
         if(!m_source) return;
-        double mn,mx;
+        ANLFloatType mn,mx;
         LCG lcg;
         //lcg.setSeedTime();
 
@@ -32,10 +32,10 @@ namespace anl
         mx=-10000.0;
         for(int c=0; c<10000; ++c)
         {
-            double nx=lcg.get01()*4.0-2.0;
-            double ny=lcg.get01()*4.0-2.0;
+            ANLFloatType nx=lcg.get01()*4.0-2.0;
+            ANLFloatType ny=lcg.get01()*4.0-2.0;
 
-            double v=m_source->get(nx,ny);
+            ANLFloatType v=m_source->get(nx,ny);
             if(v<mn) mn=v;
             if(v>mx) mx=v;
         }
@@ -47,11 +47,11 @@ namespace anl
         mx=-10000.0;
         for(int c=0; c<10000; ++c)
         {
-            double nx=lcg.get01()*4.0-2.0;
-            double ny=lcg.get01()*4.0-2.0;
-            double nz=lcg.get01()*4.0-2.0;
+            ANLFloatType nx=lcg.get01()*4.0-2.0;
+            ANLFloatType ny=lcg.get01()*4.0-2.0;
+            ANLFloatType nz=lcg.get01()*4.0-2.0;
 
-            double v=m_source->get(nx,ny,nz);
+            ANLFloatType v=m_source->get(nx,ny,nz);
             if(v<mn) mn=v;
             if(v>mx) mx=v;
         }
@@ -63,12 +63,12 @@ namespace anl
         mx=-10000.0;
         for(int c=0; c<10000; ++c)
         {
-            double nx=lcg.get01()*4.0-2.0;
-            double ny=lcg.get01()*4.0-2.0;
-            double nz=lcg.get01()*4.0-2.0;
-            double nw=lcg.get01()*4.0-2.0;
+            ANLFloatType nx=lcg.get01()*4.0-2.0;
+            ANLFloatType ny=lcg.get01()*4.0-2.0;
+            ANLFloatType nz=lcg.get01()*4.0-2.0;
+            ANLFloatType nw=lcg.get01()*4.0-2.0;
 
-            double v=m_source->get(nx,ny,nz,nw);
+            ANLFloatType v=m_source->get(nx,ny,nz,nw);
             if(v<mn) mn=v;
             if(v>mx) mx=v;
         }
@@ -80,14 +80,14 @@ namespace anl
         mx=-10000.0;
         for(int c=0; c<10000; ++c)
         {
-            double nx=lcg.get01()*4.0-2.0;
-            double ny=lcg.get01()*4.0-2.0;
-            double nz=lcg.get01()*4.0-2.0;
-            double nw=lcg.get01()*4.0-2.0;
-            double nu=lcg.get01()*4.0-2.0;
-            double nv=lcg.get01()*4.0-2.0;
+            ANLFloatType nx=lcg.get01()*4.0-2.0;
+            ANLFloatType ny=lcg.get01()*4.0-2.0;
+            ANLFloatType nz=lcg.get01()*4.0-2.0;
+            ANLFloatType nw=lcg.get01()*4.0-2.0;
+            ANLFloatType nu=lcg.get01()*4.0-2.0;
+            ANLFloatType nv=lcg.get01()*4.0-2.0;
 
-            double v=m_source->get(nx,ny,nz,nw,nu,nv);
+            ANLFloatType v=m_source->get(nx,ny,nz,nw,nu,nv);
             if(v<mn) mn=v;
             if(v>mx) mx=v;
         }
@@ -96,34 +96,34 @@ namespace anl
     }
 
 
-    double CImplicitAutoCorrect::get(double x, double y)
+    ANLFloatType CImplicitAutoCorrect::get(ANLFloatType x, ANLFloatType y)
     {
         if(!m_source) return 0.0;
 
-        double v=m_source->get(x,y);
+        ANLFloatType v=m_source->get(x,y);
         return std::max(m_low, std::min(m_high, v*m_scale2+m_offset2));
     }
 
-    double CImplicitAutoCorrect::get(double x, double y, double z)
+    ANLFloatType CImplicitAutoCorrect::get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
     {
         if(!m_source) return 0.0;
 
-        double v=m_source->get(x,y,z);
+        ANLFloatType v=m_source->get(x,y,z);
         return std::max(m_low, std::min(m_high, v*m_scale3+m_offset3));
     }
-    double CImplicitAutoCorrect::get(double x, double y, double z, double w)
+    ANLFloatType CImplicitAutoCorrect::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
     {
         if(!m_source) return 0.0;
 
-        double v=m_source->get(x,y,z,w);
+        ANLFloatType v=m_source->get(x,y,z,w);
         return std::max(m_low, std::min(m_high, v*m_scale4+m_offset4));
     }
 
-    double CImplicitAutoCorrect::get(double x, double y, double z, double w, double u, double v)
+    ANLFloatType CImplicitAutoCorrect::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
     {
         if(!m_source) return 0.0;
 
-        double val=m_source->get(x,y,z,w,u,v);
+        ANLFloatType val=m_source->get(x,y,z,w,u,v);
         return std::max(m_low, std::min(m_high, val*m_scale6+m_offset6));
     }
 };

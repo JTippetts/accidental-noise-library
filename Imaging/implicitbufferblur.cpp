@@ -6,7 +6,7 @@ namespace anl
     {
     }
 
-    CImplicitBufferBlur::CImplicitBufferBlur(CImplicitBufferBase * src, double blursize, bool seamless) :
+    CImplicitBufferBlur::CImplicitBufferBlur(CImplicitBufferBase * src, ANLFloatType blursize, bool seamless) :
         CImplicitBufferBase(), m_source(src), m_blursize(blursize), m_seamless(seamless)
     {
     }
@@ -20,7 +20,7 @@ namespace anl
         m_source=src;
     }
 
-    void CImplicitBufferBlur::setBlurSize(double blursize)
+    void CImplicitBufferBlur::setBlurSize(ANLFloatType blursize)
     {
         m_blursize=blursize;
         if(m_blursize<3) m_blursize=3;

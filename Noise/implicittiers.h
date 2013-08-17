@@ -8,19 +8,19 @@ namespace anl
     {
         public:
         CImplicitTiers();
-        CImplicitTiers(double src, int numtiers, bool smooth);
+        CImplicitTiers(ANLFloatType src, int numtiers, bool smooth);
         CImplicitTiers(CImplicitModuleBase * src, int numtiers, bool smooth);
         ~CImplicitTiers();
 
-        void setSource(double v);
+        void setSource(ANLFloatType v);
         void setSource(CImplicitModuleBase * m);
         void setNumTiers(int numtiers);
         void setSmooth(bool smooth);
 
-        double get(double x, double y);
-        double get(double x, double y, double z);
-        double get(double x, double y, double z, double w);
-        double get(double x, double y, double z, double w, double u, double v);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
 
         protected:
         CScalarParameter m_source;

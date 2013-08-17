@@ -1,5 +1,6 @@
 #include "cellulargen.h"
 #include "noise_gen.h"
+#include "../types.h"
 namespace anl
 {
  CCellularGenerator::CCellularGenerator()
@@ -33,7 +34,7 @@ void CCellularGenerator::setDistanceFunction(int distfunc)
     }
 }
 
-SCellularCache &CCellularGenerator::get(double x, double y)
+SCellularCache &CCellularGenerator::get(ANLFloatType x, ANLFloatType y)
 {
     if(!m_cache2.valid || x!=m_cache2.x || y!=m_cache2.y)
     {
@@ -45,7 +46,7 @@ SCellularCache &CCellularGenerator::get(double x, double y)
     return m_cache2;
 }
 
-SCellularCache &CCellularGenerator::get(double x, double y, double z)
+SCellularCache &CCellularGenerator::get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
 {
     if(!m_cache3.valid || x!=m_cache3.x || y!=m_cache3.y || z!=m_cache3.z)
     {
@@ -58,7 +59,7 @@ SCellularCache &CCellularGenerator::get(double x, double y, double z)
     return m_cache3;
 }
 
-SCellularCache &CCellularGenerator::get(double x, double y, double z, double w)
+SCellularCache &CCellularGenerator::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
 {
     if(!m_cache4.valid || x!=m_cache4.x || y!=m_cache4.y || z!=m_cache4.z || w!=m_cache4.w)
     {
@@ -72,7 +73,7 @@ SCellularCache &CCellularGenerator::get(double x, double y, double z, double w)
     return m_cache4;
 }
 
-SCellularCache &CCellularGenerator::get(double x, double y, double z, double w, double u, double v)
+SCellularCache &CCellularGenerator::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
 {
     if(!m_cache6.valid || x!=m_cache6.x || y!=m_cache6.y || z!=m_cache6.z || w!=m_cache6.w || u!=m_cache6.u || v!=m_cache6.v)
     {

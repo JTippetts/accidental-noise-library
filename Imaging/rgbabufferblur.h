@@ -8,17 +8,17 @@ namespace anl
     {
     public:
         CRGBABufferBlur();
-        CRGBABufferBlur(CRGBABufferBase * src, double blursize, bool seamless);
+        CRGBABufferBlur(CRGBABufferBase * src, ANLFloatType blursize, bool seamless);
         ~CRGBABufferBlur();
 
         void setSource(CRGBABufferBase * src);
-        void setBlurSize(double blursize);
+        void setBlurSize(ANLFloatType blursize);
         void setSeamless(bool seamless);
 
         void get(CArray2Drgba &out);
     private:
         CRGBABufferBase * m_source;
-        double m_blursize;
+        ANLFloatType m_blursize;
         bool m_seamless;
     };
 };

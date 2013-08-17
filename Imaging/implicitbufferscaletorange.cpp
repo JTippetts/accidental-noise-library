@@ -6,7 +6,7 @@ namespace anl
     {
     }
 
-    CImplicitBufferScaleToRange::CImplicitBufferScaleToRange(CImplicitBufferBase * src, double low, double high) :
+    CImplicitBufferScaleToRange::CImplicitBufferScaleToRange(CImplicitBufferBase * src, ANLFloatType low, ANLFloatType high) :
         CImplicitBufferBase(), m_source(src), m_low(low), m_high(high)
     {
     }
@@ -15,7 +15,7 @@ namespace anl
     {
     }
 
-    void CImplicitBufferScaleToRange::setRange(double low, double high)
+    void CImplicitBufferScaleToRange::setRange(ANLFloatType low, ANLFloatType high)
     {
         m_low=low;
         m_high=high;

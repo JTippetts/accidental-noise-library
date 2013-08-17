@@ -8,21 +8,21 @@ class CImplicitSawtooth : public CImplicitModuleBase
 {
     public:
     CImplicitSawtooth();
-    CImplicitSawtooth(double source, double period);
-    CImplicitSawtooth(double source, CImplicitModuleBase * period);
-    CImplicitSawtooth(CImplicitModuleBase * source, double period);
+    CImplicitSawtooth(ANLFloatType source, ANLFloatType period);
+    CImplicitSawtooth(ANLFloatType source, CImplicitModuleBase * period);
+    CImplicitSawtooth(CImplicitModuleBase * source, ANLFloatType period);
     CImplicitSawtooth(CImplicitModuleBase * source, CImplicitModuleBase * period);
     ~CImplicitSawtooth();
 
     void setSource(CImplicitModuleBase * s);
-    void setSource(double s);
+    void setSource(ANLFloatType s);
     void setPeriod(CImplicitModuleBase * p);
-    void setPeriod(double p);
+    void setPeriod(ANLFloatType p);
 
-    double get(double x, double y);
-    double get(double x, double y, double z);
-    double get(double x, double y, double z, double w);
-    double get(double x, double y, double z, double w, double u, double v);
+    ANLFloatType get(ANLFloatType x, ANLFloatType y);
+    ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+    ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+    ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
 
     protected:
     CScalarParameter m_source;

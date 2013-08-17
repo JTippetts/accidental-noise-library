@@ -8,39 +8,39 @@ namespace anl
     {
         public:
         CImplicitBrightContrast();
-        CImplicitBrightContrast(double s,double b,double t,double f);
-        CImplicitBrightContrast(double s,double b,double t,CImplicitModuleBase *  f);
-        CImplicitBrightContrast(double s,double b,CImplicitModuleBase *  t,double f);
-        CImplicitBrightContrast(double s,double b,CImplicitModuleBase *  t,CImplicitModuleBase *  f);
-        CImplicitBrightContrast(double s,CImplicitModuleBase *  b,double t,double f);
-        CImplicitBrightContrast(double s,CImplicitModuleBase *  b,double t,CImplicitModuleBase *  f);
-        CImplicitBrightContrast(double s,CImplicitModuleBase *  b,CImplicitModuleBase *  t,double f);
-        CImplicitBrightContrast(double s,CImplicitModuleBase *  b,CImplicitModuleBase *  t,CImplicitModuleBase *  f);
-        CImplicitBrightContrast(CImplicitModuleBase *  s,double b,double t,double f);
-        CImplicitBrightContrast(CImplicitModuleBase *  s,double b,double t,CImplicitModuleBase *  f);
-        CImplicitBrightContrast(CImplicitModuleBase *  s,double b,CImplicitModuleBase *  t,double f);
-        CImplicitBrightContrast(CImplicitModuleBase *  s,double b,CImplicitModuleBase *  t,CImplicitModuleBase *  f);
-        CImplicitBrightContrast(CImplicitModuleBase *  s,CImplicitModuleBase *  b,double t,double f);
-        CImplicitBrightContrast(CImplicitModuleBase *  s,CImplicitModuleBase *  b,double t,CImplicitModuleBase *  f);
-        CImplicitBrightContrast(CImplicitModuleBase *  s,CImplicitModuleBase *  b,CImplicitModuleBase *  t,double f);
+        CImplicitBrightContrast(ANLFloatType s,ANLFloatType b,ANLFloatType t,ANLFloatType f);
+        CImplicitBrightContrast(ANLFloatType s,ANLFloatType b,ANLFloatType t,CImplicitModuleBase *  f);
+        CImplicitBrightContrast(ANLFloatType s,ANLFloatType b,CImplicitModuleBase *  t,ANLFloatType f);
+        CImplicitBrightContrast(ANLFloatType s,ANLFloatType b,CImplicitModuleBase *  t,CImplicitModuleBase *  f);
+        CImplicitBrightContrast(ANLFloatType s,CImplicitModuleBase *  b,ANLFloatType t,ANLFloatType f);
+        CImplicitBrightContrast(ANLFloatType s,CImplicitModuleBase *  b,ANLFloatType t,CImplicitModuleBase *  f);
+        CImplicitBrightContrast(ANLFloatType s,CImplicitModuleBase *  b,CImplicitModuleBase *  t,ANLFloatType f);
+        CImplicitBrightContrast(ANLFloatType s,CImplicitModuleBase *  b,CImplicitModuleBase *  t,CImplicitModuleBase *  f);
+        CImplicitBrightContrast(CImplicitModuleBase *  s,ANLFloatType b,ANLFloatType t,ANLFloatType f);
+        CImplicitBrightContrast(CImplicitModuleBase *  s,ANLFloatType b,ANLFloatType t,CImplicitModuleBase *  f);
+        CImplicitBrightContrast(CImplicitModuleBase *  s,ANLFloatType b,CImplicitModuleBase *  t,ANLFloatType f);
+        CImplicitBrightContrast(CImplicitModuleBase *  s,ANLFloatType b,CImplicitModuleBase *  t,CImplicitModuleBase *  f);
+        CImplicitBrightContrast(CImplicitModuleBase *  s,CImplicitModuleBase *  b,ANLFloatType t,ANLFloatType f);
+        CImplicitBrightContrast(CImplicitModuleBase *  s,CImplicitModuleBase *  b,ANLFloatType t,CImplicitModuleBase *  f);
+        CImplicitBrightContrast(CImplicitModuleBase *  s,CImplicitModuleBase *  b,CImplicitModuleBase *  t,ANLFloatType f);
         CImplicitBrightContrast(CImplicitModuleBase *  s,CImplicitModuleBase *  b,CImplicitModuleBase *  t,CImplicitModuleBase *  f);
 
         ~CImplicitBrightContrast();
 
         void setSource(CImplicitModuleBase * m);
-        void setSource(double v);
+        void setSource(ANLFloatType v);
 
-        void setBrightness(double b);
-        void setContrastThreshold(double t);
-        void setContrastFactor(double t);
+        void setBrightness(ANLFloatType b);
+        void setContrastThreshold(ANLFloatType t);
+        void setContrastFactor(ANLFloatType t);
         void setBrightness(CImplicitModuleBase * m);
         void setContrastThreshold(CImplicitModuleBase * m);
         void setContrastFactor(CImplicitModuleBase * m);
 
-        double get(double x, double y);
-        double get(double x, double y, double z);
-        double get(double x, double y, double z, double w);
-        double get(double x, double y, double z, double w, double u, double v);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
         protected:
         CScalarParameter m_source;
         CScalarParameter m_bright, m_threshold, m_factor;

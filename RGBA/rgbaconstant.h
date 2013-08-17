@@ -15,10 +15,10 @@ namespace anl
         void set(float r, float g, float b, float a);
         void set(SRGBA &r);
 
-        SRGBA get(double x, double y);
-        SRGBA get(double x, double y, double z);
-        SRGBA get(double x, double y, double z, double w);
-        SRGBA get(double x, double y, double z, double w, double u, double v);
+        SRGBA get(ANLFloatType x, ANLFloatType y);
+        SRGBA get(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+        SRGBA get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+        SRGBA get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
 
         protected:
         SRGBA m_rgba;

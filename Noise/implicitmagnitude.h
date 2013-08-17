@@ -11,12 +11,12 @@ class CImplicitMagnitude : public CImplicitModuleBase
     CImplicitMagnitude();
     ~CImplicitMagnitude();
 
-    void setX(double f);
-    void setY(double f);
-    void setZ(double f);
-    void setW(double f);
-    void setU(double f);
-    void setV(double f);
+    void setX(ANLFloatType f);
+    void setY(ANLFloatType f);
+    void setZ(ANLFloatType f);
+    void setW(ANLFloatType f);
+    void setU(ANLFloatType f);
+    void setV(ANLFloatType f);
 
     void setX(CImplicitModuleBase * f);
     void setY(CImplicitModuleBase * f);
@@ -25,10 +25,10 @@ class CImplicitMagnitude : public CImplicitModuleBase
     void setU(CImplicitModuleBase * f);
     void setV(CImplicitModuleBase * f);
 
-    double get(double x, double y);
-    double get(double x, double y, double z);
-    double get(double x, double y, double z, double w);
-    double get(double x, double y, double z, double w, double u, double v);
+    ANLFloatType get(ANLFloatType x, ANLFloatType y);
+    ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+    ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+    ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
 
     private:
     CScalarParameter m_x, m_y, m_z, m_w, m_u, m_v;

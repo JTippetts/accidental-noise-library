@@ -22,14 +22,14 @@ namespace anl
     class CImplicitFractal : public CImplicitModuleBase
     {
         public:
-        CImplicitFractal(unsigned int type, unsigned int basistype, unsigned int interptype, int octaves, double freq, bool rotatedomain);
+        CImplicitFractal(unsigned int type, unsigned int basistype, unsigned int interptype, int octaves, ANLFloatType freq, bool rotatedomain);
 
         void setNumOctaves(int n);
-        void setFrequency(double f);
-        void setLacunarity(double l);
-        void setGain(double g);
-        void setOffset(double o);
-        void setH(double h);
+        void setFrequency(ANLFloatType f);
+        void setLacunarity(ANLFloatType l);
+        void setGain(ANLFloatType g);
+        void setOffset(ANLFloatType o);
+        void setH(ANLFloatType h);
 
         void setType(unsigned int t);
         void setAllSourceTypes(unsigned int basis_type, unsigned int interp);
@@ -39,19 +39,19 @@ namespace anl
         void resetAllSources();
         void setSeed(unsigned int seed);
         CImplicitModuleBase * getBasis(int which);
-        double get(double x, double y);
-        double get(double x, double y, double z);
-        double get(double x, double y, double z, double w);
-        double get(double x, double y, double z, double w, double u, double v);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
 
         protected:
         std::shared_ptr<CImplicitBasisFunction> m_basis[MaxSources];
         CImplicitModuleBase *  m_source[MaxSources];
-        double m_exparray[MaxSources];
-        double m_correct[MaxSources][2];
+        ANLFloatType m_exparray[MaxSources];
+        ANLFloatType m_correct[MaxSources][2];
 
-        double m_offset, m_gain, m_H;
-        double m_frequency, m_lacunarity;
+        ANLFloatType m_offset, m_gain, m_H;
+        ANLFloatType m_frequency, m_lacunarity;
         unsigned int m_numoctaves;
         unsigned int m_type;
         bool m_rotatedomain;
@@ -63,35 +63,35 @@ namespace anl
         void HybridMulti_calcWeights();
 		void DeCarpentierSwiss_calcWeights();
 
-        double fBm_get(double x, double y);
-        double fBm_get(double x, double y, double z);
-        double fBm_get(double x, double y, double z, double w);
-        double fBm_get(double x, double y, double z, double w, double u, double v);
+        ANLFloatType fBm_get(ANLFloatType x, ANLFloatType y);
+        ANLFloatType fBm_get(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+        ANLFloatType fBm_get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+        ANLFloatType fBm_get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
 
-        double RidgedMulti_get(double x, double y);
-        double RidgedMulti_get(double x, double y, double z);
-        double RidgedMulti_get(double x, double y, double z, double w);
-        double RidgedMulti_get(double x, double y, double z, double w, double u, double v);
+        ANLFloatType RidgedMulti_get(ANLFloatType x, ANLFloatType y);
+        ANLFloatType RidgedMulti_get(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+        ANLFloatType RidgedMulti_get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+        ANLFloatType RidgedMulti_get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
 
-        double Billow_get(double x, double y);
-        double Billow_get(double x, double y, double z);
-        double Billow_get(double x, double y, double z, double w);
-        double Billow_get(double x, double y, double z, double w, double u, double v);
+        ANLFloatType Billow_get(ANLFloatType x, ANLFloatType y);
+        ANLFloatType Billow_get(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+        ANLFloatType Billow_get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+        ANLFloatType Billow_get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
 
-        double Multi_get(double x, double y);
-        double Multi_get(double x, double y, double z);
-        double Multi_get(double x, double y, double z, double w);
-        double Multi_get(double x, double y, double z, double w, double u, double v);
+        ANLFloatType Multi_get(ANLFloatType x, ANLFloatType y);
+        ANLFloatType Multi_get(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+        ANLFloatType Multi_get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+        ANLFloatType Multi_get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
 
-        double HybridMulti_get(double x, double y);
-        double HybridMulti_get(double x, double y, double z);
-        double HybridMulti_get(double x, double y, double z, double w);
-        double HybridMulti_get(double x, double y, double z, double w, double u, double v);
+        ANLFloatType HybridMulti_get(ANLFloatType x, ANLFloatType y);
+        ANLFloatType HybridMulti_get(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+        ANLFloatType HybridMulti_get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+        ANLFloatType HybridMulti_get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
 
-		double DeCarpentierSwiss_get(double x, double y);
-        double DeCarpentierSwiss_get(double x, double y, double z);
-        double DeCarpentierSwiss_get(double x, double y, double z, double w);
-        double DeCarpentierSwiss_get(double x, double y, double z, double w, double u, double v);
+		ANLFloatType DeCarpentierSwiss_get(ANLFloatType x, ANLFloatType y);
+        ANLFloatType DeCarpentierSwiss_get(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+        ANLFloatType DeCarpentierSwiss_get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+        ANLFloatType DeCarpentierSwiss_get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
 
 
     };

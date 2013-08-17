@@ -9,37 +9,37 @@ namespace anl
 	{
 	}
 
-	CImplicitSelect::CImplicitSelect(double low, double high, double control, double threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(double low, double high, double control, double threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(double low, double high, double control, CImplicitModuleBase * threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(double low, double high, double control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(double low, double high, CImplicitModuleBase * control, double threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(double low, double high, CImplicitModuleBase * control, double threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(double low, double high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(double low, double high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(double low, CImplicitModuleBase * high, double control, double threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(double low, CImplicitModuleBase * high, double control, double threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(double low, CImplicitModuleBase * high, double control, CImplicitModuleBase * threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(double low, CImplicitModuleBase * high, double control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(double low, CImplicitModuleBase * high, CImplicitModuleBase * control, double threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(double low, CImplicitModuleBase * high, CImplicitModuleBase * control, double threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(double low, CImplicitModuleBase * high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(double low, CImplicitModuleBase * high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, double high, double control, double threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, double high, double control, double threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, double high, double control, CImplicitModuleBase * threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, double high, double control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, double high, CImplicitModuleBase * control, double threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, double high, CImplicitModuleBase * control, double threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, double high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, double high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, CImplicitModuleBase * high, double control, double threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, CImplicitModuleBase * high, double control, double threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, CImplicitModuleBase * high, double control, CImplicitModuleBase * threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, CImplicitModuleBase * high, double control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, CImplicitModuleBase * high, CImplicitModuleBase * control, double threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, CImplicitModuleBase * high, CImplicitModuleBase * control, double threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
-	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, CImplicitModuleBase * high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, double falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(ANLFloatType low, ANLFloatType high, ANLFloatType control, ANLFloatType threshold, ANLFloatType falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(ANLFloatType low, ANLFloatType high, ANLFloatType control, ANLFloatType threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(ANLFloatType low, ANLFloatType high, ANLFloatType control, CImplicitModuleBase * threshold, ANLFloatType falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(ANLFloatType low, ANLFloatType high, ANLFloatType control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(ANLFloatType low, ANLFloatType high, CImplicitModuleBase * control, ANLFloatType threshold, ANLFloatType falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(ANLFloatType low, ANLFloatType high, CImplicitModuleBase * control, ANLFloatType threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(ANLFloatType low, ANLFloatType high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, ANLFloatType falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(ANLFloatType low, ANLFloatType high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(ANLFloatType low, CImplicitModuleBase * high, ANLFloatType control, ANLFloatType threshold, ANLFloatType falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(ANLFloatType low, CImplicitModuleBase * high, ANLFloatType control, ANLFloatType threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(ANLFloatType low, CImplicitModuleBase * high, ANLFloatType control, CImplicitModuleBase * threshold, ANLFloatType falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(ANLFloatType low, CImplicitModuleBase * high, ANLFloatType control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(ANLFloatType low, CImplicitModuleBase * high, CImplicitModuleBase * control, ANLFloatType threshold, ANLFloatType falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(ANLFloatType low, CImplicitModuleBase * high, CImplicitModuleBase * control, ANLFloatType threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(ANLFloatType low, CImplicitModuleBase * high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, ANLFloatType falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(ANLFloatType low, CImplicitModuleBase * high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, ANLFloatType high, ANLFloatType control, ANLFloatType threshold, ANLFloatType falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, ANLFloatType high, ANLFloatType control, ANLFloatType threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, ANLFloatType high, ANLFloatType control, CImplicitModuleBase * threshold, ANLFloatType falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, ANLFloatType high, ANLFloatType control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, ANLFloatType high, CImplicitModuleBase * control, ANLFloatType threshold, ANLFloatType falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, ANLFloatType high, CImplicitModuleBase * control, ANLFloatType threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, ANLFloatType high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, ANLFloatType falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, ANLFloatType high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, CImplicitModuleBase * high, ANLFloatType control, ANLFloatType threshold, ANLFloatType falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, CImplicitModuleBase * high, ANLFloatType control, ANLFloatType threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, CImplicitModuleBase * high, ANLFloatType control, CImplicitModuleBase * threshold, ANLFloatType falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, CImplicitModuleBase * high, ANLFloatType control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, CImplicitModuleBase * high, CImplicitModuleBase * control, ANLFloatType threshold, ANLFloatType falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, CImplicitModuleBase * high, CImplicitModuleBase * control, ANLFloatType threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
+	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, CImplicitModuleBase * high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, ANLFloatType falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 	CImplicitSelect::CImplicitSelect(CImplicitModuleBase * low, CImplicitModuleBase * high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff) : CImplicitModuleBase(), m_low(low), m_high(high), m_control(control), m_threshold(threshold), m_falloff(falloff){}
 
 	CImplicitSelect::~CImplicitSelect(){}
@@ -57,25 +57,25 @@ namespace anl
 		m_control.set(b);
 	}
 
-	void CImplicitSelect::setLowSource(double b)
+	void CImplicitSelect::setLowSource(ANLFloatType b)
 	{
 		m_low.set(b);
 	}
-	void CImplicitSelect::setHighSource(double b)
+	void CImplicitSelect::setHighSource(ANLFloatType b)
 	{
 		m_high.set(b);
 	}
-	void CImplicitSelect::setControlSource(double b)
+	void CImplicitSelect::setControlSource(ANLFloatType b)
 	{
 		m_control.set(b);
 	}
 
-	void CImplicitSelect::setThreshold(double t)
+	void CImplicitSelect::setThreshold(ANLFloatType t)
 	{
 		//m_threshold=t;
 		m_threshold.set(t);
 	}
-	void CImplicitSelect::setFalloff(double f)
+	void CImplicitSelect::setFalloff(ANLFloatType f)
 	{
 		//m_falloff=f;
 		m_falloff.set(f);
@@ -89,11 +89,11 @@ namespace anl
 	    m_falloff.set(m);
 	}
 
-	double CImplicitSelect::get(double x, double y)
+	ANLFloatType CImplicitSelect::get(ANLFloatType x, ANLFloatType y)
 	{
-		double control=m_control.get(x,y);
-		double falloff=m_falloff.get(x,y);
-		double threshold=m_threshold.get(x,y);
+		ANLFloatType control=m_control.get(x,y);
+		ANLFloatType falloff=m_falloff.get(x,y);
+		ANLFloatType threshold=m_threshold.get(x,y);
 
         if(falloff>0.0)
         {
@@ -110,9 +110,9 @@ namespace anl
             else
             {
                 // Lies within falloff area.
-                double lower=threshold-falloff;
-                double upper=threshold+falloff;
-                double blend=quintic_blend((control-lower)/(upper-lower));
+                ANLFloatType lower=threshold-falloff;
+                ANLFloatType upper=threshold+falloff;
+                ANLFloatType blend=quintic_blend((control-lower)/(upper-lower));
                 return lerp(blend,m_low.get(x,y),m_high.get(x,y));
             }
         }
@@ -123,11 +123,11 @@ namespace anl
         }
     }
 
-    double CImplicitSelect::get(double x, double y, double z)
+    ANLFloatType CImplicitSelect::get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
     {
-		double control=m_control.get(x,y,z);
-		double falloff=m_falloff.get(x,y,z);
-		double threshold=m_threshold.get(x,y,z);
+		ANLFloatType control=m_control.get(x,y,z);
+		ANLFloatType falloff=m_falloff.get(x,y,z);
+		ANLFloatType threshold=m_threshold.get(x,y,z);
 
         if(falloff>0.0)
         {
@@ -144,9 +144,9 @@ namespace anl
             else
             {
                 // Lies within falloff area.
-                double lower=threshold-falloff;
-                double upper=threshold+falloff;
-                double blend=quintic_blend((control-lower)/(upper-lower));
+                ANLFloatType lower=threshold-falloff;
+                ANLFloatType upper=threshold+falloff;
+                ANLFloatType blend=quintic_blend((control-lower)/(upper-lower));
                 return lerp(blend,m_low.get(x,y,z),m_high.get(x,y,z));
             }
         }
@@ -158,11 +158,11 @@ namespace anl
         }
     }
 
-	double CImplicitSelect::get(double x, double y, double z, double w)
+	ANLFloatType CImplicitSelect::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
 	{
-		double control=m_control.get(x,y,z,w);
-		double falloff=m_falloff.get(x,y,z,w);
-		double threshold=m_threshold.get(x,y,z,w);
+		ANLFloatType control=m_control.get(x,y,z,w);
+		ANLFloatType falloff=m_falloff.get(x,y,z,w);
+		ANLFloatType threshold=m_threshold.get(x,y,z,w);
 
         if(falloff>0.0)
         {
@@ -179,9 +179,9 @@ namespace anl
             else
             {
                 // Lies within falloff area.
-                double lower=threshold-falloff;
-                double upper=threshold+falloff;
-                double blend=quintic_blend((control-lower)/(upper-lower));
+                ANLFloatType lower=threshold-falloff;
+                ANLFloatType upper=threshold+falloff;
+                ANLFloatType blend=quintic_blend((control-lower)/(upper-lower));
                 return lerp(blend,m_low.get(x,y,z,w),m_high.get(x,y,z,w));
             }
         }
@@ -192,11 +192,11 @@ namespace anl
         }
     }
 
-	double CImplicitSelect::get(double x, double y, double z, double w, double u, double v)
+	ANLFloatType CImplicitSelect::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
 	{
-		double control=m_control.get(x,y,z,w,u,v);
-		double falloff=m_falloff.get(x,y,z,w,u,v);
-		double threshold=m_threshold.get(x,y,z,w,u,v);
+		ANLFloatType control=m_control.get(x,y,z,w,u,v);
+		ANLFloatType falloff=m_falloff.get(x,y,z,w,u,v);
+		ANLFloatType threshold=m_threshold.get(x,y,z,w,u,v);
 
         if(falloff>0.0)
         {
@@ -213,9 +213,9 @@ namespace anl
             else
             {
                 // Lies within falloff area.
-                double lower=threshold-falloff;
-                double upper=threshold+falloff;
-                double blend=quintic_blend((control-lower)/(upper-lower));
+                ANLFloatType lower=threshold-falloff;
+                ANLFloatType upper=threshold+falloff;
+                ANLFloatType blend=quintic_blend((control-lower)/(upper-lower));
                 return lerp(blend,m_low.get(x,y,z,w,u,v),m_high.get(x,y,z,w,u,v));
             }
         }

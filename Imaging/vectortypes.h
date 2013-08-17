@@ -3,15 +3,16 @@
 #include "templates/tvec2d.h"
 #include "templates/tvec3d.h"
 #include "templates/tvec4d.h"
+#include "../types.h"
 
 namespace anl
 {
 	typedef TVec2D<float> CVec2f;
-	typedef TVec2D<double> CVec2d;
+	typedef TVec2D<ANLFloatType> CVec2d;
 	typedef TVec3D<float> CVec3f;
-	typedef TVec3D<double> CVec3d;
+	typedef TVec3D<ANLFloatType> CVec3d;
 	typedef TVec4D<float> CVec4f;
-	typedef TVec4D<double> CVec4d;
+	typedef TVec4D<ANLFloatType> CVec4d;
 
 	typedef TVec2D<int> CVec2i;
 	typedef TVec3D<int> CVec3i;

@@ -5,12 +5,12 @@ namespace anl
     CImplicitMagnitude::CImplicitMagnitude() : CImplicitModuleBase(), m_x(0.0), m_y(0.0), m_z(0.0), m_w(0.0), m_u(0.0), m_v(0.0){}
     CImplicitMagnitude::~CImplicitMagnitude(){}
 
-    void CImplicitMagnitude::setX(double f){m_x.set(f);}
-    void CImplicitMagnitude::setY(double f){m_y.set(f);}
-    void CImplicitMagnitude::setZ(double f){m_z.set(f);}
-    void CImplicitMagnitude::setW(double f){m_w.set(f);}
-    void CImplicitMagnitude::setU(double f){m_u.set(f);}
-    void CImplicitMagnitude::setV(double f){m_v.set(f);}
+    void CImplicitMagnitude::setX(ANLFloatType f){m_x.set(f);}
+    void CImplicitMagnitude::setY(ANLFloatType f){m_y.set(f);}
+    void CImplicitMagnitude::setZ(ANLFloatType f){m_z.set(f);}
+    void CImplicitMagnitude::setW(ANLFloatType f){m_w.set(f);}
+    void CImplicitMagnitude::setU(ANLFloatType f){m_u.set(f);}
+    void CImplicitMagnitude::setV(ANLFloatType f){m_v.set(f);}
 
     void CImplicitMagnitude::setX(CImplicitModuleBase * f){m_x.set(f);}
     void CImplicitMagnitude::setY(CImplicitModuleBase * f){m_y.set(f);}
@@ -19,38 +19,38 @@ namespace anl
     void CImplicitMagnitude::setU(CImplicitModuleBase * f){m_u.set(f);}
     void CImplicitMagnitude::setV(CImplicitModuleBase * f){m_v.set(f);}
 
-    double CImplicitMagnitude::get(double x, double y)
+    ANLFloatType CImplicitMagnitude::get(ANLFloatType x, ANLFloatType y)
     {
-        double xx=m_x.get(x,y);
-        double yy=m_y.get(x,y);
+        ANLFloatType xx=m_x.get(x,y);
+        ANLFloatType yy=m_y.get(x,y);
         return sqrt(xx*xx+yy*yy);
     }
 
-    double CImplicitMagnitude::get(double x, double y, double z)
+    ANLFloatType CImplicitMagnitude::get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
     {
-        double xx=m_x.get(x,y,z);
-        double yy=m_y.get(x,y,z);
-        double zz=m_z.get(x,y,z);
+        ANLFloatType xx=m_x.get(x,y,z);
+        ANLFloatType yy=m_y.get(x,y,z);
+        ANLFloatType zz=m_z.get(x,y,z);
         return sqrt(xx*xx+yy*yy+zz*zz);
     }
 
-    double CImplicitMagnitude::get(double x, double y, double z, double w)
+    ANLFloatType CImplicitMagnitude::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
     {
-        double xx=m_x.get(x,y,z,w);
-        double yy=m_y.get(x,y,z,w);
-        double zz=m_z.get(x,y,z,w);
-        double ww=m_w.get(x,y,z,w);
+        ANLFloatType xx=m_x.get(x,y,z,w);
+        ANLFloatType yy=m_y.get(x,y,z,w);
+        ANLFloatType zz=m_z.get(x,y,z,w);
+        ANLFloatType ww=m_w.get(x,y,z,w);
         return sqrt(xx*xx+yy*yy+zz*zz+ww*ww);
     }
 
-    double CImplicitMagnitude::get(double x, double y, double z, double w, double u, double v)
+    ANLFloatType CImplicitMagnitude::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
     {
-        double xx=m_x.get(x,y,z,w,u,v);
-        double yy=m_y.get(x,y,z,w,u,v);
-        double zz=m_z.get(x,y,z,w,u,v);
-        double ww=m_w.get(x,y,z,w,u,v);
-        double uu=m_u.get(x,y,z,w,u,v);
-        double vv=m_v.get(x,y,z,w,u,v);
+        ANLFloatType xx=m_x.get(x,y,z,w,u,v);
+        ANLFloatType yy=m_y.get(x,y,z,w,u,v);
+        ANLFloatType zz=m_z.get(x,y,z,w,u,v);
+        ANLFloatType ww=m_w.get(x,y,z,w,u,v);
+        ANLFloatType uu=m_u.get(x,y,z,w,u,v);
+        ANLFloatType vv=m_v.get(x,y,z,w,u,v);
         return sqrt(xx*xx+yy*yy+zz*zz+ww*ww+uu*uu+vv*vv);
     }
 

@@ -2,6 +2,7 @@
 #define IMPLICIT_MODULE_BASE_H
 
 #include <memory>
+#include "../types.h"
 
 // Base class of implicit (2D, 4D, 6D) noise functions
 #define MaxSources 20
@@ -13,47 +14,47 @@ class CImplicitModuleBase
 public:
 	CImplicitModuleBase() : m_spacing(0.0001){}
 	virtual ~CImplicitModuleBase(){}
-	void setDerivSpacing(double s){m_spacing=s;}
+	void setDerivSpacing(ANLFloatType s){m_spacing=s;}
 	virtual void setSeed(unsigned int seed){}
 
-	virtual double get(double x, double y)=0;
-	virtual double get(double x, double y, double z)=0;
-	virtual double get(double x, double y, double z, double w)=0;
-	virtual double get(double x, double y, double z, double w, double u, double v)=0;
+	virtual ANLFloatType get(ANLFloatType x, ANLFloatType y)=0;
+	virtual ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z)=0;
+	virtual ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)=0;
+	virtual ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)=0;
 
-	double get_dx(double x, double y);
-	double get_dy(double x, double y);
+	ANLFloatType get_dx(ANLFloatType x, ANLFloatType y);
+	ANLFloatType get_dy(ANLFloatType x, ANLFloatType y);
 
-	double get_dx(double x, double y, double z);
-	double get_dy(double x, double y, double z);
-	double get_dz(double x, double y, double z);
+	ANLFloatType get_dx(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+	ANLFloatType get_dy(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+	ANLFloatType get_dz(ANLFloatType x, ANLFloatType y, ANLFloatType z);
 
-	double get_dx(double x, double y, double z, double w);
-	double get_dy(double x, double y, double z, double w);
-	double get_dz(double x, double y, double z, double w);
-	double get_dw(double x, double y, double z, double w);
+	ANLFloatType get_dx(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+	ANLFloatType get_dy(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+	ANLFloatType get_dz(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+	ANLFloatType get_dw(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
 
-	double get_dx(double x, double y, double z, double w, double u, double v);
-	double get_dy(double x, double y, double z, double w, double u, double v);
-	double get_dz(double x, double y, double z, double w, double u, double v);
-	double get_dw(double x, double y, double z, double w, double u, double v);
-	double get_du(double x, double y, double z, double w, double u, double v);
-	double get_dv(double x, double y, double z, double w, double u, double v);
+	ANLFloatType get_dx(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
+	ANLFloatType get_dy(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
+	ANLFloatType get_dz(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
+	ANLFloatType get_dw(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
+	ANLFloatType get_du(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
+	ANLFloatType get_dv(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
 
 protected:
-	double m_spacing;
+	ANLFloatType m_spacing;
 };
 
 // Scalar parameter class
 class CScalarParameter
 {
     public:
-    CScalarParameter(double v) : m_val(v), m_source(0){}
+    CScalarParameter(ANLFloatType v) : m_val(v), m_source(0){}
     CScalarParameter(CImplicitModuleBase * b) : m_val(0), m_source(b){}
     CScalarParameter(const CScalarParameter &p) {m_source=p.m_source; m_val=p.m_val;}
     ~CScalarParameter(){}
 
-    void set(double v)
+    void set(ANLFloatType v)
     {
         m_source=0;
         m_val=v;
@@ -64,32 +65,32 @@ class CScalarParameter
         m_source=m;
     }
 
-    double get(double x, double y)
+    ANLFloatType get(ANLFloatType x, ANLFloatType y)
     {
         if(m_source) return m_source->get(x,y);
         else return m_val;
     }
 
-    double get(double x, double y, double z)
+    ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
     {
         if(m_source) return m_source->get(x,y,z);
         else return m_val;
     }
 
-    double get(double x, double y, double z, double w)
+    ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
     {
         if(m_source) return m_source->get(x,y,z,w);
         else return m_val;
     }
 
-    double get(double x, double y, double z, double w, double u, double v)
+    ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
     {
         if(m_source) return m_source->get(x,y,z,w,u,v);
         else return m_val;
     }
 
     protected:
-    double m_val;
+    ANLFloatType m_val;
     CImplicitModuleBase * m_source;
 };
 };

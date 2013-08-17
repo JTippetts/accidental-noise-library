@@ -3,7 +3,7 @@
 #include <iostream>
 
 using namespace anl;
-CImplicitFractal::CImplicitFractal(unsigned int type, unsigned int basistype, unsigned int interptype, int octaves, double freq, bool rotatedomain) : CImplicitModuleBase()
+CImplicitFractal::CImplicitFractal(unsigned int type, unsigned int basistype, unsigned int interptype, int octaves, ANLFloatType freq, bool rotatedomain) : CImplicitModuleBase()
 {
     m_rotatedomain=rotatedomain;
     setNumOctaves(octaves);
@@ -16,11 +16,11 @@ CImplicitFractal::CImplicitFractal(unsigned int type, unsigned int basistype, un
 }
 
 void CImplicitFractal::setNumOctaves(int n){if(n>=MaxSources) n=MaxSources-1; m_numoctaves=n;}
-void CImplicitFractal::setFrequency(double f){m_frequency=f;}
-void CImplicitFractal::setLacunarity(double l){m_lacunarity=l;}
-void CImplicitFractal::setGain(double g){m_gain=g;}
-void CImplicitFractal::setOffset(double o){m_offset=o;}
-void CImplicitFractal::setH(double h){m_H=h;}
+void CImplicitFractal::setFrequency(ANLFloatType f){m_frequency=f;}
+void CImplicitFractal::setLacunarity(ANLFloatType l){m_lacunarity=l;}
+void CImplicitFractal::setGain(ANLFloatType g){m_gain=g;}
+void CImplicitFractal::setOffset(ANLFloatType o){m_offset=o;}
+void CImplicitFractal::setH(ANLFloatType h){m_H=h;}
 
 void CImplicitFractal::setType(unsigned int t)
 	{
@@ -96,9 +96,9 @@ void CImplicitFractal::setType(unsigned int t)
 		return m_basis[which].get();
 	}
 
-	double CImplicitFractal::get(double x, double y)
+	ANLFloatType CImplicitFractal::get(ANLFloatType x, ANLFloatType y)
 	{
-	    double v;
+	    ANLFloatType v;
 		switch(m_type)
 		{
 		case FBM: v=fBm_get(x,y); break;
@@ -113,9 +113,9 @@ void CImplicitFractal::setType(unsigned int t)
 		return v;
 	}
 
-	double CImplicitFractal::get(double x, double y, double z)
+	ANLFloatType CImplicitFractal::get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
 	{
-	    double val;
+	    ANLFloatType val;
 	    switch(m_type)
 		{
 		case FBM: val=fBm_get(x,y,z); break;
@@ -130,9 +130,9 @@ void CImplicitFractal::setType(unsigned int t)
 		return val;
 	}
 
-	double CImplicitFractal::get(double x, double y, double z, double w)
+	ANLFloatType CImplicitFractal::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
 	{
-	    double val;
+	    ANLFloatType val;
 		switch(m_type)
 		{
 		case FBM: val=fBm_get(x,y,z,w); break;
@@ -146,9 +146,9 @@ void CImplicitFractal::setType(unsigned int t)
 		return val;
 	}
 
-	double CImplicitFractal::get(double x, double y, double z, double w, double u, double v)
+	ANLFloatType CImplicitFractal::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
 	{
-	    double val;
+	    ANLFloatType val;
 		switch(m_type)
 		{
 		case FBM: val=fBm_get(x,y,z,w,u,v); break;
@@ -172,15 +172,15 @@ void CImplicitFractal::fBm_calcWeights()
     }
 
     // Calculate scale/bias pairs by guessing at minimum and maximum values and remapping to [-1,1]
-    double minvalue=0.0, maxvalue=0.0;
+    ANLFloatType minvalue=0.0, maxvalue=0.0;
     for(int i=0; i<MaxSources; ++i)
     {
         minvalue += -1.0 * m_exparray[i];
         maxvalue += 1.0 * m_exparray[i];
 
-        double A=-1.0, B=1.0;
-        double scale = (B-A) / (maxvalue-minvalue);
-        double bias = A - minvalue*scale;
+        ANLFloatType A=-1.0, B=1.0;
+        ANLFloatType scale = (B-A) / (maxvalue-minvalue);
+        ANLFloatType bias = A - minvalue*scale;
         m_correct[i][0]=scale;
         m_correct[i][1]=bias;
 
@@ -196,15 +196,15 @@ void CImplicitFractal::RidgedMulti_calcWeights()
     }
 
             // Calculate scale/bias pairs by guessing at minimum and maximum values and remapping to [-1,1]
-    double minvalue=0.0, maxvalue=0.0;
+    ANLFloatType minvalue=0.0, maxvalue=0.0;
     for(int i=0; i<MaxSources; ++i)
     {
         minvalue += (m_offset-1.0)*(m_offset-1.0)*m_exparray[i];
         maxvalue += (m_offset)*(m_offset) * m_exparray[i];
 
-        double A=-1.0, B=1.0;
-        double scale = (B-A) / (maxvalue-minvalue);
-        double bias = A - minvalue*scale;
+        ANLFloatType A=-1.0, B=1.0;
+        ANLFloatType scale = (B-A) / (maxvalue-minvalue);
+        ANLFloatType bias = A - minvalue*scale;
         m_correct[i][0]=scale;
         m_correct[i][1]=bias;
     }
@@ -219,15 +219,15 @@ void CImplicitFractal::DeCarpentierSwiss_calcWeights()
     }
 
             // Calculate scale/bias pairs by guessing at minimum and maximum values and remapping to [-1,1]
-    double minvalue=0.0, maxvalue=0.0;
+    ANLFloatType minvalue=0.0, maxvalue=0.0;
     for(int i=0; i<MaxSources; ++i)
     {
         minvalue += (m_offset-1.0)*(m_offset-1.0)*m_exparray[i];
         maxvalue += (m_offset)*(m_offset) * m_exparray[i];
 
-        double A=-1.0, B=1.0;
-        double scale = (B-A) / (maxvalue-minvalue);
-        double bias = A - minvalue*scale;
+        ANLFloatType A=-1.0, B=1.0;
+        ANLFloatType scale = (B-A) / (maxvalue-minvalue);
+        ANLFloatType bias = A - minvalue*scale;
         m_correct[i][0]=scale;
         m_correct[i][1]=bias;
     }
@@ -242,15 +242,15 @@ void CImplicitFractal::Billow_calcWeights()
     }
 
     // Calculate scale/bias pairs by guessing at minimum and maximum values and remapping to [-1,1]
-    double minvalue=0.0, maxvalue=0.0;
+    ANLFloatType minvalue=0.0, maxvalue=0.0;
     for(int i=0; i<MaxSources; ++i)
     {
         minvalue += -1.0 * m_exparray[i];
         maxvalue += 1.0 * m_exparray[i];
 
-        double A=-1.0, B=1.0;
-        double scale = (B-A) / (maxvalue-minvalue);
-        double bias = A - minvalue*scale;
+        ANLFloatType A=-1.0, B=1.0;
+        ANLFloatType scale = (B-A) / (maxvalue-minvalue);
+        ANLFloatType bias = A - minvalue*scale;
         m_correct[i][0]=scale;
         m_correct[i][1]=bias;
     }
@@ -265,15 +265,15 @@ void CImplicitFractal::Multi_calcWeights()
     }
 
     // Calculate scale/bias pairs by guessing at minimum and maximum values and remapping to [-1,1]
-    double minvalue=1.0, maxvalue=1.0;
+    ANLFloatType minvalue=1.0, maxvalue=1.0;
     for(int i=0; i<MaxSources; ++i)
     {
         minvalue *= -1.0*m_exparray[i]+1.0;
         maxvalue *= 1.0*m_exparray[i]+1.0;
 
-        double A=-1.0, B=1.0;
-        double scale = (B-A) / (maxvalue-minvalue);
-        double bias = A - minvalue*scale;
+        ANLFloatType A=-1.0, B=1.0;
+        ANLFloatType scale = (B-A) / (maxvalue-minvalue);
+        ANLFloatType bias = A - minvalue*scale;
         m_correct[i][0]=scale;
         m_correct[i][1]=bias;
     }
@@ -288,9 +288,9 @@ void CImplicitFractal::HybridMulti_calcWeights()
     }
 
     // Calculate scale/bias pairs by guessing at minimum and maximum values and remapping to [-1,1]
-    double minvalue=1.0, maxvalue=1.0;
-    double weightmin, weightmax;
-    double A=-1.0, B=1.0, scale, bias;
+    ANLFloatType minvalue=1.0, maxvalue=1.0;
+    ANLFloatType weightmin, weightmax;
+    ANLFloatType A=-1.0, B=1.0, scale, bias;
 
     minvalue = m_offset - 1.0;
     maxvalue = m_offset + 1.0;
@@ -308,7 +308,7 @@ void CImplicitFractal::HybridMulti_calcWeights()
         if(weightmin>1.0) weightmin=1.0;
         if(weightmax>1.0) weightmax=1.0;
 
-        double signal=(m_offset-1.0)*m_exparray[i];
+        ANLFloatType signal=(m_offset-1.0)*m_exparray[i];
         minvalue += signal*weightmin;
         weightmin *=m_gain*signal;
 
@@ -326,17 +326,17 @@ void CImplicitFractal::HybridMulti_calcWeights()
 }
 
 
-double CImplicitFractal::fBm_get(double x, double y)
+ANLFloatType CImplicitFractal::fBm_get(ANLFloatType x, ANLFloatType y)
 {
-	double sum=0;
-	double amp=1.0;
+	ANLFloatType sum=0;
+	ANLFloatType amp=1.0;
 
 	x*=m_frequency;
 	y*=m_frequency;
 
 	for(unsigned int i=0; i<m_numoctaves; ++i)
 	{
-		double n=m_source[i]->get(x,y);
+		ANLFloatType n=m_source[i]->get(x,y);
 		sum+=n*amp;
 		amp*=m_gain;
 
@@ -346,10 +346,10 @@ double CImplicitFractal::fBm_get(double x, double y)
 	return sum;
 }
 
-double CImplicitFractal::fBm_get(double x, double y, double z)
+ANLFloatType CImplicitFractal::fBm_get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
 {
-    double sum=0;
-	double amp=1.0;
+    ANLFloatType sum=0;
+	ANLFloatType amp=1.0;
 
 	x*=m_frequency;
 	y*=m_frequency;
@@ -357,7 +357,7 @@ double CImplicitFractal::fBm_get(double x, double y, double z)
 
 	for(unsigned int i=0; i<m_numoctaves; ++i)
 	{
-		double n=m_source[i]->get(x,y,z);
+		ANLFloatType n=m_source[i]->get(x,y,z);
 		sum+=n*amp;
 		amp*=m_gain;
 
@@ -368,10 +368,10 @@ double CImplicitFractal::fBm_get(double x, double y, double z)
 	return sum;
 }
 
-double CImplicitFractal::fBm_get(double x, double y, double z, double w)
+ANLFloatType CImplicitFractal::fBm_get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
 {
-	double sum=0;
-	double amp=1.0;
+	ANLFloatType sum=0;
+	ANLFloatType amp=1.0;
 
 	x*=m_frequency;
 	y*=m_frequency;
@@ -380,7 +380,7 @@ double CImplicitFractal::fBm_get(double x, double y, double z, double w)
 
 	for(unsigned int i=0; i<m_numoctaves; ++i)
 	{
-		double n=m_source[i]->get(x,y,z,w);
+		ANLFloatType n=m_source[i]->get(x,y,z,w);
 		sum+=n*amp;
 		amp*=m_gain;
 
@@ -392,10 +392,10 @@ double CImplicitFractal::fBm_get(double x, double y, double z, double w)
 	return sum;
 }
 
-double CImplicitFractal::fBm_get(double x, double y, double z, double w, double u, double v)
+ANLFloatType CImplicitFractal::fBm_get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
 {
-	double sum=0;
-	double amp=1.0;
+	ANLFloatType sum=0;
+	ANLFloatType amp=1.0;
 
 	x*=m_frequency;
 	y*=m_frequency;
@@ -406,7 +406,7 @@ double CImplicitFractal::fBm_get(double x, double y, double z, double w, double 
 
 	for(unsigned int i=0; i<m_numoctaves; ++i)
 	{
-		double n=m_source[i]->get(x,y,z,w);
+		ANLFloatType n=m_source[i]->get(x,y,z,w);
 		sum+=n*amp;
 		amp*=m_gain;
 
@@ -420,9 +420,9 @@ double CImplicitFractal::fBm_get(double x, double y, double z, double w, double 
 	return sum;
 }
 
-double CImplicitFractal::Multi_get(double x, double y)
+ANLFloatType CImplicitFractal::Multi_get(ANLFloatType x, ANLFloatType y)
 {
-    double value=1.0;
+    ANLFloatType value=1.0;
     x*=m_frequency;
     y*=m_frequency;
 
@@ -437,9 +437,9 @@ double CImplicitFractal::Multi_get(double x, double y)
     return value*m_correct[m_numoctaves-1][0] + m_correct[m_numoctaves-1][1];
 }
 
-double CImplicitFractal::Multi_get(double x, double y, double z, double w)
+ANLFloatType CImplicitFractal::Multi_get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
 {
-    double value=1.0;
+    ANLFloatType value=1.0;
     x*=m_frequency;
     y*=m_frequency;
     z*=m_frequency;
@@ -457,9 +457,9 @@ double CImplicitFractal::Multi_get(double x, double y, double z, double w)
     return value*m_correct[m_numoctaves-1][0] + m_correct[m_numoctaves-1][1];
 }
 
-double CImplicitFractal::Multi_get(double x, double y, double z)
+ANLFloatType CImplicitFractal::Multi_get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
 {
-    double value=1.0;
+    ANLFloatType value=1.0;
     x*=m_frequency;
     y*=m_frequency;
     z*=m_frequency;
@@ -476,9 +476,9 @@ double CImplicitFractal::Multi_get(double x, double y, double z)
 }
 
 
-double CImplicitFractal::Multi_get(double x, double y, double z, double w, double u, double v)
+ANLFloatType CImplicitFractal::Multi_get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
 {
-	    double value=1.0;
+	    ANLFloatType value=1.0;
     x*=m_frequency;
     y*=m_frequency;
     z*=m_frequency;
@@ -501,17 +501,17 @@ double CImplicitFractal::Multi_get(double x, double y, double z, double w, doubl
 }
 
 
-double CImplicitFractal::Billow_get(double x, double y)
+ANLFloatType CImplicitFractal::Billow_get(ANLFloatType x, ANLFloatType y)
 {
-    double sum=0.0;
-    double amp=1.0;
+    ANLFloatType sum=0.0;
+    ANLFloatType amp=1.0;
 
     x*=m_frequency;
     y*=m_frequency;
 
     for(unsigned int i=0; i<m_numoctaves; ++i)
     {
-        double n=m_source[i]->get(x,y);
+        ANLFloatType n=m_source[i]->get(x,y);
         sum+=(2.0 * fabs(n)-1.0)*amp;
         amp*=m_gain;
 
@@ -521,10 +521,10 @@ double CImplicitFractal::Billow_get(double x, double y)
     return sum;
 }
 
-double CImplicitFractal::Billow_get(double x, double y, double z, double w)
+ANLFloatType CImplicitFractal::Billow_get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
 {
-	double sum=0.0;
-    double amp=1.0;
+	ANLFloatType sum=0.0;
+    ANLFloatType amp=1.0;
 
     x*=m_frequency;
     y*=m_frequency;
@@ -533,7 +533,7 @@ double CImplicitFractal::Billow_get(double x, double y, double z, double w)
 
     for(unsigned int i=0; i<m_numoctaves; ++i)
     {
-        double n=m_source[i]->get(x,y,z,w);
+        ANLFloatType n=m_source[i]->get(x,y,z,w);
         sum+=(2.0 * fabs(n)-1.0)*amp;
         amp*=m_gain;
 
@@ -545,10 +545,10 @@ double CImplicitFractal::Billow_get(double x, double y, double z, double w)
     return sum;
 }
 
-double CImplicitFractal::Billow_get(double x, double y, double z)
+ANLFloatType CImplicitFractal::Billow_get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
 {
-    double sum=0.0;
-    double amp=1.0;
+    ANLFloatType sum=0.0;
+    ANLFloatType amp=1.0;
 
     x*=m_frequency;
     y*=m_frequency;
@@ -556,7 +556,7 @@ double CImplicitFractal::Billow_get(double x, double y, double z)
 
     for(unsigned int i=0; i<m_numoctaves; ++i)
     {
-        double n=m_source[i]->get(x,y,z);
+        ANLFloatType n=m_source[i]->get(x,y,z);
         sum+=(2.0 * fabs(n)-1.0)*amp;
         amp*=m_gain;
 
@@ -567,10 +567,10 @@ double CImplicitFractal::Billow_get(double x, double y, double z)
     return sum;
 }
 
-double CImplicitFractal::Billow_get(double x, double y, double z, double w, double u, double v)
+ANLFloatType CImplicitFractal::Billow_get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
 {
-	double sum=0.0;
-    double amp=1.0;
+	ANLFloatType sum=0.0;
+    ANLFloatType amp=1.0;
 
     x*=m_frequency;
     y*=m_frequency;
@@ -581,7 +581,7 @@ double CImplicitFractal::Billow_get(double x, double y, double z, double w, doub
 
     for(unsigned int i=0; i<m_numoctaves; ++i)
     {
-        double n=m_source[i]->get(x,y,z,w,u,v);
+        ANLFloatType n=m_source[i]->get(x,y,z,w,u,v);
         sum+=(2.0 * fabs(n)-1.0)*amp;
         amp*=m_gain;
 
@@ -595,17 +595,17 @@ double CImplicitFractal::Billow_get(double x, double y, double z, double w, doub
     return sum;
 }
 
-double CImplicitFractal::RidgedMulti_get(double x, double y)
+ANLFloatType CImplicitFractal::RidgedMulti_get(ANLFloatType x, ANLFloatType y)
 {
-    double sum=0;
-    double amp=1.0;
+    ANLFloatType sum=0;
+    ANLFloatType amp=1.0;
 
     x*=m_frequency;
     y*=m_frequency;
 
     for(unsigned int i=0; i<m_numoctaves; ++i)
     {
-        double n=m_source[i]->get(x,y);
+        ANLFloatType n=m_source[i]->get(x,y);
         n=1.0-fabs(n);
         sum+=amp*n;
         amp*=m_gain;
@@ -614,7 +614,7 @@ double CImplicitFractal::RidgedMulti_get(double x, double y)
         y*=m_lacunarity;
     }
     return sum;
-	/*double result=0.0, signal;
+	/*ANLFloatType result=0.0, signal;
     x*=m_frequency;
     y*=m_frequency;
 
@@ -633,9 +633,9 @@ double CImplicitFractal::RidgedMulti_get(double x, double y)
     return result*m_correct[m_numoctaves-1][0] + m_correct[m_numoctaves-1][1];*/
 }
 
-double CImplicitFractal::RidgedMulti_get(double x, double y, double z, double w)
+ANLFloatType CImplicitFractal::RidgedMulti_get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
 {
-	double result=0.0, signal;
+	ANLFloatType result=0.0, signal;
     x*=m_frequency;
     y*=m_frequency;
     z*=m_frequency;
@@ -657,10 +657,10 @@ double CImplicitFractal::RidgedMulti_get(double x, double y, double z, double w)
     return result*m_correct[m_numoctaves-1][0] + m_correct[m_numoctaves-1][1];
 }
 
-double CImplicitFractal::RidgedMulti_get(double x, double y, double z)
+ANLFloatType CImplicitFractal::RidgedMulti_get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
 {
-    double sum=0;
-    double amp=1.0;
+    ANLFloatType sum=0;
+    ANLFloatType amp=1.0;
 
     x*=m_frequency;
     y*=m_frequency;
@@ -668,7 +668,7 @@ double CImplicitFractal::RidgedMulti_get(double x, double y, double z)
 
     for(unsigned int i=0; i<m_numoctaves; ++i)
     {
-        double n=m_source[i]->get(x,y,z);
+        ANLFloatType n=m_source[i]->get(x,y,z);
         n=1.0-fabs(n);
         sum+=amp*n;
         amp*=m_gain;
@@ -680,9 +680,9 @@ double CImplicitFractal::RidgedMulti_get(double x, double y, double z)
     return sum;
 }
 
-double CImplicitFractal::RidgedMulti_get(double x, double y, double z, double w, double u, double v)
+ANLFloatType CImplicitFractal::RidgedMulti_get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
 {
-	double result=0.0, signal;
+	ANLFloatType result=0.0, signal;
     x*=m_frequency;
     y*=m_frequency;
     z*=m_frequency;
@@ -708,9 +708,9 @@ double CImplicitFractal::RidgedMulti_get(double x, double y, double z, double w,
     return result*m_correct[m_numoctaves-1][0] + m_correct[m_numoctaves-1][1];
 }
 
-double CImplicitFractal::HybridMulti_get(double x, double y)
+ANLFloatType CImplicitFractal::HybridMulti_get(ANLFloatType x, ANLFloatType y)
 {
-	double value, signal, weight;
+	ANLFloatType value, signal, weight;
     x*=m_frequency;
     y*=m_frequency;
 
@@ -734,9 +734,9 @@ double CImplicitFractal::HybridMulti_get(double x, double y)
     return value*m_correct[m_numoctaves-1][0] + m_correct[m_numoctaves-1][1];
 }
 
-double CImplicitFractal::HybridMulti_get(double x, double y, double z)
+ANLFloatType CImplicitFractal::HybridMulti_get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
 {
-    double value, signal, weight;
+    ANLFloatType value, signal, weight;
     x*=m_frequency;
     y*=m_frequency;
     z*=m_frequency;
@@ -761,9 +761,9 @@ double CImplicitFractal::HybridMulti_get(double x, double y, double z)
     return value*m_correct[m_numoctaves-1][0] + m_correct[m_numoctaves-1][1];
 }
 
-double CImplicitFractal::HybridMulti_get(double x, double y, double z, double w)
+ANLFloatType CImplicitFractal::HybridMulti_get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
 {
-	double value, signal, weight;
+	ANLFloatType value, signal, weight;
     x*=m_frequency;
     y*=m_frequency;
     z*=m_frequency;
@@ -791,9 +791,9 @@ double CImplicitFractal::HybridMulti_get(double x, double y, double z, double w)
     return value*m_correct[m_numoctaves-1][0] + m_correct[m_numoctaves-1][1];
 }
 
-double CImplicitFractal::HybridMulti_get(double x, double y, double z, double w, double u, double v)
+ANLFloatType CImplicitFractal::HybridMulti_get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
 {
-	double value, signal, weight;
+	ANLFloatType value, signal, weight;
     x*=m_frequency;
     y*=m_frequency;
     z*=m_frequency;
@@ -827,41 +827,41 @@ double CImplicitFractal::HybridMulti_get(double x, double y, double z, double w,
     return value*m_correct[m_numoctaves-1][0] + m_correct[m_numoctaves-1][1];
 }
 
-double CImplicitFractal::DeCarpentierSwiss_get(double x, double y)
+ANLFloatType CImplicitFractal::DeCarpentierSwiss_get(ANLFloatType x, ANLFloatType y)
 {
-    double sum=0;
-    double amp=1.0;
+    ANLFloatType sum=0;
+    ANLFloatType amp=1.0;
 
-    double dx_sum=0;
-    double dy_sum=0;
+    ANLFloatType dx_sum=0;
+    ANLFloatType dy_sum=0;
 
     x*=m_frequency;
     y*=m_frequency;
 
     for(unsigned int i=0; i<m_numoctaves; ++i)
     {
-        double n=m_source[i]->get(x+m_offset*dx_sum,y+m_offset*dy_sum);
-        double dx=m_source[i]->get_dx(x+m_offset*dx_sum,y+m_offset*dy_sum);
-        double dy=m_source[i]->get_dy(x+m_offset*dx_sum,y+m_offset*dy_sum);
+        ANLFloatType n=m_source[i]->get(x+m_offset*dx_sum,y+m_offset*dy_sum);
+        ANLFloatType dx=m_source[i]->get_dx(x+m_offset*dx_sum,y+m_offset*dy_sum);
+        ANLFloatType dy=m_source[i]->get_dy(x+m_offset*dx_sum,y+m_offset*dy_sum);
         sum+=amp * (1.0-fabs(n));
         dx_sum+=amp*dx*-n;
         dy_sum+=amp*dy*-n;
-        amp*=m_gain*clamp(sum,0.0,1.0);
+        amp*=m_gain*clamp(sum,(ANLFloatType)0.0,(ANLFloatType)1.0);
         x*=m_lacunarity;
         y*=m_lacunarity;
     }
     return sum;
 }
 
-double CImplicitFractal::DeCarpentierSwiss_get(double x, double y, double z, double w)
+ANLFloatType CImplicitFractal::DeCarpentierSwiss_get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
 {
-	double sum=0;
-    double amp=1.0;
+	ANLFloatType sum=0;
+    ANLFloatType amp=1.0;
 
-    double dx_sum=0;
-    double dy_sum=0;
-    double dz_sum=0;
-    double dw_sum=0;
+    ANLFloatType dx_sum=0;
+    ANLFloatType dy_sum=0;
+    ANLFloatType dz_sum=0;
+    ANLFloatType dw_sum=0;
 
     x*=m_frequency;
     y*=m_frequency;
@@ -870,17 +870,17 @@ double CImplicitFractal::DeCarpentierSwiss_get(double x, double y, double z, dou
 
     for(unsigned int i=0; i<m_numoctaves; ++i)
     {
-        double n=m_source[i]->get(x+m_offset*dx_sum,y+m_offset*dy_sum,z+m_offset*dz_sum, w+m_offset*dw_sum);
-        double dx=m_source[i]->get_dx(x+m_offset*dx_sum,y+m_offset*dy_sum,z+m_offset*dz_sum, w+m_offset*dw_sum);
-        double dy=m_source[i]->get_dy(x+m_offset*dx_sum,y+m_offset*dy_sum,z+m_offset*dz_sum, w+m_offset*dw_sum);
-        double dz=m_source[i]->get_dz(x+m_offset*dx_sum,y+m_offset*dy_sum,z+m_offset*dz_sum, w+m_offset*dw_sum);
-        double dw=m_source[i]->get_dw(x+m_offset*dx_sum,y+m_offset*dy_sum,z+m_offset*dz_sum, w+m_offset*dw_sum);
+        ANLFloatType n=m_source[i]->get(x+m_offset*dx_sum,y+m_offset*dy_sum,z+m_offset*dz_sum, w+m_offset*dw_sum);
+        ANLFloatType dx=m_source[i]->get_dx(x+m_offset*dx_sum,y+m_offset*dy_sum,z+m_offset*dz_sum, w+m_offset*dw_sum);
+        ANLFloatType dy=m_source[i]->get_dy(x+m_offset*dx_sum,y+m_offset*dy_sum,z+m_offset*dz_sum, w+m_offset*dw_sum);
+        ANLFloatType dz=m_source[i]->get_dz(x+m_offset*dx_sum,y+m_offset*dy_sum,z+m_offset*dz_sum, w+m_offset*dw_sum);
+        ANLFloatType dw=m_source[i]->get_dw(x+m_offset*dx_sum,y+m_offset*dy_sum,z+m_offset*dz_sum, w+m_offset*dw_sum);
         sum+=amp * (1.0-fabs(n));
         dx_sum+=amp*dx*-n;
         dy_sum+=amp*dy*-n;
         dz_sum+=amp*dz*-n;
         dw_sum+=amp*dw*-n;
-        amp*=m_gain*clamp(sum,0.0,1.0);
+        amp*=m_gain*clamp(sum,(ANLFloatType)0.0,(ANLFloatType)1.0);
         x*=m_lacunarity;
         y*=m_lacunarity;
         z*=m_lacunarity;
@@ -889,14 +889,14 @@ double CImplicitFractal::DeCarpentierSwiss_get(double x, double y, double z, dou
     return sum;
 }
 
-double CImplicitFractal::DeCarpentierSwiss_get(double x, double y, double z)
+ANLFloatType CImplicitFractal::DeCarpentierSwiss_get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
 {
-    double sum=0;
-    double amp=1.0;
+    ANLFloatType sum=0;
+    ANLFloatType amp=1.0;
 
-    double dx_sum=0;
-    double dy_sum=0;
-    double dz_sum=0;
+    ANLFloatType dx_sum=0;
+    ANLFloatType dy_sum=0;
+    ANLFloatType dz_sum=0;
 
     x*=m_frequency;
     y*=m_frequency;
@@ -904,15 +904,15 @@ double CImplicitFractal::DeCarpentierSwiss_get(double x, double y, double z)
 
     for(unsigned int i=0; i<m_numoctaves; ++i)
     {
-        double n=m_source[i]->get(x+m_offset*dx_sum,y+m_offset*dy_sum,z+m_offset*dz_sum);
-        double dx=m_source[i]->get_dx(x+m_offset*dx_sum,y+m_offset*dy_sum,z+m_offset*dz_sum);
-        double dy=m_source[i]->get_dy(x+m_offset*dx_sum,y+m_offset*dy_sum,z+m_offset*dz_sum);
-        double dz=m_source[i]->get_dz(x+m_offset*dx_sum,y+m_offset*dy_sum,z+m_offset*dz_sum);
+        ANLFloatType n=m_source[i]->get(x+m_offset*dx_sum,y+m_offset*dy_sum,z+m_offset*dz_sum);
+        ANLFloatType dx=m_source[i]->get_dx(x+m_offset*dx_sum,y+m_offset*dy_sum,z+m_offset*dz_sum);
+        ANLFloatType dy=m_source[i]->get_dy(x+m_offset*dx_sum,y+m_offset*dy_sum,z+m_offset*dz_sum);
+        ANLFloatType dz=m_source[i]->get_dz(x+m_offset*dx_sum,y+m_offset*dy_sum,z+m_offset*dz_sum);
         sum+=amp * (1.0-fabs(n));
         dx_sum+=amp*dx*-n;
         dy_sum+=amp*dy*-n;
         dz_sum+=amp*dz*-n;
-        amp*=m_gain*clamp(sum,0.0,1.0);
+        amp*=m_gain*clamp(sum,(ANLFloatType)0.0,(ANLFloatType)1.0);
         x*=m_lacunarity;
         y*=m_lacunarity;
         z*=m_lacunarity;
@@ -920,17 +920,17 @@ double CImplicitFractal::DeCarpentierSwiss_get(double x, double y, double z)
     return sum;
 }
 
-double CImplicitFractal::DeCarpentierSwiss_get(double x, double y, double z, double w, double u, double v)
+ANLFloatType CImplicitFractal::DeCarpentierSwiss_get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
 {
-	double sum=0;
-    double amp=1.0;
+	ANLFloatType sum=0;
+    ANLFloatType amp=1.0;
 
-    double dx_sum=0;
-    double dy_sum=0;
-    double dz_sum=0;
-    double dw_sum=0;
-    double du_sum=0;
-    double dv_sum=0;
+    ANLFloatType dx_sum=0;
+    ANLFloatType dy_sum=0;
+    ANLFloatType dz_sum=0;
+    ANLFloatType dw_sum=0;
+    ANLFloatType du_sum=0;
+    ANLFloatType dv_sum=0;
 
     x*=m_frequency;
     y*=m_frequency;
@@ -941,13 +941,13 @@ double CImplicitFractal::DeCarpentierSwiss_get(double x, double y, double z, dou
 
     for(unsigned int i=0; i<m_numoctaves; ++i)
     {
-        double n=m_source[i]->get(x+m_offset*dx_sum,y+m_offset*dy_sum,z+m_offset*dz_sum);
-        double dx=m_source[i]->get_dx(x+m_offset*dx_sum,y+m_offset*dy_sum,z+m_offset*dx_sum, w+m_offset*dw_sum, u+m_offset*du_sum, v+m_offset*dv_sum);
-        double dy=m_source[i]->get_dy(x+m_offset*dx_sum,y+m_offset*dy_sum,z+m_offset*dz_sum, w+m_offset*dw_sum, u+m_offset*du_sum, v+m_offset*dv_sum);
-        double dz=m_source[i]->get_dz(x+m_offset*dx_sum,y+m_offset*dy_sum,z+m_offset*dz_sum, w+m_offset*dw_sum, u+m_offset*du_sum, v+m_offset*dv_sum);
-        double dw=m_source[i]->get_dw(x+m_offset*dx_sum,y+m_offset*dy_sum,z+m_offset*dz_sum, w+m_offset*dw_sum, u+m_offset*du_sum, v+m_offset*dv_sum);
-        double du=m_source[i]->get_du(x+m_offset*dx_sum,y+m_offset*dy_sum,z+m_offset*dz_sum, w+m_offset*dw_sum, u+m_offset*du_sum, v+m_offset*dv_sum);
-        double dv=m_source[i]->get_dv(x+m_offset*dx_sum,y+m_offset*dy_sum,z+m_offset*dz_sum, w+m_offset*dw_sum, u+m_offset*du_sum, v+m_offset*dv_sum);
+        ANLFloatType n=m_source[i]->get(x+m_offset*dx_sum,y+m_offset*dy_sum,z+m_offset*dz_sum);
+        ANLFloatType dx=m_source[i]->get_dx(x+m_offset*dx_sum,y+m_offset*dy_sum,z+m_offset*dx_sum, w+m_offset*dw_sum, u+m_offset*du_sum, v+m_offset*dv_sum);
+        ANLFloatType dy=m_source[i]->get_dy(x+m_offset*dx_sum,y+m_offset*dy_sum,z+m_offset*dz_sum, w+m_offset*dw_sum, u+m_offset*du_sum, v+m_offset*dv_sum);
+        ANLFloatType dz=m_source[i]->get_dz(x+m_offset*dx_sum,y+m_offset*dy_sum,z+m_offset*dz_sum, w+m_offset*dw_sum, u+m_offset*du_sum, v+m_offset*dv_sum);
+        ANLFloatType dw=m_source[i]->get_dw(x+m_offset*dx_sum,y+m_offset*dy_sum,z+m_offset*dz_sum, w+m_offset*dw_sum, u+m_offset*du_sum, v+m_offset*dv_sum);
+        ANLFloatType du=m_source[i]->get_du(x+m_offset*dx_sum,y+m_offset*dy_sum,z+m_offset*dz_sum, w+m_offset*dw_sum, u+m_offset*du_sum, v+m_offset*dv_sum);
+        ANLFloatType dv=m_source[i]->get_dv(x+m_offset*dx_sum,y+m_offset*dy_sum,z+m_offset*dz_sum, w+m_offset*dw_sum, u+m_offset*du_sum, v+m_offset*dv_sum);
         sum+=amp * (1.0-fabs(n));
         dx_sum+=amp*dx*-n;
         dy_sum+=amp*dy*-n;
@@ -955,7 +955,7 @@ double CImplicitFractal::DeCarpentierSwiss_get(double x, double y, double z, dou
         dw_sum+=amp*dw*-n;
         du_sum+=amp*du*-n;
         dv_sum+=amp*dv*-n;
-        amp*=m_gain*clamp(sum,0.0,1.0);
+        amp*=m_gain*clamp(sum,(ANLFloatType)0.0,(ANLFloatType)1.0);
         x*=m_lacunarity;
         y*=m_lacunarity;
         z*=m_lacunarity;

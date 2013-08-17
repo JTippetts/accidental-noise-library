@@ -9,10 +9,10 @@ namespace anl
     {
         public:
         CRGBABlend();
-        CRGBABlend(double control, SRGBA low, SRGBA high);
-        CRGBABlend(double control, SRGBA low, CRGBAModuleBase * high);
-        CRGBABlend(double control, CRGBAModuleBase * low, SRGBA high);
-        CRGBABlend(double control, CRGBAModuleBase * low, CRGBAModuleBase * high);
+        CRGBABlend(ANLFloatType control, SRGBA low, SRGBA high);
+        CRGBABlend(ANLFloatType control, SRGBA low, CRGBAModuleBase * high);
+        CRGBABlend(ANLFloatType control, CRGBAModuleBase * low, SRGBA high);
+        CRGBABlend(ANLFloatType control, CRGBAModuleBase * low, CRGBAModuleBase * high);
         CRGBABlend(CImplicitModuleBase * control, SRGBA low, SRGBA high);
         CRGBABlend(CImplicitModuleBase * control, SRGBA low, CRGBAModuleBase * high);
         CRGBABlend(CImplicitModuleBase * control, CRGBAModuleBase * low, SRGBA high);
@@ -25,12 +25,12 @@ namespace anl
         void setLowSource(SRGBA c);
         void setHighSource(SRGBA c);
         void setControlSource(CImplicitModuleBase * m);
-        void setControlSource(double v);
+        void setControlSource(ANLFloatType v);
 
-        SRGBA get(double x, double y);
-        SRGBA get(double x, double y, double z);
-        SRGBA get(double x, double y, double z, double w);
-        SRGBA get(double x, double y, double z, double w, double u, double v);
+        SRGBA get(ANLFloatType x, ANLFloatType y);
+        SRGBA get(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+        SRGBA get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+        SRGBA get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
 
         protected:
         CRGBAParameter m_low, m_high;

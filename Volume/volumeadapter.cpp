@@ -5,50 +5,50 @@ namespace anl
 	CVolumeAdapter::CVolumeAdapter() : mode_(SEAMLESS_NONE), ranges_(), src_(0)
 	{
 	}
-	
+
 	CVolumeAdapter::CVolumeAdapter(CImplicitModuleBase *src, int seamlessmode, SMappingRanges ranges) :
 		mode_(seamlessmode), ranges_(ranges), src_(src)
 	{
 	}
-	
+
 	CVolumeAdapter::~CVolumeAdapter()
 	{
 	}
-		
+
 	void CVolumeAdapter::setSeamlessMode(int mode)
 	{
 		mode_=mode;
 		if(mode_<SEAMLESS_NONE) mode_=SEAMLESS_NONE;
 		if(mode_>SEAMLESS_XYZ) mode_=SEAMLESS_XYZ;
 	}
-	
+
 	void CVolumeAdapter::setMappingRanges(SMappingRanges ranges)
 	{
 		ranges_=ranges;
 	}
-	
+
 	void CVolumeAdapter::setSource(CImplicitModuleBase *src)
 	{
 		src_=src;
 	}
-		
+
 	void CVolumeAdapter::get(CArray3Dd &a)
 	{
 		if(!src_) return;
 		unsigned int w=a.width(), h=a.height(), d=a.depth();
-		double pi2=3.141592*2.0;
-		
+		ANLFloatType pi2=3.141592*2.0;
+
 		for(unsigned int x=0; x<w; ++x)
 		{
 			for(unsigned int y=0; y<h; ++y)
 			{
 				for(unsigned int z=0; z<d; ++z)
 				{
-					double p=(double)x / (double)w;
-					double q=(double)y / (double)h;
-					double r=(double)z / (double)d;
-					double nx,ny,nz,nw,nu,nv,val=0.0;
-					double dx, dy, dz;
+					ANLFloatType p=(ANLFloatType)x / (ANLFloatType)w;
+					ANLFloatType q=(ANLFloatType)y / (ANLFloatType)h;
+					ANLFloatType r=(ANLFloatType)z / (ANLFloatType)d;
+					ANLFloatType nx,ny,nz,nw,nu,nv,val=0.0;
+					ANLFloatType dx, dy, dz;
 					switch(mode_)
 					{
 						case SEAMLESS_NONE:

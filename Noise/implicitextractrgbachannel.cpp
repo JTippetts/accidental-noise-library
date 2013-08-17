@@ -19,26 +19,26 @@ namespace anl
         if(channel<RED) channel=RED;
         if(channel>ALPHA) channel=ALPHA;
     }
-    double CImplicitExtractRGBAChannel::get(double x, double y)
+    ANLFloatType CImplicitExtractRGBAChannel::get(ANLFloatType x, ANLFloatType y)
     {
         SRGBA s=m_source.get(x,y);
 
         return s[m_channel];
     }
 
-    double CImplicitExtractRGBAChannel::get(double x, double y, double z)
+    ANLFloatType CImplicitExtractRGBAChannel::get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
     {
         SRGBA s=m_source.get(x,y,z);
 
         return s[m_channel];
     }
-    double CImplicitExtractRGBAChannel::get(double x, double y, double z, double w)
+    ANLFloatType CImplicitExtractRGBAChannel::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
     {
         SRGBA s=m_source.get(x,y,z,w);
 
         return s[m_channel];
     }
-    double CImplicitExtractRGBAChannel::get(double x, double y, double z, double w, double u, double v)
+    ANLFloatType CImplicitExtractRGBAChannel::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
     {
         SRGBA s=m_source.get(x,y,z,w,u,v);
 

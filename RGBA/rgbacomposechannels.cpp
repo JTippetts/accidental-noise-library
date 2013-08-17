@@ -5,49 +5,49 @@ namespace anl
 {
     CRGBACompositeChannels::CRGBACompositeChannels() : m_c1(0.0), m_c2(0.0), m_c3(0.0), m_c4(1.0), m_mode(RGB){};
 
-    CRGBACompositeChannels::CRGBACompositeChannels(double r, double g, double b, double a, int mode) :
+    CRGBACompositeChannels::CRGBACompositeChannels(ANLFloatType r, ANLFloatType g, ANLFloatType b, ANLFloatType a, int mode) :
         CRGBAModuleBase(), m_c1(r), m_c2(g), m_c3(b), m_c4(a), m_mode(mode){}
 
-    CRGBACompositeChannels::CRGBACompositeChannels(double r, double g, double b, CImplicitModuleBase * a, int mode) :
+    CRGBACompositeChannels::CRGBACompositeChannels(ANLFloatType r, ANLFloatType g, ANLFloatType b, CImplicitModuleBase * a, int mode) :
         CRGBAModuleBase(), m_c1(r), m_c2(g), m_c3(b), m_c4(a), m_mode(mode){}
 
-    CRGBACompositeChannels::CRGBACompositeChannels(double r, double g, CImplicitModuleBase * b, double a, int mode) :
+    CRGBACompositeChannels::CRGBACompositeChannels(ANLFloatType r, ANLFloatType g, CImplicitModuleBase * b, ANLFloatType a, int mode) :
         CRGBAModuleBase(), m_c1(r), m_c2(g), m_c3(b), m_c4(a), m_mode(mode){}
 
-    CRGBACompositeChannels::CRGBACompositeChannels(double r, double g, CImplicitModuleBase * b, CImplicitModuleBase * a, int mode) :
+    CRGBACompositeChannels::CRGBACompositeChannels(ANLFloatType r, ANLFloatType g, CImplicitModuleBase * b, CImplicitModuleBase * a, int mode) :
         CRGBAModuleBase(), m_c1(r), m_c2(g), m_c3(b), m_c4(a), m_mode(mode){}
 
-    CRGBACompositeChannels::CRGBACompositeChannels(double r, CImplicitModuleBase * g, double b, double a, int mode) :
+    CRGBACompositeChannels::CRGBACompositeChannels(ANLFloatType r, CImplicitModuleBase * g, ANLFloatType b, ANLFloatType a, int mode) :
         CRGBAModuleBase(), m_c1(r), m_c2(g), m_c3(b), m_c4(a), m_mode(mode){}
 
-    CRGBACompositeChannels::CRGBACompositeChannels(double r, CImplicitModuleBase * g, double b, CImplicitModuleBase * a, int mode) :
+    CRGBACompositeChannels::CRGBACompositeChannels(ANLFloatType r, CImplicitModuleBase * g, ANLFloatType b, CImplicitModuleBase * a, int mode) :
         CRGBAModuleBase(), m_c1(r), m_c2(g), m_c3(b), m_c4(a), m_mode(mode){}
 
-    CRGBACompositeChannels::CRGBACompositeChannels(double r, CImplicitModuleBase * g, CImplicitModuleBase * b, double a, int mode) :
+    CRGBACompositeChannels::CRGBACompositeChannels(ANLFloatType r, CImplicitModuleBase * g, CImplicitModuleBase * b, ANLFloatType a, int mode) :
         CRGBAModuleBase(), m_c1(r), m_c2(g), m_c3(b), m_c4(a), m_mode(mode){}
 
-    CRGBACompositeChannels::CRGBACompositeChannels(double r, CImplicitModuleBase * g, CImplicitModuleBase * b, CImplicitModuleBase * a, int mode) :
+    CRGBACompositeChannels::CRGBACompositeChannels(ANLFloatType r, CImplicitModuleBase * g, CImplicitModuleBase * b, CImplicitModuleBase * a, int mode) :
         CRGBAModuleBase(), m_c1(r), m_c2(g), m_c3(b), m_c4(a), m_mode(mode){}
 
-    CRGBACompositeChannels::CRGBACompositeChannels(CImplicitModuleBase * r, double g, double b, double a, int mode) :
+    CRGBACompositeChannels::CRGBACompositeChannels(CImplicitModuleBase * r, ANLFloatType g, ANLFloatType b, ANLFloatType a, int mode) :
         CRGBAModuleBase(), m_c1(r), m_c2(g), m_c3(b), m_c4(a), m_mode(mode){}
 
-    CRGBACompositeChannels::CRGBACompositeChannels(CImplicitModuleBase * r, double g, double b, CImplicitModuleBase * a, int mode) :
+    CRGBACompositeChannels::CRGBACompositeChannels(CImplicitModuleBase * r, ANLFloatType g, ANLFloatType b, CImplicitModuleBase * a, int mode) :
         CRGBAModuleBase(), m_c1(r), m_c2(g), m_c3(b), m_c4(a), m_mode(mode){}
 
-    CRGBACompositeChannels::CRGBACompositeChannels(CImplicitModuleBase * r, double g, CImplicitModuleBase * b, double a, int mode) :
+    CRGBACompositeChannels::CRGBACompositeChannels(CImplicitModuleBase * r, ANLFloatType g, CImplicitModuleBase * b, ANLFloatType a, int mode) :
         CRGBAModuleBase(), m_c1(r), m_c2(g), m_c3(b), m_c4(a), m_mode(mode){}
 
-    CRGBACompositeChannels::CRGBACompositeChannels(CImplicitModuleBase * r, double g, CImplicitModuleBase * b, CImplicitModuleBase * a, int mode) :
+    CRGBACompositeChannels::CRGBACompositeChannels(CImplicitModuleBase * r, ANLFloatType g, CImplicitModuleBase * b, CImplicitModuleBase * a, int mode) :
         CRGBAModuleBase(), m_c1(r), m_c2(g), m_c3(b), m_c4(a), m_mode(mode){}
 
-    CRGBACompositeChannels::CRGBACompositeChannels(CImplicitModuleBase * r, CImplicitModuleBase * g, double b, double a, int mode) :
+    CRGBACompositeChannels::CRGBACompositeChannels(CImplicitModuleBase * r, CImplicitModuleBase * g, ANLFloatType b, ANLFloatType a, int mode) :
         CRGBAModuleBase(), m_c1(r), m_c2(g), m_c3(b), m_c4(a), m_mode(mode){}
 
-    CRGBACompositeChannels::CRGBACompositeChannels(CImplicitModuleBase * r, CImplicitModuleBase * g, double b, CImplicitModuleBase * a, int mode) :
+    CRGBACompositeChannels::CRGBACompositeChannels(CImplicitModuleBase * r, CImplicitModuleBase * g, ANLFloatType b, CImplicitModuleBase * a, int mode) :
         CRGBAModuleBase(), m_c1(r), m_c2(g), m_c3(b), m_c4(a), m_mode(mode){}
 
-    CRGBACompositeChannels::CRGBACompositeChannels(CImplicitModuleBase * r, CImplicitModuleBase * g, CImplicitModuleBase * b, double a, int mode) :
+    CRGBACompositeChannels::CRGBACompositeChannels(CImplicitModuleBase * r, CImplicitModuleBase * g, CImplicitModuleBase * b, ANLFloatType a, int mode) :
         CRGBAModuleBase(), m_c1(r), m_c2(g), m_c3(b), m_c4(a), m_mode(mode){}
 
     CRGBACompositeChannels::CRGBACompositeChannels(CImplicitModuleBase * r, CImplicitModuleBase * g, CImplicitModuleBase * b, CImplicitModuleBase * a, int mode) :
@@ -85,36 +85,36 @@ namespace anl
     {
         m_c4.set(m);
     }
-    void CRGBACompositeChannels::setRedSource(double r)
+    void CRGBACompositeChannels::setRedSource(ANLFloatType r)
     {
         m_c1.set(r);
     }
-    void CRGBACompositeChannels::setGreenSource(double g)
+    void CRGBACompositeChannels::setGreenSource(ANLFloatType g)
     {
         m_c2.set(g);
     }
-    void CRGBACompositeChannels::setBlueSource(double b)
+    void CRGBACompositeChannels::setBlueSource(ANLFloatType b)
     {
         m_c3.set(b);
     }
-    void CRGBACompositeChannels::setAlphaSource(double a)
+    void CRGBACompositeChannels::setAlphaSource(ANLFloatType a)
     {
         m_c4.set(a);
     }
-    void CRGBACompositeChannels::setHueSource(double h)
+    void CRGBACompositeChannels::setHueSource(ANLFloatType h)
     {
         m_c1.set(h);
     }
-    void CRGBACompositeChannels::setSatSource(double s)
+    void CRGBACompositeChannels::setSatSource(ANLFloatType s)
     {
         m_c2.set(s);
     }
-    void CRGBACompositeChannels::setValSource(double v)
+    void CRGBACompositeChannels::setValSource(ANLFloatType v)
     {
         m_c3.set(v);
     }
 
-    SRGBA CRGBACompositeChannels::get(double x, double y)
+    SRGBA CRGBACompositeChannels::get(ANLFloatType x, ANLFloatType y)
     {
         float r=(float)m_c1.get(x,y);
         float g=(float)m_c2.get(x,y);
@@ -129,7 +129,7 @@ namespace anl
             return rgb;
         }
     }
-    SRGBA CRGBACompositeChannels::get(double x, double y, double z)
+    SRGBA CRGBACompositeChannels::get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
     {
         float r=(float)m_c1.get(x,y,z);
         float g=(float)m_c2.get(x,y,z);
@@ -144,7 +144,7 @@ namespace anl
             return rgb;
         }
     }
-    SRGBA CRGBACompositeChannels::get(double x, double y, double z, double w)
+    SRGBA CRGBACompositeChannels::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
     {
         float r=(float)m_c1.get(x,y,z,w);
         float g=(float)m_c2.get(x,y,z,w);
@@ -159,7 +159,7 @@ namespace anl
             return rgb;
         }
     }
-    SRGBA CRGBACompositeChannels::get(double x, double y, double z, double w, double u, double v)
+    SRGBA CRGBACompositeChannels::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
     {
         float r=(float)m_c1.get(x,y,z,w,u,v);
         float g=(float)m_c2.get(x,y,z,w,u,v);

@@ -32,20 +32,20 @@ namespace anl
 
         void setType(int type);
         void setInterp(int interp);
-        void setRotationAngle(double ax, double ay, double az, double angle);
+        void setRotationAngle(ANLFloatType ax, ANLFloatType ay, ANLFloatType az, ANLFloatType angle);
         void setNoRotation();
 
         void setSeed(unsigned int seed);
 
-        double get(double x, double y);
-        double get(double x, double y, double z);
-        double get(double x, double y, double z, double w);
-        double get(double x, double y, double z, double w, double u, double v);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
 
 
         protected:
 
-        double m_scale[4], m_offset[4];
+        ANLFloatType m_scale[4], m_offset[4];
         interp_func m_interp;
         noise_func2 m_2d;
         noise_func3 m_3d;
@@ -53,8 +53,8 @@ namespace anl
         noise_func6 m_6d;
         unsigned int m_seed;
 
-        double m_rotmatrix[3][3];
-        double cos2d,sin2d;
+        ANLFloatType m_rotmatrix[3][3];
+        ANLFloatType cos2d,sin2d;
         bool m_rotatedomain;
 
         void setMagicNumbers(int type);

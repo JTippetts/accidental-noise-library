@@ -6,16 +6,16 @@ namespace anl
 {
     setCoefficients(1,0,0,0);
 }
-CImplicitCellular::CImplicitCellular(double a, double b, double c, double d) : CImplicitModuleBase(), m_generator(0)
+CImplicitCellular::CImplicitCellular(ANLFloatType a, ANLFloatType b, ANLFloatType c, ANLFloatType d) : CImplicitModuleBase(), m_generator(0)
 {
     setCoefficients(a,b,c,d);
 }
-CImplicitCellular::CImplicitCellular(CCellularGenerator* m, double a, double b, double c, double d) : CImplicitModuleBase(), m_generator(m)
+CImplicitCellular::CImplicitCellular(CCellularGenerator* m, ANLFloatType a, ANLFloatType b, ANLFloatType c, ANLFloatType d) : CImplicitModuleBase(), m_generator(m)
 {
     setCoefficients(a,b,c,d);
 }
 
-void CImplicitCellular::setCoefficients(double a, double b, double c, double d)
+void CImplicitCellular::setCoefficients(ANLFloatType a, ANLFloatType b, ANLFloatType c, ANLFloatType d)
 {
     m_coefficients[0]=a;
     m_coefficients[1]=b;
@@ -28,7 +28,7 @@ void CImplicitCellular::setCellularSource(CCellularGenerator* m)
     m_generator=m;
 }
 
-double CImplicitCellular::get(double x, double y)
+ANLFloatType CImplicitCellular::get(ANLFloatType x, ANLFloatType y)
 {
     if(!m_generator) return 0.0;
 
@@ -36,21 +36,21 @@ double CImplicitCellular::get(double x, double y)
     return c.f[0]*m_coefficients[0] + c.f[1]*m_coefficients[1] + c.f[2]*m_coefficients[2] + c.f[3]*m_coefficients[3];
 }
 
-double CImplicitCellular::get(double x, double y, double z)
+ANLFloatType CImplicitCellular::get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
 {
     if(!m_generator) return 0.0;
 
     SCellularCache &c=m_generator->get(x,y,z);
     return c.f[0]*m_coefficients[0] + c.f[1]*m_coefficients[1] + c.f[2]*m_coefficients[2] + c.f[3]*m_coefficients[3];
 }
-double CImplicitCellular::get(double x, double y, double z, double w)
+ANLFloatType CImplicitCellular::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
 {
     if(!m_generator) return 0.0;
 
     SCellularCache &c=m_generator->get(x,y,z,w);
     return c.f[0]*m_coefficients[0] + c.f[1]*m_coefficients[1] + c.f[2]*m_coefficients[2] + c.f[3]*m_coefficients[3];
 }
-double CImplicitCellular::get(double x, double y, double z, double w, double u, double v)
+ANLFloatType CImplicitCellular::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
 {
     if(!m_generator) return 0.0;
 
@@ -70,7 +70,7 @@ double CImplicitCellular::get(double x, double y, double z, double w, double u, 
     {
     }
 
-    double CImplicitVoronoi::get(double x, double y)
+    ANLFloatType CImplicitVoronoi::get(ANLFloatType x, ANLFloatType y)
     {
         if(!m_generator) return 0.0;
         SCellularCache &c=m_generator->get(x,y);
@@ -78,21 +78,21 @@ double CImplicitCellular::get(double x, double y, double z, double w, double u, 
     }
 
 
-    double CImplicitVoronoi::get(double x, double y, double z)
+    ANLFloatType CImplicitVoronoi::get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
     {
         if(!m_generator) return 0.0;
         SCellularCache &c=m_generator->get(x,y,z);
         return c.d[0];
     }
 
-    double CImplicitVoronoi::get(double x, double y, double z, double w)
+    ANLFloatType CImplicitVoronoi::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
     {
         if(!m_generator) return 0.0;
         SCellularCache &c=m_generator->get(x,y,z,w);
         return c.d[0];
     }
 
-    double CImplicitVoronoi::get(double x, double y, double z, double w, double u, double v)
+    ANLFloatType CImplicitVoronoi::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
     {
         if(!m_generator) return 0.0;
         SCellularCache &c=m_generator->get(x,y,z,w,u,v);

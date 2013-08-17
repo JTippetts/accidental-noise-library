@@ -7,13 +7,13 @@ namespace anl
 {
     CImplicitMath::CImplicitMath() : CImplicitModuleBase(), m_op(ABS), m_source(0.0), m_parameter(0.0){}
 
-    CImplicitMath::CImplicitMath(unsigned int op, double source, double p) : CImplicitModuleBase(), m_op(op), m_source(source), m_parameter(p){}
-    CImplicitMath::CImplicitMath(unsigned int op, CImplicitModuleBase * source, double p) : CImplicitModuleBase(), m_op(op), m_source(source), m_parameter(p){}
-    CImplicitMath::CImplicitMath(unsigned int op, double source, CImplicitModuleBase * p) : CImplicitModuleBase(), m_op(op), m_source(source), m_parameter(p){}
+    CImplicitMath::CImplicitMath(unsigned int op, ANLFloatType source, ANLFloatType p) : CImplicitModuleBase(), m_op(op), m_source(source), m_parameter(p){}
+    CImplicitMath::CImplicitMath(unsigned int op, CImplicitModuleBase * source, ANLFloatType p) : CImplicitModuleBase(), m_op(op), m_source(source), m_parameter(p){}
+    CImplicitMath::CImplicitMath(unsigned int op, ANLFloatType source, CImplicitModuleBase * p) : CImplicitModuleBase(), m_op(op), m_source(source), m_parameter(p){}
     CImplicitMath::CImplicitMath(unsigned int op, CImplicitModuleBase * source, CImplicitModuleBase * p) : CImplicitModuleBase(), m_op(op), m_source(source), m_parameter(p){}
     CImplicitMath::~CImplicitMath() {}
 
-    void CImplicitMath::setSource(double v)
+    void CImplicitMath::setSource(ANLFloatType v)
     {
         m_source.set(v);
     }
@@ -23,7 +23,7 @@ namespace anl
         m_source.set(b);
     }
 
-    void CImplicitMath::setParameter(double v)
+    void CImplicitMath::setParameter(ANLFloatType v)
     {
         m_parameter.set(v);
     }
@@ -38,36 +38,36 @@ namespace anl
         m_op=op;
     }
 
-    double CImplicitMath::get(double x, double y)
+    ANLFloatType CImplicitMath::get(ANLFloatType x, ANLFloatType y)
     {
-        double v=m_source.get(x,y);
-        double p=m_parameter.get(x,y);
+        ANLFloatType v=m_source.get(x,y);
+        ANLFloatType p=m_parameter.get(x,y);
         return applyOp(v,p);
     }
 
-    double CImplicitMath::get(double x, double y, double z)
+    ANLFloatType CImplicitMath::get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
     {
-        double v=m_source.get(x,y,z);
-        double p=m_parameter.get(x,y,z);
+        ANLFloatType v=m_source.get(x,y,z);
+        ANLFloatType p=m_parameter.get(x,y,z);
         return applyOp(v,p);
     }
 
-    double CImplicitMath::get(double x, double y, double z, double w)
+    ANLFloatType CImplicitMath::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
     {
-        double v=m_source.get(x,y,z,w);
-        double p=m_parameter.get(x,y,z,w);
+        ANLFloatType v=m_source.get(x,y,z,w);
+        ANLFloatType p=m_parameter.get(x,y,z,w);
         return applyOp(v,p);
     }
 
-    double CImplicitMath::get(double x, double y, double z, double w, double u, double v)
+    ANLFloatType CImplicitMath::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
     {
-        double val=m_source.get(x,y,z,w,u,v);
-        double p=m_parameter.get(x,y,z,w,u,v);
+        ANLFloatType val=m_source.get(x,y,z,w,u,v);
+        ANLFloatType p=m_parameter.get(x,y,z,w,u,v);
         return applyOp(val,p);
     }
 
 
-    double CImplicitMath::applyOp(double v, double p)
+    ANLFloatType CImplicitMath::applyOp(ANLFloatType v, ANLFloatType p)
     {
         switch(m_op)
         {
@@ -91,8 +91,8 @@ namespace anl
             case ONEMINUS: return 1.0-v; break;
             case PMINUS: return p-v; break;
             case SQRT: return sqrt(v); break;
-            case INTEGER: return (double)(int)v; break;
-            case FRACTIONAL: return v-(double)(int)v; break;
+            case INTEGER: return (ANLFloatType)(int)v; break;
+            case FRACTIONAL: return v-(ANLFloatType)(int)v; break;
 			case EASECUBIC: return hermite_blend(v); break;
 			case EASEQUINTIC: return quintic_blend(v); break;
             case SUM: return v+p; break;

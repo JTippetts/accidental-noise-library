@@ -15,10 +15,10 @@ namespace anl
 
         void setSeed(unsigned int){};
 
-        virtual SRGBA get(double x, double y)=0;
-        virtual SRGBA get(double x, double y, double z)=0;
-        virtual SRGBA get(double x, double y, double z, double w)=0;
-        virtual SRGBA get(double x, double y, double z, double w, double u, double v)=0;
+        virtual SRGBA get(ANLFloatType x, ANLFloatType y)=0;
+        virtual SRGBA get(ANLFloatType x, ANLFloatType y, ANLFloatType z)=0;
+        virtual SRGBA get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)=0;
+        virtual SRGBA get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)=0;
     };
 
     class CRGBAParameter
@@ -38,25 +38,25 @@ namespace anl
             m_source=m;
         }
 
-        SRGBA get(double x, double y)
+        SRGBA get(ANLFloatType x, ANLFloatType y)
         {
             if(m_source) return m_source->get(x,y);
             else return m_constant;
         }
 
-        SRGBA get(double x, double y, double z)
+        SRGBA get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
         {
             if(m_source) return m_source->get(x,y,z);
             else return m_constant;
         }
 
-        SRGBA get(double x, double y, double z, double w)
+        SRGBA get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
         {
             if(m_source) return m_source->get(x,y,z,w);
             else return m_constant;
         }
 
-        SRGBA get(double x, double y, double z, double w, double u, double v)
+        SRGBA get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
         {
             if(m_source) return m_source->get(x,y,z,w,u,v);
             else return m_constant;

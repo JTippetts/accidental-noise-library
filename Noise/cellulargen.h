@@ -22,9 +22,9 @@ namespace anl
 
 struct SCellularCache
 {
-    double f[4];
-    double d[4];
-    double x,y,z,w,u,v;
+    ANLFloatType f[4];
+    ANLFloatType d[4];
+    ANLFloatType x,y,z,w,u,v;
     bool valid;
 
     SCellularCache()
@@ -41,10 +41,10 @@ class CCellularGenerator
     CCellularGenerator(int distfunc);
     ~CCellularGenerator();
 
-    SCellularCache &get(double x, double y);
-    SCellularCache &get(double x, double y, double z);
-    SCellularCache &get(double x, double y, double z, double w);
-    SCellularCache &get(double x, double y, double z, double w, double u, double v);
+    SCellularCache &get(ANLFloatType x, ANLFloatType y);
+    SCellularCache &get(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+    SCellularCache &get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+    SCellularCache &get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
 
     void setSeed(unsigned int seed);
     void setDistanceFunction(int func);

@@ -12,7 +12,7 @@ namespace anl
     void CRGBANormalize::setSource(CRGBAModuleBase * m){m_source.set(m);}
     void CRGBANormalize::setSource(SRGBA c){m_source.set(c);}
 
-    SRGBA CRGBANormalize::get(double x, double y)
+    SRGBA CRGBANormalize::get(ANLFloatType x, ANLFloatType y)
     {
         SRGBA s=m_source.get(x,y);
         float len=s[0]*s[0] + s[1]*s[1] + s[2]*s[2];
@@ -23,7 +23,7 @@ namespace anl
         len=sqrtf(len);
         return SRGBA(s[0]/len, s[1]/len, s[2]/len, s[3]);
     }
-    SRGBA CRGBANormalize::get(double x, double y, double z)
+    SRGBA CRGBANormalize::get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
     {
         SRGBA s=m_source.get(x,y,z);
         float len=s[0]*s[0] + s[1]*s[1] + s[2]*s[2];
@@ -34,7 +34,7 @@ namespace anl
         len=sqrtf(len);
         return SRGBA(s[0]/len, s[1]/len, s[2]/len, s[3]);
     }
-    SRGBA CRGBANormalize::get(double x, double y, double z, double w)
+    SRGBA CRGBANormalize::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
     {
         SRGBA s=m_source.get(x,y,z,w);
         float len=s[0]*s[0] + s[1]*s[1] + s[2]*s[2];
@@ -45,7 +45,7 @@ namespace anl
         len=sqrtf(len);
         return SRGBA(s[0]/len, s[1]/len, s[2]/len, s[3]);
     }
-    SRGBA CRGBANormalize::get(double x, double y, double z, double w, double u, double v)
+    SRGBA CRGBANormalize::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
     {
         SRGBA s=m_source.get(x,y,z,w,u,v);
         float len=s[0]*s[0] + s[1]*s[1] + s[2]*s[2];

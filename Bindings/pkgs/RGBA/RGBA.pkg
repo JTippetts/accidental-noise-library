@@ -1,5 +1,6 @@
 $#include "anl_noise.h"
 $#include "anl_rgba.h"
+$#include "../types.h"
 
 namespace anl
 {
@@ -16,13 +17,13 @@ namespace anl
         LINEARDODGE,
         LINEARBURN
     };
-	
+
 	enum CompositeChannelsMode
     {
         RGB,
         HSV
     };
-	
+
 	enum EBlendOps
     {
         SRC1_ALPHA,
@@ -32,7 +33,7 @@ namespace anl
         ONE,
         ZERO
     };
-	
+
 	class CRGBAModuleBase
     {
         public:
@@ -43,7 +44,7 @@ namespace anl
         virtual anl::SRGBA get(double x, double y, double z, double w)=0;
         virtual anl::SRGBA get(double x, double y, double z, double w, double u, double v)=0;
     };
-	
+
 	class CRGBABlend : public CRGBAModuleBase
     {
         public:
@@ -66,7 +67,7 @@ namespace anl
         void setControlSource(anl::CImplicitModuleBase * m);
         void setControlSource(double v);
 	};
-	
+
 	class CRGBABlendOps : public CRGBAModuleBase
     {
         public:
@@ -85,7 +86,7 @@ namespace anl
         void setSource1(anl::SRGBA c);
         void setSource2(anl::SRGBA c);
 	};
-	
+
 	class CRGBAColorOps : public CRGBAModuleBase
     {
         public:
@@ -103,7 +104,7 @@ namespace anl
         void setSource2(anl::SRGBA c);
         void setSource2(CRGBAModuleBase * m);
 	};
-	
+
 	class CRGBACompositeChannels : public CRGBAModuleBase
     {
         public:
@@ -145,7 +146,7 @@ namespace anl
         void setSatSource(double s);
         void setValSource(double v);
 	};
-	
+
 	class CRGBAConstant : public CRGBAModuleBase
     {
         public:
@@ -157,7 +158,7 @@ namespace anl
         void set(float r, float g, float b, float a);
         void set(anl::SRGBA &r);
 	};
-	
+
 	class CRGBACurve : public CRGBAModuleBase
     {
         public:
@@ -171,7 +172,7 @@ namespace anl
         void setSource(anl::CImplicitModuleBase * m);
         void setInterpType(int type);
 	};
-	
+
 	class CRGBAHSVToRGBA :public CRGBAModuleBase
     {
         public:
@@ -182,7 +183,7 @@ namespace anl
         void setSource(CRGBAModuleBase * m);
         void setSource(anl::SRGBA c);
 	};
-	
+
 	class CRGBAImplicitGrayscale : public CRGBAModuleBase
     {
         public:
@@ -194,7 +195,7 @@ namespace anl
         void setSource(anl::CImplicitModuleBase * m);
         void setSource(double s);
 	};
-	
+
 	class CRGBANormalize : public CRGBAModuleBase
     {
         public:
@@ -206,7 +207,7 @@ namespace anl
         void setSource(CRGBAModuleBase * m);
         void setSource(anl::SRGBA c);
 	};
-	
+
 	class CRGBARGBAToHSV :public CRGBAModuleBase
     {
         public:
@@ -219,7 +220,7 @@ namespace anl
         void setSource(CRGBAModuleBase * m);
         void setSource(anl::SRGBA c);
 	};
-	
+
 	class CRGBARotateColor : public CRGBAModuleBase
     {
         public:
@@ -275,7 +276,7 @@ namespace anl
         void setSource(CRGBAModuleBase * m);
         void setSource(anl::SRGBA c);
 	};
-	
+
 	class CRGBASelect : public CRGBAModuleBase
     {
         public:

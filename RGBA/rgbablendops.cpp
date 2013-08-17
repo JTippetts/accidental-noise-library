@@ -71,7 +71,7 @@ namespace anl
             s1[2]*srcfactor+s2[2]*dstfactor, s2[3]);
     }
 
-    SRGBA CRGBABlendOps::get(double x, double y)
+    SRGBA CRGBABlendOps::get(ANLFloatType x, ANLFloatType y)
     {
         SRGBA s1=m_source1.get(x,y);
         SRGBA s2=m_source2.get(x,y);
@@ -79,7 +79,7 @@ namespace anl
         return blendRGBAs(s1,s2);
     }
 
-    SRGBA CRGBABlendOps::get(double x, double y, double z)
+    SRGBA CRGBABlendOps::get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
     {
         SRGBA s1=m_source1.get(x,y,z);
         SRGBA s2=m_source2.get(x,y,z);
@@ -87,14 +87,14 @@ namespace anl
         return blendRGBAs(s1,s2);
     }
 
-    SRGBA CRGBABlendOps::get(double x, double y, double z, double w)
+    SRGBA CRGBABlendOps::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
     {
         SRGBA s1=m_source1.get(x,y,z,w);
         SRGBA s2=m_source2.get(x,y,z,w);
 
         return blendRGBAs(s1,s2);
     }
-    SRGBA CRGBABlendOps::get(double x, double y, double z, double w, double u, double v)
+    SRGBA CRGBABlendOps::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
     {
         SRGBA s1=m_source1.get(x,y,z,w,u,v);
         SRGBA s2=m_source2.get(x,y,z,w,u,v);

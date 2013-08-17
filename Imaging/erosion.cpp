@@ -38,7 +38,7 @@ SDrop find_lowest_neighbor(anl::CMWC4096 &rnd, anl::CArray2Dd &map, int x, int y
 
     int minx=x;
     int miny=y;
-    double minht=map.get(x,y);
+    ANLFloatType minht=map.get(x,y);
 
     shuffleDirections(dirs,rnd);
 
@@ -48,7 +48,7 @@ SDrop find_lowest_neighbor(anl::CMWC4096 &rnd, anl::CArray2Dd &map, int x, int y
         int j=y+dirs[c].y;
         if(i>=0 && i<w && j>=0 && j<h)
         {
-            double v=map.get(i,j);
+            ANLFloatType v=map.get(i,j);
             if(v<minht)
             {
                 minht=v;
@@ -86,8 +86,8 @@ void simpleErode(anl::CArray2Dd &map, unsigned int numdrops, float power)
         SDrop low=find_lowest_neighbor(rnd, map, drop.x, drop.y);
         if(low.x != drop.x || low.y!=drop.y)
         {
-            double ht=map.get(drop.x,drop.y);
-            double mn=map.get(low.x,low.y);
+            ANLFloatType ht=map.get(drop.x,drop.y);
+            ANLFloatType mn=map.get(low.x,low.y);
 
             map.set(drop.x,drop.y,ht+power*(mn-ht));
             map.set(low.x,low.y,ht+(1.0-power)*(mn-ht));

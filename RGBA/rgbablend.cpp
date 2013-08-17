@@ -4,10 +4,10 @@ namespace anl
 {
     CRGBABlend::CRGBABlend() : m_low(), m_high(), m_control(0.0){}
 
-    CRGBABlend::CRGBABlend(double control, SRGBA low, SRGBA high) : CRGBAModuleBase(), m_low(low), m_high(high), m_control(control){}
-    CRGBABlend::CRGBABlend(double control, SRGBA low, CRGBAModuleBase * high) : CRGBAModuleBase(), m_low(low), m_high(high), m_control(control){}
-    CRGBABlend::CRGBABlend(double control, CRGBAModuleBase * low, SRGBA high) : CRGBAModuleBase(), m_low(low), m_high(high), m_control(control){}
-    CRGBABlend::CRGBABlend(double control, CRGBAModuleBase * low, CRGBAModuleBase * high) : CRGBAModuleBase(), m_low(low), m_high(high), m_control(control){}
+    CRGBABlend::CRGBABlend(ANLFloatType control, SRGBA low, SRGBA high) : CRGBAModuleBase(), m_low(low), m_high(high), m_control(control){}
+    CRGBABlend::CRGBABlend(ANLFloatType control, SRGBA low, CRGBAModuleBase * high) : CRGBAModuleBase(), m_low(low), m_high(high), m_control(control){}
+    CRGBABlend::CRGBABlend(ANLFloatType control, CRGBAModuleBase * low, SRGBA high) : CRGBAModuleBase(), m_low(low), m_high(high), m_control(control){}
+    CRGBABlend::CRGBABlend(ANLFloatType control, CRGBAModuleBase * low, CRGBAModuleBase * high) : CRGBAModuleBase(), m_low(low), m_high(high), m_control(control){}
     CRGBABlend::CRGBABlend(CImplicitModuleBase * control, SRGBA low, SRGBA high) : CRGBAModuleBase(), m_low(low), m_high(high), m_control(control){}
     CRGBABlend::CRGBABlend(CImplicitModuleBase * control, SRGBA low, CRGBAModuleBase * high) : CRGBAModuleBase(), m_low(low), m_high(high), m_control(control){}
     CRGBABlend::CRGBABlend(CImplicitModuleBase * control, CRGBAModuleBase * low, SRGBA high) : CRGBAModuleBase(), m_low(low), m_high(high), m_control(control){}
@@ -40,16 +40,16 @@ namespace anl
         m_control.set(m);
     }
 
-    void CRGBABlend::setControlSource(double v)
+    void CRGBABlend::setControlSource(ANLFloatType v)
     {
         m_control.set(v);
     }
 
-    SRGBA CRGBABlend::get(double x, double y)
+    SRGBA CRGBABlend::get(ANLFloatType x, ANLFloatType y)
     {
         SRGBA low=m_low.get(x,y);
         SRGBA high=m_high.get(x,y);
-        double control=m_control.get(x,y);
+        ANLFloatType control=m_control.get(x,y);
 
         return SRGBA(
             (float)(low[0]+control*(high[0]-low[0])),
@@ -58,11 +58,11 @@ namespace anl
             (float)(low[3]+control*(high[3]-low[3])));
     }
 
-    SRGBA CRGBABlend::get(double x, double y, double z)
+    SRGBA CRGBABlend::get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
     {
         SRGBA low=m_low.get(x,y,z);
         SRGBA high=m_high.get(x,y,z);
-        double control=m_control.get(x,y,z);
+        ANLFloatType control=m_control.get(x,y,z);
 
         return SRGBA(
             (float)(low[0]+control*(high[0]-low[0])),
@@ -71,11 +71,11 @@ namespace anl
             (float)(low[3]+control*(high[3]-low[3])));
     }
 
-    SRGBA CRGBABlend::get(double x, double y, double z, double w)
+    SRGBA CRGBABlend::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
     {
         SRGBA low=m_low.get(x,y,z,w);
         SRGBA high=m_high.get(x,y,z,w);
-        double control=m_control.get(x,y,z,w);
+        ANLFloatType control=m_control.get(x,y,z,w);
 
         return SRGBA(
             (float)(low[0]+control*(high[0]-low[0])),
@@ -83,11 +83,11 @@ namespace anl
             (float)(low[2]+control*(high[2]-low[2])),
             (float)(low[3]+control*(high[3]-low[3])));
     }
-    SRGBA CRGBABlend::get(double x, double y, double z, double w, double u, double v)
+    SRGBA CRGBABlend::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
     {
         SRGBA low=m_low.get(x,y,z,w,u,v);
         SRGBA high=m_high.get(x,y,z,w,u,v);
-        double control=m_control.get(x,y,z,w,u,v);
+        ANLFloatType control=m_control.get(x,y,z,w,u,v);
 
         return SRGBA(
             (float)(low[0]+control*(high[0]-low[0])),

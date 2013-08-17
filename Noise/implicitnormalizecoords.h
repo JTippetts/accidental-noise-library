@@ -9,21 +9,21 @@ namespace anl
     {
         public:
         CImplicitNormalizeCoords();
-        CImplicitNormalizeCoords(double s, double l);
-        CImplicitNormalizeCoords(double s, CImplicitModuleBase *  l);
-        CImplicitNormalizeCoords(CImplicitModuleBase * s, double l);
+        CImplicitNormalizeCoords(ANLFloatType s, ANLFloatType l);
+        CImplicitNormalizeCoords(ANLFloatType s, CImplicitModuleBase *  l);
+        CImplicitNormalizeCoords(CImplicitModuleBase * s, ANLFloatType l);
         CImplicitNormalizeCoords(CImplicitModuleBase * s, CImplicitModuleBase * l);
 
-        void setSource(double v);
+        void setSource(ANLFloatType v);
         void setSource(CImplicitModuleBase * v);
 
-        void setLength(double v);
+        void setLength(ANLFloatType v);
         void setLength(CImplicitModuleBase * v);
 
-        double get(double x, double y);
-        double get(double x, double y, double z);
-        double get(double x, double y, double z, double w);
-        double get(double x, double y, double z, double w, double u, double v);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
 
         protected:
         CScalarParameter m_source;

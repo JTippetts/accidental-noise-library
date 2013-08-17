@@ -14,19 +14,19 @@ namespace anl
     {
         m_rgba=SRGBA(r);
     }
-    SRGBA CRGBAConstant::get(double x, double y)
+    SRGBA CRGBAConstant::get(ANLFloatType x, ANLFloatType y)
     {
         return m_rgba;
     }
-    SRGBA CRGBAConstant::get(double x, double y, double z)
+    SRGBA CRGBAConstant::get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
     {
         return m_rgba;
     }
-    SRGBA CRGBAConstant::get(double x, double y, double z, double w)
+    SRGBA CRGBAConstant::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
     {
         return m_rgba;
     }
-    SRGBA CRGBAConstant::get(double x, double y, double z, double w, double u, double v)
+    SRGBA CRGBAConstant::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
     {
         return m_rgba;
     }

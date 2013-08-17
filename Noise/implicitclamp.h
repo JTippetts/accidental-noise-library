@@ -8,33 +8,33 @@ namespace anl
     {
         public:
         CImplicitClamp();
-        CImplicitClamp(double source, double low, double high);
-        CImplicitClamp(double source, double low, CImplicitModuleBase *  high);
-        CImplicitClamp(double source, CImplicitModuleBase *  low, double high);
-        CImplicitClamp(double source, CImplicitModuleBase *  low, CImplicitModuleBase *  high);
-        CImplicitClamp(CImplicitModuleBase *  source, double low, double high);
-        CImplicitClamp(CImplicitModuleBase *  source, double low, CImplicitModuleBase *  high);
-        CImplicitClamp(CImplicitModuleBase *  source, CImplicitModuleBase *  low, double high);
+        CImplicitClamp(ANLFloatType source, ANLFloatType low, ANLFloatType high);
+        CImplicitClamp(ANLFloatType source, ANLFloatType low, CImplicitModuleBase *  high);
+        CImplicitClamp(ANLFloatType source, CImplicitModuleBase *  low, ANLFloatType high);
+        CImplicitClamp(ANLFloatType source, CImplicitModuleBase *  low, CImplicitModuleBase *  high);
+        CImplicitClamp(CImplicitModuleBase *  source, ANLFloatType low, ANLFloatType high);
+        CImplicitClamp(CImplicitModuleBase *  source, ANLFloatType low, CImplicitModuleBase *  high);
+        CImplicitClamp(CImplicitModuleBase *  source, CImplicitModuleBase *  low, ANLFloatType high);
         CImplicitClamp(CImplicitModuleBase *  source, CImplicitModuleBase *  low, CImplicitModuleBase *  high);
 
         ~CImplicitClamp();
 
-        void setRange(double low, double high);
-        void setRange(double low, CImplicitModuleBase * high);
-        void setRange(CImplicitModuleBase * low, double high);
+        void setRange(ANLFloatType low, ANLFloatType high);
+        void setRange(ANLFloatType low, CImplicitModuleBase * high);
+        void setRange(CImplicitModuleBase * low, ANLFloatType high);
         void setRange(CImplicitModuleBase * low, CImplicitModuleBase * high);
 
-        void setSource(double b);
+        void setSource(ANLFloatType b);
         void setSource(CImplicitModuleBase * b);
 
-        double get(double x, double y);
-        double get(double x, double y, double z);
-        double get(double x, double y, double z, double w);
-        double get(double x, double y, double z, double w, double u, double v);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
 
         protected:
         //CImplicitModuleBase * m_source;
-        //double m_low, m_high;
+        //ANLFloatType m_low, m_high;
         CScalarParameter m_source, m_low, m_high;
     };
 };

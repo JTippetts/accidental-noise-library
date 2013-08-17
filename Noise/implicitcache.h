@@ -6,8 +6,8 @@ namespace anl
 {
     struct SCache
     {
-        double x,y,z,w,u,v;
-        double val;
+        ANLFloatType x,y,z,w,u,v;
+        ANLFloatType val;
         bool valid;
 
         SCache() : valid(false){}
@@ -16,17 +16,17 @@ namespace anl
     {
         public:
         CImplicitCache();
-        CImplicitCache(double v);
+        CImplicitCache(ANLFloatType v);
         CImplicitCache(CImplicitModuleBase * v);
         ~CImplicitCache();
 
         void setSource(CImplicitModuleBase * m);
-        void setSource(double v);
+        void setSource(ANLFloatType v);
 
-        double get(double x, double y);
-        double get(double x, double y, double z);
-        double get(double x, double y, double z, double w);
-        double get(double x, double y, double z, double w, double u, double v);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
 
         protected:
         //CImplicitModuleBase * m_source;

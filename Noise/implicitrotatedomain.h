@@ -25,68 +25,68 @@ Q u = u
 class CImplicitRotateDomain : public CImplicitModuleBase
 {
     public:
-    CImplicitRotateDomain(double src, double ax, double ay, double az, double angle_deg);
-    CImplicitRotateDomain(double src, double ax, double ay, double az, CImplicitModuleBase * angle_deg);
-    CImplicitRotateDomain(double src, double ax, double ay, CImplicitModuleBase * az, double angle_deg);
-    CImplicitRotateDomain(double src, double ax, double ay, CImplicitModuleBase * az, CImplicitModuleBase * angle_deg);
-    CImplicitRotateDomain(double src, double ax, CImplicitModuleBase * ay, double az, double angle_deg);
-    CImplicitRotateDomain(double src, double ax, CImplicitModuleBase * ay, double az, CImplicitModuleBase * angle_deg);
-    CImplicitRotateDomain(double src, double ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, double angle_deg);
-    CImplicitRotateDomain(double src, double ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, CImplicitModuleBase * angle_deg);
-    CImplicitRotateDomain(double src, CImplicitModuleBase * ax, double ay, double az, double angle_deg);
-    CImplicitRotateDomain(double src, CImplicitModuleBase * ax, double ay, double az, CImplicitModuleBase * angle_deg);
-    CImplicitRotateDomain(double src, CImplicitModuleBase * ax, double ay, CImplicitModuleBase * az, double angle_deg);
-    CImplicitRotateDomain(double src, CImplicitModuleBase * ax, double ay, CImplicitModuleBase * az, CImplicitModuleBase * angle_deg);
-    CImplicitRotateDomain(double src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, double az, double angle_deg);
-    CImplicitRotateDomain(double src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, double az, CImplicitModuleBase * angle_deg);
-    CImplicitRotateDomain(double src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, double angle_deg);
-    CImplicitRotateDomain(double src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, CImplicitModuleBase * angle_deg);
-    CImplicitRotateDomain(CImplicitModuleBase * src, double ax, double ay, double az, double angle_deg);
-    CImplicitRotateDomain(CImplicitModuleBase * src, double ax, double ay, double az, CImplicitModuleBase * angle_deg);
-    CImplicitRotateDomain(CImplicitModuleBase * src, double ax, double ay, CImplicitModuleBase * az, double angle_deg);
-    CImplicitRotateDomain(CImplicitModuleBase * src, double ax, double ay, CImplicitModuleBase * az, CImplicitModuleBase * angle_deg);
-    CImplicitRotateDomain(CImplicitModuleBase * src, double ax, CImplicitModuleBase * ay, double az, double angle_deg);
-    CImplicitRotateDomain(CImplicitModuleBase * src, double ax, CImplicitModuleBase * ay, double az, CImplicitModuleBase * angle_deg);
-    CImplicitRotateDomain(CImplicitModuleBase * src, double ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, double angle_deg);
-    CImplicitRotateDomain(CImplicitModuleBase * src, double ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, CImplicitModuleBase * angle_deg);
-    CImplicitRotateDomain(CImplicitModuleBase * src, CImplicitModuleBase * ax, double ay, double az, double angle_deg);
-    CImplicitRotateDomain(CImplicitModuleBase * src, CImplicitModuleBase * ax, double ay, double az, CImplicitModuleBase * angle_deg);
-    CImplicitRotateDomain(CImplicitModuleBase * src, CImplicitModuleBase * ax, double ay, CImplicitModuleBase * az, double angle_deg);
-    CImplicitRotateDomain(CImplicitModuleBase * src, CImplicitModuleBase * ax, double ay, CImplicitModuleBase * az, CImplicitModuleBase * angle_deg);
-    CImplicitRotateDomain(CImplicitModuleBase * src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, double az, double angle_deg);
-    CImplicitRotateDomain(CImplicitModuleBase * src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, double az, CImplicitModuleBase * angle_deg);
-    CImplicitRotateDomain(CImplicitModuleBase * src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, double angle_deg);
+    CImplicitRotateDomain(ANLFloatType src, ANLFloatType ax, ANLFloatType ay, ANLFloatType az, ANLFloatType angle_deg);
+    CImplicitRotateDomain(ANLFloatType src, ANLFloatType ax, ANLFloatType ay, ANLFloatType az, CImplicitModuleBase * angle_deg);
+    CImplicitRotateDomain(ANLFloatType src, ANLFloatType ax, ANLFloatType ay, CImplicitModuleBase * az, ANLFloatType angle_deg);
+    CImplicitRotateDomain(ANLFloatType src, ANLFloatType ax, ANLFloatType ay, CImplicitModuleBase * az, CImplicitModuleBase * angle_deg);
+    CImplicitRotateDomain(ANLFloatType src, ANLFloatType ax, CImplicitModuleBase * ay, ANLFloatType az, ANLFloatType angle_deg);
+    CImplicitRotateDomain(ANLFloatType src, ANLFloatType ax, CImplicitModuleBase * ay, ANLFloatType az, CImplicitModuleBase * angle_deg);
+    CImplicitRotateDomain(ANLFloatType src, ANLFloatType ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, ANLFloatType angle_deg);
+    CImplicitRotateDomain(ANLFloatType src, ANLFloatType ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, CImplicitModuleBase * angle_deg);
+    CImplicitRotateDomain(ANLFloatType src, CImplicitModuleBase * ax, ANLFloatType ay, ANLFloatType az, ANLFloatType angle_deg);
+    CImplicitRotateDomain(ANLFloatType src, CImplicitModuleBase * ax, ANLFloatType ay, ANLFloatType az, CImplicitModuleBase * angle_deg);
+    CImplicitRotateDomain(ANLFloatType src, CImplicitModuleBase * ax, ANLFloatType ay, CImplicitModuleBase * az, ANLFloatType angle_deg);
+    CImplicitRotateDomain(ANLFloatType src, CImplicitModuleBase * ax, ANLFloatType ay, CImplicitModuleBase * az, CImplicitModuleBase * angle_deg);
+    CImplicitRotateDomain(ANLFloatType src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, ANLFloatType az, ANLFloatType angle_deg);
+    CImplicitRotateDomain(ANLFloatType src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, ANLFloatType az, CImplicitModuleBase * angle_deg);
+    CImplicitRotateDomain(ANLFloatType src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, ANLFloatType angle_deg);
+    CImplicitRotateDomain(ANLFloatType src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, CImplicitModuleBase * angle_deg);
+    CImplicitRotateDomain(CImplicitModuleBase * src, ANLFloatType ax, ANLFloatType ay, ANLFloatType az, ANLFloatType angle_deg);
+    CImplicitRotateDomain(CImplicitModuleBase * src, ANLFloatType ax, ANLFloatType ay, ANLFloatType az, CImplicitModuleBase * angle_deg);
+    CImplicitRotateDomain(CImplicitModuleBase * src, ANLFloatType ax, ANLFloatType ay, CImplicitModuleBase * az, ANLFloatType angle_deg);
+    CImplicitRotateDomain(CImplicitModuleBase * src, ANLFloatType ax, ANLFloatType ay, CImplicitModuleBase * az, CImplicitModuleBase * angle_deg);
+    CImplicitRotateDomain(CImplicitModuleBase * src, ANLFloatType ax, CImplicitModuleBase * ay, ANLFloatType az, ANLFloatType angle_deg);
+    CImplicitRotateDomain(CImplicitModuleBase * src, ANLFloatType ax, CImplicitModuleBase * ay, ANLFloatType az, CImplicitModuleBase * angle_deg);
+    CImplicitRotateDomain(CImplicitModuleBase * src, ANLFloatType ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, ANLFloatType angle_deg);
+    CImplicitRotateDomain(CImplicitModuleBase * src, ANLFloatType ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, CImplicitModuleBase * angle_deg);
+    CImplicitRotateDomain(CImplicitModuleBase * src, CImplicitModuleBase * ax, ANLFloatType ay, ANLFloatType az, ANLFloatType angle_deg);
+    CImplicitRotateDomain(CImplicitModuleBase * src, CImplicitModuleBase * ax, ANLFloatType ay, ANLFloatType az, CImplicitModuleBase * angle_deg);
+    CImplicitRotateDomain(CImplicitModuleBase * src, CImplicitModuleBase * ax, ANLFloatType ay, CImplicitModuleBase * az, ANLFloatType angle_deg);
+    CImplicitRotateDomain(CImplicitModuleBase * src, CImplicitModuleBase * ax, ANLFloatType ay, CImplicitModuleBase * az, CImplicitModuleBase * angle_deg);
+    CImplicitRotateDomain(CImplicitModuleBase * src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, ANLFloatType az, ANLFloatType angle_deg);
+    CImplicitRotateDomain(CImplicitModuleBase * src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, ANLFloatType az, CImplicitModuleBase * angle_deg);
+    CImplicitRotateDomain(CImplicitModuleBase * src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, ANLFloatType angle_deg);
     CImplicitRotateDomain(CImplicitModuleBase * src, CImplicitModuleBase * ax, CImplicitModuleBase * ay, CImplicitModuleBase * az, CImplicitModuleBase * angle_deg);
 
     ~CImplicitRotateDomain();
     void setSource(CImplicitModuleBase * m);
-    void setSource(double v);
-    void setAxis(double ax, double ay, double az);
+    void setSource(ANLFloatType v);
+    void setAxis(ANLFloatType ax, ANLFloatType ay, ANLFloatType az);
     void setAxis(CImplicitModuleBase * ax, CImplicitModuleBase * ay, CImplicitModuleBase * az);
-    void setAxisX(double ax);
-    void setAxisY(double ay);
-    void setAxisZ(double az);
+    void setAxisX(ANLFloatType ax);
+    void setAxisY(ANLFloatType ay);
+    void setAxisZ(ANLFloatType az);
     void setAxisX(CImplicitModuleBase * ax);
     void setAxisY(CImplicitModuleBase * ay);
     void setAxisZ(CImplicitModuleBase * az);
 
-    void setAngle(double a);
+    void setAngle(ANLFloatType a);
     void setAngle(CImplicitModuleBase * a);
 
-    double get(double x, double y);
-    double get(double x, double y, double z);
-    double get(double x, double y, double z, double w);
-    double get(double x, double y, double z, double w, double u, double v);
+    ANLFloatType get(ANLFloatType x, ANLFloatType y);
+    ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+    ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+    ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
 
     protected:
-    double m_rotmatrix[3][3];
+    ANLFloatType m_rotmatrix[3][3];
     CScalarParameter m_ax,m_ay,m_az, m_angledeg;
     CScalarParameter m_source;
 
-    void calculateRotMatrix(double x, double y);
-    void calculateRotMatrix(double x, double y, double z);
-    void calculateRotMatrix(double x, double y, double z, double w);
-    void calculateRotMatrix(double x, double y, double z, double w, double u, double v);
+    void calculateRotMatrix(ANLFloatType x, ANLFloatType y);
+    void calculateRotMatrix(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+    void calculateRotMatrix(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+    void calculateRotMatrix(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
 };
 };
 

@@ -24,6 +24,7 @@ THE SOFTWARE.
 #include <ctime>
 #include <algorithm>
 #include <climits>
+#include "../types.h"
 
 namespace anl
 {
@@ -44,21 +45,21 @@ namespace anl
 
         unsigned int getTarget(unsigned int t)
         {
-            double v=get01();
-            return (unsigned int)(v*(double)t);
+            ANLFloatType v=get01();
+            return (unsigned int)(v*(ANLFloatType)t);
         }
 
         unsigned int getRange(unsigned int low, unsigned int high)
         {
             if(high < low) std::swap(low, high);
-            double range = (double)((high - low)+1);
-            double val = (double)low + get01()*range;
+            ANLFloatType range = (ANLFloatType)((high - low)+1);
+            ANLFloatType val = (ANLFloatType)low + get01()*range;
             return (unsigned int)(val);
         }
 
-        double get01()
+        ANLFloatType get01()
         {
-            return ((double)get() / (double)(UINT_MAX));
+            return ((ANLFloatType)get() / (ANLFloatType)(UINT_MAX));
         }
     };
 

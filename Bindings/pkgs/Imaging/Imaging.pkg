@@ -2,6 +2,7 @@ $#include "anl_noise.h"
 $#include "anl_rgba.h"
 $#include "anl_imaging.h"
 $#include "rasterization.h"
+$#include "../types.h"
 
 namespace anl
 {
@@ -16,7 +17,7 @@ namespace anl
         SEAMLESS_YZ,
         SEAMLESS_XYZ
     };
-	
+
 	struct SMappingRanges
     {
         double mapx0,mapy0,mapz0, mapx1,mapy1,mapz1;
@@ -28,7 +29,7 @@ namespace anl
         SMappingRanges(double x0, double x1, double y0, double y1, double z0=0.0, double z1=1.0);
 		~SMappingRanges();
     };
-	
+
 	void map2D(int seamlessmode, anl::CArray2Dd &a, anl::CImplicitModuleBase &m, SMappingRanges &ranges, double z);
     void map2DNoZ(int seamlessmode, anl::CArray2Dd &a, anl::CImplicitModuleBase &m, SMappingRanges &ranges);
     void map3D(int seamlessmode, anl::CArray3Dd &a, anl::CImplicitModuleBase &m, SMappingRanges &ranges);
@@ -36,7 +37,7 @@ namespace anl
     void mapRGBA2D(int seamlessmode, anl::CArray2Drgba &a, anl::CRGBAModuleBase &m, SMappingRanges &ranges, double z);
     void mapRGBA2DNoZ(int seamlessmode, anl::CArray2Drgba &a, anl::CRGBAModuleBase &m, SMappingRanges &ranges);
     void mapRGBA3D(int seamlessmode, anl::CArray3Drgba &a, anl::CRGBAModuleBase &m, SMappingRanges &ranges);
-	
+
 	void saveDoubleArray(char *filename, anl::CArray2Dd *array);
     void saveRGBAArray(char *filename, anl::CArray2Drgba *array);
 };
@@ -48,18 +49,18 @@ namespace anl
 class CVec2f
 {
 	public:
-	CVec2f();  
-    ~CVec2f(); 
-    CVec2f(int a);   
-    CVec2f(float a);   
+	CVec2f();
+    ~CVec2f();
+    CVec2f(int a);
+    CVec2f(float a);
     CVec2f(const CVec2f &tvec);
     CVec2f(const float t1, const float t2);
-	
+
 	const float dotprod(const CVec2f &tvec);
     const float length();
     void normalize();
     void set(float v1, float v2);
-    
+
     tolua_property float x;
     tolua_property float y;
 };
@@ -67,19 +68,19 @@ class CVec2f
 class CVec3f
 {
     public:
-    CVec3f();  
-    ~CVec3f(); 
-    CVec3f(int a);   
-    CVec3f(float a);   
+    CVec3f();
+    ~CVec3f();
+    CVec3f(int a);
+    CVec3f(float a);
     CVec3f(const CVec3f &tvec);
     CVec3f(const float t1, const float t2, const float t3);
-   
-    
+
+
     const float dotprod(const CVec3f &tvec);
     const float length();
     void normalize();
     void set(float v1, float v2, float v3);
-    
+
     tolua_property float x;
     tolua_property float y;
     tolua_property float z;
@@ -92,7 +93,7 @@ class CVec2i
 	CVec2i(const CVec2i &tvec);
 	CVec2i(const int t1, const int t2);
 	~CVec2i();
-	
+
 	tolua_property int x;
 	tolua_property int y;
 };
@@ -104,11 +105,11 @@ class CVec3i
 	CVec3i(const CVec3i &tvec);
 	CVec3i(const int t1, const int t2, const int t3);
 	~CVec3i();
-	
+
 	tolua_property int x;
 	tolua_property int y;
 	tolua_property int z;
-};   
+};
 
 class CVec4i
 {
@@ -117,7 +118,7 @@ class CVec4i
 	CVec4i(const CVec4i &tvec);
 	CVec4i(const int t1, const int t2, const int t3, const int t4);
 	~CVec4i();
-	
+
 	tolua_property int x;
 	tolua_property int y;
 	tolua_property int z;
@@ -132,7 +133,7 @@ class SRGBA
 	 SRGBA(const  SRGBA &tvec);
 	 SRGBA(const float t1, const float t2, const float t3, const float t4);
 	 ~SRGBA();
-	
+
 	tolua_property float x;
 	tolua_property float y;
 	tolua_property float z;
@@ -210,11 +211,11 @@ class CArray3Dd
 	CArray3Dd();
 	CArray3Dd(int w, int h, int d);
 	~CArray3Dd();
-	
+
 	int width();
 	int height();
 	int depth();
-	
+
 	void set(int x, int y, int z, double v);
 	double get(int x, int y, int z);
 	void resize(int w, int h, int d);
@@ -226,11 +227,11 @@ class CArray3Drgba
 	CArray3Drgba();
 	CArray3Drgba(int w, int h, int d);
 	~CArray3Drgba();
-	
+
 	int width();
 	int height();
 	int depth();
-	
+
 	void resize(int w, int h, int d);
 	void set(int x, int y, int z, anl::SRGBA v);
 	anl::SRGBA get(int x, int y, int z);
@@ -240,7 +241,7 @@ class CArray3Drgba
 // Bump-mapping stuff
 namespace anl
 {
-    void calcBumpMap(anl::CArray2Dd *map, anl::CArray2Dd *bump, double light[3], double spacing, bool wrap);
+    void calcBumpMap(anl::CArray2Dd *map, anl::CArray2Dd *bump, float light[3], double spacing, bool wrap);
     void calcNormalMap(anl::CArray2Dd *map, anl::CArray2Drgba *normal, double spacing, bool normalize, bool wrap);
 
     void multRGBAByDouble(anl::CArray2Drgba *rgba, anl::CArray2Dd *map);
@@ -263,13 +264,13 @@ namespace anl
     public:
         void get(anl::CArray2Dd &out);
     };
-	
+
 	class CRGBABufferBase
     {
 
         void get(anl::CArray2Drgba &out);
     };
-	
+
 	class CImplicitBufferBlur : public CImplicitBufferBase
     {
     public:
@@ -281,20 +282,20 @@ namespace anl
       void setBlurSize(double blursize);
       void setSeamless(bool seamless);
 	};
-	 
+
 	class CImplicitBufferBumpMap : public CImplicitBufferBase
     {
     public:
         CImplicitBufferBumpMap();
-        CImplicitBufferBumpMap(CImplicitBufferBase * src, double lx, double ly, double lz, double spacing, bool seamless);
+        CImplicitBufferBumpMap(CImplicitBufferBase * src, float lx, float ly, float lz, double spacing, bool seamless);
         ~CImplicitBufferBumpMap();
 
         void setSource(CImplicitBufferBase * src);
-        void setLightVector(double vx, double vy, double vz);
+        void setLightVector(float vx, float vy, float vz);
         void setSpacing(double spacing);
         void setSeamless(bool seamless);
 	};
-	
+
 	class CImplicitBufferImplicitAdapter : public CImplicitBufferBase
     {
     public:
@@ -308,7 +309,7 @@ namespace anl
         void setUseZ(bool use_z);
         void setZ(double z);
 	};
-	
+
 	class CImplicitBufferScaleToRange : public CImplicitBufferBase
     {
     public:
@@ -319,7 +320,7 @@ namespace anl
         void setRange(double low, double high);
         void setSource(CImplicitBufferBase * src);
 	};
-	
+
 	class CImplicitBufferSimpleErode : public CImplicitBufferBase
     {
     public:
@@ -331,7 +332,7 @@ namespace anl
         void setNumDrops(int drops);
         void setPower(float power);
 	};
-	
+
 	class CImplicitBufferUnaryMath : public CImplicitBufferBase
     {
     public:
@@ -342,23 +343,23 @@ namespace anl
         void setSource(CImplicitBufferBase * source);
         void setOp(int op);
 	};
-	
+
 	class CImplicitBufferSelect : public CImplicitBufferBase
 	{
 		public:
 		CImplicitBufferSelect();
 		CImplicitBufferSelect(CImplicitBufferBase *low, CImplicitBufferBase *high, CImplicitBufferBase *ctrl, double thresh, double fall);
 		~CImplicitBufferSelect();
-		
+
 		void setControl(CImplicitBufferBase *c);
 		void setLow(CImplicitBufferBase *l);
 		void setHigh(CImplicitBufferBase *h);
 		void setThreshold(double t);
 		void setFalloff(double f);
 	};
-	
-	
-	
+
+
+
 	class CRGBABufferBlur : public CRGBABufferBase
     {
     public:
@@ -370,7 +371,7 @@ namespace anl
         void setBlurSize(double blursize);
         void setSeamless(bool seamless);
 	};
-	
+
 	class CRGBABufferImplicitBufferAdapter : public CRGBABufferBase
     {
     public:
@@ -380,7 +381,7 @@ namespace anl
 
         void setSource(CImplicitBufferBase * src);
 	};
-	
+
 	class CRGBABufferImplicitBufferMultiply : public CRGBABufferBase
     {
     public:
@@ -391,7 +392,7 @@ namespace anl
         void setRGBASource(CRGBABufferBase * src);
         void setImplicitSource(CImplicitBufferBase * src);
 	};
-	
+
 	class CRGBABufferRGBAAdapter : public CRGBABufferBase
     {
     public:
@@ -405,13 +406,13 @@ namespace anl
         void setUseZ(bool use_z);
         void setZ(double z);
 	};
-	
+
 	class CRGBABufferSelect : public CRGBABufferBase
 	{
 		CRGBABufferSelect();
 		CRGBABufferSelect(CRGBABufferBase *low, CRGBABufferBase *high, CImplicitBufferBase *ctrl, double thresh, double fall);
 		~CRGBABufferSelect();
-		
+
 		void setControl(CImplicitBufferBase *c);
 		void setLow(CRGBABufferBase *l);
 		void setHigh(CRGBABufferBase *h);

@@ -24,7 +24,7 @@ namespace anl
 		m_sources[which]=b;
 	}
 
-	double CImplicitCombiner::get(double x, double y)
+	ANLFloatType CImplicitCombiner::get(ANLFloatType x, ANLFloatType y)
 	{
 		switch(m_type)
 		{
@@ -37,7 +37,7 @@ namespace anl
 		}
 	}
 
-	double CImplicitCombiner::get(double x, double y, double z)
+	ANLFloatType CImplicitCombiner::get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
 	{
 	    switch(m_type)
 		{
@@ -50,7 +50,7 @@ namespace anl
 		}
 	}
 
-	double CImplicitCombiner::get(double x, double y, double z, double w)
+	ANLFloatType CImplicitCombiner::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
 	{
 		switch(m_type)
 		{
@@ -63,7 +63,7 @@ namespace anl
 		}
 	}
 
-	double CImplicitCombiner::get(double x, double y, double z, double w, double u, double v)
+	ANLFloatType CImplicitCombiner::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
 	{
 		switch(m_type)
 		{
@@ -77,36 +77,36 @@ namespace anl
 	}
 
 
-	double CImplicitCombiner::Add_get(double x, double y)
+	ANLFloatType CImplicitCombiner::Add_get(ANLFloatType x, ANLFloatType y)
 	{
-		double value=0.0;
+		ANLFloatType value=0.0;
 		for(int c=0; c<MaxSources; ++c)
 		{
 			if(m_sources[c]) value+=m_sources[c]->get(x,y);
 		}
 		return value;
 	}
-	double CImplicitCombiner::Add_get(double x, double y, double z)
+	ANLFloatType CImplicitCombiner::Add_get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
 	{
-	    double value=0;
+	    ANLFloatType value=0;
 	    for(int c=0; c<MaxSources; ++c)
 	    {
 	        if(m_sources[c]) value+=m_sources[c]->get(x,y,z);
 	    }
 	    return value;
 	}
-	double CImplicitCombiner::Add_get(double x, double y, double z, double w)
+	ANLFloatType CImplicitCombiner::Add_get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
 	{
-		double value=0.0;
+		ANLFloatType value=0.0;
 		for(int c=0; c<MaxSources; ++c)
 		{
 			if(m_sources[c]) value+=m_sources[c]->get(x,y,z,w);
 		}
 		return value;
 	}
-	double CImplicitCombiner::Add_get(double x, double y, double z, double w, double u, double v)
+	ANLFloatType CImplicitCombiner::Add_get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
 	{
-		double value=0.0;
+		ANLFloatType value=0.0;
 		for(int c=0; c<MaxSources; ++c)
 		{
 			if(m_sources[c]) value+=m_sources[c]->get(x,y,z,w,u,v);
@@ -114,36 +114,36 @@ namespace anl
 		return value;
 	}
 
-	double CImplicitCombiner::Mult_get(double x, double y)
+	ANLFloatType CImplicitCombiner::Mult_get(ANLFloatType x, ANLFloatType y)
 	{
-		double value=1.0;
+		ANLFloatType value=1.0;
 		for(int c=0; c<MaxSources; ++c)
 		{
 			if(m_sources[c]) value*=m_sources[c]->get(x,y);
 		}
 		return value;
 	}
-	double CImplicitCombiner::Mult_get(double x, double y, double z)
+	ANLFloatType CImplicitCombiner::Mult_get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
 	{
-		double value=1.0;
+		ANLFloatType value=1.0;
 		for(int c=0; c<MaxSources; ++c)
 		{
 			if(m_sources[c]) value*=m_sources[c]->get(x,y,z);
 		}
 		return value;
 	}
-	double CImplicitCombiner::Mult_get(double x, double y, double z, double w)
+	ANLFloatType CImplicitCombiner::Mult_get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
 	{
-		double value=1.0;
+		ANLFloatType value=1.0;
 		for(int c=0; c<MaxSources; ++c)
 		{
 			if(m_sources[c]) value*=m_sources[c]->get(x,y,z,w);
 		}
 		return value;
 	}
-	double CImplicitCombiner::Mult_get(double x, double y, double z, double w, double u, double v)
+	ANLFloatType CImplicitCombiner::Mult_get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
 	{
-		double value=1.0;
+		ANLFloatType value=1.0;
 		for(int c=0; c<MaxSources; ++c)
 		{
 			if(m_sources[c]) value*=m_sources[c]->get(x,y,z,w,u,v);
@@ -151,9 +151,9 @@ namespace anl
 		return value;
 	}
 
-	double CImplicitCombiner::Min_get(double x, double y)
+	ANLFloatType CImplicitCombiner::Min_get(ANLFloatType x, ANLFloatType y)
 	{
-		double mn;
+		ANLFloatType mn;
 		int c=0;
 		while(c<MaxSources && !m_sources[c]) ++c;
 		if(c==MaxSources) return 0.0;
@@ -163,7 +163,7 @@ namespace anl
 		{
 			if(m_sources[d])
 			{
-				double v=m_sources[d]->get(x,y);
+				ANLFloatType v=m_sources[d]->get(x,y);
 				if(v<mn) mn=v;
 			}
 		}
@@ -171,9 +171,9 @@ namespace anl
 		return mn;
 	}
 
-	double CImplicitCombiner::Min_get(double x, double y, double z)
+	ANLFloatType CImplicitCombiner::Min_get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
 	{
-		double mn;
+		ANLFloatType mn;
 		int c=0;
 		while(c<MaxSources && !m_sources[c]) ++c;
 		if(c==MaxSources) return 0.0;
@@ -183,7 +183,7 @@ namespace anl
 		{
 			if(m_sources[d])
 			{
-				double v=m_sources[d]->get(x,y,z);
+				ANLFloatType v=m_sources[d]->get(x,y,z);
 				if(v<mn) mn=v;
 			}
 		}
@@ -191,9 +191,9 @@ namespace anl
 		return mn;
 	}
 
-	double CImplicitCombiner::Min_get(double x, double y, double z, double w)
+	ANLFloatType CImplicitCombiner::Min_get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
 	{
-		double mn;
+		ANLFloatType mn;
 		int c=0;
 		while(c<MaxSources && !m_sources[c]) ++c;
 		if(c==MaxSources) return 0.0;
@@ -203,7 +203,7 @@ namespace anl
 		{
 			if(m_sources[d])
 			{
-				double v=m_sources[d]->get(x,y,z,w);
+				ANLFloatType v=m_sources[d]->get(x,y,z,w);
 				if(v<mn) mn=v;
 			}
 		}
@@ -211,9 +211,9 @@ namespace anl
 		return mn;
 	}
 
-	double CImplicitCombiner::Min_get(double x, double y, double z, double w, double u, double v)
+	ANLFloatType CImplicitCombiner::Min_get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
 	{
-		double mn;
+		ANLFloatType mn;
 		int c=0;
 		while(c<MaxSources && !m_sources[c]) ++c;
 		if(c==MaxSources) return 0.0;
@@ -223,7 +223,7 @@ namespace anl
 		{
 			if(m_sources[d])
 			{
-				double val=m_sources[d]->get(x,y,z,w,u,v);
+				ANLFloatType val=m_sources[d]->get(x,y,z,w,u,v);
 				if(val<mn) mn=val;
 			}
 		}
@@ -231,9 +231,9 @@ namespace anl
 		return mn;
 	}
 
-	double CImplicitCombiner::Max_get(double x, double y)
+	ANLFloatType CImplicitCombiner::Max_get(ANLFloatType x, ANLFloatType y)
 	{
-		double mn;
+		ANLFloatType mn;
 		int c=0;
 		while(c<MaxSources && !m_sources[c]) ++c;
 		if(c==MaxSources) return 0.0;
@@ -243,7 +243,7 @@ namespace anl
 		{
 			if(m_sources[d])
 			{
-				double v=m_sources[d]->get(x,y);
+				ANLFloatType v=m_sources[d]->get(x,y);
 				if(v>mn) mn=v;
 			}
 		}
@@ -251,9 +251,9 @@ namespace anl
 		return mn;
 	}
 
-	double CImplicitCombiner::Max_get(double x, double y, double z)
+	ANLFloatType CImplicitCombiner::Max_get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
 	{
-		double mn;
+		ANLFloatType mn;
 		int c=0;
 		while(c<MaxSources && !m_sources[c]) ++c;
 		if(c==MaxSources) return 0.0;
@@ -263,7 +263,7 @@ namespace anl
 		{
 			if(m_sources[d])
 			{
-				double v=m_sources[d]->get(x,y,z);
+				ANLFloatType v=m_sources[d]->get(x,y,z);
 				if(v>mn) mn=v;
 			}
 		}
@@ -271,9 +271,9 @@ namespace anl
 		return mn;
 	}
 
-	double CImplicitCombiner::Max_get(double x, double y, double z, double w)
+	ANLFloatType CImplicitCombiner::Max_get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
 	{
-		double mn;
+		ANLFloatType mn;
 		int c=0;
 		while(c<MaxSources && !m_sources[c]) ++c;
 		if(c==MaxSources) return 0.0;
@@ -283,7 +283,7 @@ namespace anl
 		{
 			if(m_sources[d])
 			{
-				double v=m_sources[d]->get(x,y,z,w);
+				ANLFloatType v=m_sources[d]->get(x,y,z,w);
 				if(v>mn) mn=v;
 			}
 		}
@@ -291,9 +291,9 @@ namespace anl
 		return mn;
 	}
 
-	double CImplicitCombiner::Max_get(double x, double y, double z, double w, double u, double v)
+	ANLFloatType CImplicitCombiner::Max_get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
 	{
-		double mn;
+		ANLFloatType mn;
 		int c=0;
 		while(c<MaxSources && !m_sources[c]) ++c;
 		if(c==MaxSources) return 0.0;
@@ -303,7 +303,7 @@ namespace anl
 		{
 			if(m_sources[d])
 			{
-				double val=m_sources[d]->get(x,y,z,w,u,v);
+				ANLFloatType val=m_sources[d]->get(x,y,z,w,u,v);
 				if(val>mn) mn=val;
 			}
 		}
@@ -311,10 +311,10 @@ namespace anl
 		return mn;
 	}
 
-	double CImplicitCombiner::Avg_get(double x, double y)
+	ANLFloatType CImplicitCombiner::Avg_get(ANLFloatType x, ANLFloatType y)
 	{
-		double count=0;
-		double value=0;
+		ANLFloatType count=0;
+		ANLFloatType value=0;
 		for(int c=0; c<MaxSources; ++c)
 		{
 			if(m_sources[c])
@@ -327,10 +327,10 @@ namespace anl
 		return value/count;
 	}
 
-	double CImplicitCombiner::Avg_get(double x, double y, double z)
+	ANLFloatType CImplicitCombiner::Avg_get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
 	{
-		double count=0;
-		double value=0;
+		ANLFloatType count=0;
+		ANLFloatType value=0;
 		for(int c=0; c<MaxSources; ++c)
 		{
 			if(m_sources[c])
@@ -343,10 +343,10 @@ namespace anl
 		return value/count;
 	}
 
-	double CImplicitCombiner::Avg_get(double x, double y, double z, double w)
+	ANLFloatType CImplicitCombiner::Avg_get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
 	{
-		double count=0;
-		double value=0;
+		ANLFloatType count=0;
+		ANLFloatType value=0;
 		for(int c=0; c<MaxSources; ++c)
 		{
 			if(m_sources[c])
@@ -359,10 +359,10 @@ namespace anl
 		return value/count;
 	}
 
-	double CImplicitCombiner::Avg_get(double x, double y, double z, double w, double u, double v)
+	ANLFloatType CImplicitCombiner::Avg_get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
 	{
-		double count=0;
-		double value=0;
+		ANLFloatType count=0;
+		ANLFloatType value=0;
 		for(int c=0; c<MaxSources; ++c)
 		{
 			if(m_sources[c])

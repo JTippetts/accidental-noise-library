@@ -168,7 +168,7 @@ namespace anl
         return SRGBA(r,g,b,s1[3]);
     }
 
-    SRGBA CRGBAColorOps::get(double x, double y)
+    SRGBA CRGBAColorOps::get(ANLFloatType x, ANLFloatType y)
     {
         SRGBA s1=m_source1.get(x,y);
         SRGBA s2=m_source2.get(x,y);
@@ -188,7 +188,7 @@ namespace anl
         }
     }
 
-    SRGBA CRGBAColorOps::get(double x, double y, double z)
+    SRGBA CRGBAColorOps::get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
     {
         SRGBA s1=m_source1.get(x,y,z);
         SRGBA s2=m_source2.get(x,y,z);
@@ -208,7 +208,7 @@ namespace anl
         }
     }
 
-    SRGBA CRGBAColorOps::get(double x, double y, double z, double w)
+    SRGBA CRGBAColorOps::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
     {
         SRGBA s1=m_source1.get(x,y,z,w);
         SRGBA s2=m_source2.get(x,y,z,w);
@@ -228,7 +228,7 @@ namespace anl
         }
     }
 
-    SRGBA CRGBAColorOps::get(double x, double y, double z, double w, double u, double v)
+    SRGBA CRGBAColorOps::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
     {
         SRGBA s1=m_source1.get(x,y,z,w,u,v);
         SRGBA s2=m_source2.get(x,y,z,w,u,v);

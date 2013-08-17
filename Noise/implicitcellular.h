@@ -9,21 +9,21 @@ class CImplicitCellular : public CImplicitModuleBase
 {
     public:
     CImplicitCellular();
-    CImplicitCellular(double a, double b, double c, double d);
-    CImplicitCellular(CCellularGenerator *m, double a=1, double b=0, double c=0, double d=0);
+    CImplicitCellular(ANLFloatType a, ANLFloatType b, ANLFloatType c, ANLFloatType d);
+    CImplicitCellular(CCellularGenerator *m, ANLFloatType a=1, ANLFloatType b=0, ANLFloatType c=0, ANLFloatType d=0);
     ~CImplicitCellular(){}
 
-    void setCoefficients(double a, double b, double c, double d);
+    void setCoefficients(ANLFloatType a, ANLFloatType b, ANLFloatType c, ANLFloatType d);
     void setCellularSource(CCellularGenerator *m);
 
-    double get(double x, double y);
-    double get(double x, double y, double z);
-    double get(double x, double y, double z, double w);
-    double get(double x, double y, double z, double w, double u, double v);
+    ANLFloatType get(ANLFloatType x, ANLFloatType y);
+    ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+    ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+    ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
 
     protected:
     CCellularGenerator *m_generator;
-    double m_coefficients[4];
+    ANLFloatType m_coefficients[4];
 };
 
 class CImplicitVoronoi : public CImplicitModuleBase
@@ -33,10 +33,10 @@ public:
     CImplicitVoronoi(CCellularGenerator *m);
     ~CImplicitVoronoi();
 
-    double get(double x, double y);
-    double get(double x, double y, double z);
-    double get(double x, double y, double z, double w);
-    double get(double x, double y, double z, double w, double u, double v);
+    ANLFloatType get(ANLFloatType x, ANLFloatType y);
+    ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+    ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+    ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
 
     protected:
     CCellularGenerator *m_generator;

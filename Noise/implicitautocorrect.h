@@ -18,26 +18,26 @@ namespace anl
     {
         public:
         CImplicitAutoCorrect();
-        CImplicitAutoCorrect(double low, double high);
-        CImplicitAutoCorrect(CImplicitModuleBase * m, double low, double high);
+        CImplicitAutoCorrect(ANLFloatType low, ANLFloatType high);
+        CImplicitAutoCorrect(CImplicitModuleBase * m, ANLFloatType low, ANLFloatType high);
         ~CImplicitAutoCorrect(){}
 
         void setSource(CImplicitModuleBase * m);
-        void setRange(double low, double high);
+        void setRange(ANLFloatType low, ANLFloatType high);
         void calculate();
 
-        double get(double x, double y);
-        double get(double x, double y, double z);
-        double get(double x, double y, double z, double w);
-        double get(double x, double y, double z, double w, double u, double v);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
 
         protected:
         CImplicitModuleBase * m_source;
-        double m_low, m_high;
-        double m_scale2, m_offset2;
-        double m_scale3, m_offset3;
-        double m_scale4, m_offset4;
-        double m_scale6, m_offset6;
+        ANLFloatType m_low, m_high;
+        ANLFloatType m_scale2, m_offset2;
+        ANLFloatType m_scale3, m_offset3;
+        ANLFloatType m_scale4, m_offset4;
+        ANLFloatType m_scale6, m_offset6;
 
     };
 };

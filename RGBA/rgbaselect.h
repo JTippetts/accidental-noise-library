@@ -9,38 +9,38 @@ namespace anl
     {
         public:
         CRGBASelect();
-        CRGBASelect(SRGBA low, SRGBA high, double control, double threshold, double falloff);
-        CRGBASelect(SRGBA low, SRGBA high, double control, double threshold, CImplicitModuleBase * falloff);
-        CRGBASelect(SRGBA low, SRGBA high, double control, CImplicitModuleBase * threshold, double falloff);
-        CRGBASelect(SRGBA low, SRGBA high, double control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff);
-        CRGBASelect(SRGBA low, SRGBA high, CImplicitModuleBase * control, double threshold, double falloff);
-        CRGBASelect(SRGBA low, SRGBA high, CImplicitModuleBase * control, double threshold, CImplicitModuleBase * falloff);
-        CRGBASelect(SRGBA low, SRGBA high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, double falloff);
+        CRGBASelect(SRGBA low, SRGBA high, ANLFloatType control, ANLFloatType threshold, ANLFloatType falloff);
+        CRGBASelect(SRGBA low, SRGBA high, ANLFloatType control, ANLFloatType threshold, CImplicitModuleBase * falloff);
+        CRGBASelect(SRGBA low, SRGBA high, ANLFloatType control, CImplicitModuleBase * threshold, ANLFloatType falloff);
+        CRGBASelect(SRGBA low, SRGBA high, ANLFloatType control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff);
+        CRGBASelect(SRGBA low, SRGBA high, CImplicitModuleBase * control, ANLFloatType threshold, ANLFloatType falloff);
+        CRGBASelect(SRGBA low, SRGBA high, CImplicitModuleBase * control, ANLFloatType threshold, CImplicitModuleBase * falloff);
+        CRGBASelect(SRGBA low, SRGBA high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, ANLFloatType falloff);
         CRGBASelect(SRGBA low, SRGBA high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff);
-        CRGBASelect(SRGBA low, CRGBAModuleBase * high, double control, double threshold, double falloff);
-        CRGBASelect(SRGBA low, CRGBAModuleBase * high, double control, double threshold, CImplicitModuleBase * falloff);
-        CRGBASelect(SRGBA low, CRGBAModuleBase * high, double control, CImplicitModuleBase * threshold, double falloff);
-        CRGBASelect(SRGBA low, CRGBAModuleBase * high, double control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff);
-        CRGBASelect(SRGBA low, CRGBAModuleBase * high, CImplicitModuleBase * control, double threshold, double falloff);
-        CRGBASelect(SRGBA low, CRGBAModuleBase * high, CImplicitModuleBase * control, double threshold, CImplicitModuleBase * falloff);
-        CRGBASelect(SRGBA low, CRGBAModuleBase * high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, double falloff);
+        CRGBASelect(SRGBA low, CRGBAModuleBase * high, ANLFloatType control, ANLFloatType threshold, ANLFloatType falloff);
+        CRGBASelect(SRGBA low, CRGBAModuleBase * high, ANLFloatType control, ANLFloatType threshold, CImplicitModuleBase * falloff);
+        CRGBASelect(SRGBA low, CRGBAModuleBase * high, ANLFloatType control, CImplicitModuleBase * threshold, ANLFloatType falloff);
+        CRGBASelect(SRGBA low, CRGBAModuleBase * high, ANLFloatType control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff);
+        CRGBASelect(SRGBA low, CRGBAModuleBase * high, CImplicitModuleBase * control, ANLFloatType threshold, ANLFloatType falloff);
+        CRGBASelect(SRGBA low, CRGBAModuleBase * high, CImplicitModuleBase * control, ANLFloatType threshold, CImplicitModuleBase * falloff);
+        CRGBASelect(SRGBA low, CRGBAModuleBase * high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, ANLFloatType falloff);
         CRGBASelect(SRGBA low, CRGBAModuleBase * high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff);
 
-        CRGBASelect(CRGBAModuleBase * low, SRGBA high, double control, double threshold, double falloff);
-        CRGBASelect(CRGBAModuleBase * low, SRGBA high, double control, double threshold, CImplicitModuleBase * falloff);
-        CRGBASelect(CRGBAModuleBase * low, SRGBA high, double control, CImplicitModuleBase * threshold, double falloff);
-        CRGBASelect(CRGBAModuleBase * low, SRGBA high, double control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff);
-        CRGBASelect(CRGBAModuleBase * low, SRGBA high, CImplicitModuleBase * control, double threshold, double falloff);
-        CRGBASelect(CRGBAModuleBase * low, SRGBA high, CImplicitModuleBase * control, double threshold, CImplicitModuleBase * falloff);
-        CRGBASelect(CRGBAModuleBase * low, SRGBA high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, double falloff);
+        CRGBASelect(CRGBAModuleBase * low, SRGBA high, ANLFloatType control, ANLFloatType threshold, ANLFloatType falloff);
+        CRGBASelect(CRGBAModuleBase * low, SRGBA high, ANLFloatType control, ANLFloatType threshold, CImplicitModuleBase * falloff);
+        CRGBASelect(CRGBAModuleBase * low, SRGBA high, ANLFloatType control, CImplicitModuleBase * threshold, ANLFloatType falloff);
+        CRGBASelect(CRGBAModuleBase * low, SRGBA high, ANLFloatType control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff);
+        CRGBASelect(CRGBAModuleBase * low, SRGBA high, CImplicitModuleBase * control, ANLFloatType threshold, ANLFloatType falloff);
+        CRGBASelect(CRGBAModuleBase * low, SRGBA high, CImplicitModuleBase * control, ANLFloatType threshold, CImplicitModuleBase * falloff);
+        CRGBASelect(CRGBAModuleBase * low, SRGBA high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, ANLFloatType falloff);
         CRGBASelect(CRGBAModuleBase * low, SRGBA high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff);
-        CRGBASelect(CRGBAModuleBase * low, CRGBAModuleBase * high, double control, double threshold, double falloff);
-        CRGBASelect(CRGBAModuleBase * low, CRGBAModuleBase * high, double control, double threshold, CImplicitModuleBase * falloff);
-        CRGBASelect(CRGBAModuleBase * low, CRGBAModuleBase * high, double control, CImplicitModuleBase * threshold, double falloff);
-        CRGBASelect(CRGBAModuleBase * low, CRGBAModuleBase * high, double control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff);
-        CRGBASelect(CRGBAModuleBase * low, CRGBAModuleBase * high, CImplicitModuleBase * control, double threshold, double falloff);
-        CRGBASelect(CRGBAModuleBase * low, CRGBAModuleBase * high, CImplicitModuleBase * control, double threshold, CImplicitModuleBase * falloff);
-        CRGBASelect(CRGBAModuleBase * low, CRGBAModuleBase * high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, double falloff);
+        CRGBASelect(CRGBAModuleBase * low, CRGBAModuleBase * high, ANLFloatType control, ANLFloatType threshold, ANLFloatType falloff);
+        CRGBASelect(CRGBAModuleBase * low, CRGBAModuleBase * high, ANLFloatType control, ANLFloatType threshold, CImplicitModuleBase * falloff);
+        CRGBASelect(CRGBAModuleBase * low, CRGBAModuleBase * high, ANLFloatType control, CImplicitModuleBase * threshold, ANLFloatType falloff);
+        CRGBASelect(CRGBAModuleBase * low, CRGBAModuleBase * high, ANLFloatType control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff);
+        CRGBASelect(CRGBAModuleBase * low, CRGBAModuleBase * high, CImplicitModuleBase * control, ANLFloatType threshold, ANLFloatType falloff);
+        CRGBASelect(CRGBAModuleBase * low, CRGBAModuleBase * high, CImplicitModuleBase * control, ANLFloatType threshold, CImplicitModuleBase * falloff);
+        CRGBASelect(CRGBAModuleBase * low, CRGBAModuleBase * high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, ANLFloatType falloff);
         CRGBASelect(CRGBAModuleBase * low, CRGBAModuleBase * high, CImplicitModuleBase * control, CImplicitModuleBase * threshold, CImplicitModuleBase * falloff);
 
         void setLowSource(CRGBAModuleBase * m);
@@ -50,14 +50,14 @@ namespace anl
         void setControlSource(CImplicitModuleBase * m);
         void setThreshold(CImplicitModuleBase * m);
         void setFalloff(CImplicitModuleBase * m);
-        void setControlSource(double v);
-        void setThreshold(double v);
-        void setFalloff(double v);
+        void setControlSource(ANLFloatType v);
+        void setThreshold(ANLFloatType v);
+        void setFalloff(ANLFloatType v);
 
-        SRGBA get(double x, double y);
-        SRGBA get(double x, double y, double z);
-        SRGBA get(double x, double y, double z, double w);
-        SRGBA get(double x, double y, double z, double w, double u, double v);
+        SRGBA get(ANLFloatType x, ANLFloatType y);
+        SRGBA get(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+        SRGBA get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+        SRGBA get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
 
         protected:
         CRGBAParameter m_low, m_high;

@@ -40,7 +40,7 @@ namespace anl
             for(int y=0; y<out.height(); ++y)
             {
                 SRGBA c=out.get(x,y);
-                double v=tmp.get(x,y);
+                ANLFloatType v=tmp.get(x,y);
                 out.set(x,y,SRGBA(c[0]*v, c[1]*v, c[2]*v, c[3]));
             }
         }

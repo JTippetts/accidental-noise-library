@@ -9,27 +9,27 @@ namespace anl
     {
     public:
         CImplicitBlend();
-        CImplicitBlend(double low, double high, double control);
-        CImplicitBlend(double low, double high, CImplicitModuleBase * control);
-        CImplicitBlend(double low, CImplicitModuleBase * high, double control);
-        CImplicitBlend(CImplicitModuleBase * low, double high, double control);
-        CImplicitBlend(double low, CImplicitModuleBase * high, CImplicitModuleBase * control);
-        CImplicitBlend(CImplicitModuleBase * low, double high, CImplicitModuleBase * control);
-        CImplicitBlend(CImplicitModuleBase * low, CImplicitModuleBase * high, double control);
+        CImplicitBlend(ANLFloatType low, ANLFloatType high, ANLFloatType control);
+        CImplicitBlend(ANLFloatType low, ANLFloatType high, CImplicitModuleBase * control);
+        CImplicitBlend(ANLFloatType low, CImplicitModuleBase * high, ANLFloatType control);
+        CImplicitBlend(CImplicitModuleBase * low, ANLFloatType high, ANLFloatType control);
+        CImplicitBlend(ANLFloatType low, CImplicitModuleBase * high, CImplicitModuleBase * control);
+        CImplicitBlend(CImplicitModuleBase * low, ANLFloatType high, CImplicitModuleBase * control);
+        CImplicitBlend(CImplicitModuleBase * low, CImplicitModuleBase * high, ANLFloatType control);
         CImplicitBlend(CImplicitModuleBase * low, CImplicitModuleBase * high, CImplicitModuleBase * control);
         ~CImplicitBlend();
 
         void setLowSource(CImplicitModuleBase * b);
         void setHighSource(CImplicitModuleBase * b);
         void setControlSource(CImplicitModuleBase * b);
-        void setLowSource(double v);
-        void setHighSource(double v);
-        void setControlSource(double v);
+        void setLowSource(ANLFloatType v);
+        void setHighSource(ANLFloatType v);
+        void setControlSource(ANLFloatType v);
 
-        double get(double x, double y);
-        double get(double x, double y, double z);
-        double get(double x, double y, double z, double w);
-        double get(double x, double y, double z, double w, double u, double v);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
         protected:
         CScalarParameter m_low,m_high,m_control;
 

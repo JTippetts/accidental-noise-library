@@ -47,7 +47,7 @@ namespace anl
         return i->second.get();
     }
 
-    CTreeContainer &CTreeContainer::autoCorrect(std::string name, std::string src, double low, double high)
+    CTreeContainer &CTreeContainer::autoCorrect(std::string name, std::string src, ANLFloatType low, ANLFloatType high)
     {
         if(get(name)) return *this;
         CImplicitModuleBase * s=get(src);
@@ -62,14 +62,14 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::blend(std::string name, double low, double high, double control)
+    CTreeContainer &CTreeContainer::blend(std::string name, ANLFloatType low, ANLFloatType high, ANLFloatType control)
     {
         if(get(name)) return *this;
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitBlend(low,high,control));
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::blend(std::string name, double low, double high, std::string control)
+    CTreeContainer &CTreeContainer::blend(std::string name, ANLFloatType low, ANLFloatType high, std::string control)
     {
         if(get(name)) return *this;
         CImplicitModuleBase * c=get(control);
@@ -77,7 +77,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::blend(std::string name, double low, std::string high, double control)
+    CTreeContainer &CTreeContainer::blend(std::string name, ANLFloatType low, std::string high, ANLFloatType control)
     {
         if(get(name)) return *this;
         CImplicitModuleBase * h=get(high);
@@ -85,7 +85,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::blend(std::string name, double low, std::string high, std::string control)
+    CTreeContainer &CTreeContainer::blend(std::string name, ANLFloatType low, std::string high, std::string control)
     {
         if(get(name)) return *this;
         CImplicitModuleBase * h=get(high);
@@ -94,7 +94,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::blend(std::string name, std::string low, double high, double control)
+    CTreeContainer &CTreeContainer::blend(std::string name, std::string low, ANLFloatType high, ANLFloatType control)
     {
         if(get(name)) return *this;
         CImplicitModuleBase * l=get(low);
@@ -102,7 +102,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::blend(std::string name, std::string low, double high, std::string control)
+    CTreeContainer &CTreeContainer::blend(std::string name, std::string low, ANLFloatType high, std::string control)
     {
         if(get(name)) return *this;
         CImplicitModuleBase * l=get(low);
@@ -111,7 +111,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::blend(std::string name, std::string low, std::string high, double control)
+    CTreeContainer &CTreeContainer::blend(std::string name, std::string low, std::string high, ANLFloatType control)
     {
         if(get(name)) return *this;
         CImplicitModuleBase * l=get(low);
@@ -130,7 +130,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::brightContrast(std::string name, double s, double b, double t, double f)
+    CTreeContainer &CTreeContainer::brightContrast(std::string name, ANLFloatType s, ANLFloatType b, ANLFloatType t, ANLFloatType f)
     {
         if(get(name)) return *this;
 
@@ -143,7 +143,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::brightContrast(std::string name, double s, double b, double t, std::string f)
+    CTreeContainer &CTreeContainer::brightContrast(std::string name, ANLFloatType s, ANLFloatType b, ANLFloatType t, std::string f)
     {
         if(get(name)) return *this;
 
@@ -156,7 +156,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::brightContrast(std::string name, double s, double b, std::string t, double f)
+    CTreeContainer &CTreeContainer::brightContrast(std::string name, ANLFloatType s, ANLFloatType b, std::string t, ANLFloatType f)
     {
         if(get(name)) return *this;
 
@@ -169,7 +169,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::brightContrast(std::string name, double s, double b, std::string t, std::string f)
+    CTreeContainer &CTreeContainer::brightContrast(std::string name, ANLFloatType s, ANLFloatType b, std::string t, std::string f)
     {
         if(get(name)) return *this;
 
@@ -182,7 +182,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::brightContrast(std::string name, double s, std::string b, double t, double f)
+    CTreeContainer &CTreeContainer::brightContrast(std::string name, ANLFloatType s, std::string b, ANLFloatType t, ANLFloatType f)
     {
         if(get(name)) return *this;
 
@@ -195,7 +195,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::brightContrast(std::string name, double s, std::string b, double t, std::string f)
+    CTreeContainer &CTreeContainer::brightContrast(std::string name, ANLFloatType s, std::string b, ANLFloatType t, std::string f)
     {
         if(get(name)) return *this;
 
@@ -208,7 +208,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::brightContrast(std::string name, double s, std::string b, std::string t, double f)
+    CTreeContainer &CTreeContainer::brightContrast(std::string name, ANLFloatType s, std::string b, std::string t, ANLFloatType f)
     {
         if(get(name)) return *this;
 
@@ -221,7 +221,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::brightContrast(std::string name, double s, std::string b, std::string t, std::string f)
+    CTreeContainer &CTreeContainer::brightContrast(std::string name, ANLFloatType s, std::string b, std::string t, std::string f)
     {
         if(get(name)) return *this;
 
@@ -234,7 +234,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::brightContrast(std::string name, std::string s, double b, double t, double f)
+    CTreeContainer &CTreeContainer::brightContrast(std::string name, std::string s, ANLFloatType b, ANLFloatType t, ANLFloatType f)
     {
         if(get(name)) return *this;
 
@@ -247,7 +247,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::brightContrast(std::string name, std::string s, double b, double t, std::string f)
+    CTreeContainer &CTreeContainer::brightContrast(std::string name, std::string s, ANLFloatType b, ANLFloatType t, std::string f)
     {
         if(get(name)) return *this;
 
@@ -260,7 +260,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::brightContrast(std::string name, std::string s, double b, std::string t, double f)
+    CTreeContainer &CTreeContainer::brightContrast(std::string name, std::string s, ANLFloatType b, std::string t, ANLFloatType f)
     {
         if(get(name)) return *this;
 
@@ -273,7 +273,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::brightContrast(std::string name, std::string s, double b, std::string t, std::string f)
+    CTreeContainer &CTreeContainer::brightContrast(std::string name, std::string s, ANLFloatType b, std::string t, std::string f)
     {
         if(get(name)) return *this;
 
@@ -286,7 +286,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::brightContrast(std::string name, std::string s, std::string b, double t, double f)
+    CTreeContainer &CTreeContainer::brightContrast(std::string name, std::string s, std::string b, ANLFloatType t, ANLFloatType f)
     {
         if(get(name)) return *this;
 
@@ -299,7 +299,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::brightContrast(std::string name, std::string s, std::string b, double t, std::string f)
+    CTreeContainer &CTreeContainer::brightContrast(std::string name, std::string s, std::string b, ANLFloatType t, std::string f)
     {
         if(get(name)) return *this;
 
@@ -312,7 +312,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::brightContrast(std::string name, std::string s, std::string b, std::string t, double f)
+    CTreeContainer &CTreeContainer::brightContrast(std::string name, std::string s, std::string b, std::string t, ANLFloatType f)
     {
         if(get(name)) return *this;
 
@@ -338,7 +338,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::cache(std::string name, double v)
+    CTreeContainer &CTreeContainer::cache(std::string name, ANLFloatType v)
     {
         if(get(name)) return *this;
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitCache(v));
@@ -352,7 +352,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::cellular(std::string name, std::string g, double a, double b, double c, double d)
+    CTreeContainer &CTreeContainer::cellular(std::string name, std::string g, ANLFloatType a, ANLFloatType b, ANLFloatType c, ANLFloatType d)
     {
         if(get(name)) return *this;
         auto geni=m_cellgen.find(g);
@@ -371,7 +371,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::clamp(std::string name, double s, double l, double h)
+    CTreeContainer &CTreeContainer::clamp(std::string name, ANLFloatType s, ANLFloatType l, ANLFloatType h)
     {
         if(get(name)) return *this;
 
@@ -379,7 +379,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::clamp(std::string name, double s, double l, std::string h)
+    CTreeContainer &CTreeContainer::clamp(std::string name, ANLFloatType s, ANLFloatType l, std::string h)
     {
         if(get(name)) return *this;
 
@@ -387,7 +387,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::clamp(std::string name, double s, std::string l, double h)
+    CTreeContainer &CTreeContainer::clamp(std::string name, ANLFloatType s, std::string l, ANLFloatType h)
     {
         if(get(name)) return *this;
 
@@ -395,7 +395,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::clamp(std::string name, double s, std::string l, std::string h)
+    CTreeContainer &CTreeContainer::clamp(std::string name, ANLFloatType s, std::string l, std::string h)
     {
         if(get(name)) return *this;
 
@@ -403,7 +403,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::clamp(std::string name, std::string s, double l, double h)
+    CTreeContainer &CTreeContainer::clamp(std::string name, std::string s, ANLFloatType l, ANLFloatType h)
     {
         if(get(name)) return *this;
 
@@ -411,7 +411,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::clamp(std::string name, std::string s, double l, std::string h)
+    CTreeContainer &CTreeContainer::clamp(std::string name, std::string s, ANLFloatType l, std::string h)
     {
         if(get(name)) return *this;
 
@@ -419,7 +419,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::clamp(std::string name, std::string s, std::string l, double h)
+    CTreeContainer &CTreeContainer::clamp(std::string name, std::string s, std::string l, ANLFloatType h)
     {
         if(get(name)) return *this;
 
@@ -435,7 +435,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::constant(std::string name, double v)
+    CTreeContainer &CTreeContainer::constant(std::string name, ANLFloatType v)
     {
         if(get(name)) return *this;
 
@@ -443,7 +443,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::curve(std::string name, double s, int interptype)
+    CTreeContainer &CTreeContainer::curve(std::string name, ANLFloatType s, int interptype)
     {
         if(get(name)) return *this;
 
@@ -459,7 +459,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::fractal(std::string name, unsigned int type, unsigned int basis, unsigned int interp, int octaves, double freq)
+    CTreeContainer &CTreeContainer::fractal(std::string name, unsigned int type, unsigned int basis, unsigned int interp, int octaves, ANLFloatType freq)
     {
         if(get(name)) return *this;
 
@@ -467,7 +467,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::functionGradient(std::string name, double s, int axis, double spacing)
+    CTreeContainer &CTreeContainer::functionGradient(std::string name, ANLFloatType s, int axis, ANLFloatType spacing)
     {
         if(get(name)) return *this;
 
@@ -475,7 +475,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::functionGradient(std::string name, std::string s, int axis, double spacing)
+    CTreeContainer &CTreeContainer::functionGradient(std::string name, std::string s, int axis, ANLFloatType spacing)
 
     {
         if(get(name)) return *this;
@@ -484,14 +484,14 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::gradient(std::string name, double x1, double x2, double y1, double y2, double z1, double z2, double w1, double w2, double u1, double u2, double v1, double v2)
+    CTreeContainer &CTreeContainer::gradient(std::string name, ANLFloatType x1, ANLFloatType x2, ANLFloatType y1, ANLFloatType y2, ANLFloatType z1, ANLFloatType z2, ANLFloatType w1, ANLFloatType w2, ANLFloatType u1, ANLFloatType u2, ANLFloatType v1, ANLFloatType v2)
     {
         if(get(name)) return *this;
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitGradient(x1,x2,y1,y2,z1,z2,w1,w2,u1,u2,v1,v2));
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::math(std::string name, int op, double s1, double s2)
+    CTreeContainer &CTreeContainer::math(std::string name, int op, ANLFloatType s1, ANLFloatType s2)
     {
         if(get(name)) return *this;
 
@@ -499,7 +499,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::math(std::string name, int op, double s1, std::string s2)
+    CTreeContainer &CTreeContainer::math(std::string name, int op, ANLFloatType s1, std::string s2)
     {
         if(get(name)) return *this;
 
@@ -507,7 +507,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::math(std::string name, int op, std::string s1, double s2)
+    CTreeContainer &CTreeContainer::math(std::string name, int op, std::string s1, ANLFloatType s2)
     {
         if(get(name)) return *this;
 
@@ -523,7 +523,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::normalizeCoords(std::string name, double src, double length)
+    CTreeContainer &CTreeContainer::normalizeCoords(std::string name, ANLFloatType src, ANLFloatType length)
     {
         if(get(name)) return *this;
 
@@ -531,7 +531,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::normalizeCoords(std::string name, double src, std::string length)
+    CTreeContainer &CTreeContainer::normalizeCoords(std::string name, ANLFloatType src, std::string length)
     {
         if(get(name)) return *this;
 
@@ -539,7 +539,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::normalizeCoords(std::string name, std::string src, double length)
+    CTreeContainer &CTreeContainer::normalizeCoords(std::string name, std::string src, ANLFloatType length)
     {
         if(get(name)) return *this;
 
@@ -555,7 +555,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rotateDomain(std::string name, double src, double ax, double ay, double az, double angle)
+    CTreeContainer &CTreeContainer::rotateDomain(std::string name, ANLFloatType src, ANLFloatType ax, ANLFloatType ay, ANLFloatType az, ANLFloatType angle)
     {
         if(get(name)) return *this;
 
@@ -563,7 +563,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rotateDomain(std::string name, double src, double ax, double ay, double az, std::string angle)
+    CTreeContainer &CTreeContainer::rotateDomain(std::string name, ANLFloatType src, ANLFloatType ax, ANLFloatType ay, ANLFloatType az, std::string angle)
     {
         if(get(name)) return *this;
 
@@ -571,7 +571,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rotateDomain(std::string name, double src, double ax, double ay, std::string az, double angle)
+    CTreeContainer &CTreeContainer::rotateDomain(std::string name, ANLFloatType src, ANLFloatType ax, ANLFloatType ay, std::string az, ANLFloatType angle)
     {
         if(get(name)) return *this;
 
@@ -579,7 +579,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rotateDomain(std::string name, double src, double ax, double ay, std::string az, std::string angle)
+    CTreeContainer &CTreeContainer::rotateDomain(std::string name, ANLFloatType src, ANLFloatType ax, ANLFloatType ay, std::string az, std::string angle)
     {
         if(get(name)) return *this;
 
@@ -587,7 +587,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rotateDomain(std::string name, double src, double ax, std::string ay, double az, double angle)
+    CTreeContainer &CTreeContainer::rotateDomain(std::string name, ANLFloatType src, ANLFloatType ax, std::string ay, ANLFloatType az, ANLFloatType angle)
     {
         if(get(name)) return *this;
 
@@ -595,7 +595,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rotateDomain(std::string name, double src, double ax, std::string ay, double az, std::string angle)
+    CTreeContainer &CTreeContainer::rotateDomain(std::string name, ANLFloatType src, ANLFloatType ax, std::string ay, ANLFloatType az, std::string angle)
     {
         if(get(name)) return *this;
 
@@ -603,7 +603,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rotateDomain(std::string name, double src, double ax, std::string ay, std::string az, double angle)
+    CTreeContainer &CTreeContainer::rotateDomain(std::string name, ANLFloatType src, ANLFloatType ax, std::string ay, std::string az, ANLFloatType angle)
     {
         if(get(name)) return *this;
 
@@ -611,7 +611,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rotateDomain(std::string name, double src, double ax, std::string ay, std::string az, std::string angle)
+    CTreeContainer &CTreeContainer::rotateDomain(std::string name, ANLFloatType src, ANLFloatType ax, std::string ay, std::string az, std::string angle)
     {
         if(get(name)) return *this;
 
@@ -619,7 +619,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rotateDomain(std::string name, double src, std::string ax, double ay, double az, double angle)
+    CTreeContainer &CTreeContainer::rotateDomain(std::string name, ANLFloatType src, std::string ax, ANLFloatType ay, ANLFloatType az, ANLFloatType angle)
     {
         if(get(name)) return *this;
 
@@ -627,7 +627,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rotateDomain(std::string name, double src, std::string ax, double ay, double az, std::string angle)
+    CTreeContainer &CTreeContainer::rotateDomain(std::string name, ANLFloatType src, std::string ax, ANLFloatType ay, ANLFloatType az, std::string angle)
     {
         if(get(name)) return *this;
 
@@ -635,7 +635,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rotateDomain(std::string name, double src, std::string ax, double ay, std::string az, double angle)
+    CTreeContainer &CTreeContainer::rotateDomain(std::string name, ANLFloatType src, std::string ax, ANLFloatType ay, std::string az, ANLFloatType angle)
     {
         if(get(name)) return *this;
 
@@ -643,7 +643,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rotateDomain(std::string name, double src, std::string ax, double ay, std::string az, std::string angle)
+    CTreeContainer &CTreeContainer::rotateDomain(std::string name, ANLFloatType src, std::string ax, ANLFloatType ay, std::string az, std::string angle)
     {
         if(get(name)) return *this;
 
@@ -651,7 +651,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rotateDomain(std::string name, double src, std::string ax, std::string ay, double az, double angle)
+    CTreeContainer &CTreeContainer::rotateDomain(std::string name, ANLFloatType src, std::string ax, std::string ay, ANLFloatType az, ANLFloatType angle)
     {
         if(get(name)) return *this;
 
@@ -659,7 +659,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rotateDomain(std::string name, double src, std::string ax, std::string ay, double az, std::string angle)
+    CTreeContainer &CTreeContainer::rotateDomain(std::string name, ANLFloatType src, std::string ax, std::string ay, ANLFloatType az, std::string angle)
     {
         if(get(name)) return *this;
 
@@ -667,7 +667,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rotateDomain(std::string name, double src, std::string ax, std::string ay, std::string az, double angle)
+    CTreeContainer &CTreeContainer::rotateDomain(std::string name, ANLFloatType src, std::string ax, std::string ay, std::string az, ANLFloatType angle)
     {
         if(get(name)) return *this;
 
@@ -675,7 +675,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rotateDomain(std::string name, double src, std::string ax, std::string ay, std::string az, std::string angle)
+    CTreeContainer &CTreeContainer::rotateDomain(std::string name, ANLFloatType src, std::string ax, std::string ay, std::string az, std::string angle)
     {
         if(get(name)) return *this;
 
@@ -683,7 +683,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rotateDomain(std::string name, std::string src, double ax, double ay, double az, double angle)
+    CTreeContainer &CTreeContainer::rotateDomain(std::string name, std::string src, ANLFloatType ax, ANLFloatType ay, ANLFloatType az, ANLFloatType angle)
     {
         if(get(name)) return *this;
 
@@ -691,7 +691,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rotateDomain(std::string name, std::string src, double ax, double ay, double az, std::string angle)
+    CTreeContainer &CTreeContainer::rotateDomain(std::string name, std::string src, ANLFloatType ax, ANLFloatType ay, ANLFloatType az, std::string angle)
     {
         if(get(name)) return *this;
 
@@ -699,7 +699,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rotateDomain(std::string name, std::string src, double ax, double ay, std::string az, double angle)
+    CTreeContainer &CTreeContainer::rotateDomain(std::string name, std::string src, ANLFloatType ax, ANLFloatType ay, std::string az, ANLFloatType angle)
     {
         if(get(name)) return *this;
 
@@ -707,7 +707,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rotateDomain(std::string name, std::string src, double ax, double ay, std::string az, std::string angle)
+    CTreeContainer &CTreeContainer::rotateDomain(std::string name, std::string src, ANLFloatType ax, ANLFloatType ay, std::string az, std::string angle)
     {
         if(get(name)) return *this;
 
@@ -715,7 +715,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rotateDomain(std::string name, std::string src, double ax, std::string ay, double az, double angle)
+    CTreeContainer &CTreeContainer::rotateDomain(std::string name, std::string src, ANLFloatType ax, std::string ay, ANLFloatType az, ANLFloatType angle)
     {
         if(get(name)) return *this;
 
@@ -723,7 +723,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rotateDomain(std::string name, std::string src, double ax, std::string ay, double az, std::string angle)
+    CTreeContainer &CTreeContainer::rotateDomain(std::string name, std::string src, ANLFloatType ax, std::string ay, ANLFloatType az, std::string angle)
     {
         if(get(name)) return *this;
 
@@ -731,7 +731,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rotateDomain(std::string name, std::string src, double ax, std::string ay, std::string az, double angle)
+    CTreeContainer &CTreeContainer::rotateDomain(std::string name, std::string src, ANLFloatType ax, std::string ay, std::string az, ANLFloatType angle)
     {
         if(get(name)) return *this;
 
@@ -739,7 +739,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rotateDomain(std::string name, std::string src, double ax, std::string ay, std::string az, std::string angle)
+    CTreeContainer &CTreeContainer::rotateDomain(std::string name, std::string src, ANLFloatType ax, std::string ay, std::string az, std::string angle)
     {
         if(get(name)) return *this;
 
@@ -747,7 +747,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rotateDomain(std::string name, std::string src, std::string ax, double ay, double az, double angle)
+    CTreeContainer &CTreeContainer::rotateDomain(std::string name, std::string src, std::string ax, ANLFloatType ay, ANLFloatType az, ANLFloatType angle)
     {
         if(get(name)) return *this;
 
@@ -755,7 +755,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rotateDomain(std::string name, std::string src, std::string ax, double ay, double az, std::string angle)
+    CTreeContainer &CTreeContainer::rotateDomain(std::string name, std::string src, std::string ax, ANLFloatType ay, ANLFloatType az, std::string angle)
     {
         if(get(name)) return *this;
 
@@ -763,7 +763,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rotateDomain(std::string name, std::string src, std::string ax, double ay, std::string az, double angle)
+    CTreeContainer &CTreeContainer::rotateDomain(std::string name, std::string src, std::string ax, ANLFloatType ay, std::string az, ANLFloatType angle)
     {
         if(get(name)) return *this;
 
@@ -771,7 +771,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rotateDomain(std::string name, std::string src, std::string ax, double ay, std::string az, std::string angle)
+    CTreeContainer &CTreeContainer::rotateDomain(std::string name, std::string src, std::string ax, ANLFloatType ay, std::string az, std::string angle)
     {
         if(get(name)) return *this;
 
@@ -779,7 +779,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rotateDomain(std::string name, std::string src, std::string ax, std::string ay, double az, double angle)
+    CTreeContainer &CTreeContainer::rotateDomain(std::string name, std::string src, std::string ax, std::string ay, ANLFloatType az, ANLFloatType angle)
     {
         if(get(name)) return *this;
 
@@ -787,7 +787,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rotateDomain(std::string name, std::string src, std::string ax, std::string ay, double az, std::string angle)
+    CTreeContainer &CTreeContainer::rotateDomain(std::string name, std::string src, std::string ax, std::string ay, ANLFloatType az, std::string angle)
     {
         if(get(name)) return *this;
 
@@ -795,7 +795,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rotateDomain(std::string name, std::string src, std::string ax, std::string ay, std::string az, double angle)
+    CTreeContainer &CTreeContainer::rotateDomain(std::string name, std::string src, std::string ax, std::string ay, std::string az, ANLFloatType angle)
     {
         if(get(name)) return *this;
 
@@ -811,7 +811,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::sawtooth(std::string name, double src, double period)
+    CTreeContainer &CTreeContainer::sawtooth(std::string name, ANLFloatType src, ANLFloatType period)
     {
         if(get(name)) return *this;
 
@@ -819,7 +819,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::sawtooth(std::string name, double src, std::string period)
+    CTreeContainer &CTreeContainer::sawtooth(std::string name, ANLFloatType src, std::string period)
     {
         if(get(name)) return *this;
 
@@ -827,7 +827,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::sawtooth(std::string name, std::string src, double period)
+    CTreeContainer &CTreeContainer::sawtooth(std::string name, std::string src, ANLFloatType period)
     {
         if(get(name)) return *this;
 
@@ -843,7 +843,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::scaleDomain(std::string name, double src, double sx, double sy, double sz)
+    CTreeContainer &CTreeContainer::scaleDomain(std::string name, ANLFloatType src, ANLFloatType sx, ANLFloatType sy, ANLFloatType sz)
     {
         if(get(name)) return *this;
 
@@ -851,7 +851,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::scaleDomain(std::string name, double src, double sx, double sy, std::string sz)
+    CTreeContainer &CTreeContainer::scaleDomain(std::string name, ANLFloatType src, ANLFloatType sx, ANLFloatType sy, std::string sz)
     {
         if(get(name)) return *this;
 
@@ -859,7 +859,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::scaleDomain(std::string name, double src, double sx, std::string sy, double sz)
+    CTreeContainer &CTreeContainer::scaleDomain(std::string name, ANLFloatType src, ANLFloatType sx, std::string sy, ANLFloatType sz)
     {
         if(get(name)) return *this;
 
@@ -867,7 +867,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::scaleDomain(std::string name, double src, double sx, std::string sy, std::string sz)
+    CTreeContainer &CTreeContainer::scaleDomain(std::string name, ANLFloatType src, ANLFloatType sx, std::string sy, std::string sz)
     {
         if(get(name)) return *this;
 
@@ -875,7 +875,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::scaleDomain(std::string name, double src, std::string sx, double sy, double sz)
+    CTreeContainer &CTreeContainer::scaleDomain(std::string name, ANLFloatType src, std::string sx, ANLFloatType sy, ANLFloatType sz)
     {
         if(get(name)) return *this;
 
@@ -883,7 +883,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::scaleDomain(std::string name, double src, std::string sx, double sy, std::string sz)
+    CTreeContainer &CTreeContainer::scaleDomain(std::string name, ANLFloatType src, std::string sx, ANLFloatType sy, std::string sz)
     {
         if(get(name)) return *this;
 
@@ -891,7 +891,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::scaleDomain(std::string name, double src, std::string sx, std::string sy, double sz)
+    CTreeContainer &CTreeContainer::scaleDomain(std::string name, ANLFloatType src, std::string sx, std::string sy, ANLFloatType sz)
     {
         if(get(name)) return *this;
 
@@ -899,7 +899,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::scaleDomain(std::string name, double src, std::string sx, std::string sy, std::string sz)
+    CTreeContainer &CTreeContainer::scaleDomain(std::string name, ANLFloatType src, std::string sx, std::string sy, std::string sz)
     {
         if(get(name)) return *this;
 
@@ -907,7 +907,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::scaleDomain(std::string name, std::string src, double sx, double sy, double sz)
+    CTreeContainer &CTreeContainer::scaleDomain(std::string name, std::string src, ANLFloatType sx, ANLFloatType sy, ANLFloatType sz)
     {
         if(get(name)) return *this;
 
@@ -915,7 +915,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::scaleDomain(std::string name, std::string src, double sx, double sy, std::string sz)
+    CTreeContainer &CTreeContainer::scaleDomain(std::string name, std::string src, ANLFloatType sx, ANLFloatType sy, std::string sz)
     {
         if(get(name)) return *this;
 
@@ -923,7 +923,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::scaleDomain(std::string name, std::string src, double sx, std::string sy, double sz)
+    CTreeContainer &CTreeContainer::scaleDomain(std::string name, std::string src, ANLFloatType sx, std::string sy, ANLFloatType sz)
     {
         if(get(name)) return *this;
 
@@ -931,7 +931,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::scaleDomain(std::string name, std::string src, double sx, std::string sy, std::string sz)
+    CTreeContainer &CTreeContainer::scaleDomain(std::string name, std::string src, ANLFloatType sx, std::string sy, std::string sz)
     {
         if(get(name)) return *this;
 
@@ -939,7 +939,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::scaleDomain(std::string name, std::string src, std::string sx, double sy, double sz)
+    CTreeContainer &CTreeContainer::scaleDomain(std::string name, std::string src, std::string sx, ANLFloatType sy, ANLFloatType sz)
     {
         if(get(name)) return *this;
 
@@ -947,7 +947,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::scaleDomain(std::string name, std::string src, std::string sx, double sy, std::string sz)
+    CTreeContainer &CTreeContainer::scaleDomain(std::string name, std::string src, std::string sx, ANLFloatType sy, std::string sz)
     {
         if(get(name)) return *this;
 
@@ -955,7 +955,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::scaleDomain(std::string name, std::string src, std::string sx, std::string sy, double sz)
+    CTreeContainer &CTreeContainer::scaleDomain(std::string name, std::string src, std::string sx, std::string sy, ANLFloatType sz)
     {
         if(get(name)) return *this;
 
@@ -971,7 +971,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::scaleOffset(std::string name, double src, double scale, double offset)
+    CTreeContainer &CTreeContainer::scaleOffset(std::string name, ANLFloatType src, ANLFloatType scale, ANLFloatType offset)
     {
         if(get(name)) return *this;
 
@@ -979,7 +979,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::scaleOffset(std::string name, double src, double scale, std::string offset)
+    CTreeContainer &CTreeContainer::scaleOffset(std::string name, ANLFloatType src, ANLFloatType scale, std::string offset)
     {
         if(get(name)) return *this;
 
@@ -987,7 +987,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::scaleOffset(std::string name, double src, std::string scale, double offset)
+    CTreeContainer &CTreeContainer::scaleOffset(std::string name, ANLFloatType src, std::string scale, ANLFloatType offset)
     {
         if(get(name)) return *this;
 
@@ -995,7 +995,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::scaleOffset(std::string name, double src, std::string scale, std::string offset)
+    CTreeContainer &CTreeContainer::scaleOffset(std::string name, ANLFloatType src, std::string scale, std::string offset)
     {
         if(get(name)) return *this;
 
@@ -1003,7 +1003,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::scaleOffset(std::string name, std::string src, double scale, double offset)
+    CTreeContainer &CTreeContainer::scaleOffset(std::string name, std::string src, ANLFloatType scale, ANLFloatType offset)
     {
         if(get(name)) return *this;
 
@@ -1011,7 +1011,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::scaleOffset(std::string name, std::string src, double scale, std::string offset)
+    CTreeContainer &CTreeContainer::scaleOffset(std::string name, std::string src, ANLFloatType scale, std::string offset)
     {
         if(get(name)) return *this;
 
@@ -1019,7 +1019,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::scaleOffset(std::string name, std::string src, std::string scale, double offset)
+    CTreeContainer &CTreeContainer::scaleOffset(std::string name, std::string src, std::string scale, ANLFloatType offset)
     {
         if(get(name)) return *this;
 
@@ -1035,7 +1035,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::select(std::string name, double low, double high, double control, double threshold, double falloff)
+    CTreeContainer &CTreeContainer::select(std::string name, ANLFloatType low, ANLFloatType high, ANLFloatType control, ANLFloatType threshold, ANLFloatType falloff)
     {
 	std::cout << "1" << std::endl;
         if(get(name)) return *this;
@@ -1044,7 +1044,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::select(std::string name, double low, double high, double control, double threshold, std::string falloff)
+    CTreeContainer &CTreeContainer::select(std::string name, ANLFloatType low, ANLFloatType high, ANLFloatType control, ANLFloatType threshold, std::string falloff)
     {
 	std::cout << "2" << std::endl;
         if(get(name)) return *this;
@@ -1053,7 +1053,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::select(std::string name, double low, double high, double control, std::string threshold, double falloff)
+    CTreeContainer &CTreeContainer::select(std::string name, ANLFloatType low, ANLFloatType high, ANLFloatType control, std::string threshold, ANLFloatType falloff)
     {
 	std::cout << "3" << std::endl;
         if(get(name)) return *this;
@@ -1062,7 +1062,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::select(std::string name, double low, double high, double control, std::string threshold, std::string falloff)
+    CTreeContainer &CTreeContainer::select(std::string name, ANLFloatType low, ANLFloatType high, ANLFloatType control, std::string threshold, std::string falloff)
     {
 	std::cout << "4" << std::endl;
         if(get(name)) return *this;
@@ -1071,7 +1071,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::select(std::string name, double low, double high, std::string control, double threshold, double falloff)
+    CTreeContainer &CTreeContainer::select(std::string name, ANLFloatType low, ANLFloatType high, std::string control, ANLFloatType threshold, ANLFloatType falloff)
     {
 	std::cout << "5" << std::endl;
 		std::cout << "Test" << std::endl;
@@ -1081,7 +1081,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::select(std::string name, double low, double high, std::string control, double threshold, std::string falloff)
+    CTreeContainer &CTreeContainer::select(std::string name, ANLFloatType low, ANLFloatType high, std::string control, ANLFloatType threshold, std::string falloff)
     {
 	std::cout << "6" << std::endl;
         if(get(name)) return *this;
@@ -1090,7 +1090,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::select(std::string name, double low, double high, std::string control, std::string threshold, double falloff)
+    CTreeContainer &CTreeContainer::select(std::string name, ANLFloatType low, ANLFloatType high, std::string control, std::string threshold, ANLFloatType falloff)
     {
 	std::cout << "7" << std::endl;
         if(get(name)) return *this;
@@ -1099,7 +1099,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::select(std::string name, double low, double high, std::string control, std::string threshold, std::string falloff)
+    CTreeContainer &CTreeContainer::select(std::string name, ANLFloatType low, ANLFloatType high, std::string control, std::string threshold, std::string falloff)
     {
 	std::cout << "8" << std::endl;
         if(get(name)) return *this;
@@ -1108,7 +1108,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::select(std::string name, double low, std::string high, double control, double threshold, double falloff)
+    CTreeContainer &CTreeContainer::select(std::string name, ANLFloatType low, std::string high, ANLFloatType control, ANLFloatType threshold, ANLFloatType falloff)
     {
 	std::cout << "9" << std::endl;
         if(get(name)) return *this;
@@ -1117,7 +1117,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::select(std::string name, double low, std::string high, double control, double threshold, std::string falloff)
+    CTreeContainer &CTreeContainer::select(std::string name, ANLFloatType low, std::string high, ANLFloatType control, ANLFloatType threshold, std::string falloff)
     {
 	std::cout << "10" << std::endl;
         if(get(name)) return *this;
@@ -1126,7 +1126,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::select(std::string name, double low, std::string high, double control, std::string threshold, double falloff)
+    CTreeContainer &CTreeContainer::select(std::string name, ANLFloatType low, std::string high, ANLFloatType control, std::string threshold, ANLFloatType falloff)
     {
 	std::cout << "11" << std::endl;
         if(get(name)) return *this;
@@ -1135,7 +1135,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::select(std::string name, double low, std::string high, double control, std::string threshold, std::string falloff)
+    CTreeContainer &CTreeContainer::select(std::string name, ANLFloatType low, std::string high, ANLFloatType control, std::string threshold, std::string falloff)
     {
 	std::cout << "12" << std::endl;
         if(get(name)) return *this;
@@ -1144,7 +1144,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::select(std::string name, double low, std::string high, std::string control, double threshold, double falloff)
+    CTreeContainer &CTreeContainer::select(std::string name, ANLFloatType low, std::string high, std::string control, ANLFloatType threshold, ANLFloatType falloff)
     {
 	std::cout << "13" << std::endl;
         if(get(name)) return *this;
@@ -1153,7 +1153,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::select(std::string name, double low, std::string high, std::string control, double threshold, std::string falloff)
+    CTreeContainer &CTreeContainer::select(std::string name, ANLFloatType low, std::string high, std::string control, ANLFloatType threshold, std::string falloff)
     {
 	std::cout << "14" << std::endl;
         if(get(name)) return *this;
@@ -1162,7 +1162,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::select(std::string name, double low, std::string high, std::string control, std::string threshold, double falloff)
+    CTreeContainer &CTreeContainer::select(std::string name, ANLFloatType low, std::string high, std::string control, std::string threshold, ANLFloatType falloff)
     {
 	std::cout << "15" << std::endl;
         if(get(name)) return *this;
@@ -1171,7 +1171,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::select(std::string name, double low, std::string high, std::string control, std::string threshold, std::string falloff)
+    CTreeContainer &CTreeContainer::select(std::string name, ANLFloatType low, std::string high, std::string control, std::string threshold, std::string falloff)
     {
 	std::cout << "16" << std::endl;
         if(get(name)) return *this;
@@ -1180,7 +1180,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::select(std::string name, std::string low, double high, double control, double threshold, double falloff)
+    CTreeContainer &CTreeContainer::select(std::string name, std::string low, ANLFloatType high, ANLFloatType control, ANLFloatType threshold, ANLFloatType falloff)
     {
 	std::cout << "17" << std::endl;
         if(get(name)) return *this;
@@ -1189,7 +1189,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::select(std::string name, std::string low, double high, double control, double threshold, std::string falloff)
+    CTreeContainer &CTreeContainer::select(std::string name, std::string low, ANLFloatType high, ANLFloatType control, ANLFloatType threshold, std::string falloff)
     {
 	std::cout << "18" << std::endl;
         if(get(name)) return *this;
@@ -1198,7 +1198,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::select(std::string name, std::string low, double high, double control, std::string threshold, double falloff)
+    CTreeContainer &CTreeContainer::select(std::string name, std::string low, ANLFloatType high, ANLFloatType control, std::string threshold, ANLFloatType falloff)
     {
 	std::cout << "19" << std::endl;
         if(get(name)) return *this;
@@ -1207,7 +1207,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::select(std::string name, std::string low, double high, double control, std::string threshold, std::string falloff)
+    CTreeContainer &CTreeContainer::select(std::string name, std::string low, ANLFloatType high, ANLFloatType control, std::string threshold, std::string falloff)
     {
 	std::cout << "20" << std::endl;
         if(get(name)) return *this;
@@ -1216,7 +1216,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::select(std::string name, std::string low, double high, std::string control, double threshold, double falloff)
+    CTreeContainer &CTreeContainer::select(std::string name, std::string low, ANLFloatType high, std::string control, ANLFloatType threshold, ANLFloatType falloff)
     {
 	std::cout << "21" << std::endl;
         if(get(name)) return *this;
@@ -1225,7 +1225,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::select(std::string name, std::string low, double high, std::string control, double threshold, std::string falloff)
+    CTreeContainer &CTreeContainer::select(std::string name, std::string low, ANLFloatType high, std::string control, ANLFloatType threshold, std::string falloff)
     {
 	std::cout << "22" << std::endl;
         if(get(name)) return *this;
@@ -1234,7 +1234,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::select(std::string name, std::string low, double high, std::string control, std::string threshold, double falloff)
+    CTreeContainer &CTreeContainer::select(std::string name, std::string low, ANLFloatType high, std::string control, std::string threshold, ANLFloatType falloff)
     {
 	std::cout << "23" << std::endl;
         if(get(name)) return *this;
@@ -1243,7 +1243,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::select(std::string name, std::string low, double high, std::string control, std::string threshold, std::string falloff)
+    CTreeContainer &CTreeContainer::select(std::string name, std::string low, ANLFloatType high, std::string control, std::string threshold, std::string falloff)
     {
 	std::cout << "24" << std::endl;
         if(get(name)) return *this;
@@ -1252,7 +1252,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::select(std::string name, std::string low, std::string high, double control, double threshold, double falloff)
+    CTreeContainer &CTreeContainer::select(std::string name, std::string low, std::string high, ANLFloatType control, ANLFloatType threshold, ANLFloatType falloff)
     {
 	std::cout << "25" << std::endl;
         if(get(name)) return *this;
@@ -1261,7 +1261,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::select(std::string name, std::string low, std::string high, double control, double threshold, std::string falloff)
+    CTreeContainer &CTreeContainer::select(std::string name, std::string low, std::string high, ANLFloatType control, ANLFloatType threshold, std::string falloff)
     {
 	std::cout << "26" << std::endl;
         if(get(name)) return *this;
@@ -1270,7 +1270,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::select(std::string name, std::string low, std::string high, double control, std::string threshold, double falloff)
+    CTreeContainer &CTreeContainer::select(std::string name, std::string low, std::string high, ANLFloatType control, std::string threshold, ANLFloatType falloff)
     {
 	std::cout << "27" << std::endl;
         if(get(name)) return *this;
@@ -1279,7 +1279,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::select(std::string name, std::string low, std::string high, double control, std::string threshold, std::string falloff)
+    CTreeContainer &CTreeContainer::select(std::string name, std::string low, std::string high, ANLFloatType control, std::string threshold, std::string falloff)
     {
 	std::cout << "28" << std::endl;
         if(get(name)) return *this;
@@ -1288,7 +1288,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::select(std::string name, std::string low, std::string high, std::string control, double threshold, double falloff)
+    CTreeContainer &CTreeContainer::select(std::string name, std::string low, std::string high, std::string control, ANLFloatType threshold, ANLFloatType falloff)
     {
 	std::cout << "29" << std::endl;
         if(get(name)) return *this;
@@ -1297,7 +1297,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::select(std::string name, std::string low, std::string high, std::string control, double threshold, std::string falloff)
+    CTreeContainer &CTreeContainer::select(std::string name, std::string low, std::string high, std::string control, ANLFloatType threshold, std::string falloff)
     {
 	std::cout << "30" << std::endl;
         if(get(name)) return *this;
@@ -1306,7 +1306,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::select(std::string name, std::string low, std::string high, std::string control, std::string threshold, double falloff)
+    CTreeContainer &CTreeContainer::select(std::string name, std::string low, std::string high, std::string control, std::string threshold, ANLFloatType falloff)
     {
 	std::cout << "31" << std::endl;
         if(get(name)) return *this;
@@ -1324,7 +1324,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::sphere(std::string name, double radius, double cx, double cy, double cz)
+    CTreeContainer &CTreeContainer::sphere(std::string name, ANLFloatType radius, ANLFloatType cx, ANLFloatType cy, ANLFloatType cz)
     {
         if(get(name)) return *this;
 
@@ -1332,7 +1332,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::sphere(std::string name, double radius, double cx, double cy, std::string cz)
+    CTreeContainer &CTreeContainer::sphere(std::string name, ANLFloatType radius, ANLFloatType cx, ANLFloatType cy, std::string cz)
     {
         if(get(name)) return *this;
 
@@ -1340,7 +1340,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::sphere(std::string name, double radius, double cx, std::string cy, double cz)
+    CTreeContainer &CTreeContainer::sphere(std::string name, ANLFloatType radius, ANLFloatType cx, std::string cy, ANLFloatType cz)
     {
         if(get(name)) return *this;
 
@@ -1348,7 +1348,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::sphere(std::string name, double radius, double cx, std::string cy, std::string cz)
+    CTreeContainer &CTreeContainer::sphere(std::string name, ANLFloatType radius, ANLFloatType cx, std::string cy, std::string cz)
     {
         if(get(name)) return *this;
 
@@ -1356,7 +1356,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::sphere(std::string name, double radius, std::string cx, double cy, double cz)
+    CTreeContainer &CTreeContainer::sphere(std::string name, ANLFloatType radius, std::string cx, ANLFloatType cy, ANLFloatType cz)
     {
         if(get(name)) return *this;
 
@@ -1364,7 +1364,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::sphere(std::string name, double radius, std::string cx, double cy, std::string cz)
+    CTreeContainer &CTreeContainer::sphere(std::string name, ANLFloatType radius, std::string cx, ANLFloatType cy, std::string cz)
     {
         if(get(name)) return *this;
 
@@ -1372,7 +1372,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::sphere(std::string name, double radius, std::string cx, std::string cy, double cz)
+    CTreeContainer &CTreeContainer::sphere(std::string name, ANLFloatType radius, std::string cx, std::string cy, ANLFloatType cz)
     {
         if(get(name)) return *this;
 
@@ -1380,7 +1380,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::sphere(std::string name, double radius, std::string cx, std::string cy, std::string cz)
+    CTreeContainer &CTreeContainer::sphere(std::string name, ANLFloatType radius, std::string cx, std::string cy, std::string cz)
     {
         if(get(name)) return *this;
 
@@ -1388,7 +1388,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::sphere(std::string name, std::string radius, double cx, double cy, double cz)
+    CTreeContainer &CTreeContainer::sphere(std::string name, std::string radius, ANLFloatType cx, ANLFloatType cy, ANLFloatType cz)
     {
         if(get(name)) return *this;
 
@@ -1396,7 +1396,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::sphere(std::string name, std::string radius, double cx, double cy, std::string cz)
+    CTreeContainer &CTreeContainer::sphere(std::string name, std::string radius, ANLFloatType cx, ANLFloatType cy, std::string cz)
     {
         if(get(name)) return *this;
 
@@ -1404,7 +1404,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::sphere(std::string name, std::string radius, double cx, std::string cy, double cz)
+    CTreeContainer &CTreeContainer::sphere(std::string name, std::string radius, ANLFloatType cx, std::string cy, ANLFloatType cz)
     {
         if(get(name)) return *this;
 
@@ -1412,7 +1412,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::sphere(std::string name, std::string radius, double cx, std::string cy, std::string cz)
+    CTreeContainer &CTreeContainer::sphere(std::string name, std::string radius, ANLFloatType cx, std::string cy, std::string cz)
     {
         if(get(name)) return *this;
 
@@ -1420,7 +1420,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::sphere(std::string name, std::string radius, std::string cx, double cy, double cz)
+    CTreeContainer &CTreeContainer::sphere(std::string name, std::string radius, std::string cx, ANLFloatType cy, ANLFloatType cz)
     {
         if(get(name)) return *this;
 
@@ -1428,7 +1428,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::sphere(std::string name, std::string radius, std::string cx, double cy, std::string cz)
+    CTreeContainer &CTreeContainer::sphere(std::string name, std::string radius, std::string cx, ANLFloatType cy, std::string cz)
     {
         if(get(name)) return *this;
 
@@ -1436,7 +1436,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::sphere(std::string name, std::string radius, std::string cx, std::string cy, double cz)
+    CTreeContainer &CTreeContainer::sphere(std::string name, std::string radius, std::string cx, std::string cy, ANLFloatType cz)
     {
         if(get(name)) return *this;
 
@@ -1452,7 +1452,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::tiers(std::string name, double src, int numtiers, bool smooth)
+    CTreeContainer &CTreeContainer::tiers(std::string name, ANLFloatType src, int numtiers, bool smooth)
     {
         if(get(name)) return *this;
 
@@ -1468,7 +1468,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::translateDomain(std::string name, double src, double tx, double ty, double tz)
+    CTreeContainer &CTreeContainer::translateDomain(std::string name, ANLFloatType src, ANLFloatType tx, ANLFloatType ty, ANLFloatType tz)
     {
         if(get(name)) return *this;
 
@@ -1476,7 +1476,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::translateDomain(std::string name, double src, double tx, double ty, std::string tz)
+    CTreeContainer &CTreeContainer::translateDomain(std::string name, ANLFloatType src, ANLFloatType tx, ANLFloatType ty, std::string tz)
     {
         if(get(name)) return *this;
 
@@ -1484,7 +1484,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::translateDomain(std::string name, double src, double tx, std::string ty, double tz)
+    CTreeContainer &CTreeContainer::translateDomain(std::string name, ANLFloatType src, ANLFloatType tx, std::string ty, ANLFloatType tz)
     {
         if(get(name)) return *this;
 
@@ -1492,7 +1492,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::translateDomain(std::string name, double src, double tx, std::string ty, std::string tz)
+    CTreeContainer &CTreeContainer::translateDomain(std::string name, ANLFloatType src, ANLFloatType tx, std::string ty, std::string tz)
     {
         if(get(name)) return *this;
 
@@ -1500,7 +1500,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::translateDomain(std::string name, double src, std::string tx, double ty, double tz)
+    CTreeContainer &CTreeContainer::translateDomain(std::string name, ANLFloatType src, std::string tx, ANLFloatType ty, ANLFloatType tz)
     {
         if(get(name)) return *this;
 
@@ -1508,7 +1508,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::translateDomain(std::string name, double src, std::string tx, double ty, std::string tz)
+    CTreeContainer &CTreeContainer::translateDomain(std::string name, ANLFloatType src, std::string tx, ANLFloatType ty, std::string tz)
     {
         if(get(name)) return *this;
 
@@ -1516,7 +1516,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::translateDomain(std::string name, double src, std::string tx, std::string ty, double tz)
+    CTreeContainer &CTreeContainer::translateDomain(std::string name, ANLFloatType src, std::string tx, std::string ty, ANLFloatType tz)
     {
         if(get(name)) return *this;
 
@@ -1524,7 +1524,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::translateDomain(std::string name, double src, std::string tx, std::string ty, std::string tz)
+    CTreeContainer &CTreeContainer::translateDomain(std::string name, ANLFloatType src, std::string tx, std::string ty, std::string tz)
     {
         if(get(name)) return *this;
 
@@ -1532,7 +1532,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::translateDomain(std::string name, std::string src, double tx, double ty, double tz)
+    CTreeContainer &CTreeContainer::translateDomain(std::string name, std::string src, ANLFloatType tx, ANLFloatType ty, ANLFloatType tz)
     {
         if(get(name)) return *this;
 
@@ -1540,7 +1540,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::translateDomain(std::string name, std::string src, double tx, double ty, std::string tz)
+    CTreeContainer &CTreeContainer::translateDomain(std::string name, std::string src, ANLFloatType tx, ANLFloatType ty, std::string tz)
     {
         if(get(name)) return *this;
 
@@ -1548,7 +1548,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::translateDomain(std::string name, std::string src, double tx, std::string ty, double tz)
+    CTreeContainer &CTreeContainer::translateDomain(std::string name, std::string src, ANLFloatType tx, std::string ty, ANLFloatType tz)
     {
         if(get(name)) return *this;
 
@@ -1556,7 +1556,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::translateDomain(std::string name, std::string src, double tx, std::string ty, std::string tz)
+    CTreeContainer &CTreeContainer::translateDomain(std::string name, std::string src, ANLFloatType tx, std::string ty, std::string tz)
     {
         if(get(name)) return *this;
 
@@ -1564,7 +1564,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::translateDomain(std::string name, std::string src, std::string tx, double ty, double tz)
+    CTreeContainer &CTreeContainer::translateDomain(std::string name, std::string src, std::string tx, ANLFloatType ty, ANLFloatType tz)
     {
         if(get(name)) return *this;
 
@@ -1572,7 +1572,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::translateDomain(std::string name, std::string src, std::string tx, double ty, std::string tz)
+    CTreeContainer &CTreeContainer::translateDomain(std::string name, std::string src, std::string tx, ANLFloatType ty, std::string tz)
     {
         if(get(name)) return *this;
 
@@ -1580,7 +1580,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::translateDomain(std::string name, std::string src, std::string tx, std::string ty, double tz)
+    CTreeContainer &CTreeContainer::translateDomain(std::string name, std::string src, std::string tx, std::string ty, ANLFloatType tz)
     {
         if(get(name)) return *this;
 
@@ -1596,7 +1596,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::triangle(std::string name, double src, double period, double offset)
+    CTreeContainer &CTreeContainer::triangle(std::string name, ANLFloatType src, ANLFloatType period, ANLFloatType offset)
     {
         if(get(name)) return *this;
 
@@ -1604,7 +1604,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::triangle(std::string name, double src, double period, std::string offset)
+    CTreeContainer &CTreeContainer::triangle(std::string name, ANLFloatType src, ANLFloatType period, std::string offset)
     {
         if(get(name)) return *this;
 
@@ -1612,7 +1612,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::triangle(std::string name, double src, std::string period, double offset)
+    CTreeContainer &CTreeContainer::triangle(std::string name, ANLFloatType src, std::string period, ANLFloatType offset)
     {
         if(get(name)) return *this;
 
@@ -1620,7 +1620,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::triangle(std::string name, double src, std::string period, std::string offset)
+    CTreeContainer &CTreeContainer::triangle(std::string name, ANLFloatType src, std::string period, std::string offset)
     {
         if(get(name)) return *this;
 
@@ -1628,7 +1628,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::triangle(std::string name, std::string src, double period, double offset)
+    CTreeContainer &CTreeContainer::triangle(std::string name, std::string src, ANLFloatType period, ANLFloatType offset)
     {
         if(get(name)) return *this;
 
@@ -1636,7 +1636,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::triangle(std::string name, std::string src, double period, std::string offset)
+    CTreeContainer &CTreeContainer::triangle(std::string name, std::string src, ANLFloatType period, std::string offset)
     {
         if(get(name)) return *this;
 
@@ -1644,7 +1644,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::triangle(std::string name, std::string src, std::string period, double offset)
+    CTreeContainer &CTreeContainer::triangle(std::string name, std::string src, std::string period, ANLFloatType offset)
     {
         if(get(name)) return *this;
 
@@ -1660,7 +1660,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaBlend(std::string name, double control, SRGBA low, SRGBA high)
+    CTreeContainer &CTreeContainer::rgbaBlend(std::string name, ANLFloatType control, SRGBA low, SRGBA high)
     {
         if(getRGBA(name)) return *this;
 
@@ -1668,7 +1668,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaBlend(std::string name, double control, SRGBA low, std::string high)
+    CTreeContainer &CTreeContainer::rgbaBlend(std::string name, ANLFloatType control, SRGBA low, std::string high)
     {
         if(getRGBA(name)) return *this;
 
@@ -1676,7 +1676,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaBlend(std::string name, double control, std::string low, SRGBA high)
+    CTreeContainer &CTreeContainer::rgbaBlend(std::string name, ANLFloatType control, std::string low, SRGBA high)
     {
         if(getRGBA(name)) return *this;
 
@@ -1684,7 +1684,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaBlend(std::string name, double control, std::string low, std::string high)
+    CTreeContainer &CTreeContainer::rgbaBlend(std::string name, ANLFloatType control, std::string low, std::string high)
     {
         if(getRGBA(name)) return *this;
 
@@ -1788,7 +1788,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaCompositeChannels(std::string name, double r, double g, double b, double a, int mode)
+    CTreeContainer &CTreeContainer::rgbaCompositeChannels(std::string name, ANLFloatType r, ANLFloatType g, ANLFloatType b, ANLFloatType a, int mode)
     {
         if(getRGBA(name)) return *this;
 
@@ -1796,7 +1796,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaCompositeChannels(std::string name, double r, double g, double b, std::string a, int mode)
+    CTreeContainer &CTreeContainer::rgbaCompositeChannels(std::string name, ANLFloatType r, ANLFloatType g, ANLFloatType b, std::string a, int mode)
     {
         if(getRGBA(name)) return *this;
 
@@ -1804,7 +1804,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaCompositeChannels(std::string name, double r, double g, std::string b, double a, int mode)
+    CTreeContainer &CTreeContainer::rgbaCompositeChannels(std::string name, ANLFloatType r, ANLFloatType g, std::string b, ANLFloatType a, int mode)
     {
         if(getRGBA(name)) return *this;
 
@@ -1812,7 +1812,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaCompositeChannels(std::string name, double r, double g, std::string b, std::string a, int mode)
+    CTreeContainer &CTreeContainer::rgbaCompositeChannels(std::string name, ANLFloatType r, ANLFloatType g, std::string b, std::string a, int mode)
     {
         if(getRGBA(name)) return *this;
 
@@ -1820,7 +1820,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaCompositeChannels(std::string name, double r, std::string g, double b, double a, int mode)
+    CTreeContainer &CTreeContainer::rgbaCompositeChannels(std::string name, ANLFloatType r, std::string g, ANLFloatType b, ANLFloatType a, int mode)
     {
         if(getRGBA(name)) return *this;
 
@@ -1828,7 +1828,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaCompositeChannels(std::string name, double r, std::string g, double b, std::string a, int mode)
+    CTreeContainer &CTreeContainer::rgbaCompositeChannels(std::string name, ANLFloatType r, std::string g, ANLFloatType b, std::string a, int mode)
     {
         if(getRGBA(name)) return *this;
 
@@ -1836,7 +1836,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaCompositeChannels(std::string name, double r, std::string g, std::string b, double a, int mode)
+    CTreeContainer &CTreeContainer::rgbaCompositeChannels(std::string name, ANLFloatType r, std::string g, std::string b, ANLFloatType a, int mode)
     {
         if(getRGBA(name)) return *this;
 
@@ -1844,7 +1844,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaCompositeChannels(std::string name, double r, std::string g, std::string b, std::string a, int mode)
+    CTreeContainer &CTreeContainer::rgbaCompositeChannels(std::string name, ANLFloatType r, std::string g, std::string b, std::string a, int mode)
     {
         if(getRGBA(name)) return *this;
 
@@ -1852,7 +1852,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaCompositeChannels(std::string name, std::string r, double g, double b, double a, int mode)
+    CTreeContainer &CTreeContainer::rgbaCompositeChannels(std::string name, std::string r, ANLFloatType g, ANLFloatType b, ANLFloatType a, int mode)
     {
         if(getRGBA(name)) return *this;
 
@@ -1860,7 +1860,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaCompositeChannels(std::string name, std::string r, double g, double b, std::string a, int mode)
+    CTreeContainer &CTreeContainer::rgbaCompositeChannels(std::string name, std::string r, ANLFloatType g, ANLFloatType b, std::string a, int mode)
     {
         if(getRGBA(name)) return *this;
 
@@ -1868,7 +1868,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaCompositeChannels(std::string name, std::string r, double g, std::string b, double a, int mode)
+    CTreeContainer &CTreeContainer::rgbaCompositeChannels(std::string name, std::string r, ANLFloatType g, std::string b, ANLFloatType a, int mode)
     {
         if(getRGBA(name)) return *this;
 
@@ -1876,7 +1876,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaCompositeChannels(std::string name, std::string r, double g, std::string b, std::string a, int mode)
+    CTreeContainer &CTreeContainer::rgbaCompositeChannels(std::string name, std::string r, ANLFloatType g, std::string b, std::string a, int mode)
     {
         if(getRGBA(name)) return *this;
 
@@ -1884,7 +1884,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaCompositeChannels(std::string name, std::string r, std::string g, double b, double a, int mode)
+    CTreeContainer &CTreeContainer::rgbaCompositeChannels(std::string name, std::string r, std::string g, ANLFloatType b, ANLFloatType a, int mode)
     {
         if(getRGBA(name)) return *this;
 
@@ -1892,7 +1892,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaCompositeChannels(std::string name, std::string r, std::string g, double b, std::string a, int mode)
+    CTreeContainer &CTreeContainer::rgbaCompositeChannels(std::string name, std::string r, std::string g, ANLFloatType b, std::string a, int mode)
     {
         if(getRGBA(name)) return *this;
 
@@ -1900,7 +1900,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaCompositeChannels(std::string name, std::string r, std::string g, std::string b, double a, int mode)
+    CTreeContainer &CTreeContainer::rgbaCompositeChannels(std::string name, std::string r, std::string g, std::string b, ANLFloatType a, int mode)
     {
         if(getRGBA(name)) return *this;
 
@@ -1948,7 +1948,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaImplicitGrayscale(std::string name, double s)
+    CTreeContainer &CTreeContainer::rgbaImplicitGrayscale(std::string name, ANLFloatType s)
     {
         if(getRGBA(name)) return *this;
 
@@ -1980,7 +1980,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, SRGBA c, double ax, double ay, double az, double angle)
+    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, SRGBA c, ANLFloatType ax, ANLFloatType ay, ANLFloatType az, ANLFloatType angle)
     {
         if(getRGBA(name)) return *this;
 
@@ -1988,7 +1988,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, SRGBA c, double ax, double ay, double az, std::string angle)
+    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, SRGBA c, ANLFloatType ax, ANLFloatType ay, ANLFloatType az, std::string angle)
     {
         if(getRGBA(name)) return *this;
 
@@ -1996,7 +1996,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, SRGBA c, double ax, double ay, std::string az, double angle)
+    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, SRGBA c, ANLFloatType ax, ANLFloatType ay, std::string az, ANLFloatType angle)
     {
         if(getRGBA(name)) return *this;
 
@@ -2004,7 +2004,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, SRGBA c, double ax, double ay, std::string az, std::string angle)
+    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, SRGBA c, ANLFloatType ax, ANLFloatType ay, std::string az, std::string angle)
     {
         if(getRGBA(name)) return *this;
 
@@ -2012,7 +2012,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, SRGBA c, double ax, std::string ay, double az, double angle)
+    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, SRGBA c, ANLFloatType ax, std::string ay, ANLFloatType az, ANLFloatType angle)
     {
         if(getRGBA(name)) return *this;
 
@@ -2020,7 +2020,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, SRGBA c, double ax, std::string ay, double az, std::string angle)
+    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, SRGBA c, ANLFloatType ax, std::string ay, ANLFloatType az, std::string angle)
     {
         if(getRGBA(name)) return *this;
 
@@ -2028,7 +2028,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, SRGBA c, double ax, std::string ay, std::string az, double angle)
+    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, SRGBA c, ANLFloatType ax, std::string ay, std::string az, ANLFloatType angle)
     {
         if(getRGBA(name)) return *this;
 
@@ -2036,7 +2036,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, SRGBA c, double ax, std::string ay, std::string az, std::string angle)
+    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, SRGBA c, ANLFloatType ax, std::string ay, std::string az, std::string angle)
     {
         if(getRGBA(name)) return *this;
 
@@ -2044,7 +2044,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, SRGBA c, std::string ax, double ay, double az, double angle)
+    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, SRGBA c, std::string ax, ANLFloatType ay, ANLFloatType az, ANLFloatType angle)
     {
         if(getRGBA(name)) return *this;
 
@@ -2052,7 +2052,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, SRGBA c, std::string ax, double ay, double az, std::string angle)
+    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, SRGBA c, std::string ax, ANLFloatType ay, ANLFloatType az, std::string angle)
     {
         if(getRGBA(name)) return *this;
 
@@ -2060,7 +2060,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, SRGBA c, std::string ax, double ay, std::string az, double angle)
+    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, SRGBA c, std::string ax, ANLFloatType ay, std::string az, ANLFloatType angle)
     {
         if(getRGBA(name)) return *this;
 
@@ -2068,7 +2068,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, SRGBA c, std::string ax, double ay, std::string az, std::string angle)
+    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, SRGBA c, std::string ax, ANLFloatType ay, std::string az, std::string angle)
     {
         if(getRGBA(name)) return *this;
 
@@ -2076,7 +2076,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, SRGBA c, std::string ax, std::string ay, double az, double angle)
+    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, SRGBA c, std::string ax, std::string ay, ANLFloatType az, ANLFloatType angle)
     {
         if(getRGBA(name)) return *this;
 
@@ -2084,7 +2084,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, SRGBA c, std::string ax, std::string ay, double az, std::string angle)
+    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, SRGBA c, std::string ax, std::string ay, ANLFloatType az, std::string angle)
     {
         if(getRGBA(name)) return *this;
 
@@ -2092,7 +2092,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, SRGBA c, std::string ax, std::string ay, std::string az, double angle)
+    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, SRGBA c, std::string ax, std::string ay, std::string az, ANLFloatType angle)
     {
         if(getRGBA(name)) return *this;
 
@@ -2108,7 +2108,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, std::string c, double ax, double ay, double az, double angle)
+    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, std::string c, ANLFloatType ax, ANLFloatType ay, ANLFloatType az, ANLFloatType angle)
     {
         if(getRGBA(name)) return *this;
 
@@ -2116,7 +2116,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, std::string c, double ax, double ay, double az, std::string angle)
+    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, std::string c, ANLFloatType ax, ANLFloatType ay, ANLFloatType az, std::string angle)
     {
         if(getRGBA(name)) return *this;
 
@@ -2124,7 +2124,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, std::string c, double ax, double ay, std::string az, double angle)
+    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, std::string c, ANLFloatType ax, ANLFloatType ay, std::string az, ANLFloatType angle)
     {
         if(getRGBA(name)) return *this;
 
@@ -2132,7 +2132,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, std::string c, double ax, double ay, std::string az, std::string angle)
+    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, std::string c, ANLFloatType ax, ANLFloatType ay, std::string az, std::string angle)
     {
         if(getRGBA(name)) return *this;
 
@@ -2140,7 +2140,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, std::string c, double ax, std::string ay, double az, double angle)
+    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, std::string c, ANLFloatType ax, std::string ay, ANLFloatType az, ANLFloatType angle)
     {
         if(getRGBA(name)) return *this;
 
@@ -2148,7 +2148,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, std::string c, double ax, std::string ay, double az, std::string angle)
+    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, std::string c, ANLFloatType ax, std::string ay, ANLFloatType az, std::string angle)
     {
         if(getRGBA(name)) return *this;
 
@@ -2156,7 +2156,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, std::string c, double ax, std::string ay, std::string az, double angle)
+    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, std::string c, ANLFloatType ax, std::string ay, std::string az, ANLFloatType angle)
     {
         if(getRGBA(name)) return *this;
 
@@ -2164,7 +2164,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, std::string c, double ax, std::string ay, std::string az, std::string angle)
+    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, std::string c, ANLFloatType ax, std::string ay, std::string az, std::string angle)
     {
         if(getRGBA(name)) return *this;
 
@@ -2172,7 +2172,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, std::string c, std::string ax, double ay, double az, double angle)
+    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, std::string c, std::string ax, ANLFloatType ay, ANLFloatType az, ANLFloatType angle)
     {
         if(getRGBA(name)) return *this;
 
@@ -2180,7 +2180,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, std::string c, std::string ax, double ay, double az, std::string angle)
+    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, std::string c, std::string ax, ANLFloatType ay, ANLFloatType az, std::string angle)
     {
         if(getRGBA(name)) return *this;
 
@@ -2188,7 +2188,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, std::string c, std::string ax, double ay, std::string az, double angle)
+    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, std::string c, std::string ax, ANLFloatType ay, std::string az, ANLFloatType angle)
     {
         if(getRGBA(name)) return *this;
 
@@ -2196,7 +2196,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, std::string c, std::string ax, double ay, std::string az, std::string angle)
+    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, std::string c, std::string ax, ANLFloatType ay, std::string az, std::string angle)
     {
         if(getRGBA(name)) return *this;
 
@@ -2204,7 +2204,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, std::string c, std::string ax, std::string ay, double az, double angle)
+    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, std::string c, std::string ax, std::string ay, ANLFloatType az, ANLFloatType angle)
     {
         if(getRGBA(name)) return *this;
 
@@ -2212,7 +2212,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, std::string c, std::string ax, std::string ay, double az, std::string angle)
+    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, std::string c, std::string ax, std::string ay, ANLFloatType az, std::string angle)
     {
         if(getRGBA(name)) return *this;
 
@@ -2220,7 +2220,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, std::string c, std::string ax, std::string ay, std::string az, double angle)
+    CTreeContainer &CTreeContainer::rgbaRotateColor(std::string name, std::string c, std::string ax, std::string ay, std::string az, ANLFloatType angle)
     {
         if(getRGBA(name)) return *this;
 
@@ -2236,7 +2236,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, SRGBA low, SRGBA high, double control, double threshold, double falloff)
+    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, SRGBA low, SRGBA high, ANLFloatType control, ANLFloatType threshold, ANLFloatType falloff)
     {
         if(getRGBA(name)) return *this;
 
@@ -2244,7 +2244,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, SRGBA low, SRGBA high, double control, double threshold, std::string falloff)
+    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, SRGBA low, SRGBA high, ANLFloatType control, ANLFloatType threshold, std::string falloff)
     {
         if(getRGBA(name)) return *this;
 
@@ -2252,7 +2252,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, SRGBA low, SRGBA high, double control, std::string threshold, double falloff)
+    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, SRGBA low, SRGBA high, ANLFloatType control, std::string threshold, ANLFloatType falloff)
     {
         if(getRGBA(name)) return *this;
 
@@ -2260,7 +2260,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, SRGBA low, SRGBA high, double control, std::string threshold, std::string falloff)
+    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, SRGBA low, SRGBA high, ANLFloatType control, std::string threshold, std::string falloff)
     {
         if(getRGBA(name)) return *this;
 
@@ -2268,7 +2268,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, SRGBA low, SRGBA high, std::string control, double threshold, double falloff)
+    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, SRGBA low, SRGBA high, std::string control, ANLFloatType threshold, ANLFloatType falloff)
     {
         if(getRGBA(name)) return *this;
 
@@ -2276,7 +2276,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, SRGBA low, SRGBA high, std::string control, double threshold, std::string falloff)
+    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, SRGBA low, SRGBA high, std::string control, ANLFloatType threshold, std::string falloff)
     {
         if(getRGBA(name)) return *this;
 
@@ -2284,7 +2284,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, SRGBA low, SRGBA high, std::string control, std::string threshold, double falloff)
+    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, SRGBA low, SRGBA high, std::string control, std::string threshold, ANLFloatType falloff)
     {
         if(getRGBA(name)) return *this;
 
@@ -2300,7 +2300,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, SRGBA low, std::string high, double control, double threshold, double falloff)
+    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, SRGBA low, std::string high, ANLFloatType control, ANLFloatType threshold, ANLFloatType falloff)
     {
         if(getRGBA(name)) return *this;
 
@@ -2308,7 +2308,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, SRGBA low, std::string high, double control, double threshold, std::string falloff)
+    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, SRGBA low, std::string high, ANLFloatType control, ANLFloatType threshold, std::string falloff)
     {
         if(getRGBA(name)) return *this;
 
@@ -2316,7 +2316,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, SRGBA low, std::string high, double control, std::string threshold, double falloff)
+    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, SRGBA low, std::string high, ANLFloatType control, std::string threshold, ANLFloatType falloff)
     {
         if(getRGBA(name)) return *this;
 
@@ -2324,7 +2324,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, SRGBA low, std::string high, double control, std::string threshold, std::string falloff)
+    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, SRGBA low, std::string high, ANLFloatType control, std::string threshold, std::string falloff)
     {
         if(getRGBA(name)) return *this;
 
@@ -2332,7 +2332,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, SRGBA low, std::string high, std::string control, double threshold, double falloff)
+    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, SRGBA low, std::string high, std::string control, ANLFloatType threshold, ANLFloatType falloff)
     {
         if(getRGBA(name)) return *this;
 
@@ -2340,7 +2340,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, SRGBA low, std::string high, std::string control, double threshold, std::string falloff)
+    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, SRGBA low, std::string high, std::string control, ANLFloatType threshold, std::string falloff)
     {
         if(getRGBA(name)) return *this;
 
@@ -2348,7 +2348,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, SRGBA low, std::string high, std::string control, std::string threshold, double falloff)
+    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, SRGBA low, std::string high, std::string control, std::string threshold, ANLFloatType falloff)
     {
         if(getRGBA(name)) return *this;
 
@@ -2364,7 +2364,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, std::string low, SRGBA high, double control, double threshold, double falloff)
+    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, std::string low, SRGBA high, ANLFloatType control, ANLFloatType threshold, ANLFloatType falloff)
     {
         if(getRGBA(name)) return *this;
 
@@ -2372,7 +2372,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, std::string low, SRGBA high, double control, double threshold, std::string falloff)
+    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, std::string low, SRGBA high, ANLFloatType control, ANLFloatType threshold, std::string falloff)
     {
         if(getRGBA(name)) return *this;
 
@@ -2380,7 +2380,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, std::string low, SRGBA high, double control, std::string threshold, double falloff)
+    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, std::string low, SRGBA high, ANLFloatType control, std::string threshold, ANLFloatType falloff)
     {
         if(getRGBA(name)) return *this;
 
@@ -2388,7 +2388,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, std::string low, SRGBA high, double control, std::string threshold, std::string falloff)
+    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, std::string low, SRGBA high, ANLFloatType control, std::string threshold, std::string falloff)
     {
         if(getRGBA(name)) return *this;
 
@@ -2396,7 +2396,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, std::string low, SRGBA high, std::string control, double threshold, double falloff)
+    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, std::string low, SRGBA high, std::string control, ANLFloatType threshold, ANLFloatType falloff)
     {
         if(getRGBA(name)) return *this;
 
@@ -2404,7 +2404,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, std::string low, SRGBA high, std::string control, double threshold, std::string falloff)
+    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, std::string low, SRGBA high, std::string control, ANLFloatType threshold, std::string falloff)
     {
         if(getRGBA(name)) return *this;
 
@@ -2412,7 +2412,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, std::string low, SRGBA high, std::string control, std::string threshold, double falloff)
+    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, std::string low, SRGBA high, std::string control, std::string threshold, ANLFloatType falloff)
     {
         if(getRGBA(name)) return *this;
 
@@ -2428,7 +2428,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, std::string low, std::string high, double control, double threshold, double falloff)
+    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, std::string low, std::string high, ANLFloatType control, ANLFloatType threshold, ANLFloatType falloff)
     {
         if(getRGBA(name)) return *this;
 
@@ -2436,7 +2436,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, std::string low, std::string high, double control, double threshold, std::string falloff)
+    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, std::string low, std::string high, ANLFloatType control, ANLFloatType threshold, std::string falloff)
     {
         if(getRGBA(name)) return *this;
 
@@ -2444,7 +2444,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, std::string low, std::string high, double control, std::string threshold, double falloff)
+    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, std::string low, std::string high, ANLFloatType control, std::string threshold, ANLFloatType falloff)
     {
         if(getRGBA(name)) return *this;
 
@@ -2452,7 +2452,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, std::string low, std::string high, double control, std::string threshold, std::string falloff)
+    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, std::string low, std::string high, ANLFloatType control, std::string threshold, std::string falloff)
     {
         if(getRGBA(name)) return *this;
 
@@ -2460,14 +2460,14 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, std::string low, std::string high, std::string control, double threshold, double falloff)
+    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, std::string low, std::string high, std::string control, ANLFloatType threshold, ANLFloatType falloff)
     {
         if(getRGBA(name)) return *this;
 
         m_rgbas[name]=std::shared_ptr<CRGBAModuleBase>(new CRGBASelect(getRGBA(low), getRGBA(high), get(control), get(threshold), get(falloff)));
         return *this;
     }
-    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, std::string low, std::string high, std::string control, double threshold, std::string falloff)
+    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, std::string low, std::string high, std::string control, ANLFloatType threshold, std::string falloff)
     {
         if(getRGBA(name)) return *this;
 
@@ -2475,7 +2475,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, std::string low, std::string high, std::string control, std::string threshold, double falloff)
+    CTreeContainer &CTreeContainer::rgbaSelect(std::string name, std::string low, std::string high, std::string control, std::string threshold, ANLFloatType falloff)
     {
         if(getRGBA(name)) return *this;
 
@@ -2491,7 +2491,7 @@ namespace anl
         return *this;
     }
 
-	CTreeContainer &CTreeContainer::implicitBufferImplicitAdapter(std::string name, std::string source, int mapping, SMappingRanges ranges, bool use_z, double z)
+	CTreeContainer &CTreeContainer::implicitBufferImplicitAdapter(std::string name, std::string source, int mapping, SMappingRanges ranges, bool use_z, ANLFloatType z)
     {
         if(getImplicitBuffer(name)) return *this;
         auto src=get(source);
@@ -2503,7 +2503,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::implicitBufferBlur(std::string name, std::string source, double blursize, bool seamless)
+    CTreeContainer &CTreeContainer::implicitBufferBlur(std::string name, std::string source, ANLFloatType blursize, bool seamless)
     {
         if(getImplicitBuffer(name) ||get(name) || getRGBA(name)) return *this;
         auto src=getImplicitBuffer(source);
@@ -2515,7 +2515,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::implicitBufferScaleToRange(std::string name, std::string source, double low, double high)
+    CTreeContainer &CTreeContainer::implicitBufferScaleToRange(std::string name, std::string source, ANLFloatType low, ANLFloatType high)
     {
         if(getImplicitBuffer(name) ||get(name) || getRGBA(name)) return *this;
         auto src=getImplicitBuffer(source);
@@ -2527,7 +2527,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::implicitBufferBumpMap(std::string name, std::string source, double lx, double ly, double lz, double spacing, bool seamless)
+    CTreeContainer &CTreeContainer::implicitBufferBumpMap(std::string name, std::string source, ANLFloatType lx, ANLFloatType ly, ANLFloatType lz, ANLFloatType spacing, bool seamless)
     {
         if(getImplicitBuffer(name) ||get(name) || getRGBA(name)) return *this;
         auto src=getImplicitBuffer(source);
@@ -2579,22 +2579,22 @@ namespace anl
 
         return *this;
     }
-	
-	CTreeContainer &CTreeContainer::implicitBufferSelect(std::string name, std::string low, std::string high, std::string control, double threshold, double falloff)
+
+	CTreeContainer &CTreeContainer::implicitBufferSelect(std::string name, std::string low, std::string high, std::string control, ANLFloatType threshold, ANLFloatType falloff)
 	{
 		if(getImplicitBuffer(name) || get(name) || getRGBA(name) || getRGBABuffer(name)) return *this;
 		auto l=getImplicitBuffer(low);
 		auto h=getImplicitBuffer(high);
 		auto c=getImplicitBuffer(control);
 		if(!l || !h || !c) return *this;
-		
+
 		m_implicitbuffers[name]=std::shared_ptr<CImplicitBufferBase>(new CImplicitBufferSelect(l,h,c,threshold,falloff));
 		return *this;
 	}
 
 
 
-    CTreeContainer &CTreeContainer::rgbaBufferRGBAAdapter(std::string name, std::string source, int mapping, SMappingRanges ranges, bool use_z, double z)
+    CTreeContainer &CTreeContainer::rgbaBufferRGBAAdapter(std::string name, std::string source, int mapping, SMappingRanges ranges, bool use_z, ANLFloatType z)
     {
         if(getRGBABuffer(name) || getImplicitBuffer(name) || get(name) || getRGBA(name)) return *this;
         auto src=getRGBA(source);
@@ -2618,7 +2618,7 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::rgbaBufferBlur(std::string name, std::string source, double blursize, bool seamless)
+    CTreeContainer &CTreeContainer::rgbaBufferBlur(std::string name, std::string source, ANLFloatType blursize, bool seamless)
     {
         if(getRGBABuffer(name) || getImplicitBuffer(name) || get(name) || getRGBA(name)) return *this;
         auto src=getRGBABuffer(source);
@@ -2642,15 +2642,15 @@ namespace anl
 
         return *this;
     }
-	
-	CTreeContainer &CTreeContainer::rgbaBufferSelect(std::string name, std::string low, std::string high, std::string control, double threshold, double falloff)
+
+	CTreeContainer &CTreeContainer::rgbaBufferSelect(std::string name, std::string low, std::string high, std::string control, ANLFloatType threshold, ANLFloatType falloff)
 	{
 		if(getImplicitBuffer(name) || get(name) || getRGBA(name) || getRGBABuffer(name)) return *this;
 		auto l=getRGBABuffer(low);
 		auto h=getRGBABuffer(high);
 		auto c=getImplicitBuffer(control);
 		if(!l || !h || !c) return *this;
-		
+
 		m_rgbabuffers[name]=std::shared_ptr<CRGBABufferBase>(new CRGBABufferSelect(l,h,c,threshold,falloff));
 		return *this;
 	}

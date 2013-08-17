@@ -28,8 +28,8 @@ void CImplicitBasisFunction::setSeed(unsigned int seed)
 
     if(m_rotatedomain)
     {
-        double ax,ay,az;
-        double len;
+        ANLFloatType ax,ay,az;
+        ANLFloatType len;
 
         ax=lcg.get01();
         ay=lcg.get01();
@@ -39,7 +39,7 @@ void CImplicitBasisFunction::setSeed(unsigned int seed)
         ay/=len;
         az/=len;
         setRotationAngle(ax,ay,az,lcg.get01()*3.141592*2.0);
-        double angle=lcg.get01()*3.14159265*2.0;
+        ANLFloatType angle=lcg.get01()*3.14159265*2.0;
         cos2d=cos(angle);
         sin2d=sin(angle);
     }
@@ -74,32 +74,32 @@ void CImplicitBasisFunction::setInterp(int interp)
 	}
 }
 
-double CImplicitBasisFunction::get(double x, double y)
+ANLFloatType CImplicitBasisFunction::get(ANLFloatType x, ANLFloatType y)
 {
-	double nx,ny;
+	ANLFloatType nx,ny;
     nx = x*cos2d-y*sin2d;
     ny = y*cos2d+x*sin2d;
 	return m_2d(nx,ny,m_seed,m_interp);
 }
-double CImplicitBasisFunction::get(double x, double y, double z)
+ANLFloatType CImplicitBasisFunction::get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
 {
-    double nx, ny, nz;
+    ANLFloatType nx, ny, nz;
     nx = (m_rotmatrix[0][0]*x) + (m_rotmatrix[1][0]*y) + (m_rotmatrix[2][0]*z);
     ny = (m_rotmatrix[0][1]*x) + (m_rotmatrix[1][1]*y) + (m_rotmatrix[2][1]*z);
     nz = (m_rotmatrix[0][2]*x) + (m_rotmatrix[1][2]*y) + (m_rotmatrix[2][2]*z);
     return m_3d(nx,ny,nz,m_seed,m_interp);
 }
-double CImplicitBasisFunction::get(double x, double y, double z, double w)
+ANLFloatType CImplicitBasisFunction::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
 {
-	double nx, ny, nz;
+	ANLFloatType nx, ny, nz;
     nx = (m_rotmatrix[0][0]*x) + (m_rotmatrix[1][0]*y) + (m_rotmatrix[2][0]*z);
     ny = (m_rotmatrix[0][1]*x) + (m_rotmatrix[1][1]*y) + (m_rotmatrix[2][1]*z);
     nz = (m_rotmatrix[0][2]*x) + (m_rotmatrix[1][2]*y) + (m_rotmatrix[2][2]*z);
 	return m_4d(nx,ny,nz,w,m_seed,m_interp);
 }
-double CImplicitBasisFunction::get(double x, double y, double z, double w, double u, double v)
+ANLFloatType CImplicitBasisFunction::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
 {
-	double nx, ny, nz;
+	ANLFloatType nx, ny, nz;
     nx = (m_rotmatrix[0][0]*x) + (m_rotmatrix[1][0]*y) + (m_rotmatrix[2][0]*z);
     ny = (m_rotmatrix[0][1]*x) + (m_rotmatrix[1][1]*y) + (m_rotmatrix[2][1]*z);
     nz = (m_rotmatrix[0][2]*x) + (m_rotmatrix[1][2]*y) + (m_rotmatrix[2][2]*z);
@@ -125,7 +125,7 @@ void CImplicitBasisFunction::setNoRotation()
 	sin2d=0;
 }
 
-void CImplicitBasisFunction::setRotationAngle(double x, double y, double z, double angle)
+void CImplicitBasisFunction::setRotationAngle(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType angle)
 {
     m_rotatedomain=true;
     m_rotmatrix[0][0] = 1 + (1-cos(angle))*(x*x-1);

@@ -3,11 +3,11 @@
 namespace anl
 {
     CImplicitFunctionGradient::CImplicitFunctionGradient() : CImplicitModuleBase(), m_source(0.0), m_axis(X_AXIS), m_spacing(0.001){}
-    CImplicitFunctionGradient::CImplicitFunctionGradient(double s, int axis, double spacing) : CImplicitModuleBase(), m_source(s), m_axis(axis), m_spacing(spacing){}
-    CImplicitFunctionGradient::CImplicitFunctionGradient(CImplicitModuleBase * s, int axis, double spacing) : CImplicitModuleBase(), m_source(s), m_axis(axis), m_spacing(spacing){}
+    CImplicitFunctionGradient::CImplicitFunctionGradient(ANLFloatType s, int axis, ANLFloatType spacing) : CImplicitModuleBase(), m_source(s), m_axis(axis), m_spacing(spacing){}
+    CImplicitFunctionGradient::CImplicitFunctionGradient(CImplicitModuleBase * s, int axis, ANLFloatType spacing) : CImplicitModuleBase(), m_source(s), m_axis(axis), m_spacing(spacing){}
     CImplicitFunctionGradient::~CImplicitFunctionGradient(){}
 
-    void CImplicitFunctionGradient::setSource(double v)
+    void CImplicitFunctionGradient::setSource(ANLFloatType v)
     {
         m_source.set(v);
     }
@@ -21,12 +21,12 @@ namespace anl
         if(m_axis<X_AXIS) m_axis=X_AXIS;
         if(m_axis>V_AXIS) m_axis=V_AXIS;
     }
-    void CImplicitFunctionGradient::setSpacing(double s)
+    void CImplicitFunctionGradient::setSpacing(ANLFloatType s)
     {
         m_spacing=s;
     }
 
-    double CImplicitFunctionGradient::get(double x, double y)
+    ANLFloatType CImplicitFunctionGradient::get(ANLFloatType x, ANLFloatType y)
     {
         switch(m_axis)
         {
@@ -39,7 +39,7 @@ namespace anl
         }
         return 0.0;
     }
-    double CImplicitFunctionGradient::get(double x, double y, double z)
+    ANLFloatType CImplicitFunctionGradient::get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
     {
         switch(m_axis)
         {
@@ -52,7 +52,7 @@ namespace anl
         }
         return 0.0;
     }
-    double CImplicitFunctionGradient::get(double x, double y, double z, double w)
+    ANLFloatType CImplicitFunctionGradient::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
     {
         switch(m_axis)
         {
@@ -65,7 +65,7 @@ namespace anl
         }
         return 0.0;
     }
-    double CImplicitFunctionGradient::get(double x, double y, double z, double w, double u, double v)
+    ANLFloatType CImplicitFunctionGradient::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
     {
         switch(m_axis)
         {

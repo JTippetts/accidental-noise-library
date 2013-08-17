@@ -6,8 +6,8 @@
 namespace anl
 {
 
-    void calcBumpMap(CArray2Dd *map, CArray2Dd *bump, double light[3], double spacing, bool wrap);
-    void calcNormalMap(CArray2Dd *map, CArray2Drgba *normal, double spacing, bool normalize, bool wrap);
+    void calcBumpMap(CArray2Dd *map, CArray2Dd *bump, float light[3], ANLFloatType spacing, bool wrap);
+    void calcNormalMap(CArray2Dd *map, CArray2Drgba *normal, ANLFloatType spacing, bool normalize, bool wrap);
     void multRGBAByDouble(CArray2Drgba *rgba, CArray2Dd *map);
 };
 

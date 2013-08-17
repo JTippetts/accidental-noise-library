@@ -6,7 +6,7 @@ namespace anl
     {
     }
 
-    CImplicitBufferImplicitAdapter::CImplicitBufferImplicitAdapter(CImplicitModuleBase * src, int mapping, SMappingRanges ranges, bool use_z, double z) :
+    CImplicitBufferImplicitAdapter::CImplicitBufferImplicitAdapter(CImplicitModuleBase * src, int mapping, SMappingRanges ranges, bool use_z, ANLFloatType z) :
         CImplicitBufferBase(), m_source(src), m_mapping(mapping), m_ranges(ranges), m_use_z(use_z), m_z(z)
     {
     }
@@ -34,7 +34,7 @@ namespace anl
         m_use_z=use_z;
     }
 
-    void CImplicitBufferImplicitAdapter::setZ(double z)
+    void CImplicitBufferImplicitAdapter::setZ(ANLFloatType z)
     {
         m_z=z;
     }

@@ -8,25 +8,25 @@ namespace anl
     {
         public:
         CImplicitGradient();
-        CImplicitGradient(double x1, double x2, double y1, double y2, double z1=0, double z2=0,
-        double w1=0, double w2=0, double u1=0, double u2=0, double v1=0, double v2=0);
+        CImplicitGradient(ANLFloatType x1, ANLFloatType x2, ANLFloatType y1, ANLFloatType y2, ANLFloatType z1=0, ANLFloatType z2=0,
+        ANLFloatType w1=0, ANLFloatType w2=0, ANLFloatType u1=0, ANLFloatType u2=0, ANLFloatType v1=0, ANLFloatType v2=0);
         ~CImplicitGradient();
 
-        void setGradient(double x1, double x2, double y1, double y2, double z1=0, double z2=0,
-        double w1=0, double w2=0, double u1=0, double u2=0, double v1=0, double v2=0);
+        void setGradient(ANLFloatType x1, ANLFloatType x2, ANLFloatType y1, ANLFloatType y2, ANLFloatType z1=0, ANLFloatType z2=0,
+        ANLFloatType w1=0, ANLFloatType w2=0, ANLFloatType u1=0, ANLFloatType u2=0, ANLFloatType v1=0, ANLFloatType v2=0);
 
 
-        double get(double x, double y);
-        double get(double x, double y, double z);
-        double get(double x, double y, double z, double w);
-        double get(double x, double y, double z, double w, double u, double v);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
 
 
         protected:
-        double m_gx1, m_gy1, m_gz1, m_gw1, m_gu1, m_gv1;
-        double m_gx2, m_gy2, m_gz2, m_gw2, m_gu2, m_gv2;
-        double m_x, m_y, m_z, m_w, m_u, m_v;
-        double m_vlen;
+        ANLFloatType m_gx1, m_gy1, m_gz1, m_gw1, m_gu1, m_gv1;
+        ANLFloatType m_gx2, m_gy2, m_gz2, m_gw2, m_gu2, m_gv2;
+        ANLFloatType m_x, m_y, m_z, m_w, m_u, m_v;
+        ANLFloatType m_vlen;
     };
 };
 #endif

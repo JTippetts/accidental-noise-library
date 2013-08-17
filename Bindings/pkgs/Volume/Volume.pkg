@@ -2,6 +2,7 @@
 
 $#include "volumeadapter.h"
 $#include "marchvolume.h"
+$#include "../types.h"
 
 namespace anl
 {

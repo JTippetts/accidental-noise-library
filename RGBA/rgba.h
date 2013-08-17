@@ -1,6 +1,7 @@
 #ifndef RGBA_H
 #define RGBA_H
 #include "vectortypes.h"
+#include "../types.h"
 
 namespace anl
 {

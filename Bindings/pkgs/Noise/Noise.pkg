@@ -1,6 +1,7 @@
 $#include "anl_noise.h"
 $#include "random_gen.h"
 $#include <memory>
+$#include "../types.h"
 
 namespace anl
 {
@@ -183,7 +184,7 @@ namespace anl
         void setRange(double low, double high);
         void calculate();
 	};
-	
+
 	class CImplicitBasisFunction : public CImplicitModuleBase
 	{
 		public:
@@ -195,7 +196,7 @@ namespace anl
         void setRotationAngle(double ax, double ay, double az, double angle);
         void setNoRotation();
 	};
-	
+
 	class CImplicitBlend : public CImplicitModuleBase
     {
     public:
@@ -217,7 +218,7 @@ namespace anl
         void setHighSource(double v);
         void setControlSource(double v);
 	};
-	
+
 	class CImplicitBrightContrast : public CImplicitModuleBase
     {
         public:
@@ -251,7 +252,7 @@ namespace anl
         void setContrastThreshold(CImplicitModuleBase * m);
         void setContrastFactor(CImplicitModuleBase * m);
 	};
-	
+
 	class CImplicitCache : public CImplicitModuleBase
     {
         public:
@@ -263,7 +264,7 @@ namespace anl
         void setSource(CImplicitModuleBase * m);
         void setSource(double v);
 	};
-	
+
 	class CImplicitCellular : public CImplicitModuleBase
 	{
 		public:
@@ -275,7 +276,7 @@ namespace anl
 		void setCoefficients(double a, double b, double c, double d);
 		void setCellularSource(CCellularGenerator *m);
 	};
-	
+
 	class CCellularGenerator
 	{
 		public:
@@ -286,7 +287,7 @@ namespace anl
 		void setSeed(unsigned int seed);
 		void setDistanceFunction(int func);
 	};
-	
+
 	class CImplicitClamp : public CImplicitModuleBase
     {
         public:
@@ -310,7 +311,7 @@ namespace anl
         void setSource(double b);
         void setSource(CImplicitModuleBase * b);
 	};
-	
+
 	class CImplicitCombiner : public CImplicitModuleBase
     {
         public:
@@ -319,7 +320,7 @@ namespace anl
         void clearAllSources();
         void setSource(int which, CImplicitModuleBase * b);
 	};
-	
+
 	class CImplicitConstant : public CImplicitModuleBase
     {
         public:
@@ -329,7 +330,7 @@ namespace anl
 
         void setConstant(double c);
 	};
-	
+
 	class CImplicitCurve : public CImplicitModuleBase
     {
         public:
@@ -345,7 +346,7 @@ namespace anl
         void setSource(CImplicitModuleBase * m);
         void setInterpType(int type);
 	};
-	
+
 	class CImplicitExtractRGBAChannel : public CImplicitModuleBase
     {
         public:
@@ -357,7 +358,7 @@ namespace anl
 
         void setChannel(int channel);
 	};
-	
+
 	class CImplicitFractal : public CImplicitModuleBase
     {
         public:
@@ -379,7 +380,7 @@ namespace anl
         void setSeed(unsigned int seed);
         CImplicitModuleBase * getBasis(int which);
 	};
-	
+
 	class CImplicitFunctionGradient : public CImplicitModuleBase
     {
         public:
@@ -393,7 +394,7 @@ namespace anl
         void setAxis(int axis);
         void setSpacing(double s);
 	};
-	
+
 	class CImplicitGradient : public CImplicitModuleBase
     {
         public:
@@ -405,20 +406,20 @@ namespace anl
         void setGradient(double x1, double x2, double y1, double y2, double z1=0, double z2=0,
         double w1=0, double w2=0, double u1=0, double u2=0, double v1=0, double v2=0);
 	};
-	
+
 	class CImplicitMagnitude : public CImplicitModuleBase
-	{	
+	{
 		public:
 		CImplicitMagnitude();
 		~CImplicitMagnitude();
-	
+
 		void setX(double f);
 		void setY(double f);
 		void setZ(double f);
 		void setW(double f);
 		void setU(double f);
 		void setV(double f);
-	
+
 		void setX(CImplicitModuleBase * f);
 		void setY(CImplicitModuleBase * f);
 		void setZ(CImplicitModuleBase * f);
@@ -426,7 +427,7 @@ namespace anl
 		void setU(CImplicitModuleBase * f);
 		void setV(CImplicitModuleBase * f);
 	};
-	
+
 	class CImplicitMath : public CImplicitModuleBase
     {
         public:
@@ -443,7 +444,7 @@ namespace anl
         void setParameter(CImplicitModuleBase * b);
         void setOperation(unsigned int op);
 	};
-	
+
 	class CImplicitNormalizeCoords : public CImplicitModuleBase
     {
         public:
@@ -459,7 +460,7 @@ namespace anl
         void setLength(double v);
         void setLength(CImplicitModuleBase * v);
 	};
-	
+
 	class CImplicitRGBADotProduct : public CImplicitModuleBase
     {
         public:
@@ -471,7 +472,7 @@ namespace anl
         void setSource2(anl::CRGBAModuleBase * m);
         void setSource2(anl::SRGBA c);
 	};
-	
+
 	class CImplicitRotateDomain : public CImplicitModuleBase
 {
     public:
@@ -523,7 +524,7 @@ namespace anl
     void setAngle(double a);
     void setAngle(CImplicitModuleBase * a);
 };
-	
+
 	class CImplicitSawtooth : public CImplicitModuleBase
 {
     public:
@@ -707,7 +708,7 @@ class CImplicitSphere : public CImplicitModuleBase
         void setNumTiers(int numtiers);
         void setSmooth(bool smooth);
 	};
-	
+
 	class CImplicitTranslateDomain : public CImplicitModuleBase
     {
         public:
@@ -748,7 +749,7 @@ class CImplicitSphere : public CImplicitModuleBase
         void setSource(CImplicitModuleBase * m);
         void setSource(double v);
 	};
-	
+
 	class CImplicitTriangle : public CImplicitModuleBase
     {
         public:
@@ -771,7 +772,7 @@ class CImplicitSphere : public CImplicitModuleBase
         void setOffset(double o);
         void setOffset(CImplicitModuleBase * o);
 	};
-	
+
 class CImplicitVoronoi : public CImplicitModuleBase
 {
 public:

@@ -15,21 +15,21 @@ namespace anl
     {
         public:
         CRGBACompositeChannels();
-        CRGBACompositeChannels(double r, double g, double b, double a, int mode);
-        CRGBACompositeChannels(double r, double g, double b, CImplicitModuleBase * a, int mode);
-        CRGBACompositeChannels(double r, double g, CImplicitModuleBase * b, double a, int mode);
-        CRGBACompositeChannels(double r, double g, CImplicitModuleBase * b, CImplicitModuleBase * a, int mode);
-        CRGBACompositeChannels(double r, CImplicitModuleBase * g, double b, double a, int mode);
-        CRGBACompositeChannels(double r, CImplicitModuleBase * g, double b, CImplicitModuleBase * a, int mode);
-        CRGBACompositeChannels(double r, CImplicitModuleBase * g, CImplicitModuleBase * b, double a, int mode);
-        CRGBACompositeChannels(double r, CImplicitModuleBase * g, CImplicitModuleBase * b, CImplicitModuleBase * a, int mode);
-        CRGBACompositeChannels(CImplicitModuleBase * r, double g, double b, double a, int mode);
-        CRGBACompositeChannels(CImplicitModuleBase * r, double g, double b, CImplicitModuleBase * a, int mode);
-        CRGBACompositeChannels(CImplicitModuleBase * r, double g, CImplicitModuleBase * b, double a, int mode);
-        CRGBACompositeChannels(CImplicitModuleBase * r, double g, CImplicitModuleBase * b, CImplicitModuleBase * a, int mode);
-        CRGBACompositeChannels(CImplicitModuleBase * r, CImplicitModuleBase * g, double b, double a, int mode);
-        CRGBACompositeChannels(CImplicitModuleBase * r, CImplicitModuleBase * g, double b, CImplicitModuleBase * a, int mode);
-        CRGBACompositeChannels(CImplicitModuleBase * r, CImplicitModuleBase * g, CImplicitModuleBase * b, double a, int mode);
+        CRGBACompositeChannels(ANLFloatType r, ANLFloatType g, ANLFloatType b, ANLFloatType a, int mode);
+        CRGBACompositeChannels(ANLFloatType r, ANLFloatType g, ANLFloatType b, CImplicitModuleBase * a, int mode);
+        CRGBACompositeChannels(ANLFloatType r, ANLFloatType g, CImplicitModuleBase * b, ANLFloatType a, int mode);
+        CRGBACompositeChannels(ANLFloatType r, ANLFloatType g, CImplicitModuleBase * b, CImplicitModuleBase * a, int mode);
+        CRGBACompositeChannels(ANLFloatType r, CImplicitModuleBase * g, ANLFloatType b, ANLFloatType a, int mode);
+        CRGBACompositeChannels(ANLFloatType r, CImplicitModuleBase * g, ANLFloatType b, CImplicitModuleBase * a, int mode);
+        CRGBACompositeChannels(ANLFloatType r, CImplicitModuleBase * g, CImplicitModuleBase * b, ANLFloatType a, int mode);
+        CRGBACompositeChannels(ANLFloatType r, CImplicitModuleBase * g, CImplicitModuleBase * b, CImplicitModuleBase * a, int mode);
+        CRGBACompositeChannels(CImplicitModuleBase * r, ANLFloatType g, ANLFloatType b, ANLFloatType a, int mode);
+        CRGBACompositeChannels(CImplicitModuleBase * r, ANLFloatType g, ANLFloatType b, CImplicitModuleBase * a, int mode);
+        CRGBACompositeChannels(CImplicitModuleBase * r, ANLFloatType g, CImplicitModuleBase * b, ANLFloatType a, int mode);
+        CRGBACompositeChannels(CImplicitModuleBase * r, ANLFloatType g, CImplicitModuleBase * b, CImplicitModuleBase * a, int mode);
+        CRGBACompositeChannels(CImplicitModuleBase * r, CImplicitModuleBase * g, ANLFloatType b, ANLFloatType a, int mode);
+        CRGBACompositeChannels(CImplicitModuleBase * r, CImplicitModuleBase * g, ANLFloatType b, CImplicitModuleBase * a, int mode);
+        CRGBACompositeChannels(CImplicitModuleBase * r, CImplicitModuleBase * g, CImplicitModuleBase * b, ANLFloatType a, int mode);
         CRGBACompositeChannels(CImplicitModuleBase * r, CImplicitModuleBase * g, CImplicitModuleBase * b, CImplicitModuleBase * a, int mode);
 
         ~CRGBACompositeChannels();
@@ -44,18 +44,18 @@ namespace anl
         void setValSource(CImplicitModuleBase * m);
         void setAlphaSource(CImplicitModuleBase * m);
 
-        void setRedSource(double r);
-        void setGreenSource(double g);
-        void setBlueSource(double b);
-        void setAlphaSource(double a);
-        void setHueSource(double h);
-        void setSatSource(double s);
-        void setValSource(double v);
+        void setRedSource(ANLFloatType r);
+        void setGreenSource(ANLFloatType g);
+        void setBlueSource(ANLFloatType b);
+        void setAlphaSource(ANLFloatType a);
+        void setHueSource(ANLFloatType h);
+        void setSatSource(ANLFloatType s);
+        void setValSource(ANLFloatType v);
 
-        SRGBA get(double x, double y);
-        SRGBA get(double x, double y, double z);
-        SRGBA get(double x, double y, double z, double w);
-        SRGBA get(double x, double y, double z, double w, double u, double v);
+        SRGBA get(ANLFloatType x, ANLFloatType y);
+        SRGBA get(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+        SRGBA get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+        SRGBA get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
 
         protected:
         CScalarParameter m_c1, m_c2, m_c3, m_c4;

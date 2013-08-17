@@ -8,28 +8,28 @@ namespace anl
     {
         public:
         CImplicitTriangle();
-        CImplicitTriangle(double source, double period, double offset);
-        CImplicitTriangle(double source, double period, CImplicitModuleBase * offset);
-        CImplicitTriangle(double source, CImplicitModuleBase * period, double offset);
-        CImplicitTriangle(double source, CImplicitModuleBase * period, CImplicitModuleBase * offset);
-        CImplicitTriangle(CImplicitModuleBase * source, double period, double offset);
-        CImplicitTriangle(CImplicitModuleBase * source, double period, CImplicitModuleBase * offset);
-        CImplicitTriangle(CImplicitModuleBase * source, CImplicitModuleBase * period, double offset);
+        CImplicitTriangle(ANLFloatType source, ANLFloatType period, ANLFloatType offset);
+        CImplicitTriangle(ANLFloatType source, ANLFloatType period, CImplicitModuleBase * offset);
+        CImplicitTriangle(ANLFloatType source, CImplicitModuleBase * period, ANLFloatType offset);
+        CImplicitTriangle(ANLFloatType source, CImplicitModuleBase * period, CImplicitModuleBase * offset);
+        CImplicitTriangle(CImplicitModuleBase * source, ANLFloatType period, ANLFloatType offset);
+        CImplicitTriangle(CImplicitModuleBase * source, ANLFloatType period, CImplicitModuleBase * offset);
+        CImplicitTriangle(CImplicitModuleBase * source, CImplicitModuleBase * period, ANLFloatType offset);
         CImplicitTriangle(CImplicitModuleBase * source, CImplicitModuleBase * period, CImplicitModuleBase * offset);
 
         ~CImplicitTriangle();
 
-        void setSource(double s);
+        void setSource(ANLFloatType s);
         void setSource(CImplicitModuleBase * s);
-        void setPeriod(double p);
+        void setPeriod(ANLFloatType p);
         void setPeriod(CImplicitModuleBase * p);
-        void setOffset(double o);
+        void setOffset(ANLFloatType o);
         void setOffset(CImplicitModuleBase * o);
 
-        double get(double x, double y);
-        double get(double x, double y, double z);
-        double get(double x, double y, double z, double w);
-        double get(double x, double y, double z, double w, double u, double v);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
+        ANLFloatType get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
 
         protected:
         CScalarParameter m_source, m_period, m_offset;

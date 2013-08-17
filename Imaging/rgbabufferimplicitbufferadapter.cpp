@@ -31,7 +31,7 @@ namespace anl
         {
             for(int y=0; y<out.height(); ++y)
             {
-                double v=tmp.get(x,y);
+                ANLFloatType v=tmp.get(x,y);
                 out.set(x,y,SRGBA(v,v,v,1));
             }
         }

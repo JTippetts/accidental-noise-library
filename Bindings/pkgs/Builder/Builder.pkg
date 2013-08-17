@@ -2,6 +2,7 @@ $#include "anl_noise.h"
 $#include "anl_rgba.h"
 $#include "anl_imaging.h"
 $#include "treecontainer.h"
+$#include "../types.h"
 
 
 namespace anl
@@ -379,6 +380,6 @@ namespace anl
         anl::CRGBAModuleBase *getRGBAModule(std::string name);
 		anl::CImplicitBufferBase *getImplicitBuffer(std::string name);
 		anl::CRGBABufferBase *getRGBABuffer(std::string name);
-		
+
 	};
 };

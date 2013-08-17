@@ -9,7 +9,7 @@ namespace anl
         setLightVector(1.5,3.5,-1.5);
     }
 
-    CImplicitBufferBumpMap::CImplicitBufferBumpMap(CImplicitBufferBase * src, double lx, double ly, double lz, double spacing, bool seamless) :
+    CImplicitBufferBumpMap::CImplicitBufferBumpMap(CImplicitBufferBase * src, float lx, float ly, float lz, ANLFloatType spacing, bool seamless) :
         CImplicitBufferBase(), m_source(src), m_spacing(spacing), m_seamless(seamless)
     {
         setLightVector(lx,ly,lz);
@@ -24,15 +24,15 @@ namespace anl
         m_source=src;
     }
 
-    void CImplicitBufferBumpMap::setLightVector(double vx, double vy, double vz)
+    void CImplicitBufferBumpMap::setLightVector(float vx, float vy, float vz)
     {
-        double len=sqrt(vx*vx+vy*vy+vz*vz);
+        ANLFloatType len=sqrt(vx*vx+vy*vy+vz*vz);
         m_light[0]=vx/len;
         m_light[1]=vy/len;
         m_light[2]=vz/len;
     }
 
-    void CImplicitBufferBumpMap::setSpacing(double spacing)
+    void CImplicitBufferBumpMap::setSpacing(ANLFloatType spacing)
     {
         m_spacing=spacing;
     }

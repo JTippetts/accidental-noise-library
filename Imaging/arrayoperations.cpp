@@ -3,15 +3,15 @@
 
 namespace anl
 {
-    void normalizeVec3(double v[3])
+    void normalizeVec3(ANLFloatType v[3])
     {
-        double len=sqrt(v[0]*v[0]+v[1]*v[1]+v[2]*v[2]);
+        ANLFloatType len=sqrt(v[0]*v[0]+v[1]*v[1]+v[2]*v[2]);
         v[0]/=len;
         v[1]/=len;
         v[2]/=len;
     }
 
-    void calcBumpMap(CArray2Dd *map, CArray2Dd *bump, double light[3], double spacing, bool wrap)
+    void calcBumpMap(CArray2Dd *map, CArray2Dd *bump, float light[3], ANLFloatType spacing, bool wrap)
     {
         if(!map || !bump) return;
         int mw=map->width(), mh=map->height();
@@ -21,7 +21,7 @@ namespace anl
         {
             for(int y=0; y<mh; ++y)
             {
-                double n[3]={0.0, 1.0, 0.0};
+                ANLFloatType n[3]={0.0, 1.0, 0.0};
 
                 if(!wrap)
                 {
@@ -56,7 +56,7 @@ namespace anl
                     n[2]=(map->get(x,y1)-map->get(x,y2)) / spacing;
                     normalizeVec3(n);
                 }
-                double b = light[0]*n[0] + light[1]*n[1] + light[2]*n[2];
+                ANLFloatType b = light[0]*n[0] + light[1]*n[1] + light[2]*n[2];
                 if(b<0.0) b=0.0;
                 if(b>1.0) b=1.0;
                 bump->set(x,y,b);
@@ -64,7 +64,7 @@ namespace anl
         }
     }
 
-    void calcNormalMap(CArray2Dd *map, CArray2Drgba *bump, double spacing, bool normalize, bool wrap)
+    void calcNormalMap(CArray2Dd *map, CArray2Drgba *bump, ANLFloatType spacing, bool normalize, bool wrap)
     {
         if(!map || !bump) return;
         int mw=map->width(), mh=map->height();
@@ -74,7 +74,7 @@ namespace anl
         {
             for(int y=0; y<mh; ++y)
             {
-                double n[3]={0.0, 1.0, 0.0};
+                ANLFloatType n[3]={0.0, 1.0, 0.0};
 
                 if(!wrap)
                 {
@@ -131,7 +131,7 @@ namespace anl
         {
             for(int y=0; y<mh; ++y)
             {
-                double v=map->get(x,y);
+                ANLFloatType v=map->get(x,y);
                 SRGBA c=rgba->get(x,y);
                 rgba->set(x,y,SRGBA(c[0]*v, c[1]*v, c[2]*v, c[3]));
             }

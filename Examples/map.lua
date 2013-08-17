@@ -1,8 +1,8 @@
 -- Accidental Noise Library
 
 rnd=anl.KISS()
---rnd:setSeedTime()
-rnd:setSeed(1234)
+rnd:setSeedTime()
+--rnd:setSeed(1234)
 
 range=anl.SMappingRanges(0,32,0,32,0,32)
 
@@ -54,6 +54,7 @@ sandfbm:setSeed(rnd:get())
 
 waterselectfbm=anl.CImplicitFractal(anl.FBM, anl.GRADIENT, anl.QUINTIC, 6, 0.125, true)
 waterselectfbmac=anl.CImplicitAutoCorrect(waterselectfbm, 0, 1)
+waterselectfbm:setSeed(rnd:get())
 
 sandselect=anl.CImplicitSelect(sandscaledomain, groundfbmac, waterselectfbmac, 0.45, 0.25)
 sandcolorselect=anl.CRGBASelect(sandcolor, groundcolor, waterselectfbmac, 0.45, 0.25)

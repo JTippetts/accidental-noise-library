@@ -3,11 +3,11 @@
 namespace anl
 {
     CImplicitCurve::CImplicitCurve() : CImplicitModuleBase(), m_source(0.0), m_type(LINEAR){}
-    CImplicitCurve::CImplicitCurve(double s, int interptype) : CImplicitModuleBase(), m_source(s), m_type(interptype){}
+    CImplicitCurve::CImplicitCurve(ANLFloatType s, int interptype) : CImplicitModuleBase(), m_source(s), m_type(interptype){}
     CImplicitCurve::CImplicitCurve(CImplicitModuleBase * s, int interptype) : CImplicitModuleBase(), m_source(s), m_type(interptype){}
     CImplicitCurve::~CImplicitCurve(){}
 
-    void CImplicitCurve::pushPoint(double t, double v)
+    void CImplicitCurve::pushPoint(ANLFloatType t, ANLFloatType v)
     {
         m_curve.pushPoint(t,v);
     }
@@ -24,7 +24,7 @@ namespace anl
         if(m_type>QUINTIC) m_type=QUINTIC;
     }
 
-    void CImplicitCurve::setSource(double t)
+    void CImplicitCurve::setSource(ANLFloatType t)
     {
         m_source.set(t);
     }
@@ -33,9 +33,9 @@ namespace anl
         m_source.set(m);
     }
 
-    double CImplicitCurve::get(double x, double y)
+    ANLFloatType CImplicitCurve::get(ANLFloatType x, ANLFloatType y)
     {
-        double t=m_source.get(x,y);
+        ANLFloatType t=m_source.get(x,y);
         switch(m_type)
         {
             case NONE: return m_curve.noInterp(t); break;
@@ -46,9 +46,9 @@ namespace anl
         }
     }
 
-    double CImplicitCurve::get(double x, double y, double z)
+    ANLFloatType CImplicitCurve::get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
     {
-        double t=m_source.get(x,y,z);
+        ANLFloatType t=m_source.get(x,y,z);
         switch(m_type)
         {
             case NONE: return m_curve.noInterp(t); break;
@@ -59,9 +59,9 @@ namespace anl
         }
     }
 
-    double CImplicitCurve::get(double x, double y, double z, double w)
+    ANLFloatType CImplicitCurve::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
     {
-        double t=m_source.get(x,y,z,w);
+        ANLFloatType t=m_source.get(x,y,z,w);
         switch(m_type)
         {
             case NONE: return m_curve.noInterp(t); break;
@@ -72,9 +72,9 @@ namespace anl
         }
     }
 
-    double CImplicitCurve::get(double x, double y, double z, double w, double u, double v)
+    ANLFloatType CImplicitCurve::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
     {
-        double t=m_source.get(x,y,z,w,u,v);
+        ANLFloatType t=m_source.get(x,y,z,w,u,v);
         switch(m_type)
         {
             case NONE: return m_curve.noInterp(t); break;

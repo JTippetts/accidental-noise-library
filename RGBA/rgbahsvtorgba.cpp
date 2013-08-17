@@ -17,28 +17,28 @@ namespace anl
         m_source.set(c);
     }
 
-    SRGBA CRGBAHSVToRGBA::get(double x, double y)
+    SRGBA CRGBAHSVToRGBA::get(ANLFloatType x, ANLFloatType y)
     {
         SRGBA s=m_source.get(x,y);
         SRGBA d;
         HSVtoRGBA(s,d);
         return d;
     }
-    SRGBA CRGBAHSVToRGBA::get(double x, double y, double z)
+    SRGBA CRGBAHSVToRGBA::get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
     {
         SRGBA s=m_source.get(x,y,z);
         SRGBA d;
         HSVtoRGBA(s,d);
         return d;
     }
-    SRGBA CRGBAHSVToRGBA::get(double x, double y, double z, double w)
+    SRGBA CRGBAHSVToRGBA::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
     {
         SRGBA s=m_source.get(x,y,z,w);
         SRGBA d;
         HSVtoRGBA(s,d);
         return d;
     }
-    SRGBA CRGBAHSVToRGBA::get(double x, double y, double z, double w, double u, double v)
+    SRGBA CRGBAHSVToRGBA::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
     {
         SRGBA s=m_source.get(x,y,z,w,u,v);
         SRGBA d;

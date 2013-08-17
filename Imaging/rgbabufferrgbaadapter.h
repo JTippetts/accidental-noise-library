@@ -9,14 +9,14 @@ namespace anl
     {
     public:
         CRGBABufferRGBAAdapter();
-        CRGBABufferRGBAAdapter(CRGBAModuleBase * src, int mapping=anl::SEAMLESS_NONE, SMappingRanges ranges=SMappingRanges(), bool use_z=false, double zvalue=0.0);
+        CRGBABufferRGBAAdapter(CRGBAModuleBase * src, int mapping=anl::SEAMLESS_NONE, SMappingRanges ranges=SMappingRanges(), bool use_z=false, ANLFloatType zvalue=0.0);
         ~CRGBABufferRGBAAdapter();
 
         void setSource(CRGBAModuleBase * src);
         void setMapping(int mapping);
         void setRanges(SMappingRanges &ranges);
         void setUseZ(bool use_z);
-        void setZ(double z);
+        void setZ(ANLFloatType z);
 
         void get(CArray2Drgba &out);
     private:
@@ -24,7 +24,7 @@ namespace anl
         int m_mapping;
         SMappingRanges m_ranges;
         bool m_use_z;
-        double m_z;
+        ANLFloatType m_z;
     };
 };
 

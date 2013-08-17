@@ -4,7 +4,7 @@ namespace anl
 {
     CRGBAImplicitGrayscale::CRGBAImplicitGrayscale() : m_source(0.0){}
 
-    CRGBAImplicitGrayscale::CRGBAImplicitGrayscale(double s) : CRGBAModuleBase(), m_source(s){}
+    CRGBAImplicitGrayscale::CRGBAImplicitGrayscale(ANLFloatType s) : CRGBAModuleBase(), m_source(s){}
     CRGBAImplicitGrayscale::CRGBAImplicitGrayscale(CImplicitModuleBase * s) : CRGBAModuleBase(), m_source(s){}
 
     CRGBAImplicitGrayscale::~CRGBAImplicitGrayscale(){}
@@ -12,30 +12,30 @@ namespace anl
     {
         m_source.set(m);
     }
-    void CRGBAImplicitGrayscale::setSource(double s)
+    void CRGBAImplicitGrayscale::setSource(ANLFloatType s)
     {
         m_source.set(s);
     }
 
-    SRGBA CRGBAImplicitGrayscale::get(double x, double y)
+    SRGBA CRGBAImplicitGrayscale::get(ANLFloatType x, ANLFloatType y)
     {
-        double val=m_source.get(x,y);
+        ANLFloatType val=m_source.get(x,y);
         return SRGBA((float)val,(float)val,(float)val,1.0f);
     }
-    SRGBA CRGBAImplicitGrayscale::get(double x, double y, double z)
+    SRGBA CRGBAImplicitGrayscale::get(ANLFloatType x, ANLFloatType y, ANLFloatType z)
     {
-        double val=m_source.get(x,y,z);
+        ANLFloatType val=m_source.get(x,y,z);
         return SRGBA((float)val,(float)val,(float)val,1.0f);
     }
 
-    SRGBA CRGBAImplicitGrayscale::get(double x, double y, double z, double w)
+    SRGBA CRGBAImplicitGrayscale::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
     {
-        double val=m_source.get(x,y,z,w);
+        ANLFloatType val=m_source.get(x,y,z,w);
         return SRGBA((float)val,(float)val,(float)val,1.0f);
     }
-    SRGBA CRGBAImplicitGrayscale::get(double x, double y, double z, double w, double u, double v)
+    SRGBA CRGBAImplicitGrayscale::get(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
     {
-        double val=m_source.get(x,y,z,w,u,v);
+        ANLFloatType val=m_source.get(x,y,z,w,u,v);
         return SRGBA((float)val,(float)val,(float)val,1.0f);
     }
 };
