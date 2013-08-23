@@ -288,31 +288,60 @@ unsigned int hash_coords_6(int x, int y, int z, int w, int u, int v, unsigned in
 
 unsigned int compute_hash_ANLFloatType_2(ANLFloatType x, ANLFloatType y, unsigned int seed)
 {
-    ANLFloatType d[3]={x,y,(ANLFloatType)seed};
-	unsigned int s=sizeof(d) / sizeof(unsigned int);
-    return xor_fold_hash(fnv_32_a_buf(d, s));
+    //ANLFloatType d[3]={x,y,(ANLFloatType)seed};
+	//unsigned int s=sizeof(d) / sizeof(unsigned int);
+    //return xor_fold_hash(fnv_32_a_buf(d, s));
+	
+	unsigned int hash=FNV_32_INIT;
+	hash=fnv_32_a_combine(hash, (unsigned int)(x*(ANLFloatType)1000000));
+	hash=fnv_32_a_combine(hash, (unsigned int)(y*(ANLFloatType)1000000));
+	hash=fnv_32_a_combine(hash, seed);
+	return xor_fold_hash(hash);
 }
 
 
 unsigned int compute_hash_ANLFloatType_3(ANLFloatType x, ANLFloatType y, ANLFloatType z, unsigned int seed)
 {
-    ANLFloatType d[4]={x,y,z,(ANLFloatType)seed};
-	unsigned int s=sizeof(d) / sizeof(unsigned int);
-    return xor_fold_hash(fnv_32_a_buf(d, s));
+    //ANLFloatType d[4]={x,y,z,(ANLFloatType)seed};
+	//unsigned int s=sizeof(d) / sizeof(unsigned int);
+    //return xor_fold_hash(fnv_32_a_buf(d, s));
+	unsigned int hash=FNV_32_INIT;
+	hash=fnv_32_a_combine(hash, (unsigned int)(x*(ANLFloatType)1000000));
+	hash=fnv_32_a_combine(hash, (unsigned int)(y*(ANLFloatType)1000000));
+	hash=fnv_32_a_combine(hash, (unsigned int)(z*(ANLFloatType)1000000));
+	hash=fnv_32_a_combine(hash, seed);
+	return xor_fold_hash(hash);
+	
 }
 
 unsigned int compute_hash_ANLFloatType_4(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, unsigned int seed)
 {
-    ANLFloatType d[5]={x,y,z,w,(ANLFloatType)seed};
-	unsigned int s=sizeof(d) / sizeof(unsigned int);
-    return xor_fold_hash(fnv_32_a_buf(d, s));
+    //ANLFloatType d[5]={x,y,z,w,(ANLFloatType)seed};
+	//unsigned int s=sizeof(d) / sizeof(unsigned int);
+    //return xor_fold_hash(fnv_32_a_buf(d, s));
+	unsigned int hash=FNV_32_INIT;
+	hash=fnv_32_a_combine(hash, (unsigned int)(x*(ANLFloatType)1000000));
+	hash=fnv_32_a_combine(hash, (unsigned int)(y*(ANLFloatType)1000000));
+	hash=fnv_32_a_combine(hash, (unsigned int)(z*(ANLFloatType)1000000));
+	hash=fnv_32_a_combine(hash, (unsigned int)(w*(ANLFloatType)1000000));
+	hash=fnv_32_a_combine(hash, seed);
+	return xor_fold_hash(hash);
 }
 
 unsigned int compute_hash_ANLFloatType_6(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v, unsigned int seed)
 {
-    ANLFloatType d[7]={x,y,z,w,u,v,(ANLFloatType)seed};
-	unsigned int s=sizeof(d) / sizeof(unsigned int);
-    return xor_fold_hash(fnv_32_a_buf(d, s));
+    //ANLFloatType d[7]={x,y,z,w,u,v,(ANLFloatType)seed};
+	//unsigned int s=sizeof(d) / sizeof(unsigned int);
+    //return xor_fold_hash(fnv_32_a_buf(d, s));
+	unsigned int hash=FNV_32_INIT;
+	hash=fnv_32_a_combine(hash, (unsigned int)(x*(ANLFloatType)1000000));
+	hash=fnv_32_a_combine(hash, (unsigned int)(y*(ANLFloatType)1000000));
+	hash=fnv_32_a_combine(hash, (unsigned int)(z*(ANLFloatType)1000000));
+	hash=fnv_32_a_combine(hash, (unsigned int)(w*(ANLFloatType)1000000));
+	hash=fnv_32_a_combine(hash, (unsigned int)(u*(ANLFloatType)1000000));
+	hash=fnv_32_a_combine(hash, (unsigned int)(v*(ANLFloatType)1000000));
+	hash=fnv_32_a_combine(hash, seed);
+	return xor_fold_hash(hash);
 }
 
 

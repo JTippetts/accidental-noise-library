@@ -10,10 +10,10 @@ t:implicitBufferScaleToRange("Scale", "Adapter", 0, 1)
 i=anl.CArray2Dd()
 i:resize(256,256)
 
-t:getImplicitBufferUnsafe("Scale"):get(i)
+t:getImplicitBuffer("Scale"):get(i)
 
 anl.saveDoubleArray("img.tga", i)
 
-m=t:getModuleUnsafe("F1")
+m=t:getImplicitModule("F1")
 
 for i=0,2,0.1 do print(m:get(i,i,i)) end
