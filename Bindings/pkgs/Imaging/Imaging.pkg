@@ -295,6 +295,15 @@ namespace anl
         void setSpacing(double spacing);
         void setSeamless(bool seamless);
 	};
+	
+	class CImplicitBufferConstant : public CImplicitBufferBase
+	{
+		CImplicitBufferConstant();
+		CImplicitBufferConstant(double c);
+		~CImplicitBufferConstant();
+		
+		void setConstant(double c);
+	};
 
 	class CImplicitBufferImplicitAdapter : public CImplicitBufferBase
     {

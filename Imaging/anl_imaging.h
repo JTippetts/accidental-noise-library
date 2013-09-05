@@ -14,6 +14,7 @@
 #include "implicitbufferblur.h"
 #include "implicitbufferscaletorange.h"
 #include "implicitbufferbumpmap.h"
+#include "implicitbufferconstant.h"
 #include "implicitbufferunarymath.h"
 #include "implicitbuffersimpleerode.h"
 #include "implicitbufferselect.h"

@@ -2578,6 +2578,14 @@ namespace anl
 
         return *this;
     }
+	
+	CTreeContainer &CTreeContainer::implicitBufferConstant(std::string name, ANLFloatType c)
+	{
+		if(getImplicitBuffer(name) || get(name) || getRGBA(name) || getRGBABuffer(name)) return *this;
+		
+		m_implicitbuffers[name]=std::shared_ptr<CImplicitBufferBase>(new CImplicitBufferConstant(c));
+		return *this;
+	}
 
 	CTreeContainer &CTreeContainer::implicitBufferSelect(std::string name, std::string low, std::string high, std::string control, ANLFloatType threshold, ANLFloatType falloff)
 	{
