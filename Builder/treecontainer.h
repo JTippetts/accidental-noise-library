@@ -352,8 +352,8 @@ namespace anl
 		CTreeContainer &implicitBufferScaleToRange(std::string name, std::string source, ANLFloatType low, ANLFloatType high);
 		CTreeContainer &implicitBufferBumpMap(std::string name, std::string source, ANLFloatType lx, ANLFloatType ly, ANLFloatType lz, ANLFloatType spacing, bool seamless);
 		CTreeContainer &implicitBufferUnaryMath(std::string name, std::string source, int op);
-		CTreeContainer &implicitBufferSimpleErode(std::string name, std::string source, int numdrops, float power);
-		CTreeContainer &implicitBufferSimpleRainfall(std::string name, std::string source, std::string depth, int iterations);
+		CTreeContainer &implicitBufferSimpleErode(std::string name, std::string source, int numdrops, float power, unsigned int iterations);
+		CTreeContainer &implicitBufferSimpleRainfall(std::string name, std::string source);
 		CTreeContainer &implicitBufferSelect(std::string name, std::string low, std::string high, std::string control, ANLFloatType threshold, ANLFloatType falloff);
 
 		CTreeContainer &rgbaBufferRGBAAdapter(std::string name, std::string source, int mapping, SMappingRanges ranges, bool use_z, ANLFloatType z);

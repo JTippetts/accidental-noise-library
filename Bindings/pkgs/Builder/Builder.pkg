@@ -364,8 +364,8 @@ namespace anl
 		CTreeContainer &implicitBufferScaleToRange(std::string name, std::string source, double low, double high);
 		CTreeContainer &implicitBufferBumpMap(std::string name, std::string source, double lx, double ly, double lz, double spacing, bool seamless);
 		CTreeContainer &implicitBufferUnaryMath(std::string name, std::string source, int op);
-		CTreeContainer &implicitBufferSimpleErode(std::string name, std::string source, int numdrops, float power);
-		CTreeContainer &implicitBufferSimpleRainfall(std::string name, std::string source, std::string depth, int iterations);
+		CTreeContainer &implicitBufferSimpleErode(std::string name, std::string source, int numdrops, float power, unsigned int iterations);
+		CTreeContainer &implicitBufferSimpleRainfall(std::string name, std::string source);
 		CTreeContainer &implicitBufferSelect(std::string name, std::string low, std::string high, std::string control, double threshold, double falloff);
 
 

@@ -2552,28 +2552,27 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::implicitBufferSimpleErode(std::string name, std::string source, int numdrops, float power)
+    CTreeContainer &CTreeContainer::implicitBufferSimpleErode(std::string name, std::string source, int numdrops, float power, unsigned int iterations)
     {
         if(getImplicitBuffer(name) ||get(name) || getRGBA(name)) return *this;
         auto src=getImplicitBuffer(source);
         if(!src) return *this;
 
-        m_implicitbuffers[name]=std::shared_ptr<CImplicitBufferBase>(new CImplicitBufferSimpleErode(src,numdrops,power));
+        m_implicitbuffers[name]=std::shared_ptr<CImplicitBufferBase>(new CImplicitBufferSimpleErode(src,numdrops,power,iterations));
 
 
 
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::implicitBufferSimpleRainfall(std::string name, std::string source, std::string depth, int iterations)
+    CTreeContainer &CTreeContainer::implicitBufferSimpleRainfall(std::string name, std::string source)
     {
         if(getImplicitBuffer(name) ||get(name) || getRGBA(name)) return *this;
         auto src=getImplicitBuffer(source);
         if(!src) return *this;
-        auto dep=getImplicitBuffer(depth);
-        if(!dep) return *this;
 
-        m_implicitbuffers[name]=std::shared_ptr<CImplicitBufferBase>(new CImplicitBufferSimpleRainfall(src,dep,iterations));
+
+        m_implicitbuffers[name]=std::shared_ptr<CImplicitBufferBase>(new CImplicitBufferSimpleRainfall(src));
 
 
 

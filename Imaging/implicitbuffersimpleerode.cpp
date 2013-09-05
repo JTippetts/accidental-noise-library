@@ -3,11 +3,11 @@
 
 namespace anl
 {
-    CImplicitBufferSimpleErode::CImplicitBufferSimpleErode() : CImplicitBufferBase(), m_source(), m_numdrops(0), m_power(0.5)
+    CImplicitBufferSimpleErode::CImplicitBufferSimpleErode() : CImplicitBufferBase(), m_source(), m_numdrops(0), m_power(0.5), m_iterations(1)
     {
     }
-    CImplicitBufferSimpleErode::CImplicitBufferSimpleErode(CImplicitBufferBase * src, int numdrops, float power) :
-        CImplicitBufferBase(), m_source(src), m_numdrops(numdrops), m_power(power)
+    CImplicitBufferSimpleErode::CImplicitBufferSimpleErode(CImplicitBufferBase * src, int numdrops, float power, unsigned int iterations) :
+        CImplicitBufferBase(), m_source(src), m_numdrops(numdrops), m_power(power), m_iterations(iterations)
     {
     }
 
@@ -24,6 +24,11 @@ namespace anl
     {
         m_numdrops=drops;
     }
+	
+	void CImplicitBufferSimpleErode::setIterations(unsigned int iter)
+	{
+		m_iterations=iter;
+	}
 
     void CImplicitBufferSimpleErode::setPower(float power)
     {
@@ -35,15 +40,18 @@ namespace anl
         if(!m_source) return;
 
         m_source->get(out);
-        simpleErode(out,m_numdrops,m_power);
+		for(unsigned int c=0; c<m_iterations; ++c)
+        {
+			simpleErode(out,m_numdrops,m_power);
+		}
     }
 
-    CImplicitBufferSimpleRainfall::CImplicitBufferSimpleRainfall() : CImplicitBufferBase(), m_source(), m_depth(), m_iterations(0)
+    CImplicitBufferSimpleRainfall::CImplicitBufferSimpleRainfall() : CImplicitBufferBase(), m_source()
     {
     }
 
-    CImplicitBufferSimpleRainfall::CImplicitBufferSimpleRainfall(CImplicitBufferBase * src, CImplicitBufferBase * depth, int iterations) :
-        CImplicitBufferBase(), m_source(src), m_depth(depth), m_iterations(iterations)
+    CImplicitBufferSimpleRainfall::CImplicitBufferSimpleRainfall(CImplicitBufferBase * src) :
+        CImplicitBufferBase(), m_source(src)
     {
     }
 
@@ -56,21 +64,11 @@ namespace anl
         m_source=src;
     }
 
-    void CImplicitBufferSimpleRainfall::setDepth(CImplicitBufferBase * src)
-    {
-        m_depth=src;
-    }
-
-    void CImplicitBufferSimpleRainfall::setIterations(int iterations)
-    {
-        m_iterations=iterations;
-    }
+   
 
     void CImplicitBufferSimpleRainfall::get(CArray2Dd &out)
     {
-        if(!m_source || !m_depth) return;
-
-        m_depth->get(out);
+        if(!m_source) return;
 
         CArray2Dd tmp;
         tmp.resize(out.width(), out.height());

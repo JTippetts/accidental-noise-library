@@ -106,7 +106,7 @@ void simpleRainfall(anl::CArray2Dd &map, anl::CArray2Dd &depth, int iterations)
     std::list<SDrop> drops;
     int w=map.width(), h=map.height();
 
-    depth.copyFrom(&map);
+    depth.fill(0);
 
     int numdrops=w*h;
 
@@ -122,25 +122,14 @@ void simpleRainfall(anl::CArray2Dd &map, anl::CArray2Dd &depth, int iterations)
     {
         SDrop drop=drops.front();
         drops.pop_front();
-        map.set(drop.x, drop.y, map.get(drop.x,drop.y)-0.001);
+        //map.set(drop.x, drop.y, map.get(drop.x,drop.y)-0.001);
+		depth.set(drop.x, drop.y, depth.get(drop.x,drop.y)+0.001);
 
         SDrop low=find_lowest_neighbor(rnd, map, drop.x, drop.y);
         if(low.x != drop.x || low.y!=drop.y)
         {
             drops.push_back(low);
         }
-        else
-        {
-            // Hit bottom
-            map.set(drop.x, drop.y, map.get(drop.x, drop.y)+0.001);
-        }
-    }
-
-    for(int x=0; x<w; ++x)
-    {
-        for(int y=0; y<h; ++y)
-        {
-            depth.set(x,y,map.get(x,y)-depth.get(x,y));
-        }
+     
     }
 }
