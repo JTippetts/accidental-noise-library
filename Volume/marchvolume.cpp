@@ -152,4 +152,102 @@ namespace anl
 		outfile.close();
 		
 	}
+	
+	void marchDensityFieldSmooth(CArray3Dd &df, float iso, CMesh &m)
+	{
+		SimpleVolume<float> volData(PolyVox::Region(Vector3DInt32(0,0,0), Vector3DInt32(df.width(), df.height(), df.depth())));
+		//createSphereInVolume(volData, 30);
+		
+		// Copy df into volData
+		for(unsigned int x=0; x<df.width(); ++x)
+		{
+			for(unsigned int y=0; y<df.height(); ++y)
+			{
+				for(unsigned int z=0; z<df.depth(); ++z)
+				{
+					//volData.setVoxelAt(x,y,z, df.get(x,y,z) >= iso ? 255 : 0);
+					volData.setVoxelAt(x,y,z, (df.get(x,y,z)));
+				}
+			}
+		}
+		
+		volData.setBorderValue(0.0f);
+
+		//A mesh object to hold the result of surface extraction
+		SurfaceMesh<PositionMaterialNormal> mesh;
+
+		//Create a surface extractor. Comment out one of the following two lines to decide which type gets created.
+		//CubicSurfaceExtractorWithNormals< SimpleVolume<uint8_t> > surfaceExtractor(&volData, volData.getEnclosingRegion(), &mesh);
+		MarchingCubesSurfaceExtractor< SimpleVolume<float>, DefaultMarchingCubesController<float> > surfaceExtractor(&volData, volData.getEnclosingRegion(), &mesh, DefaultMarchingCubesController<float>(iso));
+
+		//Execute the surface extractor.
+		surfaceExtractor.execute();
+		
+		mesh.removeDegenerateTris();
+		mesh.removeUnusedVertices();
+		
+		// DUmp to mesh
+		const std::vector<uint32_t>& faces=mesh.getIndices();
+		const std::vector<PositionMaterialNormal>& verts=mesh.getVertices();
+		
+		for(int c=0; c<verts.size(); ++c)
+		{
+			const Vector3DFloat& v=verts[c].getPosition();
+			m.pushVertex(SVertex(CVec3f(v.getX(), v.getY(), v.getZ()), CVec3f(0,0,0), CVec2f(0,0)));
+		}	
+
+		for(int c=0; c<faces.size(); ++c)
+		{
+			m.pushIndex(faces[c]);
+		}
+	}
+	
+	void marchDensityFieldCube(CArray3Dd &df, float iso, CMesh &m)
+	{
+		SimpleVolume<uint8_t> volData(PolyVox::Region(Vector3DInt32(0,0,0), Vector3DInt32(df.width(), df.height(), df.depth())));
+		//createSphereInVolume(volData, 30);
+		
+		// Copy df into volData
+		for(unsigned int x=0; x<df.width(); ++x)
+		{
+			for(unsigned int y=0; y<df.height(); ++y)
+			{
+				for(unsigned int z=0; z<df.depth(); ++z)
+				{
+					volData.setVoxelAt(x,y,z, df.get(x,y,z) >= iso ? 255 : 0);
+					//volData.setVoxelAt(x,y,z, (df.get(x,y,z)));
+				}
+			}
+		}
+		
+		volData.setBorderValue(0.0f);
+
+		//A mesh object to hold the result of surface extraction
+		SurfaceMesh<PositionMaterialNormal> mesh;
+
+		//Create a surface extractor. Comment out one of the following two lines to decide which type gets created.
+		CubicSurfaceExtractorWithNormals< SimpleVolume<uint8_t> > surfaceExtractor(&volData, volData.getEnclosingRegion(), &mesh);
+		//MarchingCubesSurfaceExtractor< SimpleVolume<float>, DefaultMarchingCubesController<float> > surfaceExtractor(&volData, volData.getEnclosingRegion(), &mesh, DefaultMarchingCubesController<float>(iso));
+
+		//Execute the surface extractor.
+		surfaceExtractor.execute();
+		
+		mesh.removeDegenerateTris();
+		mesh.removeUnusedVertices();
+		
+		// DUmp to mesh
+		const std::vector<uint32_t>& faces=mesh.getIndices();
+		const std::vector<PositionMaterialNormal>& verts=mesh.getVertices();
+		
+		for(int c=0; c<verts.size(); ++c)
+		{
+			const Vector3DFloat& v=verts[c].getPosition();
+			m.pushVertex(SVertex(CVec3f(v.getX(), v.getY(), v.getZ()), CVec3f(0,0,0), CVec2f(0,0)));
+		}	
+
+		for(int c=0; c<faces.size(); ++c)
+		{
+			m.pushIndex(faces[c]);
+		}
+	}
 };

@@ -26,4 +26,7 @@ a:resize(128,128,128)
 
 ad:get(a)
 
-anl.marchDensityFieldSmoothOBJ(a, 0.01, "test.obj")
+mesh=anl.CMesh()
+
+anl.marchDensityFieldSmooth(a, 0.01, mesh)
+mesh:saveOBJ("test.obj", false, true)

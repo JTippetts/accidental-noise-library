@@ -16,8 +16,8 @@ namespace anl
         {
             for(y=0; y<h; ++y)
             {
-                ANLFloatType p=(ANLFloatType)x / (ANLFloatType)w;
-                ANLFloatType q=(ANLFloatType)y / (ANLFloatType)h;
+                ANLFloatType p=(ANLFloatType)x / (ANLFloatType)(w-1);
+                ANLFloatType q=(ANLFloatType)y / (ANLFloatType)(h-1);
                 ANLFloatType r;
                 ANLFloatType nx,ny,nz,nw,nu,nv,val=0.0;
                 ANLFloatType dx, dy, dz;
