@@ -320,6 +320,16 @@ namespace anl
         void setUseZ(bool use_z);
         void setZ(double z);
 	};
+	
+	class CImplicitBufferFile : public CImplicitBufferBase
+	{
+	public:
+		CImplicitBufferFile();
+		CImplicitBufferFile(std::string filename);
+		~CImplicitBufferFile();
+		
+		void setFile(std::string filename);
+	};
 
 	class CImplicitBufferScaleToRange : public CImplicitBufferBase
     {

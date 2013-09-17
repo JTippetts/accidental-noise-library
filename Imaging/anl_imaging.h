@@ -18,6 +18,7 @@
 #include "implicitbufferunarymath.h"
 #include "implicitbuffersimpleerode.h"
 #include "implicitbufferselect.h"
+#include "implicitbufferfile.h"
 
 #include "rgbabufferbase.h"
 #include "rgbabufferrgbaadapter.h"
