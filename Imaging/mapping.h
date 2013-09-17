@@ -96,11 +96,11 @@ namespace anl
     void mapRGBA2DNoZ(int seamlessmode, CArray2Drgba &a, CRGBAModuleBase &m, SMappingRanges &ranges);
     void mapRGBA3D(int seamlessmode, CArray3Drgba &a, CRGBAModuleBase &m, SMappingRanges &ranges);
 
-    void saveDoubleArray(char *filename, TArray2D<ANLFloatType> *array);
-    void saveRGBAArray(char *filename, TArray2D<anl::SRGBA> *array);
+    void saveDoubleArray(std::string filename, TArray2D<ANLFloatType> *array);
+    void saveRGBAArray(std::string filename, TArray2D<anl::SRGBA> *array);
 	
-	void loadDoubleArray(char *filename, TArray2D<ANLFloatType> *array);
-	void loadRGBAArray(char *filename, TArray2D<anl::SRGBA> *array);
+	void loadDoubleArray(std::string filename, TArray2D<ANLFloatType> *array);
+	void loadRGBAArray(std::string filename, TArray2D<anl::SRGBA> *array);
 };
 
 #endif

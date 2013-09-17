@@ -9,7 +9,7 @@ namespace anl
 	
 	CImplicitBufferFile::CImplicitBufferFile(std::string filename)
 	{
-		loadDoubleArray((char *)filename.c_str(), &buffer_);
+		loadDoubleArray(filename, &buffer_);
 	}
 	
 	CImplicitBufferFile::~CImplicitBufferFile()
@@ -18,7 +18,7 @@ namespace anl
 		
 	void CImplicitBufferFile::setFile(std::string filename)
 	{
-		loadDoubleArray((char *)filename.c_str(), &buffer_);
+		loadDoubleArray(filename, &buffer_);
 	}
 	
 	void CImplicitBufferFile::get(CArray2Dd &out)

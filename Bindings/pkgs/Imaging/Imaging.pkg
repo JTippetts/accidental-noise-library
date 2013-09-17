@@ -38,10 +38,10 @@ namespace anl
     void mapRGBA2DNoZ(int seamlessmode, anl::CArray2Drgba &a, anl::CRGBAModuleBase &m, SMappingRanges &ranges);
     void mapRGBA3D(int seamlessmode, anl::CArray3Drgba &a, anl::CRGBAModuleBase &m, SMappingRanges &ranges);
 
-	void saveDoubleArray(char *filename, anl::CArray2Dd *array);
-    void saveRGBAArray(char *filename, anl::CArray2Drgba *array);
-	void loadDoubleArray(char *filename, anl::CArray2Dd *array);
-	void loadRGBAArray(char *filename, anl::CArray2Drgba *array);
+	void saveDoubleArray(std::string filename, anl::CArray2Dd *array);
+    void saveRGBAArray(std::string filename, anl::CArray2Drgba *array);
+	void loadDoubleArray(std::string filename, anl::CArray2Dd *array);
+	void loadRGBAArray(std::string filename, anl::CArray2Drgba *array);
 };
 
 namespace anl

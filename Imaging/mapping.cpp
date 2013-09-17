@@ -2,6 +2,10 @@
 #include <cmath>
 #include <fstream>
 #include <iostream>
+#include <string>
+#include <algorithm>
+#include <cctype>
+
 #include "stb_image.h"
 #include "stb_image_write.h"
 
@@ -668,7 +672,7 @@ namespace anl
 
 
 
-    void saveDoubleArray(char *filename, TArray2D<ANLFloatType> *array)
+    void saveDoubleArray(std::string filename, TArray2D<ANLFloatType> *array)
 	{
 		if(!array) return;
 		int width=array->width();
@@ -686,12 +690,28 @@ namespace anl
 			}
 		}
 		
-		stbi_write_png(filename, width, height, 4, data, width*4);
+		std::string ext=filename.substr(filename.size()-3, std::string::npos);
+		struct convert {
+			void operator()(char& c) { c = toupper((unsigned char)c); }
+		};
+
+		std::for_each(ext.begin(), ext.end(), convert());
+		
+		if(ext=="TGA")
+		{
+			stbi_write_tga(filename.c_str(), width, height, 4, data);
+		}
+		else
+		{
+			stbi_write_png(filename.c_str(), width, height, 4, data, width*4);
+		}
+		
+		
 		delete[] data;
 	}
 
 
-	void saveRGBAArray(char *filename, TArray2D<anl::SRGBA> *array)
+	void saveRGBAArray(std::string filename, TArray2D<anl::SRGBA> *array)
 	{
 		if(!array) return;
 		int width=array->width();
@@ -711,16 +731,30 @@ namespace anl
 			}
 		}
 		
-		stbi_write_png(filename, width, height, 4, data, width*4);
+		std::string ext=filename.substr(filename.size()-3, std::string::npos);
+		struct convert {
+			void operator()(char& c) { c = toupper((unsigned char)c); }
+		};
+
+		std::for_each(ext.begin(), ext.end(), convert());
+		
+		if(ext=="TGA")
+		{
+			stbi_write_tga(filename.c_str(), width, height, 4, data);
+		}
+		else
+		{
+			stbi_write_png(filename.c_str(), width, height, 4, data, width*4);
+		}
 		delete[] data;
 	}
 
 
-	void loadDoubleArray(char *filename, TArray2D<ANLFloatType> *array)
+	void loadDoubleArray(std::string filename, TArray2D<ANLFloatType> *array)
 	{
 		if(!array) return;
 		int w,h,n;
-		unsigned char *data=stbi_load(filename, &w, &h, &n, 4);
+		unsigned char *data=stbi_load(filename.c_str(), &w, &h, &n, 4);
 		if(!data) return;
 		
 		array->resize(w,h);
@@ -736,11 +770,11 @@ namespace anl
 		stbi_image_free(data);
 	}
 	
-	void loadRGBAArray(char *filename, TArray2D<anl::SRGBA> *array)
+	void loadRGBAArray(std::string filename, TArray2D<anl::SRGBA> *array)
 	{
 		if(!array) return;
 		int w,h,n;
-		unsigned char *data=stbi_load(filename, &w, &h, &n, 4);
+		unsigned char *data=stbi_load(filename.c_str(), &w, &h, &n, 4);
 		if(!data) return;
 		
 		array->resize(w,h);
