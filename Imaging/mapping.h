@@ -1,7 +1,7 @@
 #ifndef MAPPING_H
 #define MAPPING_H
 #include "templates/tarrays.h"
-#include "implicitmodulebase.h"
+#include "../Noise/implicitmodulebase.h"
 #include "rgbamodulebase.h"
 
 #include "vectortypes.h"

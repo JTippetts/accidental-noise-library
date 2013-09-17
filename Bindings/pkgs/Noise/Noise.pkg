@@ -604,6 +604,20 @@ class CImplicitScaleOffset : public CImplicitModuleBase
     void setOffset(CImplicitModuleBase * offset);
 };
 
+	class CImplicitSeamlessMapping : public CImplicitModuleBase
+	{
+	public:
+		CImplicitSeamlessMapping();
+		CImplicitSeamlessMapping(CImplicitModuleBase *src, int seamlessmode, double periodx=1, double periody=1, double periodz=1);
+		~CImplicitSeamlessMapping();
+		
+		void setSource(CImplicitModuleBase *src);
+		void setMapping(int seamlessmode);
+		void setPeriodX(double p);
+		void setPeriodY(double p);
+		void setPeriodZ(double p);
+	};
+
 class CImplicitSelect : public CImplicitModuleBase
 {
 public:
