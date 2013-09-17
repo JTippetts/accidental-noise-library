@@ -2,9 +2,11 @@
 #include <cmath>
 #include <fstream>
 #include <iostream>
+#include "stb_image.h"
+#include "stb_image_write.h"
 
 namespace anl
-{
+{	
    void map2D(int seamlessmode, CArray2Dd &a, CImplicitModuleBase &m, SMappingRanges &ranges, ANLFloatType z)
    {
         int w=a.width();
@@ -667,94 +669,91 @@ namespace anl
 
 
     void saveDoubleArray(char *filename, TArray2D<ANLFloatType> *array)
-{
-    if(!array) return;
-    int width=array->width();
-    int height=array->height();
-
-    int Depth = 24;
-	int TempWidth1 = int (width / 256);
-	int TempHeight1 = int (height / 256);
-
-	int TempWidth2 = width - (256 * TempWidth1);
-	int TempHeight2 = height - (256 * TempHeight1);
-
-	unsigned char Head[6] = {(unsigned char)TempWidth2,(unsigned char)TempWidth1,(unsigned char)TempHeight2,(unsigned char)TempHeight1,(unsigned char)Depth,0};
-	unsigned char TgaHead[12] = {0,0,2,0,0,0,0,0,0,0,0,0};
-
-	std::ofstream File (filename,std::ios::binary);
-
-	if (!File.is_open ())
 	{
-	    std::cout << "Could not open file " << filename << std::endl;
-	    return;
-	}
-	File.write ( (char *)TgaHead,sizeof (TgaHead));
-	File.write ( (char *)Head,sizeof (Head));
-
-	for(int y=height-1; y>=0; --y)
-	{
-	    for(int x=0; x<width; ++x)
-	    {
-	        ANLFloatType val=array->get(x,y);
-	        val=std::max((ANLFloatType)0.0,std::min((ANLFloatType)1.0,val));
-	        unsigned char col[3];
-	        col[0]=col[1]=col[2]=(unsigned char)(val*255.0);
-	        File.write((char *) &col, 3);
-	    }
+		if(!array) return;
+		int width=array->width();
+		int height=array->height();
+		
+		unsigned char *data=new unsigned char[width*height*4];
+		for(int x=0; x<width; ++x)
+		{
+			for(int y=0; y<height; ++y)
+			{
+				unsigned char *c=&data[y*width*4+x*4];
+				ANLFloatType v=array->get(x,y);
+				c[0]=c[1]=c[2]=(unsigned char)(v*255.0);
+				c[3]=255;
+			}
+		}
+		
+		stbi_write_png(filename, width, height, 4, data, width*4);
+		delete[] data;
 	}
 
-	File.close ();
-	return;
-}
 
-void saveRGBAArray(char *filename, TArray2D<anl::SRGBA> *array)
-{
-    if(!array)
-    {
-        std::cout << "Error" << std::endl;
-        return;
-    }
-    int width=array->width();
-    int height=array->height();
-
-    int Depth = 32;
-	int TempWidth1 = int (width / 256);
-	int TempHeight1 = int (height / 256);
-
-	int TempWidth2 = width - (256 * TempWidth1);
-	int TempHeight2 = height - (256 * TempHeight1);
-
-	unsigned char Head[6] = {(unsigned char)TempWidth2,(unsigned char)TempWidth1,(unsigned char)TempHeight2,(unsigned char)TempHeight1,(unsigned char)Depth,0};
-	unsigned char TgaHead[12] = {0,0,2,0,0,0,0,0,0,0,0,0};
-
-	std::ofstream File (filename,std::ios::binary);
-
-	if (!File.is_open ())
+	void saveRGBAArray(char *filename, TArray2D<anl::SRGBA> *array)
 	{
-	    std::cout << "Could not open file " << filename << std::endl;
-	    return;
-	}
-	File.write ( (char *)TgaHead,sizeof (TgaHead));
-	File.write ( (char *)Head,sizeof (Head));
-
-	for(int y=height-1; y>=0; --y)
-	{
-	    for(int x=0; x<width; ++x)
-	    {
-	        anl::SRGBA val=array->get(x,y);
-	        //val=std::max(0.0,std::min(1.0,val));
-	        unsigned char col[4];
-	        //col[0]=col[1]=col[2]=(unsigned char)(val*255.0);
-	        col[2]=(unsigned char)(val[0]*255.0f);
-	        col[1]=(unsigned char)(val[1]*255.0f);
-	        col[0]=(unsigned char)(val[2]*255.0f);
-	        col[3]=(unsigned char)(val[3]*255.0f);
-	        File.write((char *) &col, 4);
-	    }
+		if(!array) return;
+		int width=array->width();
+		int height=array->height();
+		
+		unsigned char *data=new unsigned char[width*height*4];
+		for(int x=0; x<width; ++x)
+		{
+			for(int y=0; y<height; ++y)
+			{
+				unsigned char *c=&data[y*width*4+x*4];
+				SRGBA color=array->get(x,y);
+				c[0]=(unsigned char)(color.x()*255.0);
+				c[1]=(unsigned char)(color.y()*255.0);
+				c[2]=(unsigned char)(color.z()*255.0);
+				c[3]=(unsigned char)(color.w()*255.0);
+			}
+		}
+		
+		stbi_write_png(filename, width, height, 4, data, width*4);
+		delete[] data;
 	}
 
-	File.close ();
-	return;
-}
+
+	void loadDoubleArray(char *filename, TArray2D<ANLFloatType> *array)
+	{
+		if(!array) return;
+		int w,h,n;
+		unsigned char *data=stbi_load(filename, &w, &h, &n, 4);
+		if(!data) return;
+		
+		array->resize(w,h);
+		for(int x=0; x<w; ++x)
+		{
+			for(int y=0; y<h; ++y)
+			{
+				unsigned char *a=&data[y*w*4+x*4];
+				array->set(x,y,(ANLFloatType)(a[0])/255.0);
+			}
+		}
+		
+		stbi_image_free(data);
+	}
+	
+	void loadRGBAArray(char *filename, TArray2D<anl::SRGBA> *array)
+	{
+		if(!array) return;
+		int w,h,n;
+		unsigned char *data=stbi_load(filename, &w, &h, &n, 4);
+		if(!data) return;
+		
+		array->resize(w,h);
+		for(int x=0; x<w; ++x)
+		{
+			for(int y=0; y<h; ++y)
+			{
+				unsigned char *a=&data[y*w*4+x*4];
+				SRGBA color((ANLFloatType)a[0]/255.0, (ANLFloatType)a[1]/255.0, (ANLFloatType)a[2]/255.0, (ANLFloatType)a[3]/255.0);
+				array->set(x,y,color);
+			}
+		}
+		
+		stbi_image_free(data);
+	}
 };

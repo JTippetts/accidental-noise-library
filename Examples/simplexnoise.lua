@@ -22,5 +22,5 @@ i:resize(1024,256)
 
 scale:get(i)
 
-anl.saveDoubleArray("img.tga", i)
+anl.saveDoubleArray("img.png", i)
 

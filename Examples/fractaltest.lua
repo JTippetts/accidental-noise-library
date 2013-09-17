@@ -13,5 +13,5 @@ for i=1,20,1 do
 	s=anl.CImplicitBufferScaleToRange(ad,0,1)
 	f:setSeed(rnd:get())
 	s:get(img)
-	anl.saveDoubleArray("img"..i..".tga", img)
+	anl.saveDoubleArray("img"..i..".png", img)
 end

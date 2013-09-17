@@ -23,4 +23,4 @@ adapter=anl.CImplicitBufferImplicitAdapter(sel3, anl.SEAMLESS_NONE, anl.SMapping
 i=anl.CArray2Dd()
 i:resize(1024,256)
 adapter:get(i)
-anl.saveDoubleArray("img.tga", i)
+anl.saveDoubleArray("img.png", i)

@@ -102,4 +102,4 @@ i:resize(1024,1024)
 
 colormult:get(i)
 
-anl.saveRGBAArray("img.tga", i)
+anl.saveRGBAArray("img.png", i)

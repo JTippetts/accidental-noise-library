@@ -46,13 +46,13 @@ y:rgbaBufferRGBAAdapter("O1", "RGBA", anl.SEAMLESS_NONE, anl.SMappingRanges(0,4,
 rgba=y:getRGBABuffer("O1")
 rgba:get(img)
 
-anl.saveRGBAArray("multicolor.tga", img)
+anl.saveRGBAArray("multicolor.png", img)
 
 -- dump some values from the diagonal
 aa=y:getRGBAModule("RGBA")
-for i=0,2,0.1 do 
+for i=0,2,0.1 do
         color = aa:get(i,i)
-        print(color.x, color.y, color.z, color.w) 
+        print(color.x, color.y, color.z, color.w)
 end
 
 -- simple timing

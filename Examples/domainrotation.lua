@@ -12,7 +12,7 @@ img:resize(256,256)
 for i=1,4,1 do
 	f:setNumOctaves(i)
 	s:get(img)
-	anl.saveDoubleArray("img"..i..".tga", img)
+	anl.saveDoubleArray("img"..i..".png", img)
 end
 
 f=anl.CImplicitFractal(anl.RIDGEDMULTI, anl.GRADIENT, anl.QUINTIC, 1, 2, true)
@@ -24,5 +24,5 @@ s=anl.CImplicitBufferScaleToRange(ad,0,1)
 for i=1,4,1 do
 	f:setNumOctaves(i)
 	s:get(img)
-	anl.saveDoubleArray("img"..(i+4)..".tga", img)
+	anl.saveDoubleArray("img"..(i+4)..".png", img)
 end

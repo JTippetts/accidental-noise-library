@@ -33,4 +33,4 @@ i:resize(256,256)
 
 mult:get(i)
 
-anl.saveRGBAArray("img.tga", i)
+anl.saveRGBAArray("img.png", i)

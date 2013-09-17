@@ -3,12 +3,12 @@
 
 function raymarch(img, module, domain, step, light)
 	local w,h=img:width(), img:height()
-	
+
 	local len=math.sqrt(light.x*light.x+light.y*light.y+light.z*light.z)
 	light.x=light.x/len
 	light.y=light.y/len
 	light.z=light.z/len
-	
+
 	local x,y,z
 	for x=0,w-1,1 do
 		for y=0,h-1,1 do
@@ -61,4 +61,4 @@ img:resize(256, 256)
 
 raymarch(img, sphere, {x0=-1.25, x1=1.25, y0=-1.25, y1=1.25, z0=-1.25, z1=1.25}, 0.01, {x=-3.5, y=3.5, z=-1.5})
 
-anl.saveDoubleArray("img.tga", img)
+anl.saveDoubleArray("img.png", img)

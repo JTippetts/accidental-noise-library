@@ -40,6 +40,8 @@ namespace anl
 
 	void saveDoubleArray(char *filename, anl::CArray2Dd *array);
     void saveRGBAArray(char *filename, anl::CArray2Drgba *array);
+	void loadDoubleArray(char *filename, anl::CArray2Dd *array);
+	void loadRGBAArray(char *filename, anl::CArray2Drgba *array);
 };
 
 namespace anl

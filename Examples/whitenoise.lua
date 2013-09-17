@@ -12,7 +12,7 @@ i:resize(256,256)
 
 t:getImplicitBuffer("Scale"):get(i)
 
-anl.saveDoubleArray("img.tga", i)
+anl.saveDoubleArray("img.png", i)
 
 m=t:getImplicitModule("F1")
 

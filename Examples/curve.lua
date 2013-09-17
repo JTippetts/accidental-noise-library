@@ -14,4 +14,4 @@ i=anl.CArray2Dd()
 i:resize(256,256)
 
 ad:get(i)
-anl.saveDoubleArray("img.tga", i)
+anl.saveDoubleArray("img.png", i)

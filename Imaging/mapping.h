@@ -98,6 +98,9 @@ namespace anl
 
     void saveDoubleArray(char *filename, TArray2D<ANLFloatType> *array);
     void saveRGBAArray(char *filename, TArray2D<anl::SRGBA> *array);
+	
+	void loadDoubleArray(char *filename, TArray2D<ANLFloatType> *array);
+	void loadRGBAArray(char *filename, TArray2D<anl::SRGBA> *array);
 };
 
 #endif
