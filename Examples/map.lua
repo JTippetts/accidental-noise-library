@@ -67,6 +67,7 @@ forestcolor=anl.CRGBAConstant(20/255, 119/255, 30/255, 1)
 
 forestselectfbm=anl.CImplicitFractal(anl.RIDGEDMULTI, anl.GRADIENT, anl.QUINTIC, 6, 0.25, true)
 forestselectac=anl.CImplicitAutoCorrect(forestselectfbm, 0, 1)
+forestselectfbm:setSeed(rnd:get())
 
 forestselect=anl.CImplicitSelect(sandselect, forestfbmac, forestselectac, 0.75, 0.05)
 forestcolorselect=anl.CRGBASelect(sandcolorselect, forestcolor, forestselectac, 0.75, 0.05)
@@ -91,7 +92,8 @@ watercolorselect=anl.CRGBASelect(watercolor, mtncolorselect, waterselectfbmac, 0
 
 elevationbuf=anl.CImplicitBufferImplicitAdapter(waterselect,anl.SEAMLESS_NONE,range,true,0)
 elevationscale=anl.CImplicitBufferScaleToRange(elevationbuf,0,1)
-elevationbump=anl.CImplicitBufferBumpMap(elevationscale,-1.5,3.5,-1.5,0.05,false)
+erode=anl.CImplicitBufferSimpleErode(elevationscale, 0, 0.2)
+elevationbump=anl.CImplicitBufferBumpMap(erode,-1.5,3.5,-1.5,0.05,false)
 
 colorbuf=anl.CRGBABufferRGBAAdapter(watercolorselect, anl.SEAMLESS_NONE, range, true, 0)
 colormult=anl.CRGBABufferImplicitBufferMultiply(colorbuf, elevationbump)

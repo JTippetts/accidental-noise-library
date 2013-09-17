@@ -25,6 +25,7 @@
 #include "implicitsawtooth.h"
 #include "implicitscaledomain.h"
 #include "implicitscaleoffset.h"
+#include "implicitseamlessmapping.h"
 #include "implicitselect.h"
 #include "implicitsphere.h"
 #include "implicittiers.h"
