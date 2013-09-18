@@ -451,5 +451,16 @@ namespace anl
 		void setThreshold(double t);
 		void setFalloff(double f);
 	};
+	
+	class CRGBABufferNormalMap : public CRGBABufferBase
+	{
+	public:
+		CRGBABufferNormalMap();
+		CRGBABufferNormalMap(CImplicitBufferBase *src, float spacing, bool seamless_);
+		~CRGBABufferNormalMap();
+		
+		void setSource(CImplicitBufferBase *src);
+		void setSpacing(float spacing);
+	};
 
 };

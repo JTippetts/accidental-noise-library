@@ -25,6 +25,7 @@
 #include "rgbabufferimplicitbufferadapter.h"
 #include "rgbabufferblur.h"
 #include "rgbabufferimplicitbuffermultiply.h"
+#include "rgbabuffernormalmap.h"
 #include "rgbabufferselect.h"
 
 #endif
