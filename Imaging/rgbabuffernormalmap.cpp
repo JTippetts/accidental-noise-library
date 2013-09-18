@@ -26,7 +26,7 @@ namespace anl
 		temp.resize(out.width(), out.height());
 		source_->get(temp);
 		
-		calcNormalMap(&temp, &out, spacing_, false, seamless_);
+		calcNormalMap(&temp, &out, spacing_, true, seamless_);
 		
 	}
 };
