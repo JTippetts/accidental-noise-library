@@ -12,6 +12,11 @@ namespace anl
 		loadDoubleArray(filename, &buffer_);
 	}
 	
+	CImplicitBufferFile::CImplicitBufferFile(CArray2Dd *buf)
+	{
+		setFromBuffer(buf);
+	}
+	
 	CImplicitBufferFile::~CImplicitBufferFile()
 	{
 	}
@@ -19,6 +24,20 @@ namespace anl
 	void CImplicitBufferFile::setFile(std::string filename)
 	{
 		loadDoubleArray(filename, &buffer_);
+	}
+	
+	void CImplicitBufferFile::setFromBuffer(CArray2Dd *buf)
+	{
+		if(!buf) return;
+		int w=buf->width(), h=buf->height();
+		buffer_.resize(w,h);
+		for(int x=0; x<w; ++x)
+		{
+			for(int y=0; y<h; ++y)
+			{
+				buffer_.set(x,y,buf->get(x,y));
+			}
+		}
 	}
 	
 	void CImplicitBufferFile::get(CArray2Dd &out)
