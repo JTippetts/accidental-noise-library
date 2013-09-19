@@ -192,6 +192,8 @@ namespace anl
         CTreeContainer &select(std::string name, double low, double high, double control, std::string threshold, double falloff);
         CTreeContainer &select(std::string name, double low, double high, double control, double threshold, std::string falloff);
         CTreeContainer &select(std::string name, double low, double high, double control, double threshold, double falloff);
+		
+		CTreeContainer &seamlessMapping(std::string name, std::string src, int mapping, double periodx=1, double periody=1, double periodz=1);
 
 
         CTreeContainer &sphere(std::string name, std::string radius, std::string cx, std::string cy, std::string cz);
@@ -375,6 +377,7 @@ namespace anl
 		CTreeContainer &rgbaBufferBlur(std::string name, std::string source, double blursize, bool seamless);
 		CTreeContainer &rgbaBufferImplicitBufferMultiply(std::string name, std::string rgbasource, std::string implicitsource);
 		CTreeContainer &rgbaBufferSelect(std::string name, std::string low, std::string high, std::string control, double threshold, double falloff);
+		CTreeContainer &rgbaBufferNormalMap(std::string name, std::string source, float spacing, bool seamless);
 
 
         anl::CImplicitModuleBase *getImplicitModule(std::string name);

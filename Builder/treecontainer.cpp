@@ -1323,6 +1323,13 @@ namespace anl
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
         return *this;
     }
+	
+	CTreeContainer &CTreeContainer::seamlessMapping(std::string name, std::string src, int mapping, ANLFloatType periodx, ANLFloatType periody, ANLFloatType periodz)
+	{
+		if(get(name)) return *this;
+		m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSeamlessMapping(get(src), mapping, get(periodx), get(periody), get(periodz)));
+		return *this;
+	}
 
     CTreeContainer &CTreeContainer::sphere(std::string name, ANLFloatType radius, ANLFloatType cx, ANLFloatType cy, ANLFloatType cz)
     {
@@ -2659,6 +2666,16 @@ namespace anl
 		if(!l || !h || !c) return *this;
 
 		m_rgbabuffers[name]=std::shared_ptr<CRGBABufferBase>(new CRGBABufferSelect(l,h,c,threshold,falloff));
+		return *this;
+	}
+	
+	CTreeContainer &CTreeContainer::rgbaBufferNormalMap(std::string name, std::string source, float spacing, bool seamless)
+	{
+		if(getImplicitBuffer(name) || get(name) || getRGBA(name) || getRGBABuffer(name)) return *this;
+		auto s=getImplicitBuffer(source);
+		if(!s) return *this;
+		
+		m_rgbabuffers[name]=std::shared_ptr<CRGBABufferBase>(new CRGBABufferNormalMap(s,spacing,seamless));
 		return *this;
 	}
 

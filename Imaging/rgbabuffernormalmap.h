@@ -10,7 +10,7 @@ namespace anl
 	{
 	public:
 		CRGBABufferNormalMap();
-		CRGBABufferNormalMap(CImplicitBufferBase *src, float spacing, bool seamless_);
+		CRGBABufferNormalMap(CImplicitBufferBase *src, float spacing, bool seamless);
 		~CRGBABufferNormalMap();
 		
 		void setSource(CImplicitBufferBase *src);

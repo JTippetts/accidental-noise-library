@@ -151,6 +151,8 @@ namespace anl
         CTreeContainer &scaleOffset(std::string name, std::string src, ANLFloatType scale, std::string offset);
         CTreeContainer &scaleOffset(std::string name, std::string src, std::string scale, ANLFloatType offset);
         CTreeContainer &scaleOffset(std::string name, std::string src, std::string scale, std::string offset);
+		
+		CTreeContainer &seamlessMapping(std::string name, std::string src, int mapping, ANLFloatType periodx=1, ANLFloatType periody=1, ANLFloatType periodz=1);
 
         CTreeContainer &select(std::string name, ANLFloatType low, ANLFloatType high, ANLFloatType control, ANLFloatType threshold, ANLFloatType falloff);
         CTreeContainer &select(std::string name, ANLFloatType low, ANLFloatType high, ANLFloatType control, ANLFloatType threshold, std::string falloff);
@@ -362,6 +364,7 @@ namespace anl
 		CTreeContainer &rgbaBufferBlur(std::string name, std::string source, ANLFloatType blursize, bool seamless);
 		CTreeContainer &rgbaBufferImplicitBufferMultiply(std::string name, std::string rgbasource, std::string implicitsource);
 		CTreeContainer &rgbaBufferSelect(std::string name, std::string low, std::string high, std::string control, ANLFloatType threshold, ANLFloatType falloff);
+		CTreeContainer &rgbaBufferNormalMap(std::string name, std::string source, float spacing, bool seamless);
 
         CImplicitModuleBase * getImplicitModule(std::string name);
         CRGBAModuleBase * getRGBAModule(std::string name);
