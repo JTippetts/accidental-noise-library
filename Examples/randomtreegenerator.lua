@@ -1,10 +1,10 @@
-function buildRandomGenerator(levels, nameprefix)
+function buildRandomGenerator(levels, nameprefix,seed)
 	local s="local b=anl.CTreeContainer()\n"
 	s=s.."local rnd=anl.KISS()\n rnd:setSeedTime() \n"
 	local rnd=anl.KISS()
-	rnd:setSeedTime()
+	rnd:setSeed(seed)
 	
-	local leaf=
+	local nodes=
 	{
 		-- Constant
 		function(name, level)
@@ -25,15 +25,16 @@ function buildRandomGenerator(levels, nameprefix)
 		
 		-- Fractal
 		function(name, level)
-			s=s.."b:fractal(\""..name.."\","..rnd:getRange(anl.FBM, anl.DECARPENTIERSWISS)..","..rnd:getRange(anl.VALUE, anl.WHITE)
-			s=s..","..rnd:getRange(anl.NONE, anl.QUINTIC)..","..rnd:getRange(1,8)..","..(rnd:get01()*3+0.1)..","
-			if rnd:getRange(1,10)<=5 then s=s.."true" else s=s.."false" end
+			s=s.."b:fractal(\""..name.."frac\","..rnd:getRange(anl.FBM, anl.DECARPENTIERSWISS)..","..rnd:getRange(anl.VALUE, anl.SIMPLEX)
+			s=s..","..rnd:getRange(anl.LINEAR, anl.QUINTIC)..","..rnd:getRange(1,8)..","..(rnd:get01()*4+0.1)..","
+			if rnd:getRange(1,10)<=5 then s=s.."true" else s=s.."true" end
 			s=s..") \n"
+			
+			s=s.."b:autoCorrect(\""..name.."\",\""..name.."frac\",-1,1) \n"
 		end,
-	}
-
-	local branch=
-	{
+		
+		
+		-- Branch nodes
 		--Blend
 		function(name, level)
 			generateNode(name..'A', level-1)
@@ -41,11 +42,55 @@ function buildRandomGenerator(levels, nameprefix)
 			generateNode(name..'C', level-1)
 			s=s.."b:blend(\""..name.."\",\""..name..'A'.."\",\""..name..'B'.."\",\""..name..'C'.."\") \n"
 		end,
+		
+		-- Select
+		function(name, level)
+			generateNode(name..'A', level-1)
+			generateNode(name..'B', level-1)
+			generateNode(name..'C', level-1)
+			generateNode(name..'D', level-1)
+			generateNode(name..'E', level-1)
+			s=s.."b:select(\""..name.."\",\""..name..'A'.."\",\""..name..'B'.."\",\""..name..'C'.."\",\""..name..'D'.."\",\""..name..'E'.."\") \n"
+		end,
+		
+		-- Unary Math
+		function(name, level)
+			generateNode(name..'A', level-1)
+			s=s.."b:math(\""..name.."\","..rnd:getRange(anl.COS, anl.EASEQUINTIC)..",\""..name..'A'.."\",0) \n"
+		end,
+		
+		-- Binary Math
+		function(name, level)
+			generateNode(name..'A', level-1)
+			generateNode(name..'B', level-1)
+			s=s.."b:math(\""..name.."\","..rnd:getRange(anl.COS, anl.EASEQUINTIC)..",\""..name..'A'.."\",\""..name..'B'.."\") \n"
+		end,
+		
+		-- Translate Domain
+		function(name, level)
+			local tx,ty,tz=false,false,false
+			if rnd:getRange(1,10)<=5 then tx=true end
+			if rnd:getRange(1,10)<=5 then ty=true end
+			if rnd:getRange(1,10)<=5 then tz=true end
+			
+			generateNode(name..'A', level-1)
+			
+			if tx then generateNode(name..'B', level-1) end
+			if ty then generateNode(name..'C', level-1) end
+			if tz then generateNode(name..'D', level-1) end
+			
+			s=s.."b:translateDomain(\""..name.."\",\""..name..'A'.."\","
+			if tx then s=s.."\""..name..'B'.."\"," else s=s.."0," end
+			if ty then s=s.."\""..name..'C'.."\"," else s=s.."0," end
+			if tz then s=s.."\""..name..'C'.."\"" else s=s.."0" end
+			
+			s=s..") \n"
+		end
 	}
 	
 	function generateNode(name, level)
-		if level<=1 then leaf[rnd:getRange(1,#leaf)](name, level-1)
-		else branch[rnd:getRange(1,#branch)](name, level-1)
+		if level<=1 then nodes[rnd:getRange(1,4)](name, level-1)
+		else nodes[rnd:getRange(5,#nodes)](name, level-1)
 		end
 	end
 	
@@ -53,7 +98,10 @@ function buildRandomGenerator(levels, nameprefix)
 	s=s.."b:setSeedAll(rnd:get())\n"
 	s=s.."return b, b:getImplicitModule(\""..nameprefix.."\")\n"
 	
-	local c,m=assert(loadstring(s))()
+	local chunk,error=loadstring(s)
+	if not chunk then print(s) return end
+
+	local c,m = chunk()
 	
 	return s,c,m
 end

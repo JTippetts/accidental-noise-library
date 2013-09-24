@@ -29,6 +29,11 @@ namespace anl
 		{
 			i->second->setSeed(seed++);
 		}
+		
+		for(auto i=m_cellgen.begin(); i!=m_cellgen.end(); ++i)
+		{
+			i->second->setSeed(seed++);
+		}
 	}
 
     CImplicitModuleBase * CTreeContainer::getImplicitModule(std::string name)
@@ -1055,7 +1060,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, ANLFloatType low, ANLFloatType high, ANLFloatType control, ANLFloatType threshold, ANLFloatType falloff)
     {
-	std::cout << "1" << std::endl;
+	//std::cout << "1" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1064,7 +1069,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, ANLFloatType low, ANLFloatType high, ANLFloatType control, ANLFloatType threshold, std::string falloff)
     {
-	std::cout << "2" << std::endl;
+	//std::cout << "2" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1073,7 +1078,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, ANLFloatType low, ANLFloatType high, ANLFloatType control, std::string threshold, ANLFloatType falloff)
     {
-	std::cout << "3" << std::endl;
+	//std::cout << "3" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1082,7 +1087,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, ANLFloatType low, ANLFloatType high, ANLFloatType control, std::string threshold, std::string falloff)
     {
-	std::cout << "4" << std::endl;
+	//std::cout << "4" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1091,7 +1096,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, ANLFloatType low, ANLFloatType high, std::string control, ANLFloatType threshold, ANLFloatType falloff)
     {
-	std::cout << "5" << std::endl;
+	//std::cout << "5" << std::endl;
 		std::cout << "Test" << std::endl;
         if(get(name)) return *this;
 
@@ -1101,7 +1106,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, ANLFloatType low, ANLFloatType high, std::string control, ANLFloatType threshold, std::string falloff)
     {
-	std::cout << "6" << std::endl;
+	//std::cout << "6" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1110,7 +1115,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, ANLFloatType low, ANLFloatType high, std::string control, std::string threshold, ANLFloatType falloff)
     {
-	std::cout << "7" << std::endl;
+	//std::cout << "7" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1119,7 +1124,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, ANLFloatType low, ANLFloatType high, std::string control, std::string threshold, std::string falloff)
     {
-	std::cout << "8" << std::endl;
+	//std::cout << "8" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1128,7 +1133,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, ANLFloatType low, std::string high, ANLFloatType control, ANLFloatType threshold, ANLFloatType falloff)
     {
-	std::cout << "9" << std::endl;
+	//std::cout << "9" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1137,7 +1142,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, ANLFloatType low, std::string high, ANLFloatType control, ANLFloatType threshold, std::string falloff)
     {
-	std::cout << "10" << std::endl;
+	//std::cout << "10" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1146,7 +1151,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, ANLFloatType low, std::string high, ANLFloatType control, std::string threshold, ANLFloatType falloff)
     {
-	std::cout << "11" << std::endl;
+	//std::cout << "11" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1155,7 +1160,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, ANLFloatType low, std::string high, ANLFloatType control, std::string threshold, std::string falloff)
     {
-	std::cout << "12" << std::endl;
+	//std::cout << "12" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1164,7 +1169,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, ANLFloatType low, std::string high, std::string control, ANLFloatType threshold, ANLFloatType falloff)
     {
-	std::cout << "13" << std::endl;
+	//std::cout << "13" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1173,7 +1178,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, ANLFloatType low, std::string high, std::string control, ANLFloatType threshold, std::string falloff)
     {
-	std::cout << "14" << std::endl;
+	//std::cout << "14" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1182,7 +1187,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, ANLFloatType low, std::string high, std::string control, std::string threshold, ANLFloatType falloff)
     {
-	std::cout << "15" << std::endl;
+	//std::cout << "15" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1191,7 +1196,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, ANLFloatType low, std::string high, std::string control, std::string threshold, std::string falloff)
     {
-	std::cout << "16" << std::endl;
+	//std::cout << "16" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1200,7 +1205,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, std::string low, ANLFloatType high, ANLFloatType control, ANLFloatType threshold, ANLFloatType falloff)
     {
-	std::cout << "17" << std::endl;
+	//std::cout << "17" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1209,7 +1214,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, std::string low, ANLFloatType high, ANLFloatType control, ANLFloatType threshold, std::string falloff)
     {
-	std::cout << "18" << std::endl;
+	//std::cout << "18" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1218,7 +1223,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, std::string low, ANLFloatType high, ANLFloatType control, std::string threshold, ANLFloatType falloff)
     {
-	std::cout << "19" << std::endl;
+	//std::cout << "19" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1227,7 +1232,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, std::string low, ANLFloatType high, ANLFloatType control, std::string threshold, std::string falloff)
     {
-	std::cout << "20" << std::endl;
+	//std::cout << "20" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1236,7 +1241,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, std::string low, ANLFloatType high, std::string control, ANLFloatType threshold, ANLFloatType falloff)
     {
-	std::cout << "21" << std::endl;
+	//std::cout << "21" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1245,7 +1250,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, std::string low, ANLFloatType high, std::string control, ANLFloatType threshold, std::string falloff)
     {
-	std::cout << "22" << std::endl;
+	//std::cout << "22" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1254,7 +1259,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, std::string low, ANLFloatType high, std::string control, std::string threshold, ANLFloatType falloff)
     {
-	std::cout << "23" << std::endl;
+	//std::cout << "23" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1263,7 +1268,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, std::string low, ANLFloatType high, std::string control, std::string threshold, std::string falloff)
     {
-	std::cout << "24" << std::endl;
+	//std::cout << "24" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1272,7 +1277,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, std::string low, std::string high, ANLFloatType control, ANLFloatType threshold, ANLFloatType falloff)
     {
-	std::cout << "25" << std::endl;
+	//std::cout << "25" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1281,7 +1286,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, std::string low, std::string high, ANLFloatType control, ANLFloatType threshold, std::string falloff)
     {
-	std::cout << "26" << std::endl;
+	//std::cout << "26" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1290,7 +1295,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, std::string low, std::string high, ANLFloatType control, std::string threshold, ANLFloatType falloff)
     {
-	std::cout << "27" << std::endl;
+	//std::cout << "27" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1299,7 +1304,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, std::string low, std::string high, ANLFloatType control, std::string threshold, std::string falloff)
     {
-	std::cout << "28" << std::endl;
+	//std::cout << "28" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1308,7 +1313,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, std::string low, std::string high, std::string control, ANLFloatType threshold, ANLFloatType falloff)
     {
-	std::cout << "29" << std::endl;
+	//std::cout << "29" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1317,7 +1322,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, std::string low, std::string high, std::string control, ANLFloatType threshold, std::string falloff)
     {
-	std::cout << "30" << std::endl;
+	//std::cout << "30" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1326,7 +1331,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, std::string low, std::string high, std::string control, std::string threshold, ANLFloatType falloff)
     {
-	std::cout << "31" << std::endl;
+	//std::cout << "31" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));
@@ -1335,7 +1340,7 @@ namespace anl
 
     CTreeContainer &CTreeContainer::select(std::string name, std::string low, std::string high, std::string control, std::string threshold, std::string falloff)
     {
-	std::cout << "32" << std::endl;
+	//std::cout << "32" << std::endl;
         if(get(name)) return *this;
 
         m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitSelect(get(low),get(high),get(control),get(threshold),get(falloff)));

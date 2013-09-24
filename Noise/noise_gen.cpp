@@ -729,7 +729,7 @@ ANLFloatType anl::white_noise2D(ANLFloatType x, ANLFloatType y, unsigned int see
 ANLFloatType anl::white_noise3D(ANLFloatType x, ANLFloatType y, ANLFloatType z, unsigned int seed, interp_func interp)
 {
     unsigned char hash=compute_hash_ANLFloatType_3(x,y,z,seed);
-	std::cout << (unsigned int)hash << std::endl;
+	//std::cout << (unsigned int)hash << std::endl;
     return whitenoise_lut[hash];
 }
 
