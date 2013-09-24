@@ -46,7 +46,8 @@ namespace anl
         CTreeContainer &cache(std::string name, std::string v);
 
         CTreeContainer &cellular(std::string name, std::string g, ANLFloatType a=1, ANLFloatType b=0, ANLFloatType c=0, ANLFloatType d=0);
-        CTreeContainer &cellularGenerator(std::string name);
+        CTreeContainer &cellularGenerator(std::string name, unsigned int distfunc=0);
+		CTreeContainer &voronoi(std::string name, std::string g);
 
         CTreeContainer &clamp(std::string name, ANLFloatType s, ANLFloatType l, ANLFloatType h);
         CTreeContainer &clamp(std::string name, ANLFloatType s, ANLFloatType l, std::string h);
@@ -68,7 +69,7 @@ namespace anl
 
         // TODO: ImplicitExtractRGBAChannel
 
-        CTreeContainer &fractal(std::string name, unsigned int type=FBM, unsigned int basis=GRADIENT, unsigned int interp=QUINTIC, int octaves=8, ANLFloatType freq=1);
+        CTreeContainer &fractal(std::string name, unsigned int type=FBM, unsigned int basis=GRADIENT, unsigned int interp=QUINTIC, int octaves=8, ANLFloatType freq=1, bool rotate=true);
 
         CTreeContainer &functionGradient(std::string name, ANLFloatType s, int axis=X_AXIS, ANLFloatType spacing=0.0001);
         CTreeContainer &functionGradient(std::string name, std::string s, int axis=X_AXIS, ANLFloatType spacing=0.0001);
@@ -370,6 +371,8 @@ namespace anl
         CRGBAModuleBase * getRGBAModule(std::string name);
         CImplicitBufferBase * getImplicitBuffer(std::string name);
 		CRGBABufferBase * getRGBABuffer(std::string name);
+		
+		void setSeedAll(unsigned int seed);
 
         private:
         std::map<std::string, std::shared_ptr<CImplicitModuleBase> > m_modules;

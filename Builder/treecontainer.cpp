@@ -22,6 +22,14 @@ namespace anl
         if(i==m_rgbas.end()) return 0;
         return i->second.get();
     }
+	
+	void CTreeContainer::setSeedAll(unsigned int seed)
+	{
+		for(auto i=m_modules.begin(); i!=m_modules.end(); ++i)
+		{
+			i->second->setSeed(seed++);
+		}
+	}
 
     CImplicitModuleBase * CTreeContainer::getImplicitModule(std::string name)
     {
@@ -362,12 +370,22 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::cellularGenerator(std::string name)
+    CTreeContainer &CTreeContainer::cellularGenerator(std::string name, unsigned int distfunc)
     {
         auto geni=m_cellgen.find(name);
         if(geni!=m_cellgen.end()) return *this;
 
-        m_cellgen[name]=std::shared_ptr<CCellularGenerator>(new CCellularGenerator());
+        m_cellgen[name]=std::shared_ptr<CCellularGenerator>(new CCellularGenerator(distfunc));
+        return *this;
+    }
+	
+	CTreeContainer &CTreeContainer::voronoi(std::string name, std::string g)
+    {
+        if(get(name)) return *this;
+        auto geni=m_cellgen.find(g);
+        if(geni==m_cellgen.end()) return *this;
+
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitVoronoi(geni->second.get()));
         return *this;
     }
 
@@ -459,11 +477,11 @@ namespace anl
         return *this;
     }
 
-    CTreeContainer &CTreeContainer::fractal(std::string name, unsigned int type, unsigned int basis, unsigned int interp, int octaves, ANLFloatType freq)
+    CTreeContainer &CTreeContainer::fractal(std::string name, unsigned int type, unsigned int basis, unsigned int interp, int octaves, ANLFloatType freq, bool rotate)
     {
         if(get(name)) return *this;
 
-        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitFractal(type,basis,interp,octaves,freq,true));
+        m_modules[name]=std::shared_ptr<CImplicitModuleBase>(new CImplicitFractal(type,basis,interp,octaves,freq,rotate));
         return *this;
     }
 
