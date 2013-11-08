@@ -144,7 +144,7 @@ function bakeModelImplicit(filename, img, f, padding)
 				v=1-obj.uvs[facetd].v
 			}
 		end
-		rasterizeFace(verts[1], verts[2], verts[3], img, f)
+		rasterizeFace2(verts[1], verts[2], verts[3], img, f)
 		
 	end
 	print("Done rasterizing, padding image")
@@ -185,7 +185,7 @@ function bakeModelRGBA(filename, img, f, padding)
 				v=1-obj.uvs[facetd].v
 			}
 		end
-		rasterizeFace(verts[1], verts[2], verts[3], img, f)
+		rasterizeFace2(verts[1], verts[2], verts[3], img, f)
 		
 	end
 	print("Done rasterizing, padding image")

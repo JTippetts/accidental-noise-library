@@ -118,3 +118,68 @@ function rasterizeFace(vert1, vert2, vert3, img, func)
 end
 
 
+--------------------
+
+-- New rasterization stuff
+
+function orient2d(a,b,c)
+	return (b.u-a.u)*(c.v-a.v) - (b.v-a.v)*(c.u-a.u)
+end
+
+function rasterizeFace2(v0,v1,v2,img,func)
+	local minu=math.min(v0.u,v1.u,v2.u)
+	local maxu=math.max(v0.u,v1.u,v2.u)
+	local minv=math.min(v0.v,v1.v,v2.v)
+	local maxv=math.max(v0.v,v1.v,v2.v)
+	
+	minu=math.floor(math.max(minu,0))
+	maxu=math.floor(math.min(maxu,img:width()-1))
+	minv=math.floor(math.max(minv,0))
+	maxv=math.floor(math.min(maxv,img:height()-1))
+	
+	print(minu..","..minv.."->"..maxu..","..maxv)
+	--print(v0.u..","..v0.v)
+	
+	local p={x=0,y=0,z=0,u=0,v=0}
+	local u,v
+	
+	local U={u=v1.u-v0.u, v=v1.v-v0.v, x=v1.x-v0.x, y=v1.y-v0.y, z=v1.z-v0.z}
+	local V={u=v2.u-v0.u, v=v2.v-v0.v, x=v2.x-v0.x, y=v2.y-v0.y, z=v2.z-v0.z}
+	
+	for v=minv,maxv,1 do
+		for u=minu,maxu,1 do
+			p.u=u
+			p.v=v
+			--[[local w0,w1=bary2d(v0,v1,v2,p)
+			local w2=w0+w1
+			if w0>=0 and w1>=0 and w2<=1 then
+				p.x=v0.x + w0*U.x + w1*V.x
+				p.y=v0.y + w0*U.y + w1*V.y
+				p.z=v0.z + w0*U.z + w1*V.z
+				img:set(u,v,func:get(p.x,p.y,p.z))
+			end]]
+			
+			local w0=orient2d(v1,v2,p)
+			local w1=orient2d(v2,v0,p)
+			local w2=orient2d(v0,v1,p)
+			local sum=w0+w1+w2
+			w0=w0/sum
+			w1=w1/sum
+			w2=w2/sum
+			
+			
+			if w0>=0 and w1>=0 and w2>=0 then
+				p.x=(w0*v0.x + w1*v1.x + w2*v2.x)
+				p.y=(w0*v0.y + w1*v1.y + w2*v2.y)
+				p.z=(w0*v0.z + w1*v1.z + w2*v2.z)
+				--print(p.x..","..p.y..","..p.z)
+				img:set(p.u, p.v, func:get(p.x,p.y,p.z))
+			end
+			
+			
+		end
+	end
+	
+end
+
+
