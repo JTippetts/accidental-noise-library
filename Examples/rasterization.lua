@@ -137,7 +137,7 @@ function rasterizeFace2(v0,v1,v2,img,func)
 	minv=math.floor(math.max(minv,0))
 	maxv=math.floor(math.min(maxv,img:height()-1))
 	
-	print(minu..","..minv.."->"..maxu..","..maxv)
+	--print(minu..","..minv.."->"..maxu..","..maxv)
 	--print(v0.u..","..v0.v)
 	
 	local p={x=0,y=0,z=0,u=0,v=0}
@@ -150,14 +150,6 @@ function rasterizeFace2(v0,v1,v2,img,func)
 		for u=minu,maxu,1 do
 			p.u=u
 			p.v=v
-			--[[local w0,w1=bary2d(v0,v1,v2,p)
-			local w2=w0+w1
-			if w0>=0 and w1>=0 and w2<=1 then
-				p.x=v0.x + w0*U.x + w1*V.x
-				p.y=v0.y + w0*U.y + w1*V.y
-				p.z=v0.z + w0*U.z + w1*V.z
-				img:set(u,v,func:get(p.x,p.y,p.z))
-			end]]
 			
 			local w0=orient2d(v1,v2,p)
 			local w1=orient2d(v2,v0,p)
@@ -172,7 +164,6 @@ function rasterizeFace2(v0,v1,v2,img,func)
 				p.x=(w0*v0.x + w1*v1.x + w2*v2.x)
 				p.y=(w0*v0.y + w1*v1.y + w2*v2.y)
 				p.z=(w0*v0.z + w1*v1.z + w2*v2.z)
-				--print(p.x..","..p.y..","..p.z)
 				img:set(p.u, p.v, func:get(p.x,p.y,p.z))
 			end
 			

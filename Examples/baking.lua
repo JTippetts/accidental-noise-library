@@ -140,8 +140,8 @@ function bakeModelImplicit(filename, img, f, padding)
 				x=obj.verts[facevd].x, 
 				y=obj.verts[facevd].y, 
 				z=obj.verts[facevd].z, 
-				u=obj.uvs[facetd].u, 
-				v=1-obj.uvs[facetd].v
+				u=obj.uvs[facetd].u*(img:width()-1), 
+				v=(1-obj.uvs[facetd].v)*(img:height()-1)
 			}
 		end
 		rasterizeFace2(verts[1], verts[2], verts[3], img, f)
@@ -181,8 +181,8 @@ function bakeModelRGBA(filename, img, f, padding)
 				x=obj.verts[facevd].x, 
 				y=obj.verts[facevd].y, 
 				z=obj.verts[facevd].z, 
-				u=obj.uvs[facetd].u, 
-				v=1-obj.uvs[facetd].v
+				u=obj.uvs[facetd].u*(img:width()-1), 
+				v=(1-obj.uvs[facetd].v)*(img:height()-1)
 			}
 		end
 		rasterizeFace2(verts[1], verts[2], verts[3], img, f)
