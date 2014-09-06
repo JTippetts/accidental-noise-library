@@ -27,6 +27,7 @@ namespace anl
 
     typedef TArray1D<SInstruction> InstructionListType;
     typedef TArray1D<bool> EvaluatedType;
+	typedef TArray1D<CCoordinate> CoordCacheType;
     typedef TArray1D<SVMOutput> CacheType;
 
     class CNoiseExecutor
@@ -37,11 +38,12 @@ namespace anl
         SVMOutput evaluate(CCoordinate &coord);
         SVMOutput evaluateAt(CCoordinate &coord, unsigned int index);
     private:
-        void evaluateInstruction(InstructionListType &kernel, EvaluatedType &evaluated, CacheType &cache, unsigned int index, CCoordinate &coord);
-        ANLFloatType evaluateParameter(InstructionListType &kernel, EvaluatedType &evaluated, CacheType &cache, unsigned int index, CCoordinate &coord);
+        void evaluateInstruction(InstructionListType &kernel, EvaluatedType &evaluated, CoordCacheType &coordcache, CacheType &cache, unsigned int index, CCoordinate &coord);
+        ANLFloatType evaluateParameter(InstructionListType &kernel, EvaluatedType &evaluated, CoordCacheType &coordcache, CacheType &cache, unsigned int index, CCoordinate &coord);
 
         InstructionListType *kernel_;
         EvaluatedType evaluated_;
+		CoordCacheType coordcache_;
         CacheType cache_;
 
     };

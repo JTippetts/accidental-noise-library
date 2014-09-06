@@ -74,8 +74,8 @@ namespace anl
         unsigned int w();
         unsigned int u();
         unsigned int v();
-
-        unsigned int radial();
+		
+		unsigned int radial();
 
         unsigned int scaleOffset(unsigned int src, ANLFloatType scale, ANLFloatType offset);
 

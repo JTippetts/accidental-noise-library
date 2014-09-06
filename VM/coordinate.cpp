@@ -26,6 +26,17 @@ namespace anl
     {
         set(x,y,z,w,u,v);
     }
+	
+	CCoordinate::CCoordinate(const CCoordinate &c)
+	{
+		dimension_=c.dimension_;
+		x_=c.x_;
+		y_=c.y_;
+		z_=c.z_;
+		w_=c.w_;
+		u_=c.u_;
+		v_=c.v_;
+	}
 
     void CCoordinate::set(ANLFloatType x, ANLFloatType y)
     {
@@ -109,4 +120,28 @@ namespace anl
         ret.v_=v_+rhs.v_;
         return ret;
     }
+	
+	CCoordinate &CCoordinate::operator =(const CCoordinate &c)
+	{
+		dimension_=c.dimension_;
+		x_=c.x_;
+		y_=c.y_;
+		z_=c.z_;
+		w_=c.w_;
+		u_=c.u_;
+		v_=c.v_;
+		
+		return *this;
+	}
+	
+	bool CCoordinate::operator ==(const CCoordinate &c)
+	{
+		switch(dimension_)
+		{
+			case 2: return x_==c.x_ && y_==c.y_; break;
+			case 3: return x_==c.x_ && y_==c.y_ && z_==c.z_; break;
+			case 4: return x_==c.x_ && y_==c.y_ && z_==c.z_ && w_==c.w_; break;
+			default: return x_==c.x_ && y_==c.y_ && z_==c.z_ && w_==c.w_ && u_==c.u_ && v_==c.v_; break;
+		};
+	}
 };

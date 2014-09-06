@@ -71,6 +71,14 @@ int main()
     unsigned int starmul=factory.multiply(starfield,mult);
 
     unsigned int rotator=factory.rotateDomain(starmul,rotangle,zero,zero,one);
+	
+	unsigned int stepsize=factory.constant(0.02);
+	unsigned int negstepsize=factory.constant(-0.02);
+	unsigned int step1=factory.translateX(mult,stepsize);
+	unsigned int step2=factory.translateX(mult,negstepsize);
+	unsigned int stepsub=factory.subtract(step2,step1);
+	unsigned int stepdiv=factory.divide(stepsub,stepsize);
+	
     anl::CNoiseExecutor vm(factory.getKernel());
 
 
@@ -85,7 +93,7 @@ int main()
             j=((ANLFloatType)y / (ANLFloatType)img.height())*2-1;
             anl::CCoordinate coord(i*2,j*2,0);
             //anl::SVMOutput out=vm.evaluate(factory.getKernel(), coord);
-            anl::SVMOutput out=vm.evaluateAt(coord,rotator);
+            anl::SVMOutput out=vm.evaluateAt(coord,stepdiv);
             //std::cout << "Coord dim: " << coord.dimension_ << std::endl;
 
             // Shift range from [-1,1] to [0,1] and clamp

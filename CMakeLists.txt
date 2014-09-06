@@ -15,7 +15,7 @@ endif ()
 
 # Set floating type to use
 # Uncomment to use double base type, leave commented to use float
- add_definitions(-DANL_DOUBLE_PRECISION)
+# add_definitions(-DANL_DOUBLE_PRECISION)
 
 
 # Enable 64-bit build. Disabled by default. On Visual Studio, depends on the generator used
