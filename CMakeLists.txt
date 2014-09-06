@@ -18,9 +18,10 @@ endif ()
 # add_definitions(-DANL_DOUBLE_PRECISION)
 
 
+
 # Enable 64-bit build. Disabled by default. On Visual Studio, depends on the generator used
 if (NOT MSVC)
-    # set (ENABLE_64BIT 1)
+    set (ENABLE_64BIT 1)
 else ()
     if (CMAKE_GENERATOR MATCHES "Win64")
         set (ENABLE_64BIT 1)
@@ -62,7 +63,7 @@ else ()
     endif ()
     #if (WIN32)
         set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -static-libgcc")
-        set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static-libstdc++ -static-libgcc")
+        set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static-libstdc++ -static-libgcc -static")
     #endif ()
     set (CMAKE_C_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D_DEBUG")
     set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D_DEBUG")

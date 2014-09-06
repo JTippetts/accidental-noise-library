@@ -2,7 +2,7 @@ require 'baking'
 
 function bakeBoxTileNormal(filename, width, height, func, spacing)
 	local a=anl.CArray2Dd(width, height)
-	bakeModelImplicit("cauldron.obj", a, func, 2)
+	bakeModelImplicit("cauldronbase.obj", a, func, 2)
 	a:scaleToRange(0,1)
 	
 	local f=anl.CImplicitBufferFile(a)
@@ -14,7 +14,7 @@ end
 
 function bakeBoxTileRGBA(filename, width, height, func)
 	local a=anl.CArray2Drgba(width,height)
-	bakeModelRGBA("cauldron.obj", a, func, 2)
+	bakeModelRGBA("cauldronbase.obj", a, func, 2)
 	
 	anl.saveRGBAArray(filename, a)
 end
@@ -28,13 +28,13 @@ fac=anl.CImplicitAutoCorrect(f,-0.125,0.125)
 f1=anl.CImplicitFractal(anl.FBM, anl.GRADIENT, anl.QUINTIC, 8, 3, true)
 fac1=anl.CImplicitAutoCorrect(f1,-0.125,0.125)
 
-f2=anl.CImplicitFractal(anl.FBM, anl.GRADIENT, anl.QUINTIC, 8, 3, true)
+f2=anl.CImplicitFractal(anl.FBM, anl.GRADIENT, anl.QUINTIC, 8, 5, true)
 fac2=anl.CImplicitAutoCorrect(f2,-0.125,0.125)
 
 fac3=anl.CImplicitAutoCorrect(f2,0,1)
 fac4=anl.CImplicitAutoCorrect(f1,0,1)
 
-
+f2:setSeed(rnd:get())
 
 cellgen=anl.CCellularGenerator()
 cell=anl.CImplicitCellular(cellgen, -1, 1, 0, 0)
@@ -49,8 +49,8 @@ sel=anl.CImplicitSelect(0,1,sd,0.25,0.125)
 sine2=anl.CImplicitMath(anl.BIAS, sd, 0.7)
 gain=anl.CImplicitMath(anl.GAIN, sine2, 0.85)
 
-rgba=anl.CRGBAImplicitGrayscale(fac4)
+rgba=anl.CRGBAImplicitGrayscale(fac3)
 
 
-bakeBoxTileNormal("normal.png", 512,512, fac3, 0.25)
-bakeBoxTileRGBA("color.png", 512,512, rgba)
+--bakeBoxTileNormal("normal.png", 512,512, fac3, 0.25)
+bakeBoxTileRGBA("diff.png", 512,512, rgba)
