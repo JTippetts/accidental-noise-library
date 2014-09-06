@@ -15,12 +15,12 @@ endif ()
 
 # Set floating type to use
 # Uncomment to use double base type, leave commented to use float
-# add_definitions(-DANL_DOUBLE_PRECISION)
+ add_definitions(-DANL_DOUBLE_PRECISION)
 
 
 # Enable 64-bit build. Disabled by default. On Visual Studio, depends on the generator used
 if (NOT MSVC)
-    # set (ENABLE_64BIT 1)
+     set (ENABLE_64BIT 1)
 else ()
     if (CMAKE_GENERATOR MATCHES "Win64")
         set (ENABLE_64BIT 1)
@@ -78,7 +78,7 @@ macro (setup_target)
     # Include directories
     include_directories (${LIBS} ${INCLUDE_DIRS_ONLY})
     # Link libraries
-    string (REGEX REPLACE "\\.\\./|ThirdParty/|ANL/|Framework/|/Include|/include|/src" "" STRIP_LIBS "${LIBS};${LINK_LIBS_ONLY}")
+    string (REGEX REPLACE "\\.\\./|VM/|/Include|/include|/src" "" STRIP_LIBS "${LIBS};${LINK_LIBS_ONLY}")
     target_link_libraries (${TARGET_NAME} ${STRIP_LIBS})
 endmacro ()
 
@@ -110,17 +110,17 @@ endmacro ()
 
 file (MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/Bin)
 
-#Add third-party subdirs
-add_subdirectory(ThirdParty/Lua)
-add_subdirectory(ThirdParty/Tolua++/src/bin)
-add_subdirectory(ThirdParty/Tolua++/src/lib)
-add_subdirectory(ThirdParty/polyvox)
+# Define source files
+file (GLOB CPP_FILES *.cpp)
+file (GLOB C_FILES *.c)
+file (GLOB H_FILES *.h)
+set (SOURCE_FILES ${CPP_FILES} ${C_FILES} ${H_FILES})
+set (TARGET_NAME Framework)
 
-add_subdirectory(Noise)
-add_subdirectory(RGBA)
-add_subdirectory(Imaging)
-add_subdirectory(Builder)
-add_subdirectory(Volume)
-add_subdirectory(Bindings)
-add_subdirectory(Framework)
-add_subdirectory(Module)
+set(INCLUDE_DIRS_ONLY ./ ./templates ./VM)
+
+#Add third-party subdirs
+
+add_subdirectory(VM)
+set(LIBS VM)
+setup_executable()
