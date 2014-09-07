@@ -24,7 +24,7 @@ THE SOFTWARE.
 #include <ctime>
 #include <algorithm>
 #include <climits>
-#include "../types.h"
+#include "types.h"
 
 namespace anl
 {

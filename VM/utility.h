@@ -22,7 +22,7 @@ THE SOFTWARE.
 #ifndef UTILITY_H
 #define UTILITY_H
 #include <cmath>
-#include "../types.h"
+#include "types.h"
 
 template<typename TYPE> TYPE clamp(TYPE v, TYPE l, TYPE h)
 {

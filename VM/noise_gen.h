@@ -1,6 +1,6 @@
 #ifndef NOISE_GEN_H
 #define NOISE_GEN_H
-#include "../types.h"
+#include "types.h"
 
 namespace anl
 {

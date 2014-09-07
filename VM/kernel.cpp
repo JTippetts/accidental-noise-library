@@ -1,5 +1,5 @@
-#include "testfactory.h"
-#include "VM/random_gen.h"
+#include "kernel.h"
+#include "random_gen.h"
 #include <cmath>
 
 namespace anl

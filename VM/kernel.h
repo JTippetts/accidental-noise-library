@@ -1,8 +1,8 @@
-#ifndef TESTFACTORY_H
-#define TESTFACTORY_H
+#ifndef KERNEL_H
+#define KERNEL_H
 
-#include "VM/instruction.h"
-#include "VM/vm.h"
+#include "instruction.h"
+#include "vm.h"
 #include <string>
 #include <map>
 

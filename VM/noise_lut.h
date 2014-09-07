@@ -1,6 +1,6 @@
 // Lookup tables for 2D, 4D and 6D gradient oise.
 // Generated with boost::random, using a lagged Fibonacci generator and a uniform_on_sphere distribution.
-#include "../types.h"
+#include "types.h"
 
 extern ANLFloatType gradient2D_lut[256][2];
 extern ANLFloatType gradient3D_lut[256][3];

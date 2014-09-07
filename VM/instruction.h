@@ -1,7 +1,7 @@
 #ifndef INSTRUCTION_H
 #define INSTRUCTION_H
 
-#include "../types.h"
+#include "types.h"
 #include <vector>
 
 const int MaxSourceCount=10;

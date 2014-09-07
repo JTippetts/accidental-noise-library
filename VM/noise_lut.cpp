@@ -1,6 +1,6 @@
 // Lookup tables for 2D and 3D gradient and simplex noise.
 // Generated with boost::random, using a lagged Fibonacci generator and a uniform_on_sphere distribution.
-#include "../types.h"
+#include "types.h"
 
 ANLFloatType gradient2D_lut[256][2]=
 {
