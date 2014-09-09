@@ -88,7 +88,7 @@ namespace anl
 		delete[] data;
 	}
 	
-	void map2D(int seamlessmode, CArray2Dd &a, CNoiseExecutor &m, SMappingRanges &ranges, unsigned int index, ANLFloatType z)
+	void map2D(int seamlessmode, CArray2Dd &a, CNoiseExecutor &m, SMappingRanges &ranges, CInstructionIndex index, ANLFloatType z)
    {
         int w=a.width();
         int h=a.height();
@@ -225,7 +225,7 @@ namespace anl
         }
    }
 
-   void map2DNoZ(int seamlessmode, CArray2Dd &a, CNoiseExecutor &m, SMappingRanges &ranges, unsigned int index)
+   void map2DNoZ(int seamlessmode, CArray2Dd &a, CNoiseExecutor &m, SMappingRanges &ranges, CInstructionIndex index)
    {
         int w=a.width();
         int h=a.height();
@@ -292,7 +292,7 @@ namespace anl
         }
    }
 
-    void map3D(int seamlessmode, CArray3Dd &a, CNoiseExecutor &m, SMappingRanges &ranges, unsigned int index)
+    void map3D(int seamlessmode, CArray3Dd &a, CNoiseExecutor &m, SMappingRanges &ranges, CInstructionIndex index)
     {
         int w=a.width();
         int h=a.height();
@@ -438,7 +438,7 @@ namespace anl
 
 
 
-    void mapRGBA2D(int seamlessmode, CArray2Drgba &a, CNoiseExecutor &m, SMappingRanges &ranges, unsigned int index, ANLFloatType z)
+    void mapRGBA2D(int seamlessmode, CArray2Drgba &a, CNoiseExecutor &m, SMappingRanges &ranges, CInstructionIndex index, ANLFloatType z)
    {
         int w=a.width();
         int h=a.height();
@@ -575,7 +575,7 @@ namespace anl
         }
    }
 
-   void mapRGBA2DNoZ(int seamlessmode, CArray2Drgba &a, CNoiseExecutor &m, SMappingRanges &ranges, unsigned int index)
+   void mapRGBA2DNoZ(int seamlessmode, CArray2Drgba &a, CNoiseExecutor &m, SMappingRanges &ranges, CInstructionIndex index)
    {
         int w=a.width();
         int h=a.height();
@@ -643,7 +643,7 @@ namespace anl
         }
    }
 
-    void mapRGBA3D(int seamlessmode, CArray3Drgba &a, CNoiseExecutor &m, SMappingRanges &ranges, unsigned int index)
+    void mapRGBA3D(int seamlessmode, CArray3Drgba &a, CNoiseExecutor &m, SMappingRanges &ranges, CInstructionIndex index)
     {
         int w=a.width();
         int h=a.height();

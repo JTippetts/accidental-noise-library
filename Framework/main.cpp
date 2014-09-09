@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "../VM/vm.h"
+#include "../VM/instruction.h"
 #include "../VM/kernel.h"
 #include "../Imaging/imaging.h"
 
@@ -36,48 +37,48 @@ int main()
     anl::CKernel factory;
     anl::TArray2D<ANLFloatType> img(512,512);
 
-    unsigned int gradx=factory.x();
-    unsigned int grady=factory.y();
-    unsigned int xab=factory.abs(gradx);
-    unsigned int yab=factory.abs(grady);
+    anl::CInstructionIndex gradx=factory.x();
+    anl::CInstructionIndex grady=factory.y();
+    anl::CInstructionIndex xab=factory.abs(gradx);
+    anl::CInstructionIndex yab=factory.abs(grady);
 
-    unsigned int grad=factory.minimum(xab,yab);
-    unsigned int rad=factory.radial();
+    anl::CInstructionIndex grad=factory.minimum(xab,yab);
+    anl::CInstructionIndex rad=factory.radial();
 
-    unsigned int radius=factory.constant(2);
-    unsigned int armthick=factory.constant(0.5);
-    unsigned int one=factory.constant(1);
-    unsigned int zero=factory.constant(0);
-    unsigned int sub=factory.subtract(radius,rad);
-    unsigned int div=factory.divide(sub,radius);
-    unsigned int clamp=factory.clamp(div,zero,one);
+    anl::CInstructionIndex radius=factory.constant(2);
+    anl::CInstructionIndex armthick=factory.constant(0.5);
+    anl::CInstructionIndex one=factory.constant(1);
+    anl::CInstructionIndex zero=factory.constant(0);
+    anl::CInstructionIndex sub=factory.subtract(radius,rad);
+    anl::CInstructionIndex div=factory.divide(sub,radius);
+    anl::CInstructionIndex clamp=factory.clamp(div,zero,one);
 
-    unsigned int armsub=factory.subtract(armthick,grad);
-    unsigned int armdiv=factory.divide(armsub,armthick);
-    unsigned int armclamp=factory.clamp(armdiv,zero,one);
-    unsigned int mult=factory.multiply(armclamp,clamp);
+    anl::CInstructionIndex armsub=factory.subtract(armthick,grad);
+    anl::CInstructionIndex armdiv=factory.divide(armsub,armthick);
+    anl::CInstructionIndex armclamp=factory.clamp(armdiv,zero,one);
+    anl::CInstructionIndex mult=factory.multiply(armclamp,clamp);
 
-    unsigned int maxangle=factory.constant(3.14159265*0.5);
-    unsigned int rotangle=factory.multiply(rad,maxangle);
+    anl::CInstructionIndex maxangle=factory.constant(3.14159265*0.5);
+    anl::CInstructionIndex rotangle=factory.multiply(rad,maxangle);
 
 
-    unsigned int interp=factory.constant(3);
-    unsigned int white=factory.valueBasis(interp, 12345);
-    unsigned int whitefactor=factory.constant(255);
-    unsigned int whitescale=factory.scaleDomain(white,whitefactor,whitefactor,whitefactor);
-    unsigned int starthresh=factory.constant(0);
-    unsigned int starfall=factory.constant(0.125);
-    unsigned int starfield=factory.select(zero,whitescale,whitescale,starthresh,starfall);
-    unsigned int starmul=factory.multiply(starfield,mult);
+    anl::CInstructionIndex interp=factory.constant(3);
+    anl::CInstructionIndex white=factory.valueBasis(interp, 12345);
+    anl::CInstructionIndex whitefactor=factory.constant(255);
+    anl::CInstructionIndex whitescale=factory.scaleDomain(white,whitefactor,whitefactor,whitefactor);
+    anl::CInstructionIndex starthresh=factory.constant(0);
+    anl::CInstructionIndex starfall=factory.constant(0.125);
+    anl::CInstructionIndex starfield=factory.select(zero,whitescale,whitescale,starthresh,starfall);
+    anl::CInstructionIndex starmul=factory.multiply(starfield,mult);
 
-    unsigned int rotator=factory.rotateDomain(starmul,rotangle,zero,zero,one);
+    anl::CInstructionIndex rotator=factory.rotateDomain(starmul,rotangle,zero,zero,one);
 	
-	unsigned int stepsize=factory.constant(0.02);
-	unsigned int negstepsize=factory.constant(-0.02);
-	unsigned int step1=factory.translateX(mult,stepsize);
-	unsigned int step2=factory.translateX(mult,negstepsize);
-	unsigned int stepsub=factory.subtract(step2,step1);
-	unsigned int stepdiv=factory.divide(stepsub,stepsize);
+	anl::CInstructionIndex stepsize=factory.constant(0.02);
+	anl::CInstructionIndex negstepsize=factory.constant(-0.02);
+	anl::CInstructionIndex step1=factory.translateX(mult,stepsize);
+	anl::CInstructionIndex step2=factory.translateX(mult,negstepsize);
+	anl::CInstructionIndex stepsub=factory.subtract(step2,step1);
+	anl::CInstructionIndex stepdiv=factory.divide(stepsub,stepsize);
 	
     anl::CNoiseExecutor vm(factory.getKernel());
 
@@ -93,7 +94,7 @@ int main()
             j=((ANLFloatType)y / (ANLFloatType)img.height())*2-1;
             anl::CCoordinate coord(i*2,j*2,0);
             //anl::SVMOutput out=vm.evaluate(factory.getKernel(), coord);
-            anl::SVMOutput out=vm.evaluateAt(coord,rotator);
+            anl::SVMOutput out=vm.evaluateAt(coord,starmul);
             //std::cout << "Coord dim: " << coord.dimension_ << std::endl;
 
             // Shift range from [-1,1] to [0,1] and clamp

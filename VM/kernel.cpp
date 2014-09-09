@@ -5,7 +5,7 @@
 namespace anl
 {
 
-unsigned int CKernel::constant(ANLFloatType val)
+CInstructionIndex CKernel::constant(ANLFloatType val)
 {
     anl::SInstruction i;
     i.outfloat_=val;
@@ -14,28 +14,28 @@ unsigned int CKernel::constant(ANLFloatType val)
     return lastIndex();
 }
 
-unsigned int CKernel::valueBasis(unsigned int interpindex, unsigned int seed)
+CInstructionIndex CKernel::valueBasis(CInstructionIndex interpindex, unsigned int seed)
 {
     anl::SInstruction i;
 
     i.opcode_=anl::OP_ValueBasis;
-    i.sources_[0]=interpindex;
+    i.sources_[0]=interpindex.index_;
     i.seed_=seed;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::gradientBasis(unsigned int interp, unsigned int seed)
+CInstructionIndex CKernel::gradientBasis(CInstructionIndex interp, unsigned int seed)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_GradientBasis;
-    i.sources_[0]=interp;
+    i.sources_[0]=interp.index_;
     i.seed_=seed;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::simplexBasis(unsigned int seed)
+CInstructionIndex CKernel::simplexBasis(unsigned int seed)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_SimplexBasis;
@@ -44,396 +44,396 @@ unsigned int CKernel::simplexBasis(unsigned int seed)
     return lastIndex();
 }
 
-unsigned int CKernel::cellularBasis(unsigned int f1, unsigned int f2, unsigned int f3, unsigned int f4, unsigned int d1, unsigned int d2, unsigned int d3, unsigned int d4, unsigned int dist, unsigned int seed)
+CInstructionIndex CKernel::cellularBasis(CInstructionIndex f1, CInstructionIndex f2, CInstructionIndex f3, CInstructionIndex f4, CInstructionIndex d1, CInstructionIndex d2, CInstructionIndex d3, CInstructionIndex d4, CInstructionIndex dist, unsigned int seed)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_CellularBasis;
     i.seed_=seed;
-    i.sources_[0]=dist;
-    i.sources_[1]=f1;
-    i.sources_[2]=f2;
-    i.sources_[3]=f3;
-    i.sources_[4]=f4;
-    i.sources_[5]=d1;
-    i.sources_[6]=d2;
-    i.sources_[7]=d3;
-    i.sources_[8]=d4;
+    i.sources_[0]=dist.index_;
+    i.sources_[1]=f1.index_;
+    i.sources_[2]=f2.index_;
+    i.sources_[3]=f3.index_;
+    i.sources_[4]=f4.index_;
+    i.sources_[5]=d1.index_;
+    i.sources_[6]=d2.index_;
+    i.sources_[7]=d3.index_;
+    i.sources_[8]=d4.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::add(unsigned int s1, unsigned int s2)
+CInstructionIndex CKernel::add(CInstructionIndex s1, CInstructionIndex s2)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_Add;
-    i.sources_[0]=s1;
-    i.sources_[1]=s2;
+    i.sources_[0]=s1.index_;
+    i.sources_[1]=s2.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::subtract(unsigned int s1, unsigned int s2)
+CInstructionIndex CKernel::subtract(CInstructionIndex s1, CInstructionIndex s2)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_Subtract;
-    i.sources_[0]=s1;
-    i.sources_[1]=s2;
+    i.sources_[0]=s1.index_;
+    i.sources_[1]=s2.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::multiply(unsigned int s1, unsigned int s2)
+CInstructionIndex CKernel::multiply(CInstructionIndex s1, CInstructionIndex s2)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_Multiply;
-    i.sources_[0]=s1;
-    i.sources_[1]=s2;
+    i.sources_[0]=s1.index_;
+    i.sources_[1]=s2.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::divide(unsigned int s1, unsigned int s2)
+CInstructionIndex CKernel::divide(CInstructionIndex s1, CInstructionIndex s2)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_Divide;
-    i.sources_[0]=s1;
-    i.sources_[1]=s2;
+    i.sources_[0]=s1.index_;
+    i.sources_[1]=s2.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::maximum(unsigned int s1index, unsigned int s2index)
+CInstructionIndex CKernel::maximum(CInstructionIndex s1index, CInstructionIndex s2index)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_Max;
-    i.sources_[0]=s1index;
-    i.sources_[1]=s2index;
+    i.sources_[0]=s1index.index_;
+    i.sources_[1]=s2index.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::minimum(unsigned int s1index, unsigned int s2index)
+CInstructionIndex CKernel::minimum(CInstructionIndex s1index, CInstructionIndex s2index)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_Min;
-    i.sources_[0]=s1index;
-    i.sources_[1]=s2index;
+    i.sources_[0]=s1index.index_;
+    i.sources_[1]=s2index.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::abs(unsigned int sindex)
+CInstructionIndex CKernel::abs(CInstructionIndex sindex)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_Abs;
-    i.sources_[0]=sindex;
+    i.sources_[0]=sindex.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::pow(unsigned int s1, unsigned int s2)
+CInstructionIndex CKernel::pow(CInstructionIndex s1, CInstructionIndex s2)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_Pow;
-    i.sources_[0]=s1;
-    i.sources_[1]=s2;
+    i.sources_[0]=s1.index_;
+    i.sources_[1]=s2.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::cos(unsigned int sindex)
+CInstructionIndex CKernel::cos(CInstructionIndex sindex)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_Cos;
-    i.sources_[0]=sindex;
+    i.sources_[0]=sindex.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::sin(unsigned int sindex)
+CInstructionIndex CKernel::sin(CInstructionIndex sindex)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_Sin;
-    i.sources_[0]=sindex;
+    i.sources_[0]=sindex.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::tan(unsigned int sindex)
+CInstructionIndex CKernel::tan(CInstructionIndex sindex)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_Tan;
-    i.sources_[0]=sindex;
+    i.sources_[0]=sindex.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::acos(unsigned int sindex)
+CInstructionIndex CKernel::acos(CInstructionIndex sindex)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_ACos;
-    i.sources_[0]=sindex;
+    i.sources_[0]=sindex.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::asin(unsigned int sindex)
+CInstructionIndex CKernel::asin(CInstructionIndex sindex)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_ASin;
-    i.sources_[0]=sindex;
+    i.sources_[0]=sindex.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::atan(unsigned int sindex)
+CInstructionIndex CKernel::atan(CInstructionIndex sindex)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_ATan;
-    i.sources_[0]=sindex;
+    i.sources_[0]=sindex.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::scaleDomain(unsigned int srcindex, unsigned int xindex, unsigned int yindex)
+CInstructionIndex CKernel::scaleDomain(CInstructionIndex srcindex, CInstructionIndex xindex, CInstructionIndex yindex)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_ScaleDomain;
-    i.sources_[0]=srcindex;
-    i.sources_[1]=xindex;
-    i.sources_[2]=yindex;
+    i.sources_[0]=srcindex.index_;
+    i.sources_[1]=xindex.index_;
+    i.sources_[2]=yindex.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::scaleDomain(unsigned int srcindex, unsigned int xindex, unsigned int yindex, unsigned int zindex)
+CInstructionIndex CKernel::scaleDomain(CInstructionIndex srcindex, CInstructionIndex xindex, CInstructionIndex yindex, CInstructionIndex zindex)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_ScaleDomain;
-    i.sources_[0]=srcindex;
-    i.sources_[1]=xindex;
-    i.sources_[2]=yindex;
-    i.sources_[3]=zindex;
+    i.sources_[0]=srcindex.index_;
+    i.sources_[1]=xindex.index_;
+    i.sources_[2]=yindex.index_;
+    i.sources_[3]=zindex.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::scaleDomain(unsigned int srcindex, unsigned int xindex, unsigned int yindex, unsigned int zindex, unsigned int windex)
+CInstructionIndex CKernel::scaleDomain(CInstructionIndex srcindex, CInstructionIndex xindex, CInstructionIndex yindex, CInstructionIndex zindex, CInstructionIndex windex)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_ScaleDomain;
-    i.sources_[0]=srcindex;
-    i.sources_[1]=xindex;
-    i.sources_[2]=yindex;
-    i.sources_[3]=zindex;
-    i.sources_[4]=windex;
+    i.sources_[0]=srcindex.index_;
+    i.sources_[1]=xindex.index_;
+    i.sources_[2]=yindex.index_;
+    i.sources_[3]=zindex.index_;
+    i.sources_[4]=windex.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::scaleDomain(unsigned int srcindex, unsigned int xindex, unsigned int yindex, unsigned int zindex, unsigned int windex, unsigned int uindex, unsigned int vindex)
+CInstructionIndex CKernel::scaleDomain(CInstructionIndex srcindex, CInstructionIndex xindex, CInstructionIndex yindex, CInstructionIndex zindex, CInstructionIndex windex, CInstructionIndex uindex, CInstructionIndex vindex)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_ScaleDomain;
-    i.sources_[0]=srcindex;
-    i.sources_[1]=xindex;
-    i.sources_[2]=yindex;
-    i.sources_[3]=zindex;
-    i.sources_[4]=windex;
-    i.sources_[5]=uindex;
-    i.sources_[6]=vindex;
+    i.sources_[0]=srcindex.index_;
+    i.sources_[1]=xindex.index_;
+    i.sources_[2]=yindex.index_;
+    i.sources_[3]=zindex.index_;
+    i.sources_[4]=windex.index_;
+    i.sources_[5]=uindex.index_;
+    i.sources_[6]=vindex.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::scaleX(unsigned int src, unsigned int scale)
+CInstructionIndex CKernel::scaleX(CInstructionIndex src, CInstructionIndex scale)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_ScaleX;
-    i.sources_[0]=src;
-    i.sources_[1]=scale;
+    i.sources_[0]=src.index_;
+    i.sources_[1]=scale.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::scaleY(unsigned int src, unsigned int scale)
+CInstructionIndex CKernel::scaleY(CInstructionIndex src, CInstructionIndex scale)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_ScaleY;
-    i.sources_[0]=src;
-    i.sources_[1]=scale;
+    i.sources_[0]=src.index_;
+    i.sources_[1]=scale.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
-unsigned int CKernel::scaleZ(unsigned int src, unsigned int scale)
+CInstructionIndex CKernel::scaleZ(CInstructionIndex src, CInstructionIndex scale)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_ScaleZ;
-    i.sources_[0]=src;
-    i.sources_[1]=scale;
+    i.sources_[0]=src.index_;
+    i.sources_[1]=scale.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
-unsigned int CKernel::scaleW(unsigned int src, unsigned int scale)
+CInstructionIndex CKernel::scaleW(CInstructionIndex src, CInstructionIndex scale)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_ScaleW;
-    i.sources_[0]=src;
-    i.sources_[1]=scale;
+    i.sources_[0]=src.index_;
+    i.sources_[1]=scale.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
-unsigned int CKernel::scaleU(unsigned int src, unsigned int scale)
+CInstructionIndex CKernel::scaleU(CInstructionIndex src, CInstructionIndex scale)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_ScaleU;
-    i.sources_[0]=src;
-    i.sources_[1]=scale;
+    i.sources_[0]=src.index_;
+    i.sources_[1]=scale.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
-unsigned int CKernel::scaleV(unsigned int src, unsigned int scale)
+CInstructionIndex CKernel::scaleV(CInstructionIndex src, CInstructionIndex scale)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_ScaleV;
-    i.sources_[0]=src;
-    i.sources_[1]=scale;
+    i.sources_[0]=src.index_;
+    i.sources_[1]=scale.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::translateDomain(unsigned int srcindex, unsigned int xindex, unsigned int yindex)
+CInstructionIndex CKernel::translateDomain(CInstructionIndex srcindex, CInstructionIndex xindex, CInstructionIndex yindex)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_TranslateDomain;
-    i.sources_[0]=srcindex;
-    i.sources_[1]=xindex;
-    i.sources_[2]=yindex;
+    i.sources_[0]=srcindex.index_;
+    i.sources_[1]=xindex.index_;
+    i.sources_[2]=yindex.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::translateDomain(unsigned int srcindex, unsigned int xindex, unsigned int yindex, unsigned int zindex)
+CInstructionIndex CKernel::translateDomain(CInstructionIndex srcindex, CInstructionIndex xindex, CInstructionIndex yindex, CInstructionIndex zindex)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_TranslateDomain;
-    i.sources_[0]=srcindex;
-    i.sources_[1]=xindex;
-    i.sources_[2]=yindex;
-    i.sources_[3]=zindex;
+    i.sources_[0]=srcindex.index_;
+    i.sources_[1]=xindex.index_;
+    i.sources_[2]=yindex.index_;
+    i.sources_[3]=zindex.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::translateDomain(unsigned int srcindex, unsigned int xindex, unsigned int yindex, unsigned int zindex, unsigned int windex)
+CInstructionIndex CKernel::translateDomain(CInstructionIndex srcindex, CInstructionIndex xindex, CInstructionIndex yindex, CInstructionIndex zindex, CInstructionIndex windex)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_TranslateDomain;
-    i.sources_[0]=srcindex;
-    i.sources_[1]=xindex;
-    i.sources_[2]=yindex;
-    i.sources_[3]=zindex;
-    i.sources_[4]=windex;
+    i.sources_[0]=srcindex.index_;
+    i.sources_[1]=xindex.index_;
+    i.sources_[2]=yindex.index_;
+    i.sources_[3]=zindex.index_;
+    i.sources_[4]=windex.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::translateDomain(unsigned int srcindex, unsigned int xindex, unsigned int yindex, unsigned int zindex, unsigned int windex, unsigned int uindex, unsigned int vindex)
+CInstructionIndex CKernel::translateDomain(CInstructionIndex srcindex, CInstructionIndex xindex, CInstructionIndex yindex, CInstructionIndex zindex, CInstructionIndex windex, CInstructionIndex uindex, CInstructionIndex vindex)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_TranslateDomain;
-    i.sources_[0]=srcindex;
-    i.sources_[1]=xindex;
-    i.sources_[2]=yindex;
-    i.sources_[3]=zindex;
-    i.sources_[4]=windex;
-    i.sources_[5]=uindex;
-    i.sources_[6]=vindex;
+    i.sources_[0]=srcindex.index_;
+    i.sources_[1]=xindex.index_;
+    i.sources_[2]=yindex.index_;
+    i.sources_[3]=zindex.index_;
+    i.sources_[4]=windex.index_;
+    i.sources_[5]=uindex.index_;
+    i.sources_[6]=vindex.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::translateX(unsigned int src, unsigned int trans)
+CInstructionIndex CKernel::translateX(CInstructionIndex src, CInstructionIndex trans)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_TranslateX;
-    i.sources_[0]=src;
-    i.sources_[1]=trans;
+    i.sources_[0]=src.index_;
+    i.sources_[1]=trans.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::translateY(unsigned int src, unsigned int trans)
+CInstructionIndex CKernel::translateY(CInstructionIndex src, CInstructionIndex trans)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_TranslateY;
-    i.sources_[0]=src;
-    i.sources_[1]=trans;
+    i.sources_[0]=src.index_;
+    i.sources_[1]=trans.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::translateZ(unsigned int src, unsigned int trans)
+CInstructionIndex CKernel::translateZ(CInstructionIndex src, CInstructionIndex trans)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_TranslateZ;
-    i.sources_[0]=src;
-    i.sources_[1]=trans;
+    i.sources_[0]=src.index_;
+    i.sources_[1]=trans.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::translateW(unsigned int src, unsigned int trans)
+CInstructionIndex CKernel::translateW(CInstructionIndex src, CInstructionIndex trans)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_TranslateW;
-    i.sources_[0]=src;
-    i.sources_[1]=trans;
+    i.sources_[0]=src.index_;
+    i.sources_[1]=trans.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::translateU(unsigned int src, unsigned int trans)
+CInstructionIndex CKernel::translateU(CInstructionIndex src, CInstructionIndex trans)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_TranslateU;
-    i.sources_[0]=src;
-    i.sources_[1]=trans;
+    i.sources_[0]=src.index_;
+    i.sources_[1]=trans.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::translateV(unsigned int src, unsigned int trans)
+CInstructionIndex CKernel::translateV(CInstructionIndex src, CInstructionIndex trans)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_TranslateV;
-    i.sources_[0]=src;
-    i.sources_[1]=trans;
+    i.sources_[0]=src.index_;
+    i.sources_[1]=trans.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::rotateDomain(unsigned int src, unsigned int angle, unsigned int ax, unsigned int ay, unsigned int az)
+CInstructionIndex CKernel::rotateDomain(CInstructionIndex src, CInstructionIndex angle, CInstructionIndex ax, CInstructionIndex ay, CInstructionIndex az)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_RotateDomain;
-    i.sources_[0]=src;
-    i.sources_[1]=angle;
-    i.sources_[2]=ax;
-    i.sources_[3]=ay;
-    i.sources_[4]=az;
+    i.sources_[0]=src.index_;
+    i.sources_[1]=angle.index_;
+    i.sources_[2]=ax.index_;
+    i.sources_[3]=ay.index_;
+    i.sources_[4]=az.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::addSequence(unsigned int baseindex, unsigned int number, unsigned int stride)
+CInstructionIndex CKernel::addSequence(CInstructionIndex baseindex, unsigned int number, unsigned int stride)
 {
     if(number<=1) return lastIndex();
 
-    unsigned int s1=baseindex;
-    unsigned int s2=baseindex+stride;
+    CInstructionIndex s1=baseindex;
+    CInstructionIndex s2=baseindex+stride;
 
-    unsigned int addstart=add(s1,s2);
+    CInstructionIndex addstart=add(s1,s2);
 
     if(number==2)
     {
@@ -452,14 +452,14 @@ unsigned int CKernel::addSequence(unsigned int baseindex, unsigned int number, u
     return lastIndex();
 }
 
-unsigned int CKernel::multiplySequence(unsigned int baseindex, unsigned int number, unsigned int stride)
+CInstructionIndex CKernel::multiplySequence(CInstructionIndex baseindex, unsigned int number, unsigned int stride)
 {
     if(number<=1) return lastIndex();
 
-    unsigned int s1=baseindex;
-    unsigned int s2=baseindex+stride;
+    CInstructionIndex s1=baseindex;
+    CInstructionIndex s2=baseindex+stride;
 
-    unsigned int addstart=multiply(s1,s2);
+    CInstructionIndex addstart=multiply(s1,s2);
 
     if(number==2)
     {
@@ -478,14 +478,14 @@ unsigned int CKernel::multiplySequence(unsigned int baseindex, unsigned int numb
     return lastIndex();
 }
 
-unsigned int CKernel::maxSequence(unsigned int baseindex, unsigned int number, unsigned int stride)
+CInstructionIndex CKernel::maxSequence(CInstructionIndex baseindex, unsigned int number, unsigned int stride)
 {
     if(number<=1) return lastIndex();
 
-    unsigned int s1=baseindex;
-    unsigned int s2=baseindex+stride;
+    CInstructionIndex s1=baseindex;
+    CInstructionIndex s2=baseindex+stride;
 
-    unsigned int addstart=maximum(s1,s2);
+    CInstructionIndex addstart=maximum(s1,s2);
 
     if(number==2)
     {
@@ -504,14 +504,14 @@ unsigned int CKernel::maxSequence(unsigned int baseindex, unsigned int number, u
     return lastIndex();
 }
 
-unsigned int CKernel::minSequence(unsigned int baseindex, unsigned int number, unsigned int stride)
+CInstructionIndex CKernel::minSequence(CInstructionIndex baseindex, unsigned int number, unsigned int stride)
 {
     if(number<=1) return lastIndex();
 
-    unsigned int s1=baseindex;
-    unsigned int s2=baseindex+stride;
+    CInstructionIndex s1=baseindex;
+    CInstructionIndex s2=baseindex+stride;
 
-    unsigned int addstart=minimum(s1,s2);
+    CInstructionIndex addstart=minimum(s1,s2);
 
     if(number==2)
     {
@@ -530,34 +530,34 @@ unsigned int CKernel::minSequence(unsigned int baseindex, unsigned int number, u
     return lastIndex();
 }
 
-unsigned int CKernel::blend(unsigned int low, unsigned int high, unsigned int control)
+CInstructionIndex CKernel::blend(CInstructionIndex low, CInstructionIndex high, CInstructionIndex control)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_Blend;
-    i.sources_[0]=low;
-    i.sources_[1]=high;
-    i.sources_[2]=control;
+    i.sources_[0]=low.index_;
+    i.sources_[1]=high.index_;
+    i.sources_[2]=control.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::select(unsigned int low, unsigned int high, unsigned int control, unsigned int threshold, unsigned int falloff)
+CInstructionIndex CKernel::select(CInstructionIndex low, CInstructionIndex high, CInstructionIndex control, CInstructionIndex threshold, CInstructionIndex falloff)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_Select;
-    i.sources_[0]=low;
-    i.sources_[1]=high;
-    i.sources_[2]=control;
-    i.sources_[3]=threshold;
-    i.sources_[4]=falloff;
+    i.sources_[0]=low.index_;
+    i.sources_[1]=high.index_;
+    i.sources_[2]=control.index_;
+    i.sources_[3]=threshold.index_;
+    i.sources_[4]=falloff.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-unsigned int CKernel::simpleFractalLayer(unsigned int basistype, unsigned int interpindex, ANLFloatType layerscale, ANLFloatType layerfreq, unsigned int seed, bool rot,
-                                                ANLFloatType angle, ANLFloatType ax, ANLFloatType ay, ANLFloatType az)
+CInstructionIndex CKernel::simpleFractalLayer(unsigned int basistype, CInstructionIndex interpindex, ANLFloatType layerscale, ANLFloatType layerfreq, unsigned int seed, bool rot,
+            ANLFloatType angle, ANLFloatType ax, ANLFloatType ay, ANLFloatType az)
 {
-    unsigned int base=nextIndex();
+    CInstructionIndex base=nextIndex();
     switch(basistype)
     {
     case anl::OP_ValueBasis:
@@ -589,15 +589,15 @@ unsigned int CKernel::simpleFractalLayer(unsigned int basistype, unsigned int in
     return lastIndex();
 }
 
-unsigned int CKernel::simplefBm(unsigned int basistype, unsigned int interptype, unsigned int numoctaves, ANLFloatType frequency, unsigned int seed, bool rot)
+CInstructionIndex CKernel::simplefBm(unsigned int basistype, CInstructionIndex interptype, unsigned int numoctaves, ANLFloatType frequency, unsigned int seed, bool rot)
 {
     if(numoctaves<1) return 0;
 
     // push instruction denoting interpolation type constant
-    unsigned int interpindex=constant(interptype);
+    CInstructionIndex interpindex=constant(interptype.index_);
     // Push layers.
     // Each layer consists of a basis, an amplitude scale, a multiply, and a domain scale.
-    unsigned int basisstart=nextIndex();
+    CInstructionIndex basisstart=nextIndex();
     KISS rnd;
     rnd.setSeed(seed);
     for(unsigned int c=0; c<numoctaves; ++c)
@@ -626,7 +626,7 @@ unsigned int CKernel::simplefBm(unsigned int basistype, unsigned int interptype,
     return lastIndex();
 }
 
-unsigned int CKernel::x()
+CInstructionIndex CKernel::x()
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_X;
@@ -634,7 +634,7 @@ unsigned int CKernel::x()
     return lastIndex();
 }
 
-unsigned int CKernel::y()
+CInstructionIndex CKernel::y()
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_Y;
@@ -642,7 +642,7 @@ unsigned int CKernel::y()
     return lastIndex();
 }
 
-unsigned int CKernel::z()
+CInstructionIndex CKernel::z()
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_Z;
@@ -650,7 +650,7 @@ unsigned int CKernel::z()
     return lastIndex();
 }
 
-unsigned int CKernel::w()
+CInstructionIndex CKernel::w()
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_W;
@@ -658,7 +658,7 @@ unsigned int CKernel::w()
     return lastIndex();
 }
 
-unsigned int CKernel::u()
+CInstructionIndex CKernel::u()
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_U;
@@ -666,7 +666,7 @@ unsigned int CKernel::u()
     return lastIndex();
 }
 
-unsigned int CKernel::v()
+CInstructionIndex CKernel::v()
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_V;
@@ -674,16 +674,16 @@ unsigned int CKernel::v()
     return lastIndex();
 }
 
-unsigned int CKernel::scaleOffset(unsigned int src, ANLFloatType scale, ANLFloatType offset)
+CInstructionIndex CKernel::scaleOffset(CInstructionIndex src, ANLFloatType scale, ANLFloatType offset)
 {
-    unsigned int c=constant(scale);
-    unsigned int o=constant(offset);
-    unsigned int m=multiply(src,c);
+    CInstructionIndex c=constant(scale);
+    CInstructionIndex o=constant(offset);
+    CInstructionIndex m=multiply(src,c);
     add(m,o);
     return lastIndex();
 }
 
-unsigned int CKernel::radial()
+CInstructionIndex CKernel::radial()
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_Radial;
@@ -691,13 +691,13 @@ unsigned int CKernel::radial()
     return lastIndex();
 }
 
-unsigned int CKernel::clamp(unsigned int src, unsigned int low, unsigned int high)
+CInstructionIndex CKernel::clamp(CInstructionIndex src, CInstructionIndex low, CInstructionIndex high)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_Clamp;
-    i.sources_[0]=src;
-    i.sources_[1]=low;
-    i.sources_[2]=high;
+    i.sources_[0]=src.index_;
+    i.sources_[1]=low.index_;
+    i.sources_[2]=high.index_;
     kernel_.push_back(i);
     return lastIndex();
 }

@@ -3,7 +3,7 @@
 #include "templates/tvec2d.h"
 #include "templates/tvec3d.h"
 #include "templates/tvec4d.h"
-#include "types.h"
+#include "VM/types.h"
 
 namespace anl
 {

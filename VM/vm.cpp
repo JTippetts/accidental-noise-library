@@ -25,22 +25,22 @@ namespace anl
         return cache_[kernel_->size()-1];
     }
 
-    SVMOutput CNoiseExecutor::evaluateAt(CCoordinate &coord, unsigned int index)
+    SVMOutput CNoiseExecutor::evaluateAt(CCoordinate &coord, CInstructionIndex index)
     {
         SVMOutput out;
         if(!kernel_) {std::cout<<"duh"<<std::endl;return out;}
         if(kernel_->size()==0) {std::cout<<"ruh roh"<<std::endl;return out;}
-        if(index>=kernel_->size()) return out;
+        if(index.index_>=kernel_->size()) return out;
 
         // Clear evaluated
         //for(bool& e : evaluated_) e=false;
         for(auto i=evaluated_.begin(); i!=evaluated_.end(); ++i) *i=false;
 
         // Evaluate the instruction at the specified index
-        evaluateInstruction(*kernel_, evaluated_, coordcache_, cache_, index, coord);
+        evaluateInstruction(*kernel_, evaluated_, coordcache_, cache_, index.index_, coord);
         //out.outfloat_=kernel[kernel.size()-1].outfloat_;
         //return out;
-        return cache_[index];
+        return cache_[index.index_];
     }
 
     ANLFloatType CNoiseExecutor::evaluateParameter(InstructionListType &kernel, EvaluatedType &evaluated, CoordCacheType &coordcache, CacheType &cache, unsigned int index, CCoordinate &coord)

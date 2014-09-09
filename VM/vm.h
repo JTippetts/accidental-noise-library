@@ -45,7 +45,7 @@ namespace anl
         CNoiseExecutor(InstructionListType *kernel);
 
         SVMOutput evaluate(CCoordinate &coord);
-        SVMOutput evaluateAt(CCoordinate &coord, unsigned int index);
+        SVMOutput evaluateAt(CCoordinate &coord, CInstructionIndex index);
     private:
         void evaluateInstruction(InstructionListType &kernel, EvaluatedType &evaluated, CoordCacheType &coordcache, CacheType &cache, unsigned int index, CCoordinate &coord);
         ANLFloatType evaluateParameter(InstructionListType &kernel, EvaluatedType &evaluated, CoordCacheType &coordcache, CacheType &cache, unsigned int index, CCoordinate &coord);
