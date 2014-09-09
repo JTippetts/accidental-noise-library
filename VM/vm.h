@@ -7,21 +7,18 @@
 
 //#include <vector>
 #include "../templates/tarray1.h"
+#include "../vectortypes.h"
 
 namespace anl
 {
     struct SVMOutput
     {
         ANLFloatType outfloat_;
-        RGBA outrgba_;
+        SRGBA outrgba_;
 
-        SVMOutput()
+        SVMOutput() : outfloat_(0), outrgba_(0,0,0,0)
         {
-            outfloat_=0;
-            outrgba_.r=0;
-            outrgba_.g=0;
-            outrgba_.b=0;
-            outrgba_.a=0;
+           
         }
     };
 

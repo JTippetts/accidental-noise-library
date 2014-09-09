@@ -1,8 +1,8 @@
 #include <iostream>
 
-#include "VM/vm.h"
-#include "VM/kernel.h"
-#include "Imaging/imaging.h"
+#include "../VM/vm.h"
+#include "../VM/kernel.h"
+#include "../Imaging/imaging.h"
 
 //using namespace std;
 

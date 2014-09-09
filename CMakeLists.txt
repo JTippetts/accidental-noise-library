@@ -78,7 +78,7 @@ macro (setup_target)
     # Include directories
     include_directories (${LIBS} ${INCLUDE_DIRS_ONLY})
     # Link libraries
-    string (REGEX REPLACE "\\.\\./|VM/|/Include|/include|/src" "" STRIP_LIBS "${LIBS};${LINK_LIBS_ONLY}")
+    string (REGEX REPLACE "\\.\\./|VM/|/Imaging|/Framework|/src" "" STRIP_LIBS "${LIBS};${LINK_LIBS_ONLY}")
     target_link_libraries (${TARGET_NAME} ${STRIP_LIBS})
 endmacro ()
 
@@ -111,16 +111,9 @@ endmacro ()
 file (MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/Bin)
 
 # Define source files
-file (GLOB CPP_FILES *.cpp)
-file (GLOB C_FILES *.c)
-file (GLOB H_FILES *.h)
-set (SOURCE_FILES ${CPP_FILES} ${C_FILES} ${H_FILES})
-set (TARGET_NAME Framework)
 
-set(INCLUDE_DIRS_ONLY ./ ./templates ./VM)
 
-#Add third-party subdirs
 
 add_subdirectory(VM)
-set(LIBS VM)
-setup_executable()
+add_subdirectory(Imaging)
+add_subdirectory(Framework)
