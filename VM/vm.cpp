@@ -64,7 +64,7 @@ namespace anl
         switch(i.opcode_)
         {
             case OP_NOP:
-            case OP_Constant: evaluated[index]=true; cache[index].outfloat_=i.outfloat_; return; break;
+            case OP_Constant: evaluated[index]=true; cache[index].set(i.outfloat_); return; break;
 
             case OP_ValueBasis:
                 {
@@ -76,34 +76,34 @@ namespace anl
                 case 2:
                     switch(interp)
                     {
-                        case 0: cache[index].outfloat_=value_noise2D(coord.x_,coord.y_,i.seed_,noInterp); break;
-                        case 1: cache[index].outfloat_=value_noise2D(coord.x_,coord.y_,i.seed_,linearInterp); break;
-                        case 2: cache[index].outfloat_=value_noise2D(coord.x_,coord.y_,i.seed_,hermiteInterp); break;
-                        default: cache[index].outfloat_=value_noise2D(coord.x_,coord.y_,i.seed_,quinticInterp); break;
+                        case 0: cache[index].set(value_noise2D(coord.x_,coord.y_,i.seed_,noInterp)); break;
+                        case 1: cache[index].set(value_noise2D(coord.x_,coord.y_,i.seed_,linearInterp)); break;
+                        case 2: cache[index].set(value_noise2D(coord.x_,coord.y_,i.seed_,hermiteInterp)); break;
+                        default: cache[index].set(value_noise2D(coord.x_,coord.y_,i.seed_,quinticInterp)); break;
                     }; break;
                 case 3:
                     switch(interp)
                     {
-                        case 0: cache[index].outfloat_=value_noise3D(coord.x_,coord.y_,coord.z_,i.seed_,noInterp); break;
-                        case 1: cache[index].outfloat_=value_noise3D(coord.x_,coord.y_,coord.z_,i.seed_,linearInterp); break;
-                        case 2: cache[index].outfloat_=value_noise3D(coord.x_,coord.y_,coord.z_,i.seed_,hermiteInterp); break;
-                        default: cache[index].outfloat_=value_noise3D(coord.x_,coord.y_,coord.z_,i.seed_,quinticInterp); break;
+                        case 0: cache[index].set(value_noise3D(coord.x_,coord.y_,coord.z_,i.seed_,noInterp)); break;
+                        case 1: cache[index].set(value_noise3D(coord.x_,coord.y_,coord.z_,i.seed_,linearInterp)); break;
+                        case 2: cache[index].set(value_noise3D(coord.x_,coord.y_,coord.z_,i.seed_,hermiteInterp)); break;
+                        default: cache[index].set(value_noise3D(coord.x_,coord.y_,coord.z_,i.seed_,quinticInterp)); break;
                     }; break;
                 case 4:
                     switch(interp)
                     {
-                        case 0: cache[index].outfloat_=value_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,i.seed_,noInterp); break;
-                        case 1: cache[index].outfloat_=value_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,i.seed_,linearInterp); break;
-                        case 2: cache[index].outfloat_=value_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,i.seed_,hermiteInterp); break;
-                        default: cache[index].outfloat_=value_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,i.seed_,quinticInterp); break;
+                        case 0: cache[index].set(value_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,i.seed_,noInterp)); break;
+                        case 1: cache[index].set(value_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,i.seed_,linearInterp)); break;
+                        case 2: cache[index].set(value_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,i.seed_,hermiteInterp)); break;
+                        default: cache[index].set(value_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,i.seed_,quinticInterp)); break;
                     }; break;
                 default:
                     switch(interp)
                     {
-                        case 0: cache[index].outfloat_=value_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,i.seed_,noInterp); break;
-                        case 1: cache[index].outfloat_=value_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,i.seed_,linearInterp); break;
-                        case 2: cache[index].outfloat_=value_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,i.seed_,hermiteInterp); break;
-                        default: cache[index].outfloat_=value_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,i.seed_,quinticInterp); break;
+                        case 0: cache[index].set(value_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,i.seed_,noInterp)); break;
+                        case 1: cache[index].set(value_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,i.seed_,linearInterp)); break;
+                        case 2: cache[index].set(value_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,i.seed_,hermiteInterp)); break;
+                        default: cache[index].set(value_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,i.seed_,quinticInterp)); break;
                     }; break;
                 }
 
@@ -121,35 +121,35 @@ namespace anl
                 case 2:
                     switch(interp)
                     {
-                        case 0: cache[index].outfloat_=gradient_noise2D(coord.x_,coord.y_,i.seed_,noInterp); break;
-                        case 1: cache[index].outfloat_=gradient_noise2D(coord.x_,coord.y_,i.seed_,linearInterp); break;
-                        case 2: cache[index].outfloat_=gradient_noise2D(coord.x_,coord.y_,i.seed_,hermiteInterp); break;
-                        default: cache[index].outfloat_=gradient_noise2D(coord.x_,coord.y_,i.seed_,quinticInterp); break;
+                        case 0: cache[index].set(gradient_noise2D(coord.x_,coord.y_,i.seed_,noInterp)); break;
+                        case 1: cache[index].set(gradient_noise2D(coord.x_,coord.y_,i.seed_,linearInterp)); break;
+                        case 2: cache[index].set(gradient_noise2D(coord.x_,coord.y_,i.seed_,hermiteInterp)); break;
+                        default: cache[index].set(gradient_noise2D(coord.x_,coord.y_,i.seed_,quinticInterp)); break;
                     }; break;
                 case 3:
                     //std::cout << "(" << coord.x_ << "," << coord.y_ << "," << coord.z_ << std::endl;
                     switch(interp)
                     {
-                        case 0: cache[index].outfloat_=gradient_noise3D(coord.x_,coord.y_,coord.z_,i.seed_,noInterp); break;
-                        case 1: cache[index].outfloat_=gradient_noise3D(coord.x_,coord.y_,coord.z_,i.seed_,linearInterp); break;
-                        case 2: cache[index].outfloat_=gradient_noise3D(coord.x_,coord.y_,coord.z_,i.seed_,hermiteInterp); break;
-                        default: cache[index].outfloat_=gradient_noise3D(coord.x_,coord.y_,coord.z_,i.seed_,quinticInterp); break;
+                        case 0: cache[index].set(gradient_noise3D(coord.x_,coord.y_,coord.z_,i.seed_,noInterp)); break;
+                        case 1: cache[index].set(gradient_noise3D(coord.x_,coord.y_,coord.z_,i.seed_,linearInterp)); break;
+                        case 2: cache[index].set(gradient_noise3D(coord.x_,coord.y_,coord.z_,i.seed_,hermiteInterp)); break;
+                        default: cache[index].set(gradient_noise3D(coord.x_,coord.y_,coord.z_,i.seed_,quinticInterp)); break;
                     }; break;
                 case 4:
                     switch(interp)
                     {
-                        case 0: cache[index].outfloat_=gradient_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,i.seed_,noInterp); break;
-                        case 1: cache[index].outfloat_=gradient_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,i.seed_,linearInterp); break;
-                        case 2: cache[index].outfloat_=gradient_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,i.seed_,hermiteInterp); break;
-                        default: cache[index].outfloat_=gradient_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,i.seed_,quinticInterp); break;
+                        case 0: cache[index].set(gradient_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,i.seed_,noInterp)); break;
+                        case 1: cache[index].set(gradient_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,i.seed_,linearInterp)); break;
+                        case 2: cache[index].set(gradient_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,i.seed_,hermiteInterp)); break;
+                        default: cache[index].set(gradient_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,i.seed_,quinticInterp)); break;
                     }; break;
                 default:
                     switch(interp)
                     {
-                        case 0: cache[index].outfloat_=gradient_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,i.seed_,noInterp); break;
-                        case 1: cache[index].outfloat_=gradient_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,i.seed_,linearInterp); break;
-                        case 2: cache[index].outfloat_=gradient_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,i.seed_,hermiteInterp); break;
-                        default: cache[index].outfloat_=gradient_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,i.seed_,quinticInterp); break;
+                        case 0: cache[index].set(gradient_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,i.seed_,noInterp)); break;
+                        case 1: cache[index].set(gradient_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,i.seed_,linearInterp)); break;
+                        case 2: cache[index].set(gradient_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,i.seed_,hermiteInterp)); break;
+                        default: cache[index].set(gradient_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,i.seed_,quinticInterp)); break;
                     }; break;
                 }
                 evaluated[index]=true;
@@ -163,10 +163,10 @@ namespace anl
                 // Simplex noise isn't interpolated, so interp does nothing
                 switch(coord.dimension_)
                 {
-                case 2: cache[index].outfloat_=simplex_noise2D(coord.x_,coord.y_,i.seed_,noInterp); break;
-                case 3: cache[index].outfloat_=simplex_noise3D(coord.x_,coord.y_,coord.z_,i.seed_,noInterp); break;
-                case 4: cache[index].outfloat_=simplex_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,i.seed_,noInterp); break;
-                default: cache[index].outfloat_=simplex_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,i.seed_,noInterp); break;
+                case 2: cache[index].set(simplex_noise2D(coord.x_,coord.y_,i.seed_,noInterp)); break;
+                case 3: cache[index].set(simplex_noise3D(coord.x_,coord.y_,coord.z_,i.seed_,noInterp)); break;
+                case 4: cache[index].set(simplex_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,i.seed_,noInterp)); break;
+                default: cache[index].set(simplex_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,i.seed_,noInterp)); break;
                 };
                 evaluated[index]=true;
                 return;
@@ -224,7 +224,7 @@ namespace anl
                         }; break;
                     };
 
-                    cache[index].outfloat_=f1*f[0]+f2*f[1]+f3*f[2]+f4*f[3]+d1*d[0]+d2*d[1]+d3*d[2]+d4*d[3];
+                    cache[index].set(f1*f[0]+f2*f[1]+f3*f[2]+f4*f[3]+d1*d[0]+d2*d[1]+d3*d[2]+d4*d[3]);
                     return;
                     break;
                 }
@@ -232,7 +232,7 @@ namespace anl
                 {
                     ANLFloatType s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
                     ANLFloatType s2=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
-                    cache[index].outfloat_=s1+s2;
+                    cache[index].set(s1+s2);
                     evaluated[index]=true;
                     return;
                     break;
@@ -241,7 +241,7 @@ namespace anl
                 {
                     ANLFloatType s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
                     ANLFloatType s2=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
-                    cache[index].outfloat_=s1-s2;
+                    cache[index].set(s1-s2);
                     evaluated[index]=true;
                     return;
                 } break;
@@ -249,7 +249,7 @@ namespace anl
                 {
                     ANLFloatType s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
                     ANLFloatType s2=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
-                    cache[index].outfloat_=s1*s2;
+                    cache[index].set(s1*s2);
                     evaluated[index]=true;
                     return;
                     break;
@@ -258,7 +258,7 @@ namespace anl
                 {
                     ANLFloatType s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
                     ANLFloatType s2=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
-                    cache[index].outfloat_=s1/s2;
+                    cache[index].set(s1/s2);
                     evaluated[index]=true;
                     return;
                     break;
@@ -267,7 +267,7 @@ namespace anl
                 {
                     ANLFloatType s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
                     ANLFloatType s2=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
-                    cache[index].outfloat_=std::max(s1,s2);
+                    cache[index].set(std::max(s1,s2));
                     evaluated[index]=true;
                     return;
                     break;
@@ -276,7 +276,7 @@ namespace anl
                 {
                     ANLFloatType s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
                     ANLFloatType s2=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
-                    cache[index].outfloat_=std::min(s1,s2);
+                    cache[index].set(std::min(s1,s2));
                     evaluated[index]=true;
                     return;
                     break;
@@ -284,7 +284,7 @@ namespace anl
             case OP_Abs:
                 {
                     ANLFloatType s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
-                    cache[index].outfloat_=std::abs(s1);
+                    cache[index].set(std::abs(s1));
                     evaluated[index]=true;
                     return;
                     break;
@@ -294,7 +294,7 @@ namespace anl
                     ANLFloatType s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
                     ANLFloatType s2=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
                     evaluated[index]=true;
-                    cache[index].outfloat_=std::pow(s1,s2);
+                    cache[index].set(std::pow(s1,s2));
                     return;
                     break;
                 }
@@ -302,42 +302,42 @@ namespace anl
                 {
                     ANLFloatType s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
                     evaluated[index]=true;
-                    cache[index].outfloat_=std::cos(s1);
+                    cache[index].set(std::cos(s1));
                     return;
                 } break;
             case OP_Sin:
                 {
                     ANLFloatType s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
                     evaluated[index]=true;
-                    cache[index].outfloat_=std::sin(s1);
+                    cache[index].set(std::sin(s1));
                     return;
                 } break;
             case OP_Tan:
                 {
                     ANLFloatType s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
                     evaluated[index]=true;
-                    cache[index].outfloat_=std::tan(s1);
+                    cache[index].set(std::tan(s1));
                     return;
                 } break;
             case OP_ACos:
                 {
                     ANLFloatType s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
                     evaluated[index]=true;
-                    cache[index].outfloat_=std::acos(s1);
+                    cache[index].set(std::acos(s1));
                     return;
                 } break;
             case OP_ASin:
                 {
                     ANLFloatType s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
                     evaluated[index]=true;
-                    cache[index].outfloat_=std::asin(s1);
+                    cache[index].set(std::asin(s1));
                     return;
                 } break;
             case OP_ATan:
                 {
                     ANLFloatType s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
                     evaluated[index]=true;
-                    cache[index].outfloat_=std::atan(s1);
+                    cache[index].set(std::atan(s1));
                     return;
                 } break;
             case OP_ScaleDomain:
@@ -383,7 +383,7 @@ namespace anl
                     };
 
                     CCoordinate c=coord*scale;
-                    cache[index].outfloat_=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[0], c);
+                    cache[index].set(evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[0], c));
                     evaluated[index]=true;
                     return;
                     break;
@@ -393,7 +393,7 @@ namespace anl
                 ANLFloatType s=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
                 CCoordinate scale(s,1,1,1,1,1);
                 CCoordinate c=coord*scale;
-                cache[index].outfloat_=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[0], c);
+                cache[index].set(evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[0], c));
                 evaluated[index]=true;
                 return;
             } break;
@@ -403,7 +403,7 @@ namespace anl
                 ANLFloatType s=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
                 CCoordinate scale(1,s,1,1,1,1);
                 CCoordinate c=coord*scale;
-                cache[index].outfloat_=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[0], c);
+                cache[index].set(evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[0], c));
                 evaluated[index]=true;
                 return;
             } break;
@@ -413,7 +413,7 @@ namespace anl
                 ANLFloatType s=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[1], coord);
                 CCoordinate scale(1,1,s,1,1,1);
                 CCoordinate c=coord*scale;
-                cache[index].outfloat_=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[0], c);
+                cache[index].set(evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[0], c));
                 evaluated[index]=true;
                 return;
             } break;
@@ -423,7 +423,7 @@ namespace anl
                 ANLFloatType s=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
                 CCoordinate scale(1,1,1,s,1,1);
                 CCoordinate c=coord*scale;
-                cache[index].outfloat_=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[0], c);
+                cache[index].set(evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[0], c));
                 evaluated[index]=true;
                 return;
             } break;
@@ -433,7 +433,7 @@ namespace anl
                 ANLFloatType s=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[1], coord);
                 CCoordinate scale(1,1,1,1,s,1);
                 CCoordinate c=coord*scale;
-                cache[index].outfloat_=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[0], c);
+                cache[index].set(evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[0], c));
                 evaluated[index]=true;
                 return;
             } break;
@@ -443,7 +443,7 @@ namespace anl
                 ANLFloatType s=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[1], coord);
                 CCoordinate scale(1,1,1,1,1,s);
                 CCoordinate c=coord*scale;
-                cache[index].outfloat_=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[0], c);
+                cache[index].set(evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[0], c));
                 evaluated[index]=true;
                 return;
             } break;
@@ -453,7 +453,7 @@ namespace anl
                 ANLFloatType t=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
                 CCoordinate trans(t,0,0,0,0,0);
                 CCoordinate c=coord+trans;
-                cache[index].outfloat_=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[0], c);
+                cache[index].set(evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[0], c));
                 evaluated[index]=true;
                 return;
             } break;
@@ -463,7 +463,7 @@ namespace anl
                 ANLFloatType t=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
                 CCoordinate trans(0,t,0,0,0,0);
                 CCoordinate c=coord+trans;
-                cache[index].outfloat_=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[0], c);
+                cache[index].set(evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[0], c));
                 evaluated[index]=true;
                 return;
             } break;
@@ -473,7 +473,7 @@ namespace anl
                 ANLFloatType t=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
                 CCoordinate trans(0,0,t,0,0,0);
                 CCoordinate c=coord+trans;
-                cache[index].outfloat_=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[0], c);
+                cache[index].set(evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[0], c));
                 evaluated[index]=true;
                 return;
             } break;
@@ -483,7 +483,7 @@ namespace anl
                 ANLFloatType t=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
                 CCoordinate trans(0,0,0,t,0,0);
                 CCoordinate c=coord+trans;
-                cache[index].outfloat_=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[0], c);
+                cache[index].set(evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[0], c));
                 evaluated[index]=true;
                 return;
             } break;
@@ -493,7 +493,7 @@ namespace anl
                 ANLFloatType t=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
                 CCoordinate trans(0,0,0,0,t,0);
                 CCoordinate c=coord+trans;
-                cache[index].outfloat_=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[0], c);
+                cache[index].set(evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[0], c));
                 evaluated[index]=true;
                 return;
             } break;
@@ -503,7 +503,7 @@ namespace anl
                 ANLFloatType t=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
                 CCoordinate trans(0,0,0,0,0,t);
                 CCoordinate c=coord+trans;
-                cache[index].outfloat_=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[0], c);
+                cache[index].set(evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[0], c));
                 evaluated[index]=true;
                 return;
             } break;
@@ -552,7 +552,7 @@ namespace anl
                     };
 
                     CCoordinate c=coord+scale;
-                    cache[index].outfloat_=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[0], c);
+                    cache[index].set(evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[0], c));
                     evaluated[index]=true;
                     return;
             } break;
@@ -591,7 +591,7 @@ namespace anl
                 nz = (rotmatrix[0][2]*coord.x_) + (rotmatrix[1][2]*coord.y_) + (rotmatrix[2][2]*coord.z_);
                 CCoordinate newcoord=CCoordinate(nx,ny,nz,coord.w_,coord.u_,coord.v_);
                 newcoord.dimension_=coord.dimension_;
-                cache[index].outfloat_=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[0], newcoord);
+                cache[index].set(evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[0], newcoord));
                 evaluated[index]=true;
             } break;
             case OP_Blend:
@@ -600,7 +600,7 @@ namespace anl
                 low=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[0], coord);
                 high=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[1], coord);
                 control=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[2], coord);
-                cache[index].outfloat_=low+control*(high-low);
+                cache[index].set(low+control*(high-low));
                 evaluated[index]=true;
                 return;
             } break;
@@ -618,65 +618,65 @@ namespace anl
                 {
                     if(control<(threshold-falloff))
                     {
-                        cache[index].outfloat_=low;
+                        cache[index].set(low);
                     }
                     else if(control>(threshold+falloff))
                     {
-                        cache[index].outfloat_=high;
+                        cache[index].set(high);
                     }
                     else
                     {
                         ANLFloatType lower=threshold-falloff;
                         ANLFloatType upper=threshold+falloff;
                         ANLFloatType blend=quintic_blend((control-lower)/(upper-lower));
-                        cache[index].outfloat_=lerp(blend,low,high);
+                        cache[index].set(lerp(blend,low,high));
                     }
                 }
                 else
                 {
-                    if(control<threshold) cache[index].outfloat_=low;
-                    else cache[index].outfloat_=high;
+                    if(control<threshold) cache[index].set(low);
+                    else cache[index].set(high);
                 }
             } break;
 
             case OP_X:
             {
-                cache[index].outfloat_=coord.x_;
+                cache[index].set(coord.x_);
                 evaluated[index]=true;
                 return;
             } break;
 
             case OP_Y:
             {
-                cache[index].outfloat_=coord.y_;
+                cache[index].set(coord.y_);
                 evaluated[index]=true;
                 return;
             } break;
 
             case OP_Z:
             {
-                cache[index].outfloat_=coord.z_;
+                cache[index].set(coord.z_);
                 evaluated[index]=true;
                 return;
             } break;
 
             case OP_W:
             {
-                cache[index].outfloat_=coord.w_;
+                cache[index].set(coord.w_);
                 evaluated[index]=true;
                 return;
             } break;
 
             case OP_U:
             {
-                cache[index].outfloat_=coord.u_;
+                cache[index].set(coord.u_);
                 evaluated[index]=true;
                 return;
             } break;
 
             case OP_V:
             {
-                cache[index].outfloat_=coord.v_;
+                cache[index].set(coord.v_);
                 evaluated[index]=true;
                 return;
             } break;
@@ -699,7 +699,7 @@ namespace anl
                     len=std::sqrt(coord.x_*coord.x_+coord.y_*coord.y_+coord.z_*coord.z_+coord.w_*coord.w_+coord.u_*coord.u_+coord.v_*coord.v_);
                     break;
                 };
-                cache[index].outfloat_=len;
+                cache[index].set(len);
                 evaluated[index]=true;
                 return;
             } break;
@@ -710,7 +710,7 @@ namespace anl
                 ANLFloatType low=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
                 ANLFloatType high=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[2],coord);
 
-                cache[index].outfloat_=std::max(low,std::min(high,val));
+                cache[index].set(std::max(low,std::min(high,val)));
                 evaluated[index]=true;
                 return;
             } break;

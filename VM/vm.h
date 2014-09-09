@@ -20,6 +20,18 @@ namespace anl
         {
            
         }
+		
+		void set(ANLFloatType v)
+		{
+			outfloat_=v;
+			outrgba_[0]=outrgba_[1]=outrgba_[2]=v;
+			outrgba_[3]=1;
+		}
+		
+		void set(SRGBA v)
+		{
+			outrgba_=v;
+		}
     };
 
     typedef TArray1D<SInstruction> InstructionListType;

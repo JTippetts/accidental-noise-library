@@ -93,7 +93,7 @@ int main()
             j=((ANLFloatType)y / (ANLFloatType)img.height())*2-1;
             anl::CCoordinate coord(i*2,j*2,0);
             //anl::SVMOutput out=vm.evaluate(factory.getKernel(), coord);
-            anl::SVMOutput out=vm.evaluateAt(coord,stepdiv);
+            anl::SVMOutput out=vm.evaluateAt(coord,rotator);
             //std::cout << "Coord dim: " << coord.dimension_ << std::endl;
 
             // Shift range from [-1,1] to [0,1] and clamp
