@@ -36,6 +36,7 @@ int main()
 {
     anl::CKernel factory;
     anl::TArray2D<ANLFloatType> img(512,512);
+	anl::CInstructionIndex fbm=factory.simplefBm(anl::OP_GradientBasis, 3, 8, 2, 12345, true);
 
     anl::CInstructionIndex gradx=factory.x();
     anl::CInstructionIndex grady=factory.y();
@@ -45,8 +46,8 @@ int main()
     anl::CInstructionIndex grad=factory.minimum(xab,yab);
     anl::CInstructionIndex rad=factory.radial();
 
-    anl::CInstructionIndex radius=factory.constant(2);
-    anl::CInstructionIndex armthick=factory.constant(0.5);
+    anl::CInstructionIndex radius=factory.constant(1);
+    anl::CInstructionIndex armthick=factory.constant(0.25);
     anl::CInstructionIndex one=factory.constant(1);
     anl::CInstructionIndex zero=factory.constant(0);
     anl::CInstructionIndex sub=factory.subtract(radius,rad);
@@ -63,8 +64,8 @@ int main()
 
 
     anl::CInstructionIndex interp=factory.constant(3);
-    anl::CInstructionIndex white=factory.valueBasis(interp, 12345);
-    anl::CInstructionIndex whitefactor=factory.constant(255);
+    anl::CInstructionIndex white=factory.gradientBasis(interp, 12345);
+    anl::CInstructionIndex whitefactor=factory.constant(2.55);
     anl::CInstructionIndex whitescale=factory.scaleDomain(white,whitefactor,whitefactor,whitefactor);
     anl::CInstructionIndex starthresh=factory.constant(0);
     anl::CInstructionIndex starfall=factory.constant(0.125);
@@ -80,29 +81,13 @@ int main()
 	anl::CInstructionIndex stepsub=factory.subtract(step2,step1);
 	anl::CInstructionIndex stepdiv=factory.divide(stepsub,stepsize);
 	
+	
+	
     anl::CNoiseExecutor vm(factory.getKernel());
 
 
     // Map the kernel function to an image and save PNG
-    for(int x=0; x<img.width(); ++x)
-    {
-        for(int y=0; y<img.height(); ++y)
-        {
-            // Evaluate the kernel using a 2D VM
-            ANLFloatType i,j;
-            i=((ANLFloatType)x / (ANLFloatType)img.width())*2-1;
-            j=((ANLFloatType)y / (ANLFloatType)img.height())*2-1;
-            anl::CCoordinate coord(i*2,j*2,0);
-            //anl::SVMOutput out=vm.evaluate(factory.getKernel(), coord);
-            anl::SVMOutput out=vm.evaluateAt(coord,starmul);
-            //std::cout << "Coord dim: " << coord.dimension_ << std::endl;
-
-            // Shift range from [-1,1] to [0,1] and clamp
-            ANLFloatType v=out.outfloat_;//*0.5+0.5;
-            //v=std::max(0.0, std::min(1.0, v));
-            img.set(x,y,v);
-        }
-    }
+    anl::map2D(anl::SEAMLESS_XY, img, vm, anl::SMappingRanges(), fbm, 0);
 
     img.scaleToRange(0,1);
     anl::saveDoubleArray("out.png", &img);

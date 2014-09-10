@@ -103,18 +103,18 @@ namespace anl
 		
 		CInstructionIndex operator -(const CInstructionIndex &c)
 		{
-			return CInstructionIndex(index_+c.index_);
+			return CInstructionIndex(index_-c.index_);
 		}
 		
 		CInstructionIndex &operator -=(const CInstructionIndex &c)
 		{
-			index_+=c.index_;
+			index_-=c.index_;
 			return *this;
 		}
 		
 		CInstructionIndex operator +(const unsigned int c)
 		{
-			return CInstructionIndex(index_-c);
+			return CInstructionIndex(index_+c);
 		}
 		
 		CInstructionIndex &operator +=(const unsigned int c)

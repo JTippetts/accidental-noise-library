@@ -81,7 +81,7 @@ namespace anl
 
         CInstructionIndex simpleFractalLayer(unsigned int basistype, CInstructionIndex interptypeindex, ANLFloatType layerscale, ANLFloatType layerfreq, unsigned int seed, bool rot=true,
             ANLFloatType angle=0.5, ANLFloatType ax=0, ANLFloatType ay=0, ANLFloatType az=1);
-        CInstructionIndex simplefBm(unsigned int basistype, CInstructionIndex interptypeindex, unsigned int numoctaves, ANLFloatType frequency, unsigned int seed, bool rot=true);
+        CInstructionIndex simplefBm(unsigned int basistype, unsigned int interptype, unsigned int numoctaves, ANLFloatType frequency, unsigned int seed, bool rot=true);
 
         InstructionListType *getKernel(){return &kernel_;}
         CInstructionIndex nextIndex(){return CInstructionIndex(kernel_.size());}

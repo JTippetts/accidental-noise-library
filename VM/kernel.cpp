@@ -1,6 +1,7 @@
 #include "kernel.h"
 #include "random_gen.h"
 #include <cmath>
+#include <iostream>
 
 namespace anl
 {
@@ -432,8 +433,7 @@ CInstructionIndex CKernel::addSequence(CInstructionIndex baseindex, unsigned int
 
     CInstructionIndex s1=baseindex;
     CInstructionIndex s2=baseindex+stride;
-
-    CInstructionIndex addstart=add(s1,s2);
+	CInstructionIndex addstart=add(s1,s2);
 
     if(number==2)
     {
@@ -445,7 +445,7 @@ CInstructionIndex CKernel::addSequence(CInstructionIndex baseindex, unsigned int
     for(unsigned int c=0; c<number-2; ++c)
     {
         add(s1,s2);
-        ++s1;
+		++s1;
         s2+=stride;
     }
 
@@ -576,25 +576,25 @@ CInstructionIndex CKernel::simpleFractalLayer(unsigned int basistype, CInstructi
     constant(layerscale);
     multiply(base,base+1);
     constant(layerfreq);
-    scaleDomain(base+2, lastIndex(), lastIndex(), lastIndex(), lastIndex(), lastIndex(), lastIndex());
+    CInstructionIndex sd=scaleDomain(base+2, lastIndex(), lastIndex(), lastIndex(), lastIndex(), lastIndex(), lastIndex());
     if(rot)
     {
+		ANLFloatType len=std::sqrt(ax*ax+ay*ay+az*az);
         constant(angle);
-        constant(ax);
-        constant(ay);
-        constant(az);
-        rotateDomain(lastIndex()-4, lastIndex()-3, lastIndex()-2, lastIndex()-1, lastIndex());
-        //constant(ax);
+        constant(ax/len);
+        constant(ay/len);
+        constant(az/len);
+        rotateDomain(sd, sd+1, sd+2, sd+3, sd+4);
     }
     return lastIndex();
 }
 
-CInstructionIndex CKernel::simplefBm(unsigned int basistype, CInstructionIndex interptype, unsigned int numoctaves, ANLFloatType frequency, unsigned int seed, bool rot)
+CInstructionIndex CKernel::simplefBm(unsigned int basistype, unsigned int interptype, unsigned int numoctaves, ANLFloatType frequency, unsigned int seed, bool rot)
 {
     if(numoctaves<1) return 0;
 
     // push instruction denoting interpolation type constant
-    CInstructionIndex interpindex=constant(interptype.index_);
+    CInstructionIndex interpindex=constant(interptype);
     // Push layers.
     // Each layer consists of a basis, an amplitude scale, a multiply, and a domain scale.
     CInstructionIndex basisstart=nextIndex();
@@ -606,7 +606,7 @@ CInstructionIndex CKernel::simplefBm(unsigned int basistype, CInstructionIndex i
         if(rot)
         {
             simpleFractalLayer(basistype, interpindex, 1.0/std::pow(2.0, (ANLFloatType)(c)), std::pow(2.0, (ANLFloatType)(c))*frequency, seed+10+c*1000,true,
-                               rnd.get01()*3.14159265*2.0, rnd.get01()*2-1, rnd.get01()*2-1, rnd.get01()*2-1);
+                               rnd.get01()*3.14159265*2.0, rnd.get01(), rnd.get01(), rnd.get01());
         }
         else
         {
@@ -621,7 +621,7 @@ CInstructionIndex CKernel::simplefBm(unsigned int basistype, CInstructionIndex i
 
     // Sum the layers
     if(rot) addSequence(basisstart+9, numoctaves, 10);
-    else addSequence(basisstart+4, numoctaves, 10);
+    else addSequence(basisstart+4, numoctaves, 5);
 
     return lastIndex();
 }
