@@ -76,6 +76,9 @@ namespace anl
         CInstructionIndex v();
 		
 		CInstructionIndex radial();
+		
+		
+		CInstructionIndex combineRGBA(CInstructionIndex r, CInstructionIndex g, CInstructionIndex b, CInstructionIndex a);
 
         CInstructionIndex scaleOffset(CInstructionIndex src, ANLFloatType scale, ANLFloatType offset);
 

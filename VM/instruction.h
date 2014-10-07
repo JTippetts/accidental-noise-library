@@ -55,7 +55,15 @@ namespace anl
         OP_Z,
         OP_W,
         OP_U,
-        OP_V
+        OP_V,
+		
+		// RGBA operations
+		OP_ExtractRed,
+		OP_ExtractGreen,
+		OP_ExtractBlue,
+		OP_ExtractAlpha,
+		OP_Grayscale,
+		OP_CombineRGBA
     };
 
     struct SInstruction

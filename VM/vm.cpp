@@ -51,6 +51,15 @@ namespace anl
         //return kernel[index].outfloat_;
         return cache[index].outfloat_;
     }
+	
+	SRGBA CNoiseExecutor::evaluateRGBA(InstructionListType &kernel, EvaluatedType &evaluated, CoordCacheType &coordcache, CacheType &cache, unsigned int index, CCoordinate &coord)
+    {
+        if(index>=kernel.size()) return 0;
+
+        evaluateInstruction(kernel, evaluated, coordcache, cache, index, coord);
+        //return kernel[index].outfloat_;
+        return cache[index].outrgba_;
+    }
 
     void CNoiseExecutor::evaluateInstruction(InstructionListType &kernel, EvaluatedType &evaluated, CoordCacheType &coordcache, CacheType &cache, unsigned int index, CCoordinate &coord)
     {
@@ -714,6 +723,57 @@ namespace anl
                 evaluated[index]=true;
                 return;
             } break;
+			
+			case OP_ExtractRed:
+			{
+				SRGBA c=evaluateRGBA(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+				cache[index].set(c.x());
+				evaluated[index]=true;
+				return;
+			} break;
+			
+			case OP_ExtractGreen:
+			{
+				SRGBA c=evaluateRGBA(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+				cache[index].set(c.y());
+				evaluated[index]=true;
+				return;
+			} break;
+			
+			case OP_ExtractBlue:
+			{
+				SRGBA c=evaluateRGBA(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+				cache[index].set(c.z());
+				evaluated[index]=true;
+				return;
+			} break;
+			
+			case OP_ExtractAlpha:
+			{
+				SRGBA c=evaluateRGBA(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+				cache[index].set(c.w());
+				evaluated[index]=true;
+				return;
+			} break;
+			
+			case OP_Grayscale:
+			{
+				ANLFloatType v=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+				cache[index].set(v);
+				evaluated[index]=true;
+				return;
+			} break;
+			
+			case OP_CombineRGBA:
+			{
+				ANLFloatType r=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+				ANLFloatType g=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
+				ANLFloatType b=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[2],coord);
+				ANLFloatType a=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[3],coord);
+				cache[index].outrgba_=SRGBA(r,g,b,a);
+				evaluated[index]=true;
+				return;
+			} break;
 
             default: evaluated[index]=true; return; break;
         };

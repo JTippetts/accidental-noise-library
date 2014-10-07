@@ -701,4 +701,16 @@ CInstructionIndex CKernel::clamp(CInstructionIndex src, CInstructionIndex low, C
     kernel_.push_back(i);
     return lastIndex();
 }
+
+CInstructionIndex CKernel::combineRGBA(CInstructionIndex r, CInstructionIndex g, CInstructionIndex b, CInstructionIndex a)
+{
+	anl::SInstruction i;
+	i.opcode_=anl::OP_CombineRGBA;
+	i.sources_[0]=r.index_;
+	i.sources_[1]=g.index_;
+	i.sources_[2]=b.index_;
+	i.sources_[3]=a.index_;
+	kernel_.push_back(i);
+	return lastIndex();
+}
 };

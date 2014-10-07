@@ -35,8 +35,16 @@ void outputKernel(std::vector<anl::SInstruction> *kernel)
 int main()
 {
     anl::CKernel factory;
-    anl::TArray2D<ANLFloatType> img(512,512);
-	anl::CInstructionIndex fbm=factory.simplefBm(anl::OP_GradientBasis, 3, 8, 2, 12345, true);
+    anl::TArray2D<anl::SRGBA> img(512,512);
+	
+	anl::CInstructionIndex one=factory.constant(1);
+    anl::CInstructionIndex zero=factory.constant(0);
+	
+	anl::CInstructionIndex fbm1=factory.simplefBm(anl::OP_GradientBasis, 3, 8, 2, 12345, true);
+	anl::CInstructionIndex fbm2=factory.simplefBm(anl::OP_GradientBasis, 3, 8, 2, 67891, true);
+	anl::CInstructionIndex fbm3=factory.simplefBm(anl::OP_GradientBasis, 3, 8, 2, 23456, true);
+	
+	anl::CInstructionIndex rgba=factory.combineRGBA(fbm1, fbm2, fbm3, one);
 
     anl::CInstructionIndex gradx=factory.x();
     anl::CInstructionIndex grady=factory.y();
@@ -48,8 +56,7 @@ int main()
 
     anl::CInstructionIndex radius=factory.constant(1);
     anl::CInstructionIndex armthick=factory.constant(0.25);
-    anl::CInstructionIndex one=factory.constant(1);
-    anl::CInstructionIndex zero=factory.constant(0);
+    
     anl::CInstructionIndex sub=factory.subtract(radius,rad);
     anl::CInstructionIndex div=factory.divide(sub,radius);
     anl::CInstructionIndex clamp=factory.clamp(div,zero,one);
@@ -87,10 +94,10 @@ int main()
 
 
     // Map the kernel function to an image and save PNG
-    anl::map2D(anl::SEAMLESS_XY, img, vm, anl::SMappingRanges(), fbm, 0);
+    anl::mapRGBA2D(anl::SEAMLESS_XY, img, vm, anl::SMappingRanges(), rgba, 0);
 
-    img.scaleToRange(0,1);
-    anl::saveDoubleArray("out.png", &img);
+    //img.scaleToRange(0,1);
+    anl::saveRGBAArray("out.png", &img);
 
     // Print kernel
     //outputKernel(factory.getKernel());
