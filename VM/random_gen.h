@@ -45,21 +45,21 @@ namespace anl
 
         unsigned int getTarget(unsigned int t)
         {
-            ANLFloatType v=get01();
-            return (unsigned int)(v*(ANLFloatType)t);
+            double v=get01();
+            return (unsigned int)(v*(double)t);
         }
 
         unsigned int getRange(unsigned int low, unsigned int high)
         {
             if(high < low) std::swap(low, high);
-            ANLFloatType range = (ANLFloatType)((high - low)+1);
-            ANLFloatType val = (ANLFloatType)low + get01()*range;
+            double range = (double)((high - low)+1);
+            double val = (double)low + get01()*range;
             return (unsigned int)(val);
         }
 
-        ANLFloatType get01()
+        double get01()
         {
-            return ((ANLFloatType)get() / (ANLFloatType)(UINT_MAX));
+            return ((double)get() / (double)(UINT_MAX));
         }
     };
 

@@ -49,6 +49,10 @@ namespace anl
         OP_ASin,
         OP_ACos,
         OP_ATan,
+		OP_Bias,
+		OP_Gain,
+		OP_Tiers,
+		OP_SmoothTiers,
 
         OP_X,
         OP_Y,
@@ -56,7 +60,7 @@ namespace anl
         OP_W,
         OP_U,
         OP_V,
-		
+
 		// RGBA operations
 		OP_ExtractRed,
 		OP_ExtractGreen,
@@ -69,7 +73,7 @@ namespace anl
     struct SInstruction
     {
         // Out fields
-        ANLFloatType outfloat_;
+        double outfloat_;
         RGBA outrgba_;
 
         // Source input indices
@@ -87,7 +91,7 @@ namespace anl
             seed_=12345;
         }
     };
-	
+
 	class CKernel;
 	class CNoiseExecutor;
 	class CInstructionIndex
@@ -97,87 +101,87 @@ namespace anl
 		{
 			index_=c.index_;
 		}
-		
+
 		CInstructionIndex operator +(const CInstructionIndex &c)
 		{
 			return CInstructionIndex(index_+c.index_);
 		}
-		
+
 		CInstructionIndex &operator +=(const CInstructionIndex &c)
 		{
 			index_+=c.index_;
 			return *this;
 		}
-		
+
 		CInstructionIndex operator -(const CInstructionIndex &c)
 		{
 			return CInstructionIndex(index_-c.index_);
 		}
-		
+
 		CInstructionIndex &operator -=(const CInstructionIndex &c)
 		{
 			index_-=c.index_;
 			return *this;
 		}
-		
+
 		CInstructionIndex operator +(const unsigned int c)
 		{
 			return CInstructionIndex(index_+c);
 		}
-		
+
 		CInstructionIndex &operator +=(const unsigned int c)
 		{
 			index_+=c;
 			return *this;
 		}
-		
+
 		CInstructionIndex operator -(const unsigned int c)
 		{
 			return CInstructionIndex(index_-c);
 		}
-		
+
 		CInstructionIndex &operator -=(const unsigned int c)
 		{
 			index_-=c;
 			return *this;
 		}
-		
+
 		CInstructionIndex &operator++()
 		{
 			index_++;
 			return *this;
 		}
-		
+
 		CInstructionIndex operator++(int)
 		{
 			index_++;
 			return *this;
 		}
-		
+
 		CInstructionIndex &operator=(unsigned int c)
 		{
 			index_=c;
 			return *this;
 		}
-		
+
 		CInstructionIndex &operator=(const CInstructionIndex &c)
 		{
 			index_=c.index_;
 			return *this;
 		}
-		
-		
+
+
 		private:
 		CInstructionIndex()
 		{
 			index_=0;
 		}
-		
+
 		CInstructionIndex(unsigned int i)
 		{
 			index_=i;
 		}
-		
+
 		unsigned int index_;
 		friend class CKernel;
 		friend class CNoiseExecutor;

@@ -43,7 +43,7 @@ namespace anl
         return cache_[index.index_];
     }
 
-    ANLFloatType CNoiseExecutor::evaluateParameter(InstructionListType &kernel, EvaluatedType &evaluated, CoordCacheType &coordcache, CacheType &cache, unsigned int index, CCoordinate &coord)
+    double CNoiseExecutor::evaluateParameter(InstructionListType &kernel, EvaluatedType &evaluated, CoordCacheType &coordcache, CacheType &cache, unsigned int index, CCoordinate &coord)
     {
         if(index>=kernel.size()) return 0;
 
@@ -51,7 +51,7 @@ namespace anl
         //return kernel[index].outfloat_;
         return cache[index].outfloat_;
     }
-	
+
 	SRGBA CNoiseExecutor::evaluateRGBA(InstructionListType &kernel, EvaluatedType &evaluated, CoordCacheType &coordcache, CacheType &cache, unsigned int index, CCoordinate &coord)
     {
         if(index>=kernel.size()) return 0;
@@ -67,7 +67,7 @@ namespace anl
         SInstruction &i=kernel[index];
 
         if(evaluated[index]==true && coordcache[index]==coord) return;
-		
+
 		coordcache[index]=coord;
 
         switch(i.opcode_)
@@ -184,15 +184,15 @@ namespace anl
             case OP_CellularBasis:
                 {
                     unsigned int dist=(unsigned int)evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
-                    ANLFloatType f1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
-                    ANLFloatType f2=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[2],coord);
-                    ANLFloatType f3=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[3],coord);
-                    ANLFloatType f4=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[4],coord);
-                    ANLFloatType d1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[5],coord);
-                    ANLFloatType d2=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[6],coord);
-                    ANLFloatType d3=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[7],coord);
-                    ANLFloatType d4=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[8],coord);
-                    ANLFloatType f[4], d[4];
+                    double f1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
+                    double f2=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[2],coord);
+                    double f3=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[3],coord);
+                    double f4=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[4],coord);
+                    double d1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[5],coord);
+                    double d2=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[6],coord);
+                    double d3=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[7],coord);
+                    double d4=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[8],coord);
+                    double f[4], d[4];
                     switch(coord.dimension_)
                     {
                     case 2:
@@ -239,8 +239,8 @@ namespace anl
                 }
             case OP_Add:
                 {
-                    ANLFloatType s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
-                    ANLFloatType s2=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
+                    double s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+                    double s2=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
                     cache[index].set(s1+s2);
                     evaluated[index]=true;
                     return;
@@ -248,16 +248,16 @@ namespace anl
                 }
             case OP_Subtract:
                 {
-                    ANLFloatType s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
-                    ANLFloatType s2=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
+                    double s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+                    double s2=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
                     cache[index].set(s1-s2);
                     evaluated[index]=true;
                     return;
                 } break;
             case OP_Multiply:
                 {
-                    ANLFloatType s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
-                    ANLFloatType s2=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
+                    double s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+                    double s2=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
                     cache[index].set(s1*s2);
                     evaluated[index]=true;
                     return;
@@ -265,17 +265,35 @@ namespace anl
                 }
             case OP_Divide:
                 {
-                    ANLFloatType s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
-                    ANLFloatType s2=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
+                    double s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+                    double s2=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
                     cache[index].set(s1/s2);
                     evaluated[index]=true;
                     return;
                     break;
                 } break;
+			case OP_Bias:
+				{
+					double s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+                    double s2=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
+                    cache[index].set(bias(s1,s2));
+                    evaluated[index]=true;
+                    return;
+                    break;
+				} break;
+			case OP_Gain:
+				{
+					double s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+                    double s2=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
+                    cache[index].set(gain(s1,s2));
+                    evaluated[index]=true;
+                    return;
+                    break;
+				} break;
             case OP_Max:
                 {
-                    ANLFloatType s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
-                    ANLFloatType s2=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
+                    double s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+                    double s2=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
                     cache[index].set(std::max(s1,s2));
                     evaluated[index]=true;
                     return;
@@ -283,8 +301,8 @@ namespace anl
                 }
             case OP_Min:
                 {
-                    ANLFloatType s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
-                    ANLFloatType s2=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
+                    double s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+                    double s2=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
                     cache[index].set(std::min(s1,s2));
                     evaluated[index]=true;
                     return;
@@ -292,7 +310,7 @@ namespace anl
                 }
             case OP_Abs:
                 {
-                    ANLFloatType s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+                    double s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
                     cache[index].set(std::abs(s1));
                     evaluated[index]=true;
                     return;
@@ -300,8 +318,8 @@ namespace anl
                 }
             case OP_Pow:
                 {
-                    ANLFloatType s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
-                    ANLFloatType s2=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
+                    double s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+                    double s2=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
                     evaluated[index]=true;
                     cache[index].set(std::pow(s1,s2));
                     return;
@@ -309,46 +327,66 @@ namespace anl
                 }
             case OP_Cos:
                 {
-                    ANLFloatType s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+                    double s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
                     evaluated[index]=true;
                     cache[index].set(std::cos(s1));
                     return;
                 } break;
             case OP_Sin:
                 {
-                    ANLFloatType s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+                    double s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
                     evaluated[index]=true;
                     cache[index].set(std::sin(s1));
                     return;
                 } break;
             case OP_Tan:
                 {
-                    ANLFloatType s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+                    double s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
                     evaluated[index]=true;
                     cache[index].set(std::tan(s1));
                     return;
                 } break;
             case OP_ACos:
                 {
-                    ANLFloatType s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+                    double s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
                     evaluated[index]=true;
                     cache[index].set(std::acos(s1));
                     return;
                 } break;
             case OP_ASin:
                 {
-                    ANLFloatType s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+                    double s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
                     evaluated[index]=true;
                     cache[index].set(std::asin(s1));
                     return;
                 } break;
             case OP_ATan:
                 {
-                    ANLFloatType s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+                    double s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
                     evaluated[index]=true;
                     cache[index].set(std::atan(s1));
                     return;
                 } break;
+			case OP_Tiers:
+				{
+					int numsteps=(int)evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
+					double val=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+					double Tb=std::floor(val*(double)numsteps);
+					evaluated[index]=true;
+                    cache[index].set(Tb);
+				} break;
+			case OP_SmoothTiers:
+				{
+					int numsteps=(int)evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord)-1;
+					double val=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+					double Tb=std::floor(val*(double)numsteps);
+					double Tt=Tb+1.0;
+					double t=quintic_blend(val*(double)numsteps-Tb);
+					Tb/=(double)numsteps;
+					Tt/=(double)numsteps;
+					evaluated[index]=true;
+                    cache[index].set(Tb+t*(Tt-Tb));
+				} break;
             case OP_ScaleDomain:
                 {
                     CCoordinate scale(1,1,1,1,1,1);
@@ -356,36 +394,36 @@ namespace anl
                     {
                     case 2:
                         {
-                        ANLFloatType sx=evaluateParameter(kernel, evaluated, coordcache,cache,i.sources_[1],coord);
-                        ANLFloatType sy=evaluateParameter(kernel, evaluated, coordcache,cache,i.sources_[2],coord);
+                        double sx=evaluateParameter(kernel, evaluated, coordcache,cache,i.sources_[1],coord);
+                        double sy=evaluateParameter(kernel, evaluated, coordcache,cache,i.sources_[2],coord);
                         scale.set(sx,sy);
                         break;
                         }
                     case 3:
                         {
-                        ANLFloatType sx=evaluateParameter(kernel, evaluated, coordcache,cache,i.sources_[1],coord);
-                        ANLFloatType sy=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[2],coord);
-                        ANLFloatType sz=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[3],coord);
+                        double sx=evaluateParameter(kernel, evaluated, coordcache,cache,i.sources_[1],coord);
+                        double sy=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[2],coord);
+                        double sz=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[3],coord);
                         scale.set(sx,sy,sz);
                         break;
                         }
                     case 4:
                         {
-                        ANLFloatType sx=evaluateParameter(kernel, evaluated, coordcache,cache,i.sources_[1],coord);
-                        ANLFloatType sy=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[2],coord);
-                        ANLFloatType sz=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[3],coord);
-                        ANLFloatType sw=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[4],coord);
+                        double sx=evaluateParameter(kernel, evaluated, coordcache,cache,i.sources_[1],coord);
+                        double sy=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[2],coord);
+                        double sz=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[3],coord);
+                        double sw=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[4],coord);
                         scale.set(sx,sy,sz,sw);
                         break;
                         }
                     default:
                         {
-                        ANLFloatType sx=evaluateParameter(kernel, evaluated, coordcache,cache,i.sources_[1],coord);
-                        ANLFloatType sy=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[2],coord);
-                        ANLFloatType sz=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[3],coord);
-                        ANLFloatType sw=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[4],coord);
-                        ANLFloatType su=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[5],coord);
-                        ANLFloatType sv=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[6],coord);
+                        double sx=evaluateParameter(kernel, evaluated, coordcache,cache,i.sources_[1],coord);
+                        double sy=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[2],coord);
+                        double sz=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[3],coord);
+                        double sw=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[4],coord);
+                        double su=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[5],coord);
+                        double sv=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[6],coord);
                         scale.set(sx,sy,sz,sw,su,sv);
                         break;
                         }
@@ -399,7 +437,7 @@ namespace anl
                 }
             case OP_ScaleX:
             {
-                ANLFloatType s=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
+                double s=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
                 CCoordinate scale(s,1,1,1,1,1);
                 CCoordinate c=coord*scale;
                 cache[index].set(evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[0], c));
@@ -409,7 +447,7 @@ namespace anl
 
             case OP_ScaleY:
             {
-                ANLFloatType s=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
+                double s=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
                 CCoordinate scale(1,s,1,1,1,1);
                 CCoordinate c=coord*scale;
                 cache[index].set(evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[0], c));
@@ -419,7 +457,7 @@ namespace anl
 
             case OP_ScaleZ:
             {
-                ANLFloatType s=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[1], coord);
+                double s=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[1], coord);
                 CCoordinate scale(1,1,s,1,1,1);
                 CCoordinate c=coord*scale;
                 cache[index].set(evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[0], c));
@@ -429,7 +467,7 @@ namespace anl
 
             case OP_ScaleW:
             {
-                ANLFloatType s=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
+                double s=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
                 CCoordinate scale(1,1,1,s,1,1);
                 CCoordinate c=coord*scale;
                 cache[index].set(evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[0], c));
@@ -439,7 +477,7 @@ namespace anl
 
             case OP_ScaleU:
             {
-                ANLFloatType s=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[1], coord);
+                double s=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[1], coord);
                 CCoordinate scale(1,1,1,1,s,1);
                 CCoordinate c=coord*scale;
                 cache[index].set(evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[0], c));
@@ -449,7 +487,7 @@ namespace anl
 
             case OP_ScaleV:
             {
-                ANLFloatType s=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[1], coord);
+                double s=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[1], coord);
                 CCoordinate scale(1,1,1,1,1,s);
                 CCoordinate c=coord*scale;
                 cache[index].set(evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[0], c));
@@ -459,7 +497,7 @@ namespace anl
 
             case OP_TranslateX:
             {
-                ANLFloatType t=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
+                double t=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
                 CCoordinate trans(t,0,0,0,0,0);
                 CCoordinate c=coord+trans;
                 cache[index].set(evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[0], c));
@@ -469,7 +507,7 @@ namespace anl
 
             case OP_TranslateY:
             {
-                ANLFloatType t=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
+                double t=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
                 CCoordinate trans(0,t,0,0,0,0);
                 CCoordinate c=coord+trans;
                 cache[index].set(evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[0], c));
@@ -479,7 +517,7 @@ namespace anl
 
             case OP_TranslateZ:
             {
-                ANLFloatType t=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
+                double t=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
                 CCoordinate trans(0,0,t,0,0,0);
                 CCoordinate c=coord+trans;
                 cache[index].set(evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[0], c));
@@ -489,7 +527,7 @@ namespace anl
 
             case OP_TranslateW:
             {
-                ANLFloatType t=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
+                double t=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
                 CCoordinate trans(0,0,0,t,0,0);
                 CCoordinate c=coord+trans;
                 cache[index].set(evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[0], c));
@@ -499,7 +537,7 @@ namespace anl
 
             case OP_TranslateU:
             {
-                ANLFloatType t=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
+                double t=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
                 CCoordinate trans(0,0,0,0,t,0);
                 CCoordinate c=coord+trans;
                 cache[index].set(evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[0], c));
@@ -509,7 +547,7 @@ namespace anl
 
             case OP_TranslateV:
             {
-                ANLFloatType t=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
+                double t=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
                 CCoordinate trans(0,0,0,0,0,t);
                 CCoordinate c=coord+trans;
                 cache[index].set(evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[0], c));
@@ -525,36 +563,36 @@ namespace anl
                     {
                     case 2:
                         {
-                        ANLFloatType sx=evaluateParameter(kernel, evaluated, coordcache,cache,i.sources_[1],coord);
-                        ANLFloatType sy=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[2],coord);
+                        double sx=evaluateParameter(kernel, evaluated, coordcache,cache,i.sources_[1],coord);
+                        double sy=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[2],coord);
                         scale.set(sx,sy);
                         break;
                         }
                     case 3:
                         {
-                        ANLFloatType sx=evaluateParameter(kernel, evaluated, coordcache,cache,i.sources_[1],coord);
-                        ANLFloatType sy=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[2],coord);
-                        ANLFloatType sz=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[3],coord);
+                        double sx=evaluateParameter(kernel, evaluated, coordcache,cache,i.sources_[1],coord);
+                        double sy=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[2],coord);
+                        double sz=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[3],coord);
                         scale.set(sx,sy,sz);
                         break;
                         }
                     case 4:
                         {
-                        ANLFloatType sx=evaluateParameter(kernel, evaluated, coordcache,cache,i.sources_[1],coord);
-                        ANLFloatType sy=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[2],coord);
-                        ANLFloatType sz=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[3],coord);
-                        ANLFloatType sw=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[4],coord);
+                        double sx=evaluateParameter(kernel, evaluated, coordcache,cache,i.sources_[1],coord);
+                        double sy=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[2],coord);
+                        double sz=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[3],coord);
+                        double sw=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[4],coord);
                         scale.set(sx,sy,sz,sw);
                         break;
                         }
                     default:
                         {
-                        ANLFloatType sx=evaluateParameter(kernel, evaluated, coordcache,cache,i.sources_[1],coord);
-                        ANLFloatType sy=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[2],coord);
-                        ANLFloatType sz=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[3],coord);
-                        ANLFloatType sw=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[4],coord);
-                        ANLFloatType su=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[5],coord);
-                        ANLFloatType sv=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[6],coord);
+                        double sx=evaluateParameter(kernel, evaluated, coordcache,cache,i.sources_[1],coord);
+                        double sy=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[2],coord);
+                        double sz=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[3],coord);
+                        double sw=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[4],coord);
+                        double su=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[5],coord);
+                        double sv=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[6],coord);
                         scale.set(sx,sy,sz,sw,su,sv);
                         break;
                         }
@@ -567,20 +605,20 @@ namespace anl
             } break;
             case OP_RotateDomain:
             {
-                ANLFloatType angle=evaluateParameter(kernel, evaluated, coordcache, cache, i.sources_[1], coord);
-                ANLFloatType ax=evaluateParameter(kernel, evaluated, coordcache, cache, i.sources_[2], coord);
-                ANLFloatType ay=evaluateParameter(kernel, evaluated, coordcache, cache, i.sources_[3], coord);
-                ANLFloatType az=evaluateParameter(kernel, evaluated, coordcache, cache, i.sources_[4], coord);
+                double angle=evaluateParameter(kernel, evaluated, coordcache, cache, i.sources_[1], coord);
+                double ax=evaluateParameter(kernel, evaluated, coordcache, cache, i.sources_[2], coord);
+                double ay=evaluateParameter(kernel, evaluated, coordcache, cache, i.sources_[3], coord);
+                double az=evaluateParameter(kernel, evaluated, coordcache, cache, i.sources_[4], coord);
 
-                ANLFloatType len=std::sqrt(ax*ax+ax*ay+az*az);
+                double len=std::sqrt(ax*ax+ax*ay+az*az);
                 ax/=len;
                 ay/=len;
                 az/=len;
 
-                ANLFloatType cosangle=cos(angle);
-                ANLFloatType sinangle=sin(angle);
+                double cosangle=cos(angle);
+                double sinangle=sin(angle);
 
-                ANLFloatType rotmatrix[3][3];
+                double rotmatrix[3][3];
 
                 rotmatrix[0][0] = 1.0 + (1.0-cosangle)*(ax*ax-1.0);
                 rotmatrix[1][0] = -az*sinangle+(1.0-cosangle)*ax*ay;
@@ -594,7 +632,7 @@ namespace anl
                 rotmatrix[1][2] = ax*sinangle+(1.0-cosangle)*ay*az;
                 rotmatrix[2][2] = 1.0 + (1.0-cosangle)*(az*az-1.0);
 
-                ANLFloatType nx, ny, nz;
+                double nx, ny, nz;
                 nx = (rotmatrix[0][0]*coord.x_) + (rotmatrix[1][0]*coord.y_) + (rotmatrix[2][0]*coord.z_);
                 ny = (rotmatrix[0][1]*coord.x_) + (rotmatrix[1][1]*coord.y_) + (rotmatrix[2][1]*coord.z_);
                 nz = (rotmatrix[0][2]*coord.x_) + (rotmatrix[1][2]*coord.y_) + (rotmatrix[2][2]*coord.z_);
@@ -605,7 +643,7 @@ namespace anl
             } break;
             case OP_Blend:
             {
-                ANLFloatType low,high,control;
+                double low,high,control;
                 low=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[0], coord);
                 high=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[1], coord);
                 control=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[2], coord);
@@ -616,7 +654,7 @@ namespace anl
             case OP_Select:
             {
                 evaluated[index]=true;
-                ANLFloatType low,high,control,threshold,falloff;
+                double low,high,control,threshold,falloff;
                 low=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
                 high=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
                 control=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[2],coord);
@@ -635,9 +673,9 @@ namespace anl
                     }
                     else
                     {
-                        ANLFloatType lower=threshold-falloff;
-                        ANLFloatType upper=threshold+falloff;
-                        ANLFloatType blend=quintic_blend((control-lower)/(upper-lower));
+                        double lower=threshold-falloff;
+                        double upper=threshold+falloff;
+                        double blend=quintic_blend((control-lower)/(upper-lower));
                         cache[index].set(lerp(blend,low,high));
                     }
                 }
@@ -692,7 +730,7 @@ namespace anl
 
             case OP_Radial:
             {
-                ANLFloatType len=0;
+                double len=0;
                 switch(coord.dimension_)
                 {
                 case 2:
@@ -715,15 +753,15 @@ namespace anl
 
             case OP_Clamp:
             {
-                ANLFloatType val=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
-                ANLFloatType low=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
-                ANLFloatType high=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[2],coord);
+                double val=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+                double low=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
+                double high=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[2],coord);
 
                 cache[index].set(std::max(low,std::min(high,val)));
                 evaluated[index]=true;
                 return;
             } break;
-			
+
 			case OP_ExtractRed:
 			{
 				SRGBA c=evaluateRGBA(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
@@ -731,7 +769,7 @@ namespace anl
 				evaluated[index]=true;
 				return;
 			} break;
-			
+
 			case OP_ExtractGreen:
 			{
 				SRGBA c=evaluateRGBA(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
@@ -739,7 +777,7 @@ namespace anl
 				evaluated[index]=true;
 				return;
 			} break;
-			
+
 			case OP_ExtractBlue:
 			{
 				SRGBA c=evaluateRGBA(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
@@ -747,7 +785,7 @@ namespace anl
 				evaluated[index]=true;
 				return;
 			} break;
-			
+
 			case OP_ExtractAlpha:
 			{
 				SRGBA c=evaluateRGBA(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
@@ -755,21 +793,21 @@ namespace anl
 				evaluated[index]=true;
 				return;
 			} break;
-			
+
 			case OP_Grayscale:
 			{
-				ANLFloatType v=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+				double v=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
 				cache[index].set(v);
 				evaluated[index]=true;
 				return;
 			} break;
-			
+
 			case OP_CombineRGBA:
 			{
-				ANLFloatType r=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
-				ANLFloatType g=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
-				ANLFloatType b=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[2],coord);
-				ANLFloatType a=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[3],coord);
+				double r=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+				double g=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
+				double b=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[2],coord);
+				double a=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[3],coord);
 				cache[index].outrgba_=SRGBA(r,g,b,a);
 				evaluated[index]=true;
 				return;

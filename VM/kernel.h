@@ -13,7 +13,7 @@ namespace anl
     {
     public:
 
-        CInstructionIndex constant(ANLFloatType val);
+        CInstructionIndex constant(double val);
         CInstructionIndex valueBasis(CInstructionIndex interpindex, unsigned int seed);
         CInstructionIndex gradientBasis(CInstructionIndex interpindex, unsigned int seed);
         CInstructionIndex simplexBasis(unsigned int seed);
@@ -26,6 +26,8 @@ namespace anl
         CInstructionIndex minimum(CInstructionIndex s1index, CInstructionIndex s2index);
         CInstructionIndex abs(CInstructionIndex sindex);
         CInstructionIndex pow(CInstructionIndex s1, CInstructionIndex s2);
+		CInstructionIndex bias(CInstructionIndex s1, CInstructionIndex s2);
+		CInstructionIndex gain(CInstructionIndex s1, CInstructionIndex s2);
 
         CInstructionIndex scaleDomain(CInstructionIndex srcindex, CInstructionIndex xindex, CInstructionIndex yindex);
         CInstructionIndex scaleDomain(CInstructionIndex srcindex, CInstructionIndex xindex, CInstructionIndex yindex, CInstructionIndex zindex);
@@ -67,6 +69,9 @@ namespace anl
         CInstructionIndex acos(CInstructionIndex src);
         CInstructionIndex asin(CInstructionIndex src);
         CInstructionIndex atan(CInstructionIndex src);
+		
+		CInstructionIndex tiers(CInstructionIndex src, CInstructionIndex numtiers);
+		CInstructionIndex smoothTiers(CInstructionIndex src, CInstructionIndex numtiers);
 
         CInstructionIndex x();
         CInstructionIndex y();
@@ -74,17 +79,20 @@ namespace anl
         CInstructionIndex w();
         CInstructionIndex u();
         CInstructionIndex v();
-		
+
 		CInstructionIndex radial();
-		
-		
+
+
 		CInstructionIndex combineRGBA(CInstructionIndex r, CInstructionIndex g, CInstructionIndex b, CInstructionIndex a);
 
-        CInstructionIndex scaleOffset(CInstructionIndex src, ANLFloatType scale, ANLFloatType offset);
+        CInstructionIndex scaleOffset(CInstructionIndex src, double scale, double offset);
 
-        CInstructionIndex simpleFractalLayer(unsigned int basistype, CInstructionIndex interptypeindex, ANLFloatType layerscale, ANLFloatType layerfreq, unsigned int seed, bool rot=true,
-            ANLFloatType angle=0.5, ANLFloatType ax=0, ANLFloatType ay=0, ANLFloatType az=1);
-        CInstructionIndex simplefBm(unsigned int basistype, unsigned int interptype, unsigned int numoctaves, ANLFloatType frequency, unsigned int seed, bool rot=true);
+        CInstructionIndex simpleFractalLayer(unsigned int basistype, CInstructionIndex interptypeindex, double layerscale, double layerfreq, unsigned int seed, bool rot=true,
+            double angle=0.5, double ax=0, double ay=0, double az=1);
+		CInstructionIndex simpleRidgedLayer(unsigned int basistype, CInstructionIndex interptypeindex, double layerscale, double layerfreq, unsigned int seed, bool rot=true,
+            double angle=0.5, double ax=0, double ay=0, double az=1);
+        CInstructionIndex simplefBm(unsigned int basistype, unsigned int interptype, unsigned int numoctaves, double frequency, unsigned int seed, bool rot=true);
+		CInstructionIndex simpleRidgedMultifractal(unsigned int basistype, unsigned int interptype, unsigned int numoctaves, double frequency, unsigned int seed, bool rot=true);
 
         InstructionListType *getKernel(){return &kernel_;}
         CInstructionIndex nextIndex(){return CInstructionIndex(kernel_.size());}
