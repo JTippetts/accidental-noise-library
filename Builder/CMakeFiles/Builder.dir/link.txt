@@ -1,0 +1,2 @@
+C:\mingw64\bin\ar.exe cr libBuilder.a  CMakeFiles/Builder.dir/treecontainer.cpp.obj
+C:\mingw64\bin\ranlib.exe libBuilder.a

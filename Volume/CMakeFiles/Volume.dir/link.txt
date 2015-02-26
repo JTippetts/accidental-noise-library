@@ -1,0 +1,2 @@
+C:\mingw64\bin\ar.exe cr libVolume.a  CMakeFiles/Volume.dir/anlmesh.cpp.obj CMakeFiles/Volume.dir/marchvolume.cpp.obj CMakeFiles/Volume.dir/volumeadapter.cpp.obj
+C:\mingw64\bin\ranlib.exe libVolume.a

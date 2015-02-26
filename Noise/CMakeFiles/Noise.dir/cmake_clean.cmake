@@ -1,0 +1,42 @@
+FILE(REMOVE_RECURSE
+  "CMakeFiles/Noise.dir/cellulargen.cpp.obj"
+  "CMakeFiles/Noise.dir/hashing.cpp.obj"
+  "CMakeFiles/Noise.dir/implicitautocorrect.cpp.obj"
+  "CMakeFiles/Noise.dir/implicitbasisfunction.cpp.obj"
+  "CMakeFiles/Noise.dir/implicitblend.cpp.obj"
+  "CMakeFiles/Noise.dir/implicitbrightcontrast.cpp.obj"
+  "CMakeFiles/Noise.dir/implicitcache.cpp.obj"
+  "CMakeFiles/Noise.dir/implicitcellular.cpp.obj"
+  "CMakeFiles/Noise.dir/implicitclamp.cpp.obj"
+  "CMakeFiles/Noise.dir/implicitcombiner.cpp.obj"
+  "CMakeFiles/Noise.dir/implicitconstant.cpp.obj"
+  "CMakeFiles/Noise.dir/implicitcurve.cpp.obj"
+  "CMakeFiles/Noise.dir/implicitextractrgbachannel.cpp.obj"
+  "CMakeFiles/Noise.dir/implicitfractal.cpp.obj"
+  "CMakeFiles/Noise.dir/implicitfunctiongradient.cpp.obj"
+  "CMakeFiles/Noise.dir/implicitgradient.cpp.obj"
+  "CMakeFiles/Noise.dir/implicitmagnitude.cpp.obj"
+  "CMakeFiles/Noise.dir/implicitmath.cpp.obj"
+  "CMakeFiles/Noise.dir/implicitmodulebase.cpp.obj"
+  "CMakeFiles/Noise.dir/implicitnormalizecoords.cpp.obj"
+  "CMakeFiles/Noise.dir/implicitrgbadotproduct.cpp.obj"
+  "CMakeFiles/Noise.dir/implicitrotatedomain.cpp.obj"
+  "CMakeFiles/Noise.dir/implicitsawtooth.cpp.obj"
+  "CMakeFiles/Noise.dir/implicitscaledomain.cpp.obj"
+  "CMakeFiles/Noise.dir/implicitscaleoffset.cpp.obj"
+  "CMakeFiles/Noise.dir/implicitseamlessmapping.cpp.obj"
+  "CMakeFiles/Noise.dir/implicitselect.cpp.obj"
+  "CMakeFiles/Noise.dir/implicitsphere.cpp.obj"
+  "CMakeFiles/Noise.dir/implicittiers.cpp.obj"
+  "CMakeFiles/Noise.dir/implicittranslatedomain.cpp.obj"
+  "CMakeFiles/Noise.dir/implicittriangle.cpp.obj"
+  "CMakeFiles/Noise.dir/noise_gen.cpp.obj"
+  "CMakeFiles/Noise.dir/noise_lut.cpp.obj"
+  "libNoise.pdb"
+  "libNoise.a"
+)
+
+# Per-language clean rules from dependency scanning.
+FOREACH(lang CXX)
+  INCLUDE(CMakeFiles/Noise.dir/cmake_clean_${lang}.cmake OPTIONAL)
+ENDFOREACH(lang)
