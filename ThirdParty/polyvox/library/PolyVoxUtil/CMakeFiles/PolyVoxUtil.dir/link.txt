@@ -1,2 +1,0 @@
-C:\mingw64\bin\ar.exe cr libPolyVoxUtil.a  CMakeFiles/PolyVoxUtil.dir/source/Dummy.cpp.obj
-C:\mingw64\bin\ranlib.exe libPolyVoxUtil.a

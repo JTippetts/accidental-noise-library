@@ -1,2 +1,0 @@
-C:\mingw64\bin\ar.exe cr libanl.a  CMakeFiles/anl.dir/anl.cpp.obj
-C:\mingw64\bin\ranlib.exe libanl.a

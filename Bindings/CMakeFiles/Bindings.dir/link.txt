@@ -1,2 +1,0 @@
-C:\mingw64\bin\ar.exe cr libBindings.a  CMakeFiles/Bindings.dir/Bindings.cpp.obj CMakeFiles/Bindings.dir/generated/Noise.cpp.obj CMakeFiles/Bindings.dir/generated/RGBA.cpp.obj CMakeFiles/Bindings.dir/generated/Imaging.cpp.obj CMakeFiles/Bindings.dir/generated/Builder.cpp.obj CMakeFiles/Bindings.dir/generated/Volume.cpp.obj
-C:\mingw64\bin\ranlib.exe libBindings.a
