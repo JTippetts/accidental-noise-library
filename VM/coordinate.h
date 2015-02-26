@@ -7,24 +7,24 @@ namespace anl
     struct CCoordinate
     {
         CCoordinate();
-        CCoordinate(ANLFloatType x, ANLFloatType y);
-        CCoordinate(ANLFloatType x, ANLFloatType y, ANLFloatType z);
-        CCoordinate(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
-        CCoordinate(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
+        CCoordinate(double x, double y);
+        CCoordinate(double x, double y, double z);
+        CCoordinate(double x, double y, double z, double w);
+        CCoordinate(double x, double y, double z, double w, double u, double v);
 		CCoordinate(const CCoordinate &c);
 
-        void set(ANLFloatType x, ANLFloatType y);
-        void set(ANLFloatType x, ANLFloatType y, ANLFloatType z);
-        void set(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w);
-        void set(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v);
+        void set(double x, double y);
+        void set(double x, double y, double z);
+        void set(double x, double y, double z, double w);
+        void set(double x, double y, double z, double w, double u, double v);
 
-        CCoordinate operator *(ANLFloatType rhs);
+        CCoordinate operator *(double rhs);
         CCoordinate operator *(CCoordinate &rhs);
         CCoordinate operator +(CCoordinate &rhs);
 		CCoordinate &operator =(const CCoordinate &rhs);
 		bool operator ==(const CCoordinate &rhs);
 
-        ANLFloatType x_, y_, z_, w_, u_, v_;
+        double x_, y_, z_, w_, u_, v_;
         unsigned int dimension_;
     };
 };

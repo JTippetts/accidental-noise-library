@@ -7,26 +7,26 @@ namespace anl
         set(0,0);
     }
 
-    CCoordinate::CCoordinate(ANLFloatType x, ANLFloatType y)
+    CCoordinate::CCoordinate(double x, double y)
     {
         set(x,y);
     }
 
-    CCoordinate::CCoordinate(ANLFloatType x, ANLFloatType y, ANLFloatType z)
+    CCoordinate::CCoordinate(double x, double y, double z)
     {
         set(x,y,z);
     }
 
-    CCoordinate::CCoordinate(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
+    CCoordinate::CCoordinate(double x, double y, double z, double w)
     {
         set(x,y,z,w);
     }
 
-    CCoordinate::CCoordinate(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
+    CCoordinate::CCoordinate(double x, double y, double z, double w, double u, double v)
     {
         set(x,y,z,w,u,v);
     }
-	
+
 	CCoordinate::CCoordinate(const CCoordinate &c)
 	{
 		dimension_=c.dimension_;
@@ -38,7 +38,7 @@ namespace anl
 		v_=c.v_;
 	}
 
-    void CCoordinate::set(ANLFloatType x, ANLFloatType y)
+    void CCoordinate::set(double x, double y)
     {
         dimension_=2;
         x_=x;
@@ -49,7 +49,7 @@ namespace anl
         v_=0;
     }
 
-    void CCoordinate::set(ANLFloatType x, ANLFloatType y, ANLFloatType z)
+    void CCoordinate::set(double x, double y, double z)
     {
         dimension_=3;
         x_=x;
@@ -60,7 +60,7 @@ namespace anl
         v_=0;
     }
 
-    void CCoordinate::set(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w)
+    void CCoordinate::set(double x, double y, double z, double w)
     {
         dimension_=4;
         x_=x;
@@ -71,7 +71,7 @@ namespace anl
         v_=0;
     }
 
-    void CCoordinate::set(ANLFloatType x, ANLFloatType y, ANLFloatType z, ANLFloatType w, ANLFloatType u, ANLFloatType v)
+    void CCoordinate::set(double x, double y, double z, double w, double u, double v)
     {
         dimension_=6;
         x_=x;
@@ -82,7 +82,7 @@ namespace anl
         v_=v;
     }
 
-    CCoordinate CCoordinate::operator *(ANLFloatType rhs)
+    CCoordinate CCoordinate::operator *(double rhs)
     {
         CCoordinate ret(0,0);
         ret.dimension_=dimension_;
@@ -120,7 +120,7 @@ namespace anl
         ret.v_=v_+rhs.v_;
         return ret;
     }
-	
+
 	CCoordinate &CCoordinate::operator =(const CCoordinate &c)
 	{
 		dimension_=c.dimension_;
@@ -130,10 +130,10 @@ namespace anl
 		w_=c.w_;
 		u_=c.u_;
 		v_=c.v_;
-		
+
 		return *this;
 	}
-	
+
 	bool CCoordinate::operator ==(const CCoordinate &c)
 	{
 		switch(dimension_)

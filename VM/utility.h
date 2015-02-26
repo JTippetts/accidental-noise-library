@@ -32,7 +32,7 @@ template<typename TYPE> TYPE clamp(TYPE v, TYPE l, TYPE h)
     return v;
 };
 
-template<typename TYPE> TYPE lerp(ANLFloatType t, TYPE a, TYPE b)
+template<typename TYPE> TYPE lerp(double t, TYPE a, TYPE b)
 {
     return a+t*(b-a);
 }
@@ -42,37 +42,37 @@ template<typename TYPE> bool isPowerOf2(TYPE n)
     return !((n-1) & n);
 }
 
-inline ANLFloatType hermite_blend(ANLFloatType t)
+inline double hermite_blend(double t)
 {
     return (t*t*(3-2*t));
 }
 
-inline ANLFloatType quintic_blend(ANLFloatType t)
+inline double quintic_blend(double t)
 {
     return t*t*t*(t*(t*6-15)+10);
 }
 
-inline int fast_floor(ANLFloatType t)
+inline int fast_floor(double t)
 {
     return (t>0 ? (int)t : (int)t - 1);
 }
 
-inline ANLFloatType array_dot(ANLFloatType *arr, ANLFloatType a, ANLFloatType b)
+inline double array_dot(double *arr, double a, double b)
 {
     return a*arr[0] + b*arr[1];
 }
 
-inline ANLFloatType array_dot3(ANLFloatType *arr, ANLFloatType a, ANLFloatType b, ANLFloatType c)
+inline double array_dot3(double *arr, double a, double b, double c)
 {
     return a*arr[0] + b*arr[1] + c*arr[2];
 }
 
-inline ANLFloatType bias(ANLFloatType b, ANLFloatType t)
+inline double bias(double b, double t)
 {
     return pow(t, log(b)/log(0.5));
 }
 
-inline ANLFloatType gain(ANLFloatType g, ANLFloatType t)
+inline double gain(double g, double t)
 {
     if(t<0.5)
     {
