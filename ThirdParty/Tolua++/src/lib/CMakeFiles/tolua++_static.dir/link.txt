@@ -1,2 +1,0 @@
-C:\mingw64\bin\ar.exe cr libtolua++_static.a  CMakeFiles/tolua++_static.dir/tolua_event.c.obj CMakeFiles/tolua++_static.dir/tolua_is.c.obj CMakeFiles/tolua++_static.dir/tolua_map.c.obj CMakeFiles/tolua++_static.dir/tolua_push.c.obj CMakeFiles/tolua++_static.dir/tolua_to.c.obj
-C:\mingw64\bin\ranlib.exe libtolua++_static.a
