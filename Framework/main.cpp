@@ -90,7 +90,7 @@ int main()
 	
 	
 	
-    anl::CNoiseExecutor vm(factory.getKernel());
+    anl::CNoiseExecutor vm(&factory);
 
 
     // Map the kernel function to an image and save PNG

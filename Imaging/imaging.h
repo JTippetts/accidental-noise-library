@@ -6,8 +6,8 @@
 
 namespace anl
 {
-    typedef TArray2D<ANLFloatType> CArray2Dd;
-    typedef TArray3D<ANLFloatType> CArray3Dd;
+    typedef TArray2D<double> CArray2Dd;
+    typedef TArray3D<double> CArray3Dd;
     typedef TArray2D<SRGBA> CArray2Drgba;
     typedef TArray3D<SRGBA> CArray3Drgba;
     enum EMappingModes
@@ -24,8 +24,8 @@ namespace anl
 
     struct SMappingRanges
     {
-        ANLFloatType mapx0,mapy0,mapz0, mapx1,mapy1,mapz1;
-        ANLFloatType loopx0,loopy0,loopz0, loopx1,loopy1,loopz1;
+        double mapx0,mapy0,mapz0, mapx1,mapy1,mapz1;
+        double loopx0,loopy0,loopz0, loopx1,loopy1,loopz1;
 
         SMappingRanges()
         {
@@ -67,7 +67,7 @@ namespace anl
             loopz1=rhs.loopz1;
         }
 
-        SMappingRanges(ANLFloatType x0, ANLFloatType x1, ANLFloatType y0, ANLFloatType y1, ANLFloatType z0=0.0, ANLFloatType z1=1.0)
+        SMappingRanges(double x0, double x1, double y0, double y1, double z0=0.0, double z1=1.0)
         {
             mapx0=x0;
             mapx1=x1;
@@ -86,17 +86,17 @@ namespace anl
 
     };
 
-    void map2D(int seamlessmode, CArray2Dd &a, CNoiseExecutor &m, SMappingRanges ranges, CInstructionIndex index, ANLFloatType z);
+    void map2D(int seamlessmode, CArray2Dd &a, CNoiseExecutor &m, SMappingRanges ranges, CInstructionIndex index, double z);
     void map2DNoZ(int seamlessmode, CArray2Dd &a, CNoiseExecutor &m, SMappingRanges ranges, CInstructionIndex index);
     void map3D(int seamlessmode, CArray3Dd &a, CNoiseExecutor &m, SMappingRanges ranges, CInstructionIndex index);
 
-    void mapRGBA2D(int seamlessmode, CArray2Drgba &a, CNoiseExecutor &m, SMappingRanges ranges, CInstructionIndex index, ANLFloatType z);
+    void mapRGBA2D(int seamlessmode, CArray2Drgba &a, CNoiseExecutor &m, SMappingRanges ranges, CInstructionIndex index, double z);
     void mapRGBA2DNoZ(int seamlessmode, CArray2Drgba &a, CNoiseExecutor &m, SMappingRanges ranges, CInstructionIndex index);
     void mapRGBA3D(int seamlessmode, CArray3Drgba &a, CNoiseExecutor &m, SMappingRanges ranges, CInstructionIndex index);
 
-    void saveDoubleArray(std::string filename, TArray2D<ANLFloatType> *array);
+    void saveDoubleArray(std::string filename, TArray2D<double> *array);
     void saveRGBAArray(std::string filename, TArray2D<anl::SRGBA> *array); 
-	void loadDoubleArray(std::string filename, TArray2D<ANLFloatType> *array);
+	void loadDoubleArray(std::string filename, TArray2D<double> *array);
 	void loadRGBAArray(std::string filename, TArray2D<anl::SRGBA> *array);
 };
 
