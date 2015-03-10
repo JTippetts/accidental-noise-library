@@ -1,3 +1,4 @@
 build
 tolua++.exe
 Framework.exe
+*.a
