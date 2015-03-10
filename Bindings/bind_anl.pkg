@@ -1,10 +1,10 @@
 // Bind ANL
 
-$#include "./ThirdParty/ANL/VM/vm.h"
-$#include "./ThirdParty/ANL/VM/instruction.h"
-$#include "./ThirdParty/ANL/VM/kernel.h"
-$#include "./ThirdParty/ANL/VM/coordinate.h"
-$#include "./ThirdParty/ANL/VM/random_gen.h"
+$#include "../VM/vm.h"
+$#include "../VM/instruction.h"
+$#include "../VM/kernel.h"
+$#include "../VM/coordinate.h"
+$#include "../VM/random_gen.h"
 
 $using namespace anl;
 

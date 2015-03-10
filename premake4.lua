@@ -8,27 +8,18 @@ local luaheader="C:/Users/Joshua/Documents/Projects/lua-5.1.4/src"
 
 solution "ANL"
 	configurations {"Debug", "Release"}
-	platforms {"x32", "x64"}
+	--platforms {"x32", "x64"}
 	location "../build"
 	
-	filter "configurations:Debug"
+	configuration "Debug"
 		defines { "DEBUG" }
 		flags { "Symbols" }
 
-	filter "configurations:Release"
+	configuration "Release"
 		defines { "NDEBUG" }
-		optimize "On"
-	
-	filter {}
-	
-	if _ACTION=="gmake" then
-		buildoptions "-std=c++11"
-		filter "platforms:x32"
-			buildoptions "-m32"
-		filter "platforms:x64"
-			buildoptions "-m64"
-		filter {}
-	end
+		flags "Optimize"
+		
+	configuration {}
 	
 	project "toluapp"
 		kind "StaticLib"
@@ -43,6 +34,9 @@ solution "ANL"
 		kind "StaticLib"
 		location "../build/ANL"
 		language "C++"
+		if _ACTION=="gmake" then
+			buildoptions "-std=c++11"
+		end
 		
 		files {"VM/*.h", "VM/*.cpp", "Imaging/*.h", "Imaging/*.cpp", "templates/*.h", "vectortypes.h"}
 
@@ -50,8 +44,12 @@ solution "ANL"
 		kind "ConsoleApp"
 		location "../build/Bin"
 		language "C++"
+		if _ACTION=="gmake" then
+			buildoptions "-std=c++11"
+		end
 		
 		includedirs(_OPTIONS["luaheader"] or luaheader)
+		includedirs "ThirdParty/toluapp/include"
 		libdirs(_OPTIONS["lualib"] or lualib)
 		
 		files {"Framework/*.cpp", "Bindings/*.cpp"}
