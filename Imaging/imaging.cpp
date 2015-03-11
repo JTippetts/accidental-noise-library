@@ -88,11 +88,53 @@ namespace anl
 		delete[] data;
 	}
 	
-	void map2D(int seamlessmode, CArray2Dd &a, CNoiseExecutor &m, SMappingRanges ranges, CInstructionIndex index, double z)
+	void loadDoubleArray(std::string filename, TArray2D<double> *array)
+        {
+                if(!array) return;
+                int w,h,n;
+                unsigned char *data=stbi_load(filename.c_str(), &w, &h, &n, 4);
+                if(!data) return;
+                
+                array->resize(w,h);
+                for(int x=0; x<w; ++x)
+                {
+                        for(int y=0; y<h; ++y)
+                        {
+                                unsigned char *a=&data[y*w*4+x*4];
+                                array->set(x,y,(double)(a[0])/255.0);
+                        }
+                }
+                
+                stbi_image_free(data);
+        }
+        
+        void loadRGBAArray(std::string filename, TArray2D<anl::SRGBA> *array)
+        {
+                if(!array) return;
+                int w,h,n;
+                unsigned char *data=stbi_load(filename.c_str(), &w, &h, &n, 4);
+                if(!data) return;
+                
+                array->resize(w,h);
+                for(int x=0; x<w; ++x)
+                {
+                        for(int y=0; y<h; ++y)
+                        {
+                                unsigned char *a=&data[y*w*4+x*4];
+                                SRGBA color((float)a[0]/255.0, (float)a[1]/255.0, (float)a[2]/255.0, (float)a[3]/255.0);
+                                array->set(x,y,color);
+                        }
+                }
+                
+                stbi_image_free(data);
+        }
+	
+	void map2D(int seamlessmode, CArray2Dd &a, CKernel &k, SMappingRanges ranges, CInstructionIndex index, double z)
    {
         int w=a.width();
         int h=a.height();
         static double pi2=3.141592*2.0;
+		CNoiseExecutor m(&k);
 
         int x,y;
         for(x=0; x<w; ++x)
@@ -225,11 +267,12 @@ namespace anl
         }
    }
 
-   void map2DNoZ(int seamlessmode, CArray2Dd &a, CNoiseExecutor &m, SMappingRanges ranges, CInstructionIndex index)
+   void map2DNoZ(int seamlessmode, CArray2Dd &a, CKernel &k, SMappingRanges ranges, CInstructionIndex index)
    {
         int w=a.width();
         int h=a.height();
         static double pi2=3.141592*2.0;
+		CNoiseExecutor m(&k);
 
         int x,y;
         for(x=0; x<w; ++x)
@@ -292,11 +335,12 @@ namespace anl
         }
    }
 
-    void map3D(int seamlessmode, CArray3Dd &a, CNoiseExecutor &m, SMappingRanges ranges, CInstructionIndex index)
+    void map3D(int seamlessmode, CArray3Dd &a, CKernel &k, SMappingRanges ranges, CInstructionIndex index)
     {
         int w=a.width();
         int h=a.height();
         int d=a.depth();
+		CNoiseExecutor m(&k);
 
         int x,y,z;
         static double pi2=3.14159265 * 2.0;
@@ -438,11 +482,12 @@ namespace anl
 
 
 
-    void mapRGBA2D(int seamlessmode, CArray2Drgba &a, CNoiseExecutor &m, SMappingRanges ranges, CInstructionIndex index, double z)
+    void mapRGBA2D(int seamlessmode, CArray2Drgba &a, CKernel &k, SMappingRanges ranges, CInstructionIndex index, double z)
    {
         int w=a.width();
         int h=a.height();
         static double pi2=3.141592*2.0;
+		CNoiseExecutor m(&k);
 
         int x,y;
         for(x=0; x<w; ++x)
@@ -575,11 +620,12 @@ namespace anl
         }
    }
 
-   void mapRGBA2DNoZ(int seamlessmode, CArray2Drgba &a, CNoiseExecutor &m, SMappingRanges ranges, CInstructionIndex index)
+   void mapRGBA2DNoZ(int seamlessmode, CArray2Drgba &a, CKernel &k, SMappingRanges ranges, CInstructionIndex index)
    {
         int w=a.width();
         int h=a.height();
         static double pi2=3.141592*2.0;
+		CNoiseExecutor m(&k);
 
         int x,y;
         for(x=0; x<w; ++x)
@@ -643,11 +689,12 @@ namespace anl
         }
    }
 
-    void mapRGBA3D(int seamlessmode, CArray3Drgba &a, CNoiseExecutor &m, SMappingRanges ranges, CInstructionIndex index)
+    void mapRGBA3D(int seamlessmode, CArray3Drgba &a, CKernel &k, SMappingRanges ranges, CInstructionIndex index)
     {
         int w=a.width();
         int h=a.height();
         int d=a.depth();
+		CNoiseExecutor m(&k);
 
         int x,y,z;
         static double pi2=3.14159265 * 2.0;

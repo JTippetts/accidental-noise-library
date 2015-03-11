@@ -24,6 +24,7 @@ solution "ANL"
 	project "toluapp"
 		kind "StaticLib"
 		location "../build/toluapp"
+		targetdir "../build/toluapp"
 		language "C"
 		includedirs "ThirdParty/toluapp/include"
 		includedirs(_OPTIONS["luaheader"] or luaheader)
@@ -33,16 +34,18 @@ solution "ANL"
 	project "ANLLib"
 		kind "StaticLib"
 		location "../build/ANL"
+		targetdir "../build/ANL"
 		language "C++"
 		if _ACTION=="gmake" then
 			buildoptions "-std=c++11"
 		end
 		
-		files {"VM/*.h", "VM/*.cpp", "Imaging/*.h", "Imaging/*.cpp", "templates/*.h", "vectortypes.h"}
+		files {"VM/*.h", "VM/*.cpp", "Imaging/*.h", "Imaging/*.cpp", "Imaging/*.c", "templates/*.h", "vectortypes.h"}
 
 	project "Framework"
 		kind "ConsoleApp"
 		location "../build/Bin"
+		targetdir "../build/Bin"
 		language "C++"
 		if _ACTION=="gmake" then
 			buildoptions "-std=c++11"

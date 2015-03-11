@@ -86,13 +86,13 @@ namespace anl
 
     };
 
-    void map2D(int seamlessmode, CArray2Dd &a, CNoiseExecutor &m, SMappingRanges ranges, CInstructionIndex index, double z);
-    void map2DNoZ(int seamlessmode, CArray2Dd &a, CNoiseExecutor &m, SMappingRanges ranges, CInstructionIndex index);
-    void map3D(int seamlessmode, CArray3Dd &a, CNoiseExecutor &m, SMappingRanges ranges, CInstructionIndex index);
+    void map2D(int seamlessmode, CArray2Dd &a, CKernel &k, SMappingRanges ranges, CInstructionIndex index, double z);
+    void map2DNoZ(int seamlessmode, CArray2Dd &a, CKernel &k, SMappingRanges ranges, CInstructionIndex index);
+    void map3D(int seamlessmode, CArray3Dd &a, CKernel &k, SMappingRanges ranges, CInstructionIndex index);
 
-    void mapRGBA2D(int seamlessmode, CArray2Drgba &a, CNoiseExecutor &m, SMappingRanges ranges, CInstructionIndex index, double z);
-    void mapRGBA2DNoZ(int seamlessmode, CArray2Drgba &a, CNoiseExecutor &m, SMappingRanges ranges, CInstructionIndex index);
-    void mapRGBA3D(int seamlessmode, CArray3Drgba &a, CNoiseExecutor &m, SMappingRanges ranges, CInstructionIndex index);
+    void mapRGBA2D(int seamlessmode, CArray2Drgba &a, CKernel &k, SMappingRanges ranges, CInstructionIndex index, double z);
+    void mapRGBA2DNoZ(int seamlessmode, CArray2Drgba &a, CKernel &k, SMappingRanges ranges, CInstructionIndex index);
+    void mapRGBA3D(int seamlessmode, CArray3Drgba &a, CKernel &k, SMappingRanges ranges, CInstructionIndex index);
 
     void saveDoubleArray(std::string filename, TArray2D<double> *array);
     void saveRGBAArray(std::string filename, TArray2D<anl::SRGBA> *array); 
