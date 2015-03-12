@@ -1,11 +1,6 @@
 -- Accidental Noise Library
 -- premake4.lua
 
--- Set pat to lua library and headers
--- Alternatively, specify on the command-line
-local lualib="C:/Users/Joshua/Documents/Projects/lua-5.2.4/src"
-local luaheader="C:/Users/Joshua/Documents/Projects/lua-5.2.4/src"
-
 solution "ANL"
 	configurations {"Debug", "Release"}
 	--platforms {"x32", "x64"}
@@ -31,14 +26,23 @@ solution "ANL"
 		libdirs(_OPTIONS["lualib"] or lualib)
 		files {"ThirdParty/toluapp/src/lib/*.h", "ThirdParty/toluapp/src/lib/*.c"} ]]
 		
-		project "tolua"
+	project "lua"
+		kind "StaticLib"
+		location "../build/lua"
+		targetdir "../build/lua"
+		language "C"
+		includedirs "ThirdParty/lua-5.2.4/src"
+		files {"ThirdParty/lua-5.2.4/src/*.c"}
+		excludes { "ThirdParty/lua-5.2.4/src/lua.c", "ThirdParty/lua-5.2.4/src/luac.c"}
+		
+		
+	project "tolua"
 		kind "StaticLib"
 		location "../build/tolua"
 		targetdir "../build/tolua"
 		language "C"
 		includedirs "ThirdParty/tolua-5.2/include"
-		includedirs(_OPTIONS["luaheader"] or luaheader)
-		libdirs(_OPTIONS["lualib"] or lualib)
+		includedirs("ThirdParty/lua-5.2.4/src")
 		files {"ThirdParty/tolua-5.2/src/lib/*.h", "ThirdParty/tolua-5.2/src/lib/*.c"}
 	
 	project "ANLLib"
@@ -61,10 +65,8 @@ solution "ANL"
 			buildoptions "-std=c++11"
 		end
 		
-		includedirs(_OPTIONS["luaheader"] or luaheader)
 		includedirs "ThirdParty/tolua-5.2/include"
-		includedirs "ThirdParty/oolua/include"
-		libdirs(_OPTIONS["lualib"] or lualib)
+		includedirs "ThirdParty/lua-5.2.4/src"
 		
 		files {"Framework/*.cpp", "Bindings/bind_anl.cpp"}
 		links {"ANLLib", "tolua", "lua"}
