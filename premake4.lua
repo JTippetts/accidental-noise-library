@@ -1,6 +1,11 @@
 -- Accidental Noise Library
 -- premake4.lua
 
+-- Path to Lua source
+-- 
+local luapath="ThirdParty/lua-5.3.0/"
+-- local luapath="ThirdParty/lua-5.2.4/"  
+
 solution "ANL"
 	configurations {"Debug", "Release"}
 	--platforms {"x32", "x64"}
@@ -31,9 +36,9 @@ solution "ANL"
 		location "../build/lua"
 		targetdir "../build/lua"
 		language "C"
-		includedirs "ThirdParty/lua-5.2.4/src"
-		files {"ThirdParty/lua-5.2.4/src/*.c"}
-		excludes { "ThirdParty/lua-5.2.4/src/lua.c", "ThirdParty/lua-5.2.4/src/luac.c"}
+		includedirs(luapath.."src")
+		files({luapath.."src/*.c"})
+		excludes({luapath.."src/lua.c", luapath.."src/luac.c"})
 		
 		
 	project "tolua"
@@ -42,7 +47,7 @@ solution "ANL"
 		targetdir "../build/tolua"
 		language "C"
 		includedirs "ThirdParty/tolua-5.2/include"
-		includedirs("ThirdParty/lua-5.2.4/src")
+		includedirs(luapath.."src")
 		files {"ThirdParty/tolua-5.2/src/lib/*.h", "ThirdParty/tolua-5.2/src/lib/*.c"}
 	
 	project "ANLLib"
@@ -66,7 +71,7 @@ solution "ANL"
 		end
 		
 		includedirs "ThirdParty/tolua-5.2/include"
-		includedirs "ThirdParty/lua-5.2.4/src"
+		includedirs(luapath.."src")
 		
 		files {"Framework/*.cpp", "Bindings/bind_anl.cpp"}
 		links {"ANLLib", "tolua", "lua"}

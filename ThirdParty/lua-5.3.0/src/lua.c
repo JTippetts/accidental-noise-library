@@ -6,17 +6,19 @@
 
 #define lua_c
 
+#include "lprefix.h"
+
+
 #include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-extern "C"{
 #include "lua.h"
 
 #include "lauxlib.h"
 #include "lualib.h"
-}
+
 
 #if !defined(LUA_PROMPT)
 #define LUA_PROMPT		"> "
@@ -589,7 +591,7 @@ static int pmain (lua_State *L) {
   return 1;
 }
 
-int tolua_bind_anl_open (lua_State* tolua_S);
+
 int main (int argc, char **argv) {
   int status, result;
   lua_State *L = luaL_newstate();  /* create state */
@@ -597,9 +599,6 @@ int main (int argc, char **argv) {
     l_message(argv[0], "cannot create state: not enough memory");
     return EXIT_FAILURE;
   }
-  luaL_openlibs(L);
-  tolua_bind_anl_open(L);
-  
   lua_pushcfunction(L, &pmain);  /* to call 'pmain' in protected mode */
   lua_pushinteger(L, argc);  /* 1st argument */
   lua_pushlightuserdata(L, argv); /* 2nd argument */
