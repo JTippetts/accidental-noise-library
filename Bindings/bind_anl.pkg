@@ -8,6 +8,7 @@ $#include "../VM/random_gen.h"
 $#include "../Imaging/imaging.h"
 
 $using namespace anl;
+double highresTime();
 
 // Random generators
 
@@ -341,8 +342,11 @@ void mapRGBA2D(int seamlessmode, CArray2Drgba &a, CKernel &k, SMappingRanges ran
 void mapRGBA2DNoZ(int seamlessmode, CArray2Drgba &a, CKernel &k, SMappingRanges ranges, CInstructionIndex index);
 void mapRGBA3D(int seamlessmode, CArray3Drgba &a, CKernel &k, SMappingRanges ranges, CInstructionIndex index);
 
-void saveDoubleArray(std::string filename, CArray2Dd *array);
+void saveDoubleArray(const char *filename, CArray2Dd *array);
 void saveRGBAArray(std::string filename, CArray2Drgba *array); 
 void loadDoubleArray(std::string filename, CArray2Dd *array);
 void loadRGBAArray(std::string filename, CArray2Drgba *array);
 	
+	
+void map2DThread(int seamlessmode, CArray2Dd &a, CKernel &k, SMappingRanges ranges, double z);
+void map2DNoThread(int seamlessmode, CArray2Dd &a, CKernel &k, SMappingRanges ranges, double z);

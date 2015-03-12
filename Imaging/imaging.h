@@ -98,6 +98,12 @@ namespace anl
     void saveRGBAArray(std::string filename, TArray2D<anl::SRGBA> *array); 
 	void loadDoubleArray(std::string filename, TArray2D<double> *array);
 	void loadRGBAArray(std::string filename, TArray2D<anl::SRGBA> *array);
+	
+	void map2DThread(int seamlessmode, CArray2Dd &a, CKernel &k, SMappingRanges ranges, double z);
+	void map2DNoThread(int seamlessmode, CArray2Dd &a, CKernel &k, SMappingRanges ranges, double z);
+	
+	double highresTime();
 };
+
 
 #endif
