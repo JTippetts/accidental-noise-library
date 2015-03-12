@@ -1,4 +1,6 @@
 build
 tolua++.exe
+tolua.exe
 Framework.exe
 *.a
+ThirdParty/oolua/file_generator.exe

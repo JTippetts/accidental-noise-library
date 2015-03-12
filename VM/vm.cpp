@@ -770,7 +770,7 @@ namespace anl
 			case OP_ExtractRed:
 			{
 				SRGBA c=evaluateRGBA(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
-				cache[index].set(c.x());
+				cache[index].set(c.r);
 				evaluated[index]=true;
 				return;
 			} break;
@@ -778,7 +778,7 @@ namespace anl
 			case OP_ExtractGreen:
 			{
 				SRGBA c=evaluateRGBA(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
-				cache[index].set(c.y());
+				cache[index].set(c.g);
 				evaluated[index]=true;
 				return;
 			} break;
@@ -786,7 +786,7 @@ namespace anl
 			case OP_ExtractBlue:
 			{
 				SRGBA c=evaluateRGBA(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
-				cache[index].set(c.z());
+				cache[index].set(c.b);
 				evaluated[index]=true;
 				return;
 			} break;
@@ -794,7 +794,7 @@ namespace anl
 			case OP_ExtractAlpha:
 			{
 				SRGBA c=evaluateRGBA(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
-				cache[index].set(c.w());
+				cache[index].set(c.a);
 				evaluated[index]=true;
 				return;
 			} break;

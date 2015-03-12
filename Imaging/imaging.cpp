@@ -63,10 +63,10 @@ namespace anl
 			{
 				unsigned char *c=&data[y*width*4+x*4];
 				SRGBA color=array->get(x,y);
-				c[0]=(unsigned char)(color.x()*255.0);
-				c[1]=(unsigned char)(color.y()*255.0);
-				c[2]=(unsigned char)(color.z()*255.0);
-				c[3]=(unsigned char)(color.w()*255.0);
+				c[0]=(unsigned char)(color.r*255.0);
+				c[1]=(unsigned char)(color.g*255.0);
+				c[2]=(unsigned char)(color.b*255.0);
+				c[3]=(unsigned char)(color.a*255.0);
 			}
 		}
 

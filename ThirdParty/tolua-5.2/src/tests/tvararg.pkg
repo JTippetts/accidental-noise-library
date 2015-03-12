@@ -1,0 +1,17 @@
+$#include "tvararg.h"
+
+struct B
+{
+  static int n;
+  B();
+  ~B();
+};
+
+class A
+{
+  A();
+  double get (int i) ;
+  tolua_index bounce (tolua_index i, tolua_index *j, tolua_index* k=0);
+  double add (lua_State* L);
+  tolua_own B* GetB ();
+};

@@ -24,8 +24,8 @@ namespace anl
 		void set(double v)
 		{
 			outfloat_=v;
-			outrgba_[0]=outrgba_[1]=outrgba_[2]=v;
-			outrgba_[3]=1;
+			outrgba_.r=outrgba_.g=outrgba_.b=v;
+			outrgba_.a=1;
 		}
 
 		void set(SRGBA v)

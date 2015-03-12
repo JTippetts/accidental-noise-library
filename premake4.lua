@@ -1,13 +1,10 @@
 -- Accidental Noise Library
--- premake5.lua
-
--- Pull in oolua helper
-dofile("ThirdParty/oolua/helper4.lua")
+-- premake4.lua
 
 -- Set pat to lua library and headers
 -- Alternatively, specify on the command-line
-local lualib="C:/Users/Joshua/Documents/Projects/lua-5.1.4/src"
-local luaheader="C:/Users/Joshua/Documents/Projects/lua-5.1.4/src"
+local lualib="C:/Users/Joshua/Documents/Projects/lua-5.2.4/src"
+local luaheader="C:/Users/Joshua/Documents/Projects/lua-5.2.4/src"
 
 solution "ANL"
 	configurations {"Debug", "Release"}
@@ -24,42 +21,7 @@ solution "ANL"
 		
 	configuration {}
 	
-	project "oolua"
-		language 'C++'
-		kind "StaticLib"
-		includepaths = { "ThirdParty/oolua/include" }
-		objdir "../build/obj"
-		
-		configuration("Debug")
-			defines { "DEBUG", "_DEBUG" }
-			flags {"Symbols", "ExtraWarnings"}
-			targetdir "../build/bin/Debug"
-		
-		configuration("Release")
-			defines{ "NDEBUG", "RELEASE"}
-			flags {"Optimize", "ExtraWarnings"}
-			targetdir "../build/bin/Release"
-
-		configuration { 'Debug','StaticLib or SharedLib' }
-			targetsuffix '_d'
-
-		configure_for_os()
-		configuration {}
-		
-		if _ACTION=="gmake" then
-			buildoptions "-std=c++11"
-		end
-
-		files { "ThirdParty/oolua/include/*.h", "ThirdParty/oolua/src/*.cpp" }
-		includedirs 
-		{
-			"ThirdParty/oolua/include/lua/",
-			"ThirdParty/oolua/include/",
-		} 
-		includedirs(_OPTIONS["luaheader"] or luaheader)
-		libdirs(_OPTIONS["lualib"] or lualib)
-	
-	project "toluapp"
+	--[[project "toluapp"
 		kind "StaticLib"
 		location "../build/toluapp"
 		targetdir "../build/toluapp"
@@ -67,7 +29,17 @@ solution "ANL"
 		includedirs "ThirdParty/toluapp/include"
 		includedirs(_OPTIONS["luaheader"] or luaheader)
 		libdirs(_OPTIONS["lualib"] or lualib)
-		files {"ThirdParty/toluapp/src/lib/*.h", "ThirdParty/toluapp/src/lib/*.c"}
+		files {"ThirdParty/toluapp/src/lib/*.h", "ThirdParty/toluapp/src/lib/*.c"} ]]
+		
+		project "tolua"
+		kind "StaticLib"
+		location "../build/tolua"
+		targetdir "../build/tolua"
+		language "C"
+		includedirs "ThirdParty/tolua-5.2/include"
+		includedirs(_OPTIONS["luaheader"] or luaheader)
+		libdirs(_OPTIONS["lualib"] or lualib)
+		files {"ThirdParty/tolua-5.2/src/lib/*.h", "ThirdParty/tolua-5.2/src/lib/*.c"}
 	
 	project "ANLLib"
 		kind "StaticLib"
@@ -90,13 +62,13 @@ solution "ANL"
 		end
 		
 		includedirs(_OPTIONS["luaheader"] or luaheader)
-		includedirs "ThirdParty/toluapp/include"
+		includedirs "ThirdParty/tolua-5.2/include"
+		includedirs "ThirdParty/oolua/include"
 		libdirs(_OPTIONS["lualib"] or lualib)
 		
-		files {"Framework/*.cpp", "Bindings/*.cpp"}
-		links {"ANLLib", "toluapp", "oolua"}
-		
-		if _OPTIONS["usedynamic"] then links "lua51.dll" else links "lua" end
+		files {"Framework/*.cpp", "Bindings/bind_anl.cpp"}
+		links {"ANLLib", "tolua", "lua"}
+
 		
 		
 		
