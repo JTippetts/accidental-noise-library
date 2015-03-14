@@ -1,0 +1,3 @@
+# CImplicitSeamlessMapping #
+
+The CImplicitSeamlessMapping noise function implements the seamless mapping method, demonstrated in [CImplicitBufferImplicitAdapter](CImplicitBufferImplicitAdapter.md) in order to perform a seamless mapping of a source noise function in implicit space, rather than as a mapping-to-2D-buffer operation. The purpose of this function is so that one can use a seamless noise source in conjunction with other non-seamless functions.
