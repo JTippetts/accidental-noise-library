@@ -86,8 +86,8 @@ namespace anl
 
     };
 
-    void map2D(int seamlessmode, CArray2Dd &a, CKernel &k, SMappingRanges ranges, CInstructionIndex index, double z);
-    void map2DNoZ(int seamlessmode, CArray2Dd &a, CKernel &k, SMappingRanges ranges, CInstructionIndex index);
+    void map2D(int seamlessmode, CArray2Dd &a, CKernel &k, SMappingRanges ranges, double z);
+    void map2DNoZ(int seamlessmode, CArray2Dd &a, CKernel &k, SMappingRanges ranges);
     void map3D(int seamlessmode, CArray3Dd &a, CKernel &k, SMappingRanges ranges, CInstructionIndex index);
 
     void mapRGBA2D(int seamlessmode, CArray2Drgba &a, CKernel &k, SMappingRanges ranges, CInstructionIndex index, double z);
@@ -99,8 +99,8 @@ namespace anl
 	void loadDoubleArray(std::string filename, TArray2D<double> *array);
 	void loadRGBAArray(std::string filename, TArray2D<anl::SRGBA> *array);
 	
-	void map2DThread(int seamlessmode, CArray2Dd &a, CKernel &k, SMappingRanges ranges, double z);
-	void map2DNoThread(int seamlessmode, CArray2Dd &a, CKernel &k, SMappingRanges ranges, double z);
+	/*void map2DThread(int seamlessmode, CArray2Dd &a, CKernel &k, SMappingRanges ranges, double z);
+	void map2DNoThread(int seamlessmode, CArray2Dd &a, CKernel &k, SMappingRanges ranges, double z);*/
 	
 	double highresTime();
 };

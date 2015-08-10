@@ -4,12 +4,16 @@
 -- Path to Lua source
 -- 
 local luapath="ThirdParty/lua-5.3.0/"
--- local luapath="ThirdParty/lua-5.2.4/"  
+-- local luapath="ThirdParty/lua-5.2.4/" 
+
+local usethread=true 
 
 solution "ANL"
 	configurations {"Debug", "Release"}
 	--platforms {"x32", "x64"}
 	location "../build"
+	
+	if usethread then defines { "USETHREAD" } end
 	
 	configuration "Debug"
 		defines { "DEBUG" }
@@ -27,9 +31,8 @@ solution "ANL"
 		targetdir "../build/toluapp"
 		language "C"
 		includedirs "ThirdParty/toluapp/include"
-		includedirs(_OPTIONS["luaheader"] or luaheader)
-		libdirs(_OPTIONS["lualib"] or lualib)
-		files {"ThirdParty/toluapp/src/lib/*.h", "ThirdParty/toluapp/src/lib/*.c"} ]]
+		includedirs(luapath.."src")
+		files {"ThirdParty/toluapp/src/lib/*.h", "ThirdParty/toluapp/src/lib/*.c"}]]
 		
 	project "lua"
 		kind "StaticLib"
@@ -60,6 +63,16 @@ solution "ANL"
 		end
 		
 		files {"VM/*.h", "VM/*.cpp", "Imaging/*.h", "Imaging/*.cpp", "Imaging/*.c", "templates/*.h", "vectortypes.h"}
+		
+	project "toluaexe"
+		kind "ConsoleApp"
+		location "../build/Bin"
+		targetdir "../build/Bin"
+		language "C"
+		includedirs "ThirdParty/tolua-5.2/include"
+		includedirs(luapath.."src")
+		files {"ThirdParty/tolua-5.2/src/bin/*.h", "ThirdParty/tolua-5.2/src/bin/*.c"}
+		links {"tolua", "lua"}
 
 	project "Framework"
 		kind "ConsoleApp"

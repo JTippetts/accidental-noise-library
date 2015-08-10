@@ -67,7 +67,8 @@ unsigned char xor_fold_hash(unsigned int hash)
 // Long period hash
 unsigned int hash_coords_2(int x, int y, unsigned int seed)
 {
-	return (p241[(p241[(p241[x%241]+y)%241]+seed)%241]+
+	return (
+	p241[(p241[(p241[x%241]+y)%241]+seed)%241]+
 	p251[(p251[(p251[x%251]+y)%251]+seed)%251]+
 	p257[(p257[(p257[x%257]+y)%257]+seed)%257]+
 	p263[(p263[(p263[x%263]+y)%263]+seed)%263]);
