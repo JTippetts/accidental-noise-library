@@ -516,7 +516,8 @@ namespace anl
 			chunk.a=&arr[offsety*a.width()];
 			chunk.awidth=a.width();
 			chunk.aheight=a.height();
-			chunk.chunkheight=chunksize;
+			if(thread==threadcount-1) chunk.chunkheight=a.height()-(chunksize*(threadcount-1));
+			else chunk.chunkheight=chunksize;
 			chunk.chunkyoffset=offsety;
 			chunk.kernel=&k;
 			chunk.ranges=ranges;

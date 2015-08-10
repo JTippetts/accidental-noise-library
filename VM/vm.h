@@ -30,6 +30,14 @@ namespace anl
         {
 
         }
+		
+		SVMOutput(double v) : outfloat_(v), outrgba_(v,v,v,1)
+		{
+		}
+		
+		SVMOutput(const SVMOutput &rhs) : outfloat_(rhs.outfloat_), outrgba_(rhs.outrgba_)
+		{
+		}
 
 		void set(double v)
 		{
@@ -41,6 +49,13 @@ namespace anl
 		void set(SRGBA v)
 		{
 			outrgba_=v;
+		}
+		
+		
+		void set(SVMOutput rhs)
+		{
+			outfloat_=rhs.outfloat_;
+			outrgba_=rhs.outrgba_;
 		}
     };
 
@@ -59,6 +74,7 @@ namespace anl
     private:
         void evaluateInstruction(InstructionListType &kernel, EvaluatedType &evaluated, CoordCacheType &coordcache, CacheType &cache, unsigned int index, CCoordinate &coord);
         double evaluateParameter(InstructionListType &kernel, EvaluatedType &evaluated, CoordCacheType &coordcache, CacheType &cache, unsigned int index, CCoordinate &coord);
+		SVMOutput evaluateBoth(InstructionListType &kernel, EvaluatedType &evaluated, CoordCacheType &coordcache, CacheType &cache, unsigned int index, CCoordinate &coord);
 		SRGBA evaluateRGBA(InstructionListType &kernel, EvaluatedType &evaluated, CoordCacheType &coordcache, CacheType &cache, unsigned int index, CCoordinate &coord);
 		TileCoord calcHexPointTile(float px, float py);
 		CoordPair calcHexTileCenter(int tx, int ty);

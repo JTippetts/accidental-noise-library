@@ -119,6 +119,15 @@ namespace anl
         //return kernel[index].outfloat_;
         return cache[index].outrgba_;
     }
+	
+	SVMOutput CNoiseExecutor::evaluateBoth(InstructionListType &kernel, EvaluatedType &evaluated, CoordCacheType &coordcache, CacheType &cache, unsigned int index, CCoordinate &coord)
+    {
+        if(index>=kernel.size()) return SVMOutput(0);
+
+        evaluateInstruction(kernel, evaluated, coordcache, cache, index, coord);
+        //return kernel[index].outfloat_;
+        return cache[index];
+    }
 
     void CNoiseExecutor::evaluateInstruction(InstructionListType &kernel, EvaluatedType &evaluated, CoordCacheType &coordcache, CacheType &cache, unsigned int index, CCoordinate &coord)
     {
@@ -493,7 +502,7 @@ namespace anl
                     };
 
                     CCoordinate c=coord*scale;
-                    cache[index].set(evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[0], c));
+					cache[index].set(evaluateBoth(kernel, evaluated, coordcache,cache, i.sources_[0], c));
                     evaluated[index]=true;
                     return;
                     break;
@@ -503,7 +512,7 @@ namespace anl
                 double s=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
                 CCoordinate scale(s,1,1,1,1,1);
                 CCoordinate c=coord*scale;
-                cache[index].set(evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[0], c));
+                cache[index].set(evaluateBoth(kernel, evaluated, coordcache, cache,i.sources_[0], c));
                 evaluated[index]=true;
                 return;
             } break;
@@ -513,7 +522,7 @@ namespace anl
                 double s=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
                 CCoordinate scale(1,s,1,1,1,1);
                 CCoordinate c=coord*scale;
-                cache[index].set(evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[0], c));
+                cache[index].set(evaluateBoth(kernel, evaluated, coordcache,cache, i.sources_[0], c));
                 evaluated[index]=true;
                 return;
             } break;
@@ -523,7 +532,7 @@ namespace anl
                 double s=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[1], coord);
                 CCoordinate scale(1,1,s,1,1,1);
                 CCoordinate c=coord*scale;
-                cache[index].set(evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[0], c));
+                cache[index].set(evaluateBoth(kernel, evaluated, coordcache, cache,i.sources_[0], c));
                 evaluated[index]=true;
                 return;
             } break;
@@ -533,7 +542,7 @@ namespace anl
                 double s=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
                 CCoordinate scale(1,1,1,s,1,1);
                 CCoordinate c=coord*scale;
-                cache[index].set(evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[0], c));
+                cache[index].set(evaluateBoth(kernel, evaluated, coordcache,cache, i.sources_[0], c));
                 evaluated[index]=true;
                 return;
             } break;
@@ -543,7 +552,7 @@ namespace anl
                 double s=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[1], coord);
                 CCoordinate scale(1,1,1,1,s,1);
                 CCoordinate c=coord*scale;
-                cache[index].set(evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[0], c));
+                cache[index].set(evaluateBoth(kernel, evaluated, coordcache,cache, i.sources_[0], c));
                 evaluated[index]=true;
                 return;
             } break;
@@ -553,7 +562,7 @@ namespace anl
                 double s=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[1], coord);
                 CCoordinate scale(1,1,1,1,1,s);
                 CCoordinate c=coord*scale;
-                cache[index].set(evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[0], c));
+                cache[index].set(evaluateBoth(kernel, evaluated, coordcache,cache, i.sources_[0], c));
                 evaluated[index]=true;
                 return;
             } break;
@@ -563,7 +572,7 @@ namespace anl
                 double t=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
                 CCoordinate trans(t,0,0,0,0,0);
                 CCoordinate c=coord+trans;
-                cache[index].set(evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[0], c));
+                cache[index].set(evaluateBoth(kernel, evaluated, coordcache,cache, i.sources_[0], c));
                 evaluated[index]=true;
                 return;
             } break;
@@ -573,7 +582,7 @@ namespace anl
                 double t=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
                 CCoordinate trans(0,t,0,0,0,0);
                 CCoordinate c=coord+trans;
-                cache[index].set(evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[0], c));
+                cache[index].set(evaluateBoth(kernel, evaluated, coordcache, cache,i.sources_[0], c));
                 evaluated[index]=true;
                 return;
             } break;
@@ -583,7 +592,7 @@ namespace anl
                 double t=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
                 CCoordinate trans(0,0,t,0,0,0);
                 CCoordinate c=coord+trans;
-                cache[index].set(evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[0], c));
+                cache[index].set(evaluateBoth(kernel, evaluated, coordcache, cache,i.sources_[0], c));
                 evaluated[index]=true;
                 return;
             } break;
@@ -593,7 +602,7 @@ namespace anl
                 double t=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
                 CCoordinate trans(0,0,0,t,0,0);
                 CCoordinate c=coord+trans;
-                cache[index].set(evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[0], c));
+                cache[index].set(evaluateBoth(kernel, evaluated, coordcache, cache,i.sources_[0], c));
                 evaluated[index]=true;
                 return;
             } break;
@@ -603,7 +612,7 @@ namespace anl
                 double t=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
                 CCoordinate trans(0,0,0,0,t,0);
                 CCoordinate c=coord+trans;
-                cache[index].set(evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[0], c));
+                cache[index].set(evaluateBoth(kernel, evaluated, coordcache, cache,i.sources_[0], c));
                 evaluated[index]=true;
                 return;
             } break;
@@ -613,7 +622,7 @@ namespace anl
                 double t=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[1], coord);
                 CCoordinate trans(0,0,0,0,0,t);
                 CCoordinate c=coord+trans;
-                cache[index].set(evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[0], c));
+                cache[index].set(evaluateBoth(kernel, evaluated, coordcache, cache,i.sources_[0], c));
                 evaluated[index]=true;
                 return;
             } break;
@@ -662,7 +671,7 @@ namespace anl
                     };
 
                     CCoordinate c=coord+scale;
-                    cache[index].set(evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[0], c));
+                    cache[index].set(evaluateBoth(kernel, evaluated, coordcache,cache, i.sources_[0], c));
                     evaluated[index]=true;
                     return;
             } break;
@@ -701,7 +710,7 @@ namespace anl
                 nz = (rotmatrix[0][2]*coord.x_) + (rotmatrix[1][2]*coord.y_) + (rotmatrix[2][2]*coord.z_);
                 CCoordinate newcoord=CCoordinate(nx,ny,nz,coord.w_,coord.u_,coord.v_);
                 newcoord.dimension_=coord.dimension_;
-                cache[index].set(evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[0], newcoord));
+                cache[index].set(evaluateBoth(kernel, evaluated, coordcache,cache, i.sources_[0], newcoord));
                 evaluated[index]=true;
             } break;
             case OP_Blend:
