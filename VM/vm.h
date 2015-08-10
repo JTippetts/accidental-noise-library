@@ -9,6 +9,16 @@
 #include "../templates/tarray1.h"
 #include "../vectortypes.h"
 
+struct TileCoord
+{
+	unsigned int x,y;
+};
+
+struct CoordPair
+{
+	double x,y;
+};
+
 namespace anl
 {
     struct SVMOutput
@@ -50,6 +60,8 @@ namespace anl
         void evaluateInstruction(InstructionListType &kernel, EvaluatedType &evaluated, CoordCacheType &coordcache, CacheType &cache, unsigned int index, CCoordinate &coord);
         double evaluateParameter(InstructionListType &kernel, EvaluatedType &evaluated, CoordCacheType &coordcache, CacheType &cache, unsigned int index, CCoordinate &coord);
 		SRGBA evaluateRGBA(InstructionListType &kernel, EvaluatedType &evaluated, CoordCacheType &coordcache, CacheType &cache, unsigned int index, CCoordinate &coord);
+		TileCoord calcHexPointTile(float px, float py);
+		CoordPair calcHexTileCenter(int tx, int ty);
 
         InstructionListType *kernel_;
         EvaluatedType evaluated_;
