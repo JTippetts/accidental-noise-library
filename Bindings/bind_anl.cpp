@@ -29,33 +29,17 @@ using namespace anl;
 /* function to release collected object via destructor */
 #ifdef __cplusplus
 
-static int tolua_collect_CArray2Dd (lua_State* tolua_S)
-{
- CArray2Dd* self = (CArray2Dd*) tolua_tousertype(tolua_S,1,0);
- tolua_release(tolua_S,self);
- delete self;
- return 0;
-}
-
-static int tolua_collect_CArray3Drgba (lua_State* tolua_S)
-{
- CArray3Drgba* self = (CArray3Drgba*) tolua_tousertype(tolua_S,1,0);
- tolua_release(tolua_S,self);
- delete self;
- return 0;
-}
-
-static int tolua_collect_MWC256 (lua_State* tolua_S)
-{
- MWC256* self = (MWC256*) tolua_tousertype(tolua_S,1,0);
- tolua_release(tolua_S,self);
- delete self;
- return 0;
-}
-
 static int tolua_collect_LCG (lua_State* tolua_S)
 {
  LCG* self = (LCG*) tolua_tousertype(tolua_S,1,0);
+ tolua_release(tolua_S,self);
+ delete self;
+ return 0;
+}
+
+static int tolua_collect_SRGBA (lua_State* tolua_S)
+{
+ SRGBA* self = (SRGBA*) tolua_tousertype(tolua_S,1,0);
  tolua_release(tolua_S,self);
  delete self;
  return 0;
@@ -77,9 +61,9 @@ static int tolua_collect_KISS (lua_State* tolua_S)
  return 0;
 }
 
-static int tolua_collect_CKernel (lua_State* tolua_S)
+static int tolua_collect_CInstructionIndex (lua_State* tolua_S)
 {
- CKernel* self = (CKernel*) tolua_tousertype(tolua_S,1,0);
+ CInstructionIndex* self = (CInstructionIndex*) tolua_tousertype(tolua_S,1,0);
  tolua_release(tolua_S,self);
  delete self;
  return 0;
@@ -93,41 +77,9 @@ static int tolua_collect_SMappingRanges (lua_State* tolua_S)
  return 0;
 }
 
-static int tolua_collect_anl_SRGBA (lua_State* tolua_S)
+static int tolua_collect_MWC256 (lua_State* tolua_S)
 {
- anl::SRGBA* self = (anl::SRGBA*) tolua_tousertype(tolua_S,1,0);
- tolua_release(tolua_S,self);
- delete self;
- return 0;
-}
-
-static int tolua_collect_Xorshift (lua_State* tolua_S)
-{
- Xorshift* self = (Xorshift*) tolua_tousertype(tolua_S,1,0);
- tolua_release(tolua_S,self);
- delete self;
- return 0;
-}
-
-static int tolua_collect_CArray3Dd (lua_State* tolua_S)
-{
- CArray3Dd* self = (CArray3Dd*) tolua_tousertype(tolua_S,1,0);
- tolua_release(tolua_S,self);
- delete self;
- return 0;
-}
-
-static int tolua_collect_CMWC4096 (lua_State* tolua_S)
-{
- CMWC4096* self = (CMWC4096*) tolua_tousertype(tolua_S,1,0);
- tolua_release(tolua_S,self);
- delete self;
- return 0;
-}
-
-static int tolua_collect_SRGBA (lua_State* tolua_S)
-{
- SRGBA* self = (SRGBA*) tolua_tousertype(tolua_S,1,0);
+ MWC256* self = (MWC256*) tolua_tousertype(tolua_S,1,0);
  tolua_release(tolua_S,self);
  delete self;
  return 0;
@@ -149,9 +101,57 @@ static int tolua_collect_SVMOutput (lua_State* tolua_S)
  return 0;
 }
 
-static int tolua_collect_CInstructionIndex (lua_State* tolua_S)
+static int tolua_collect_CKernel (lua_State* tolua_S)
 {
- CInstructionIndex* self = (CInstructionIndex*) tolua_tousertype(tolua_S,1,0);
+ CKernel* self = (CKernel*) tolua_tousertype(tolua_S,1,0);
+ tolua_release(tolua_S,self);
+ delete self;
+ return 0;
+}
+
+static int tolua_collect_CArray3Dd (lua_State* tolua_S)
+{
+ CArray3Dd* self = (CArray3Dd*) tolua_tousertype(tolua_S,1,0);
+ tolua_release(tolua_S,self);
+ delete self;
+ return 0;
+}
+
+static int tolua_collect_CArray2Dd (lua_State* tolua_S)
+{
+ CArray2Dd* self = (CArray2Dd*) tolua_tousertype(tolua_S,1,0);
+ tolua_release(tolua_S,self);
+ delete self;
+ return 0;
+}
+
+static int tolua_collect_CArray3Drgba (lua_State* tolua_S)
+{
+ CArray3Drgba* self = (CArray3Drgba*) tolua_tousertype(tolua_S,1,0);
+ tolua_release(tolua_S,self);
+ delete self;
+ return 0;
+}
+
+static int tolua_collect_anl_SRGBA (lua_State* tolua_S)
+{
+ anl::SRGBA* self = (anl::SRGBA*) tolua_tousertype(tolua_S,1,0);
+ tolua_release(tolua_S,self);
+ delete self;
+ return 0;
+}
+
+static int tolua_collect_Xorshift (lua_State* tolua_S)
+{
+ Xorshift* self = (Xorshift*) tolua_tousertype(tolua_S,1,0);
+ tolua_release(tolua_S,self);
+ delete self;
+ return 0;
+}
+
+static int tolua_collect_CMWC4096 (lua_State* tolua_S)
+{
+ CMWC4096* self = (CMWC4096*) tolua_tousertype(tolua_S,1,0);
  tolua_release(tolua_S,self);
  delete self;
  return 0;
@@ -162,28 +162,28 @@ static int tolua_collect_CInstructionIndex (lua_State* tolua_S)
 /* function to register type */
 static void tolua_reg_types (lua_State* tolua_S)
 {
- tolua_usertype(tolua_S,"CInstructionListType");
- tolua_usertype(tolua_S,"CBasePRNG");
- tolua_usertype(tolua_S,"CKernel");
- tolua_usertype(tolua_S,"std::string");
- tolua_usertype(tolua_S,"SVMOutput");
- tolua_usertype(tolua_S,"CMWC4096");
- tolua_usertype(tolua_S,"CNoiseExecutor");
- tolua_usertype(tolua_S,"InstructionListType");
- tolua_usertype(tolua_S,"CArray2Dd");
- tolua_usertype(tolua_S,"MWC256");
- tolua_usertype(tolua_S,"CInstructionIndex");
- tolua_usertype(tolua_S,"CArray2Drgba");
- tolua_usertype(tolua_S,"CCoordinate");
- tolua_usertype(tolua_S,"SMappingRanges");
- tolua_usertype(tolua_S,"anl::SRGBA");
- tolua_usertype(tolua_S,"KISS");
- tolua_usertype(tolua_S,"CArray3Dd");
- tolua_usertype(tolua_S,"CArray3Drgba");
- tolua_usertype(tolua_S,"SRGBA");
  tolua_usertype(tolua_S,"LCG");
+ tolua_usertype(tolua_S,"CArray2Drgba");
+ tolua_usertype(tolua_S,"CNoiseExecutor");
+ tolua_usertype(tolua_S,"SMappingRanges");
+ tolua_usertype(tolua_S,"CCoordinate");
+ tolua_usertype(tolua_S,"SVMOutput");
+ tolua_usertype(tolua_S,"CArray3Drgba");
  tolua_usertype(tolua_S,"Xorshift");
+ tolua_usertype(tolua_S,"std::string");
+ tolua_usertype(tolua_S,"SRGBA");
+ tolua_usertype(tolua_S,"CKernel");
+ tolua_usertype(tolua_S,"InstructionListType");
+ tolua_usertype(tolua_S,"CBasePRNG");
+ tolua_usertype(tolua_S,"CInstructionListType");
+ tolua_usertype(tolua_S,"CArray3Dd");
+ tolua_usertype(tolua_S,"KISS");
  tolua_usertype(tolua_S,"anl::SMappingRanges");
+ tolua_usertype(tolua_S,"CArray2Dd");
+ tolua_usertype(tolua_S,"CInstructionIndex");
+ tolua_usertype(tolua_S,"anl::SRGBA");
+ tolua_usertype(tolua_S,"MWC256");
+ tolua_usertype(tolua_S,"CMWC4096");
 }
 
 /* function: highresTime */
@@ -7278,9 +7278,8 @@ static int tolua_bind_anl_mapRGBA2D00(lua_State* tolua_S)
  !tolua_isusertype(tolua_S,2,"CArray2Drgba",0,&tolua_err) || 
  !tolua_isusertype(tolua_S,3,"CKernel",0,&tolua_err) || 
  !tolua_isusertype(tolua_S,4,"SMappingRanges",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,5,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isnumber(tolua_S,6,0,&tolua_err) || 
- !tolua_isnoobj(tolua_S,7,&tolua_err)
+ !tolua_isnumber(tolua_S,5,0,&tolua_err) || 
+ !tolua_isnoobj(tolua_S,6,&tolua_err)
  )
  goto tolua_lerror;
  else
@@ -7290,10 +7289,9 @@ static int tolua_bind_anl_mapRGBA2D00(lua_State* tolua_S)
   CArray2Drgba* a = ((CArray2Drgba*)  tolua_tousertype(tolua_S,2,0));
   CKernel* k = ((CKernel*)  tolua_tousertype(tolua_S,3,0));
   SMappingRanges ranges = *((SMappingRanges*)  tolua_tousertype(tolua_S,4,0));
-  CInstructionIndex index = *((CInstructionIndex*)  tolua_tousertype(tolua_S,5,0));
-  double z = ((double)  tolua_tonumber(tolua_S,6,0));
+  double z = ((double)  tolua_tonumber(tolua_S,5,0));
  {
-  mapRGBA2D(seamlessmode,*a,*k,ranges,index,z);
+  mapRGBA2D(seamlessmode,*a,*k,ranges,z);
  }
  }
  return 0;
@@ -7314,8 +7312,7 @@ static int tolua_bind_anl_mapRGBA2DNoZ00(lua_State* tolua_S)
  !tolua_isusertype(tolua_S,2,"CArray2Drgba",0,&tolua_err) || 
  !tolua_isusertype(tolua_S,3,"CKernel",0,&tolua_err) || 
  !tolua_isusertype(tolua_S,4,"SMappingRanges",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,5,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isnoobj(tolua_S,6,&tolua_err)
+ !tolua_isnoobj(tolua_S,5,&tolua_err)
  )
  goto tolua_lerror;
  else
@@ -7325,9 +7322,8 @@ static int tolua_bind_anl_mapRGBA2DNoZ00(lua_State* tolua_S)
   CArray2Drgba* a = ((CArray2Drgba*)  tolua_tousertype(tolua_S,2,0));
   CKernel* k = ((CKernel*)  tolua_tousertype(tolua_S,3,0));
   SMappingRanges ranges = *((SMappingRanges*)  tolua_tousertype(tolua_S,4,0));
-  CInstructionIndex index = *((CInstructionIndex*)  tolua_tousertype(tolua_S,5,0));
  {
-  mapRGBA2DNoZ(seamlessmode,*a,*k,ranges,index);
+  mapRGBA2DNoZ(seamlessmode,*a,*k,ranges);
  }
  }
  return 0;

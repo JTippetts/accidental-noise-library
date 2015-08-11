@@ -35,6 +35,12 @@ namespace anl
 		{
 		}
 		
+		SVMOutput(double v, SRGBA rgba)
+		{
+			outfloat_=v;
+			outrgba_=rgba;
+		}
+		
 		SVMOutput(const SVMOutput &rhs) : outfloat_(rhs.outfloat_), outrgba_(rhs.outrgba_)
 		{
 		}
@@ -51,8 +57,33 @@ namespace anl
 			outrgba_=v;
 		}
 		
+		SVMOutput operator-(const SVMOutput &rhs) const
+		{
+			return SVMOutput(outfloat_-rhs.outfloat_, outrgba_-rhs.outrgba_);
+		}
 		
-		void set(SVMOutput rhs)
+		SVMOutput operator+(const SVMOutput &rhs) const
+		{
+			return SVMOutput(outfloat_+rhs.outfloat_, outrgba_+rhs.outrgba_);
+		}
+		
+		SVMOutput operator*(const SVMOutput &rhs) const
+		{
+			return SVMOutput(outfloat_*rhs.outfloat_, outrgba_*rhs.outrgba_);
+		}
+		
+		SVMOutput operator/(const SVMOutput &rhs) const
+		{
+			return SVMOutput(outfloat_/rhs.outfloat_, outrgba_/rhs.outrgba_);
+		}
+		
+		SVMOutput operator*(double rhs) const
+		{
+			return SVMOutput(outfloat_*rhs, outrgba_*rhs);
+		}
+		
+		
+		void set(const SVMOutput &rhs)
 		{
 			outfloat_=rhs.outfloat_;
 			outrgba_=rhs.outrgba_;

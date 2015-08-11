@@ -715,20 +715,22 @@ namespace anl
             } break;
             case OP_Blend:
             {
-                double low,high,control;
-                low=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[0], coord);
-                high=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[1], coord);
+                SVMOutput low,high;
+				double control;
+                low=evaluateBoth(kernel, evaluated, coordcache,cache, i.sources_[0], coord);
+                high=evaluateBoth(kernel, evaluated, coordcache,cache, i.sources_[1], coord);
                 control=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[2], coord);
-                cache[index].set(low+control*(high-low));
+                cache[index].set(low+(high-low)*control);
                 evaluated[index]=true;
                 return;
             } break;
             case OP_Select:
             {
                 evaluated[index]=true;
-                double low,high,control,threshold,falloff;
-                low=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
-                high=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
+                SVMOutput low,high;
+				double control,threshold,falloff;
+                low=evaluateBoth(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+                high=evaluateBoth(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
                 control=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[2],coord);
                 threshold=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[3],coord);
                 falloff=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[4],coord);
@@ -748,7 +750,8 @@ namespace anl
                         double lower=threshold-falloff;
                         double upper=threshold+falloff;
                         double blend=quintic_blend((control-lower)/(upper-lower));
-                        cache[index].set(lerp(blend,low,high));
+                        //cache[index].set(lerp(blend,low,high));
+						cache[index].set(low+(high-low)*blend);
                     }
                 }
                 else
