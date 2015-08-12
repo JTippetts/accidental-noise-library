@@ -802,6 +802,73 @@ namespace anl
                 evaluated[index]=true;
                 return;
             } break;
+			
+			case OP_DX:
+			{
+				double spacing=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
+				double val=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+				CCoordinate newcoord(coord.x_+spacing, coord.y_, coord.z_, coord.w_, coord.u_, coord.v_);
+				newcoord.dimension_=coord.dimension_;
+				double v1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],newcoord);
+				cache[index].set((val-v1)/spacing);
+				evaluated[index]=true;
+				return;
+			} break;
+			case OP_DY:
+			{
+				double spacing=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
+				double val=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+				CCoordinate newcoord(coord.x_, coord.y_+spacing, coord.z_, coord.w_, coord.u_, coord.v_);
+				newcoord.dimension_=coord.dimension_;
+				double v1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],newcoord);
+				cache[index].set((val-v1)/spacing);
+				evaluated[index]=true;
+				return;
+			} break;
+			case OP_DZ:
+			{
+				double spacing=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
+				double val=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+				CCoordinate newcoord(coord.x_, coord.y_, coord.z_+spacing, coord.w_, coord.u_, coord.v_);
+				newcoord.dimension_=coord.dimension_;
+				double v1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],newcoord);
+				cache[index].set((val-v1)/spacing);
+				evaluated[index]=true;
+				return;
+			} break;
+			case OP_DW:
+			{
+				double spacing=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
+				double val=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+				CCoordinate newcoord(coord.x_, coord.y_, coord.z_, coord.w_+spacing, coord.u_, coord.v_);
+				newcoord.dimension_=coord.dimension_;
+				double v1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],newcoord);
+				cache[index].set((val-v1)/spacing);
+				evaluated[index]=true;
+				return;
+			} break;
+			case OP_DU:
+			{
+				double spacing=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
+				double val=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+				CCoordinate newcoord(coord.x_, coord.y_, coord.z_, coord.w_, coord.u_+spacing, coord.v_);
+				newcoord.dimension_=coord.dimension_;
+				double v1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],newcoord);
+				cache[index].set((val-v1)/spacing);
+				evaluated[index]=true;
+				return;
+			} break;
+			case OP_DV:
+			{
+				double spacing=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
+				double val=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+				CCoordinate newcoord(coord.x_, coord.y_, coord.z_, coord.w_, coord.u_, coord.v_+spacing);
+				newcoord.dimension_=coord.dimension_;
+				double v1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],newcoord);
+				cache[index].set((val-v1)/spacing);
+				evaluated[index]=true;
+				return;
+			} break;
 
             case OP_Radial:
             {
@@ -856,6 +923,8 @@ namespace anl
 				evaluated[index]=true;
 				return;
 			} break;
+			
+			case OP_Color: evaluated[index]=true; cache[index].set(i.outrgba_); return; break;
 
 			case OP_ExtractRed:
 			{

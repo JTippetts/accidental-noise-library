@@ -79,14 +79,23 @@ namespace anl
         CInstructionIndex w();
         CInstructionIndex u();
         CInstructionIndex v();
+		
+		CInstructionIndex dx(CInstructionIndex src, CInstructionIndex spacing);
+		CInstructionIndex dy(CInstructionIndex src, CInstructionIndex spacing);
+		CInstructionIndex dz(CInstructionIndex src, CInstructionIndex spacing);
+		CInstructionIndex dw(CInstructionIndex src, CInstructionIndex spacing);
+		CInstructionIndex du(CInstructionIndex src, CInstructionIndex spacing);
+		CInstructionIndex dv(CInstructionIndex src, CInstructionIndex spacing);
 
 		CInstructionIndex radial();
 		
 		// Patterns
 		CInstructionIndex hexTile(unsigned int seed);
 		CInstructionIndex hexBump();
-
-
+		
+		CInstructionIndex color(SRGBA c);
+		CInstructionIndex color(float r, float g, float b, float a);
+		
 		CInstructionIndex combineRGBA(CInstructionIndex r, CInstructionIndex g, CInstructionIndex b, CInstructionIndex a);
 
         CInstructionIndex scaleOffset(CInstructionIndex src, double scale, double offset);

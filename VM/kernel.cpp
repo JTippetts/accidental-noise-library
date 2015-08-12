@@ -755,6 +755,67 @@ CInstructionIndex CKernel::v()
     return lastIndex();
 }
 
+CInstructionIndex CKernel::dx(CInstructionIndex src, CInstructionIndex spacing)
+{
+	anl::SInstruction i;
+	i.opcode_=anl::OP_DX;
+	i.sources_[0]=src.index_;
+	i.sources_[1]=spacing.index_;
+	kernel_.push_back(i);
+	return lastIndex();
+}
+
+CInstructionIndex CKernel::dy(CInstructionIndex src, CInstructionIndex spacing)
+{
+	anl::SInstruction i;
+	i.opcode_=anl::OP_DY;
+	i.sources_[0]=src.index_;
+	i.sources_[1]=spacing.index_;
+	kernel_.push_back(i);
+	return lastIndex();
+}
+
+CInstructionIndex CKernel::dz(CInstructionIndex src, CInstructionIndex spacing)
+{
+	anl::SInstruction i;
+	i.opcode_=anl::OP_DZ;
+	i.sources_[0]=src.index_;
+	i.sources_[1]=spacing.index_;
+	kernel_.push_back(i);
+	return lastIndex();
+}
+
+CInstructionIndex CKernel::dw(CInstructionIndex src, CInstructionIndex spacing)
+{
+	anl::SInstruction i;
+	i.opcode_=anl::OP_DW;
+	i.sources_[0]=src.index_;
+	i.sources_[1]=spacing.index_;
+	kernel_.push_back(i);
+	return lastIndex();
+}
+
+CInstructionIndex CKernel::du(CInstructionIndex src, CInstructionIndex spacing)
+{
+	anl::SInstruction i;
+	i.opcode_=anl::OP_DU;
+	i.sources_[0]=src.index_;
+	i.sources_[1]=spacing.index_;
+	kernel_.push_back(i);
+	return lastIndex();
+}
+
+CInstructionIndex CKernel::dv(CInstructionIndex src, CInstructionIndex spacing)
+{
+	anl::SInstruction i;
+	i.opcode_=anl::OP_DV;
+	i.sources_[0]=src.index_;
+	i.sources_[1]=spacing.index_;
+	kernel_.push_back(i);
+	return lastIndex();
+}
+
+
 CInstructionIndex CKernel::scaleOffset(CInstructionIndex src, double scale, double offset)
 {
     CInstructionIndex c=constant(scale);
@@ -781,6 +842,24 @@ CInstructionIndex CKernel::clamp(CInstructionIndex src, CInstructionIndex low, C
     i.sources_[2]=high.index_;
     kernel_.push_back(i);
     return lastIndex();
+}
+
+CInstructionIndex CKernel::color(SRGBA c)
+{
+	anl::SInstruction i;
+	i.opcode_=anl::OP_Color;
+	i.outrgba_=c;
+	kernel_.push_back(i);
+	return lastIndex();
+}
+
+CInstructionIndex CKernel::color(float r, float g, float b, float a)
+{
+	anl::SInstruction i;
+	i.opcode_=anl::OP_Color;
+	i.outrgba_=SRGBA(r,g,b,a);
+	kernel_.push_back(i);
+	return lastIndex();
 }
 
 CInstructionIndex CKernel::combineRGBA(CInstructionIndex r, CInstructionIndex g, CInstructionIndex b, CInstructionIndex a)

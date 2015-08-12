@@ -151,14 +151,22 @@ class CInstructionListType
         CInstructionIndex w();
         CInstructionIndex u();
         CInstructionIndex v();
+		
+		CInstructionIndex dx(CInstructionIndex src, CInstructionIndex spacing);
+		CInstructionIndex dy(CInstructionIndex src, CInstructionIndex spacing);
+		CInstructionIndex dz(CInstructionIndex src, CInstructionIndex spacing);
+		CInstructionIndex dw(CInstructionIndex src, CInstructionIndex spacing);
+		CInstructionIndex du(CInstructionIndex src, CInstructionIndex spacing);
+		CInstructionIndex dv(CInstructionIndex src, CInstructionIndex spacing);
 
 		CInstructionIndex radial();
 		
 		// Patterns
 		CInstructionIndex hexTile(unsigned int seed);
 		CInstructionIndex hexBump();
-
-
+		
+		CInstructionIndex color(SRGBA c);
+		CInstructionIndex color(float r, float g, float b, float a);
 		CInstructionIndex combineRGBA(CInstructionIndex r, CInstructionIndex g, CInstructionIndex b, CInstructionIndex a);
 
         CInstructionIndex scaleOffset(CInstructionIndex src, double scale, double offset);
@@ -347,9 +355,9 @@ void mapRGBA2DNoZ(int seamlessmode, CArray2Drgba &a, CKernel &k, SMappingRanges 
 void mapRGBA3D(int seamlessmode, CArray3Drgba &a, CKernel &k, SMappingRanges ranges, CInstructionIndex index);
 
 void saveDoubleArray(const char *filename, CArray2Dd *array);
-void saveRGBAArray(std::string filename, CArray2Drgba *array); 
-void loadDoubleArray(std::string filename, CArray2Dd *array);
-void loadRGBAArray(std::string filename, CArray2Drgba *array);
+void saveRGBAArray(const char *filename, CArray2Drgba *array); 
+void loadDoubleArray(const char *filename, CArray2Dd *array);
+void loadRGBAArray(const char *filename, CArray2Drgba *array);
 	
 	
 //void map2DThread(int seamlessmode, CArray2Dd &a, CKernel &k, SMappingRanges ranges, double z);

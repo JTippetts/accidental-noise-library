@@ -1,7 +1,7 @@
 #ifndef INSTRUCTION_H
 #define INSTRUCTION_H
 
-#include "types.h"
+#include "../vectortypes.h"
 #include <vector>
 
 const int MaxSourceCount=10;
@@ -61,11 +61,19 @@ namespace anl
         OP_U,
         OP_V,
 		
+		OP_DX,
+		OP_DY,
+		OP_DZ,
+		OP_DW,
+		OP_DU,
+		OP_DV,
+		
 		// Patterns
 		OP_HexTile,
 		OP_HexBump,
 
 		// RGBA operations
+		OP_Color,
 		OP_ExtractRed,
 		OP_ExtractGreen,
 		OP_ExtractBlue,
@@ -78,7 +86,7 @@ namespace anl
     {
         // Out fields
         double outfloat_;
-        RGBA outrgba_;
+        SRGBA outrgba_;
 
         // Source input indices
         unsigned int sources_[MaxSourceCount];
@@ -91,6 +99,7 @@ namespace anl
         {
             for(unsigned int c=0; c<MaxSourceCount; ++c) sources_[c]=1000000;
             outfloat_=0;
+			outrgba_=SRGBA(0,0,0,1);
             opcode_=0;
             seed_=12345;
         }
