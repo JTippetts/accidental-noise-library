@@ -86,6 +86,8 @@ namespace anl
 		CInstructionIndex dw(CInstructionIndex src, CInstructionIndex spacing);
 		CInstructionIndex du(CInstructionIndex src, CInstructionIndex spacing);
 		CInstructionIndex dv(CInstructionIndex src, CInstructionIndex spacing);
+		
+		CInstructionIndex sigmoid(CInstructionIndex src);
 
 		CInstructionIndex radial();
 		

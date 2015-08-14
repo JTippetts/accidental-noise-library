@@ -68,6 +68,8 @@ namespace anl
 		OP_DU,
 		OP_DV,
 		
+		OP_Sigmoid,
+		
 		// Patterns
 		OP_HexTile,
 		OP_HexBump,

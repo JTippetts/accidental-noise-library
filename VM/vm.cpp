@@ -869,6 +869,14 @@ namespace anl
 				evaluated[index]=true;
 				return;
 			} break;
+			
+			case OP_Sigmoid:
+			{
+				double s=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+				cache[index].set(1.0 / (1.0 + std::exp(-s)));
+				evaluated[index]=true;
+				return;
+			} break;
 
             case OP_Radial:
             {

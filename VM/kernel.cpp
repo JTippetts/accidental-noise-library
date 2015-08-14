@@ -804,7 +804,7 @@ CInstructionIndex CKernel::du(CInstructionIndex src, CInstructionIndex spacing)
 	kernel_.push_back(i);
 	return lastIndex();
 }
-
+//
 CInstructionIndex CKernel::dv(CInstructionIndex src, CInstructionIndex spacing)
 {
 	anl::SInstruction i;
@@ -815,6 +815,14 @@ CInstructionIndex CKernel::dv(CInstructionIndex src, CInstructionIndex spacing)
 	return lastIndex();
 }
 
+CInstructionIndex CKernel::sigmoid(CInstructionIndex src)
+{
+	anl::SInstruction i;
+	i.opcode_=anl::OP_Sigmoid;
+	i.sources_[0]=src.index_;
+	kernel_.push_back(i);
+	return lastIndex();
+}
 
 CInstructionIndex CKernel::scaleOffset(CInstructionIndex src, double scale, double offset)
 {
