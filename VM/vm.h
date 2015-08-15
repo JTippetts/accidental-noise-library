@@ -102,6 +102,16 @@ namespace anl
 
         SVMOutput evaluate(CCoordinate &coord);
         SVMOutput evaluateAt(CCoordinate &coord, CInstructionIndex index);
+		
+		double evaluateScalar(double x, double y);
+		double evaluateScalar(double x, double y, double z);
+		double evaluateScalar(double x, double y, double z, double w);
+		double evaluateScalar(double x, double y, double z, double w, double u, double v);
+		
+		SRGBA evaluateColor(double x, double y);
+		SRGBA evaluateColor(double x, double y, double z);
+		SRGBA evaluateColor(double x, double y, double z, double w);
+		SRGBA evaluateColor(double x, double y, double z, double w, double u, double v);
     private:
         void evaluateInstruction(InstructionListType &kernel, EvaluatedType &evaluated, CoordCacheType &coordcache, CacheType &cache, unsigned int index, CCoordinate &coord);
         double evaluateParameter(InstructionListType &kernel, EvaluatedType &evaluated, CoordCacheType &coordcache, CacheType &cache, unsigned int index, CCoordinate &coord);

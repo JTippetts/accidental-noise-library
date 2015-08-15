@@ -66,6 +66,56 @@ namespace anl
     CNoiseExecutor::CNoiseExecutor(CKernel *kernel) : kernel_(kernel->getKernel()), evaluated_(kernel->getKernel()->size(), false), coordcache_(kernel->getKernel()->size()), cache_(kernel->getKernel()->size())
     {
     }
+	
+	double CNoiseExecutor::evaluateScalar(double x, double y)
+	{
+		CCoordinate c(x,y);
+		return evaluate(c).outfloat_;
+	}
+	
+	double CNoiseExecutor::evaluateScalar(double x, double y, double z)
+	{
+		CCoordinate c(x,y,z);
+		return evaluate(c).outfloat_;
+	}
+	
+	double CNoiseExecutor::evaluateScalar(double x, double y, double z, double w)
+	{
+		CCoordinate c(x,y,z,w);
+		return evaluate(c).outfloat_;
+	}
+	
+	double CNoiseExecutor::evaluateScalar(double x, double y, double z, double w, double u, double v)
+	{
+		CCoordinate c(x,y,z,w,u,v);
+		return evaluate(c).outfloat_;
+	}
+	
+		
+	SRGBA CNoiseExecutor::evaluateColor(double x, double y)
+	{
+		CCoordinate c(x,y);
+		return evaluate(c).outrgba_;
+	}
+	
+	SRGBA CNoiseExecutor::evaluateColor(double x, double y, double z)
+	{
+		CCoordinate c(x,y);
+		return evaluate(c).outrgba_;
+	}
+	
+	SRGBA CNoiseExecutor::evaluateColor(double x, double y, double z, double w)
+	{
+		CCoordinate c(x,y);
+		return evaluate(c).outrgba_;
+	}
+	
+	SRGBA CNoiseExecutor::evaluateColor(double x, double y, double z, double w, double u, double v)
+	{
+		CCoordinate c(x,y);
+		return evaluate(c).outrgba_;
+	}
+	
 
     SVMOutput CNoiseExecutor::evaluate(CCoordinate &coord)
     {

@@ -29,89 +29,9 @@ using namespace anl;
 /* function to release collected object via destructor */
 #ifdef __cplusplus
 
-static int tolua_collect_CArray3Dd (lua_State* tolua_S)
-{
- CArray3Dd* self = (CArray3Dd*) tolua_tousertype(tolua_S,1,0);
- tolua_release(tolua_S,self);
- delete self;
- return 0;
-}
-
 static int tolua_collect_Xorshift (lua_State* tolua_S)
 {
  Xorshift* self = (Xorshift*) tolua_tousertype(tolua_S,1,0);
- tolua_release(tolua_S,self);
- delete self;
- return 0;
-}
-
-static int tolua_collect_CArray3Drgba (lua_State* tolua_S)
-{
- CArray3Drgba* self = (CArray3Drgba*) tolua_tousertype(tolua_S,1,0);
- tolua_release(tolua_S,self);
- delete self;
- return 0;
-}
-
-static int tolua_collect_anl_SRGBA (lua_State* tolua_S)
-{
- anl::SRGBA* self = (anl::SRGBA*) tolua_tousertype(tolua_S,1,0);
- tolua_release(tolua_S,self);
- delete self;
- return 0;
-}
-
-static int tolua_collect_CMWC4096 (lua_State* tolua_S)
-{
- CMWC4096* self = (CMWC4096*) tolua_tousertype(tolua_S,1,0);
- tolua_release(tolua_S,self);
- delete self;
- return 0;
-}
-
-static int tolua_collect_SRGBA (lua_State* tolua_S)
-{
- SRGBA* self = (SRGBA*) tolua_tousertype(tolua_S,1,0);
- tolua_release(tolua_S,self);
- delete self;
- return 0;
-}
-
-static int tolua_collect_CArray2Drgba (lua_State* tolua_S)
-{
- CArray2Drgba* self = (CArray2Drgba*) tolua_tousertype(tolua_S,1,0);
- tolua_release(tolua_S,self);
- delete self;
- return 0;
-}
-
-static int tolua_collect_MWC256 (lua_State* tolua_S)
-{
- MWC256* self = (MWC256*) tolua_tousertype(tolua_S,1,0);
- tolua_release(tolua_S,self);
- delete self;
- return 0;
-}
-
-static int tolua_collect_SMappingRanges (lua_State* tolua_S)
-{
- SMappingRanges* self = (SMappingRanges*) tolua_tousertype(tolua_S,1,0);
- tolua_release(tolua_S,self);
- delete self;
- return 0;
-}
-
-static int tolua_collect_LCG (lua_State* tolua_S)
-{
- LCG* self = (LCG*) tolua_tousertype(tolua_S,1,0);
- tolua_release(tolua_S,self);
- delete self;
- return 0;
-}
-
-static int tolua_collect_CKernel (lua_State* tolua_S)
-{
- CKernel* self = (CKernel*) tolua_tousertype(tolua_S,1,0);
  tolua_release(tolua_S,self);
  delete self;
  return 0;
@@ -133,9 +53,33 @@ static int tolua_collect_CNoiseExecutor (lua_State* tolua_S)
  return 0;
 }
 
-static int tolua_collect_SVMOutput (lua_State* tolua_S)
+static int tolua_collect_CArray3Drgba (lua_State* tolua_S)
 {
- SVMOutput* self = (SVMOutput*) tolua_tousertype(tolua_S,1,0);
+ CArray3Drgba* self = (CArray3Drgba*) tolua_tousertype(tolua_S,1,0);
+ tolua_release(tolua_S,self);
+ delete self;
+ return 0;
+}
+
+static int tolua_collect_KISS (lua_State* tolua_S)
+{
+ KISS* self = (KISS*) tolua_tousertype(tolua_S,1,0);
+ tolua_release(tolua_S,self);
+ delete self;
+ return 0;
+}
+
+static int tolua_collect_anl_SRGBA (lua_State* tolua_S)
+{
+ anl::SRGBA* self = (anl::SRGBA*) tolua_tousertype(tolua_S,1,0);
+ tolua_release(tolua_S,self);
+ delete self;
+ return 0;
+}
+
+static int tolua_collect_CArray3Dd (lua_State* tolua_S)
+{
+ CArray3Dd* self = (CArray3Dd*) tolua_tousertype(tolua_S,1,0);
  tolua_release(tolua_S,self);
  delete self;
  return 0;
@@ -149,9 +93,65 @@ static int tolua_collect_CInstructionIndex (lua_State* tolua_S)
  return 0;
 }
 
-static int tolua_collect_KISS (lua_State* tolua_S)
+static int tolua_collect_SMappingRanges (lua_State* tolua_S)
 {
- KISS* self = (KISS*) tolua_tousertype(tolua_S,1,0);
+ SMappingRanges* self = (SMappingRanges*) tolua_tousertype(tolua_S,1,0);
+ tolua_release(tolua_S,self);
+ delete self;
+ return 0;
+}
+
+static int tolua_collect_CArray2Drgba (lua_State* tolua_S)
+{
+ CArray2Drgba* self = (CArray2Drgba*) tolua_tousertype(tolua_S,1,0);
+ tolua_release(tolua_S,self);
+ delete self;
+ return 0;
+}
+
+static int tolua_collect_CMWC4096 (lua_State* tolua_S)
+{
+ CMWC4096* self = (CMWC4096*) tolua_tousertype(tolua_S,1,0);
+ tolua_release(tolua_S,self);
+ delete self;
+ return 0;
+}
+
+static int tolua_collect_LCG (lua_State* tolua_S)
+{
+ LCG* self = (LCG*) tolua_tousertype(tolua_S,1,0);
+ tolua_release(tolua_S,self);
+ delete self;
+ return 0;
+}
+
+static int tolua_collect_SVMOutput (lua_State* tolua_S)
+{
+ SVMOutput* self = (SVMOutput*) tolua_tousertype(tolua_S,1,0);
+ tolua_release(tolua_S,self);
+ delete self;
+ return 0;
+}
+
+static int tolua_collect_SRGBA (lua_State* tolua_S)
+{
+ SRGBA* self = (SRGBA*) tolua_tousertype(tolua_S,1,0);
+ tolua_release(tolua_S,self);
+ delete self;
+ return 0;
+}
+
+static int tolua_collect_CKernel (lua_State* tolua_S)
+{
+ CKernel* self = (CKernel*) tolua_tousertype(tolua_S,1,0);
+ tolua_release(tolua_S,self);
+ delete self;
+ return 0;
+}
+
+static int tolua_collect_MWC256 (lua_State* tolua_S)
+{
+ MWC256* self = (MWC256*) tolua_tousertype(tolua_S,1,0);
  tolua_release(tolua_S,self);
  delete self;
  return 0;
@@ -163,26 +163,26 @@ static int tolua_collect_KISS (lua_State* tolua_S)
 static void tolua_reg_types (lua_State* tolua_S)
 {
  tolua_usertype(tolua_S,"Xorshift");
- tolua_usertype(tolua_S,"InstructionListType");
+ tolua_usertype(tolua_S,"anl::SMappingRanges");
  tolua_usertype(tolua_S,"CInstructionListType");
- tolua_usertype(tolua_S,"MWC256");
  tolua_usertype(tolua_S,"KISS");
- tolua_usertype(tolua_S,"CArray3Dd");
+ tolua_usertype(tolua_S,"CInstructionIndex");
  tolua_usertype(tolua_S,"SMappingRanges");
+ tolua_usertype(tolua_S,"LCG");
+ tolua_usertype(tolua_S,"SVMOutput");
+ tolua_usertype(tolua_S,"MWC256");
+ tolua_usertype(tolua_S,"SRGBA");
+ tolua_usertype(tolua_S,"CArray2Dd");
+ tolua_usertype(tolua_S,"CNoiseExecutor");
+ tolua_usertype(tolua_S,"InstructionListType");
+ tolua_usertype(tolua_S,"CCoordinate");
+ tolua_usertype(tolua_S,"CBasePRNG");
  tolua_usertype(tolua_S,"anl::SRGBA");
  tolua_usertype(tolua_S,"CArray3Drgba");
- tolua_usertype(tolua_S,"CBasePRNG");
- tolua_usertype(tolua_S,"SRGBA");
+ tolua_usertype(tolua_S,"CArray3Dd");
  tolua_usertype(tolua_S,"CArray2Drgba");
- tolua_usertype(tolua_S,"CInstructionIndex");
- tolua_usertype(tolua_S,"CArray2Dd");
- tolua_usertype(tolua_S,"LCG");
- tolua_usertype(tolua_S,"CKernel");
- tolua_usertype(tolua_S,"anl::SMappingRanges");
- tolua_usertype(tolua_S,"CNoiseExecutor");
  tolua_usertype(tolua_S,"CMWC4096");
- tolua_usertype(tolua_S,"CCoordinate");
- tolua_usertype(tolua_S,"SVMOutput");
+ tolua_usertype(tolua_S,"CKernel");
 }
 
 /* function: highresTime */
@@ -5059,6 +5059,308 @@ static int tolua_bind_anl_CNoiseExecutor_evaluateAt00(lua_State* tolua_S)
 #endif
 }
 
+/* method: evaluateScalar of class  CNoiseExecutor */
+static int tolua_bind_anl_CNoiseExecutor_evaluateScalar00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+ !tolua_isusertype(tolua_S,1,"CNoiseExecutor",0,&tolua_err) || 
+ !tolua_isnumber(tolua_S,2,0,&tolua_err) || 
+ !tolua_isnumber(tolua_S,3,0,&tolua_err) || 
+ !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+ goto tolua_lerror;
+ else
+#endif
+ {
+  CNoiseExecutor* self = (CNoiseExecutor*)  tolua_tousertype(tolua_S,1,0);
+  double x = ((double)  tolua_tonumber(tolua_S,2,0));
+  double y = ((double)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+ if (!self) tolua_error(tolua_S,"invalid 'self' in function 'evaluateScalar'",NULL);
+#endif
+ {
+  double tolua_ret = (double)  self->evaluateScalar(x,y);
+ tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+ }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'evaluateScalar'.",&tolua_err);
+ return 0;
+#endif
+}
+
+/* method: evaluateScalar of class  CNoiseExecutor */
+static int tolua_bind_anl_CNoiseExecutor_evaluateScalar01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+ !tolua_isusertype(tolua_S,1,"CNoiseExecutor",0,&tolua_err) || 
+ !tolua_isnumber(tolua_S,2,0,&tolua_err) || 
+ !tolua_isnumber(tolua_S,3,0,&tolua_err) || 
+ !tolua_isnumber(tolua_S,4,0,&tolua_err) || 
+ !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+ goto tolua_lerror;
+ else
+ {
+  CNoiseExecutor* self = (CNoiseExecutor*)  tolua_tousertype(tolua_S,1,0);
+  double x = ((double)  tolua_tonumber(tolua_S,2,0));
+  double y = ((double)  tolua_tonumber(tolua_S,3,0));
+  double z = ((double)  tolua_tonumber(tolua_S,4,0));
+#ifndef TOLUA_RELEASE
+ if (!self) tolua_error(tolua_S,"invalid 'self' in function 'evaluateScalar'",NULL);
+#endif
+ {
+  double tolua_ret = (double)  self->evaluateScalar(x,y,z);
+ tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+ }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_bind_anl_CNoiseExecutor_evaluateScalar00(tolua_S);
+}
+
+/* method: evaluateScalar of class  CNoiseExecutor */
+static int tolua_bind_anl_CNoiseExecutor_evaluateScalar02(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+ !tolua_isusertype(tolua_S,1,"CNoiseExecutor",0,&tolua_err) || 
+ !tolua_isnumber(tolua_S,2,0,&tolua_err) || 
+ !tolua_isnumber(tolua_S,3,0,&tolua_err) || 
+ !tolua_isnumber(tolua_S,4,0,&tolua_err) || 
+ !tolua_isnumber(tolua_S,5,0,&tolua_err) || 
+ !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+ goto tolua_lerror;
+ else
+ {
+  CNoiseExecutor* self = (CNoiseExecutor*)  tolua_tousertype(tolua_S,1,0);
+  double x = ((double)  tolua_tonumber(tolua_S,2,0));
+  double y = ((double)  tolua_tonumber(tolua_S,3,0));
+  double z = ((double)  tolua_tonumber(tolua_S,4,0));
+  double w = ((double)  tolua_tonumber(tolua_S,5,0));
+#ifndef TOLUA_RELEASE
+ if (!self) tolua_error(tolua_S,"invalid 'self' in function 'evaluateScalar'",NULL);
+#endif
+ {
+  double tolua_ret = (double)  self->evaluateScalar(x,y,z,w);
+ tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+ }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_bind_anl_CNoiseExecutor_evaluateScalar01(tolua_S);
+}
+
+/* method: evaluateScalar of class  CNoiseExecutor */
+static int tolua_bind_anl_CNoiseExecutor_evaluateScalar03(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+ !tolua_isusertype(tolua_S,1,"CNoiseExecutor",0,&tolua_err) || 
+ !tolua_isnumber(tolua_S,2,0,&tolua_err) || 
+ !tolua_isnumber(tolua_S,3,0,&tolua_err) || 
+ !tolua_isnumber(tolua_S,4,0,&tolua_err) || 
+ !tolua_isnumber(tolua_S,5,0,&tolua_err) || 
+ !tolua_isnumber(tolua_S,6,0,&tolua_err) || 
+ !tolua_isnumber(tolua_S,7,0,&tolua_err) || 
+ !tolua_isnoobj(tolua_S,8,&tolua_err)
+ )
+ goto tolua_lerror;
+ else
+ {
+  CNoiseExecutor* self = (CNoiseExecutor*)  tolua_tousertype(tolua_S,1,0);
+  double x = ((double)  tolua_tonumber(tolua_S,2,0));
+  double y = ((double)  tolua_tonumber(tolua_S,3,0));
+  double z = ((double)  tolua_tonumber(tolua_S,4,0));
+  double w = ((double)  tolua_tonumber(tolua_S,5,0));
+  double u = ((double)  tolua_tonumber(tolua_S,6,0));
+  double v = ((double)  tolua_tonumber(tolua_S,7,0));
+#ifndef TOLUA_RELEASE
+ if (!self) tolua_error(tolua_S,"invalid 'self' in function 'evaluateScalar'",NULL);
+#endif
+ {
+  double tolua_ret = (double)  self->evaluateScalar(x,y,z,w,u,v);
+ tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+ }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_bind_anl_CNoiseExecutor_evaluateScalar02(tolua_S);
+}
+
+/* method: evaluateColor of class  CNoiseExecutor */
+static int tolua_bind_anl_CNoiseExecutor_evaluateColor00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+ !tolua_isusertype(tolua_S,1,"CNoiseExecutor",0,&tolua_err) || 
+ !tolua_isnumber(tolua_S,2,0,&tolua_err) || 
+ !tolua_isnumber(tolua_S,3,0,&tolua_err) || 
+ !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+ goto tolua_lerror;
+ else
+#endif
+ {
+  CNoiseExecutor* self = (CNoiseExecutor*)  tolua_tousertype(tolua_S,1,0);
+  double x = ((double)  tolua_tonumber(tolua_S,2,0));
+  double y = ((double)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+ if (!self) tolua_error(tolua_S,"invalid 'self' in function 'evaluateColor'",NULL);
+#endif
+ {
+  SRGBA tolua_ret =  self->evaluateColor(x,y);
+ {
+#ifdef __cplusplus
+ void* tolua_obj = new SRGBA(tolua_ret);
+ tolua_pushusertype(tolua_S,tolua_clone(tolua_S,tolua_obj,tolua_collect_SRGBA),"SRGBA");
+#else
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(SRGBA));
+ tolua_pushusertype(tolua_S,tolua_clone(tolua_S,tolua_obj,NULL),"SRGBA");
+#endif
+ }
+ }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'evaluateColor'.",&tolua_err);
+ return 0;
+#endif
+}
+
+/* method: evaluateColor of class  CNoiseExecutor */
+static int tolua_bind_anl_CNoiseExecutor_evaluateColor01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+ !tolua_isusertype(tolua_S,1,"CNoiseExecutor",0,&tolua_err) || 
+ !tolua_isnumber(tolua_S,2,0,&tolua_err) || 
+ !tolua_isnumber(tolua_S,3,0,&tolua_err) || 
+ !tolua_isnumber(tolua_S,4,0,&tolua_err) || 
+ !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+ goto tolua_lerror;
+ else
+ {
+  CNoiseExecutor* self = (CNoiseExecutor*)  tolua_tousertype(tolua_S,1,0);
+  double x = ((double)  tolua_tonumber(tolua_S,2,0));
+  double y = ((double)  tolua_tonumber(tolua_S,3,0));
+  double z = ((double)  tolua_tonumber(tolua_S,4,0));
+#ifndef TOLUA_RELEASE
+ if (!self) tolua_error(tolua_S,"invalid 'self' in function 'evaluateColor'",NULL);
+#endif
+ {
+  SRGBA tolua_ret =  self->evaluateColor(x,y,z);
+ {
+#ifdef __cplusplus
+ void* tolua_obj = new SRGBA(tolua_ret);
+ tolua_pushusertype(tolua_S,tolua_clone(tolua_S,tolua_obj,tolua_collect_SRGBA),"SRGBA");
+#else
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(SRGBA));
+ tolua_pushusertype(tolua_S,tolua_clone(tolua_S,tolua_obj,NULL),"SRGBA");
+#endif
+ }
+ }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_bind_anl_CNoiseExecutor_evaluateColor00(tolua_S);
+}
+
+/* method: evaluateColor of class  CNoiseExecutor */
+static int tolua_bind_anl_CNoiseExecutor_evaluateColor02(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+ !tolua_isusertype(tolua_S,1,"CNoiseExecutor",0,&tolua_err) || 
+ !tolua_isnumber(tolua_S,2,0,&tolua_err) || 
+ !tolua_isnumber(tolua_S,3,0,&tolua_err) || 
+ !tolua_isnumber(tolua_S,4,0,&tolua_err) || 
+ !tolua_isnumber(tolua_S,5,0,&tolua_err) || 
+ !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+ goto tolua_lerror;
+ else
+ {
+  CNoiseExecutor* self = (CNoiseExecutor*)  tolua_tousertype(tolua_S,1,0);
+  double x = ((double)  tolua_tonumber(tolua_S,2,0));
+  double y = ((double)  tolua_tonumber(tolua_S,3,0));
+  double z = ((double)  tolua_tonumber(tolua_S,4,0));
+  double w = ((double)  tolua_tonumber(tolua_S,5,0));
+#ifndef TOLUA_RELEASE
+ if (!self) tolua_error(tolua_S,"invalid 'self' in function 'evaluateColor'",NULL);
+#endif
+ {
+  SRGBA tolua_ret =  self->evaluateColor(x,y,z,w);
+ {
+#ifdef __cplusplus
+ void* tolua_obj = new SRGBA(tolua_ret);
+ tolua_pushusertype(tolua_S,tolua_clone(tolua_S,tolua_obj,tolua_collect_SRGBA),"SRGBA");
+#else
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(SRGBA));
+ tolua_pushusertype(tolua_S,tolua_clone(tolua_S,tolua_obj,NULL),"SRGBA");
+#endif
+ }
+ }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_bind_anl_CNoiseExecutor_evaluateColor01(tolua_S);
+}
+
+/* method: evaluateColor of class  CNoiseExecutor */
+static int tolua_bind_anl_CNoiseExecutor_evaluateColor03(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+ !tolua_isusertype(tolua_S,1,"CNoiseExecutor",0,&tolua_err) || 
+ !tolua_isnumber(tolua_S,2,0,&tolua_err) || 
+ !tolua_isnumber(tolua_S,3,0,&tolua_err) || 
+ !tolua_isnumber(tolua_S,4,0,&tolua_err) || 
+ !tolua_isnumber(tolua_S,5,0,&tolua_err) || 
+ !tolua_isnumber(tolua_S,6,0,&tolua_err) || 
+ !tolua_isnumber(tolua_S,7,0,&tolua_err) || 
+ !tolua_isnoobj(tolua_S,8,&tolua_err)
+ )
+ goto tolua_lerror;
+ else
+ {
+  CNoiseExecutor* self = (CNoiseExecutor*)  tolua_tousertype(tolua_S,1,0);
+  double x = ((double)  tolua_tonumber(tolua_S,2,0));
+  double y = ((double)  tolua_tonumber(tolua_S,3,0));
+  double z = ((double)  tolua_tonumber(tolua_S,4,0));
+  double w = ((double)  tolua_tonumber(tolua_S,5,0));
+  double u = ((double)  tolua_tonumber(tolua_S,6,0));
+  double v = ((double)  tolua_tonumber(tolua_S,7,0));
+#ifndef TOLUA_RELEASE
+ if (!self) tolua_error(tolua_S,"invalid 'self' in function 'evaluateColor'",NULL);
+#endif
+ {
+  SRGBA tolua_ret =  self->evaluateColor(x,y,z,w,u,v);
+ {
+#ifdef __cplusplus
+ void* tolua_obj = new SRGBA(tolua_ret);
+ tolua_pushusertype(tolua_S,tolua_clone(tolua_S,tolua_obj,tolua_collect_SRGBA),"SRGBA");
+#else
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(SRGBA));
+ tolua_pushusertype(tolua_S,tolua_clone(tolua_S,tolua_obj,NULL),"SRGBA");
+#endif
+ }
+ }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_bind_anl_CNoiseExecutor_evaluateColor02(tolua_S);
+}
+
 /* method: new of class  SMappingRanges */
 static int tolua_bind_anl_SMappingRanges_new00(lua_State* tolua_S)
 {
@@ -8343,6 +8645,14 @@ LUALIB_API int luaopen_bind_anl (lua_State* tolua_S)
  tolua_function(tolua_S,"delete",tolua_bind_anl_CNoiseExecutor_delete00);
  tolua_function(tolua_S,"evaluate",tolua_bind_anl_CNoiseExecutor_evaluate00);
  tolua_function(tolua_S,"evaluateAt",tolua_bind_anl_CNoiseExecutor_evaluateAt00);
+ tolua_function(tolua_S,"evaluateScalar",tolua_bind_anl_CNoiseExecutor_evaluateScalar00);
+ tolua_function(tolua_S,"evaluateScalar",tolua_bind_anl_CNoiseExecutor_evaluateScalar01);
+ tolua_function(tolua_S,"evaluateScalar",tolua_bind_anl_CNoiseExecutor_evaluateScalar02);
+ tolua_function(tolua_S,"evaluateScalar",tolua_bind_anl_CNoiseExecutor_evaluateScalar03);
+ tolua_function(tolua_S,"evaluateColor",tolua_bind_anl_CNoiseExecutor_evaluateColor00);
+ tolua_function(tolua_S,"evaluateColor",tolua_bind_anl_CNoiseExecutor_evaluateColor01);
+ tolua_function(tolua_S,"evaluateColor",tolua_bind_anl_CNoiseExecutor_evaluateColor02);
+ tolua_function(tolua_S,"evaluateColor",tolua_bind_anl_CNoiseExecutor_evaluateColor03);
  tolua_endmodule(tolua_S);
  tolua_constant(tolua_S,"SEAMLESS_NONE",SEAMLESS_NONE);
  tolua_constant(tolua_S,"SEAMLESS_X",SEAMLESS_X);
