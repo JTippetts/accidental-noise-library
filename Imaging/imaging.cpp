@@ -140,7 +140,10 @@ namespace anl
 		int chunkheight, chunkyoffset;
 		CKernel *kernel;
 		SMappingRanges ranges;
+		CInstructionIndex at;
 		double z;
+		
+		SChunk(CInstructionIndex a) : at(a) {}
 	};
 	
 	void map2DChunk(SChunk chunk)
@@ -169,7 +172,7 @@ namespace anl
                         ny=ranges.mapy0 + q*(ranges.mapy1-ranges.mapy0);
                         nz=z;
 						CCoordinate coord(nx,ny,nz);
-                        val=m.evaluate(coord).outfloat_;
+                        val=m.evaluateAt(coord,chunk.at).outfloat_;
                     } break;
                     case SEAMLESS_X:
                     {
@@ -181,7 +184,7 @@ namespace anl
                         nz=ranges.mapy0 + q*dy;
                         nw=z;
                         CCoordinate coord(nx,ny,nz,nw);
-                        val=m.evaluate(coord).outfloat_;
+                        val=m.evaluateAt(coord,chunk.at).outfloat_;
                     } break;
                     case SEAMLESS_Y:
                     {
@@ -193,7 +196,7 @@ namespace anl
                         nz=ranges.loopy0 + sin(q*pi2) * dy/pi2;
                         nw=z;
                         CCoordinate coord(nx,ny,nz,nw);
-                        val=m.evaluate(coord).outfloat_;
+                        val=m.evaluateAt(coord,chunk.at).outfloat_;
                     } break;
                     case SEAMLESS_Z:
                     {
@@ -207,7 +210,7 @@ namespace anl
                         nz=ranges.loopz0 + cos(zval*pi2) * dz/pi2;
                         nw=ranges.loopz0 + sin(zval*pi2) * dz/pi2;
                         CCoordinate coord(nx,ny,nz,nw);
-                        val=m.evaluate(coord).outfloat_;
+                        val=m.evaluateAt(coord,chunk.at).outfloat_;
                     } break;
                     case SEAMLESS_XY:
                     {
@@ -221,7 +224,7 @@ namespace anl
                         nw=ranges.loopy0 + sin(q*pi2) * dy/pi2;
                         nu=z;
 						CCoordinate coord(nx,ny,nz,nw,nu,0);
-                        val=m.evaluate(coord).outfloat_;
+                        val=m.evaluateAt(coord,chunk.at).outfloat_;
            
                     } break;
                     case SEAMLESS_XZ:
@@ -238,7 +241,7 @@ namespace anl
                         nw=ranges.loopz0 + cos(zval*pi2)*dz/pi2;
                         nu=ranges.loopz0 + sin(zval*pi2)*dz/pi2;
                         CCoordinate coord(nx,ny,nz,nw,nu,0);
-                        val=m.evaluate(coord).outfloat_;
+                        val=m.evaluateAt(coord,chunk.at).outfloat_;
                     } break;
                     case SEAMLESS_YZ:
                     {
@@ -254,7 +257,7 @@ namespace anl
                         nw=ranges.loopz0 + cos(zval*pi2) * dz/pi2;
                         nu=ranges.loopz0 + sin(zval*pi2) * dz/pi2;
                         CCoordinate coord(nx,ny,nz,nw,nu,0);
-                        val=m.evaluate(coord).outfloat_;
+                        val=m.evaluateAt(coord,chunk.at).outfloat_;
                     } break;
                     case SEAMLESS_XYZ:
                     {
@@ -272,7 +275,7 @@ namespace anl
                         nu=ranges.loopz0 + cos(zval*pi2)*dz/pi2;
                         nv=ranges.loopz0 + sin(zval*pi2)*dz/pi2;
                         CCoordinate coord(nx,ny,nz,nw,nu,nv);
-                        val=m.evaluate(coord).outfloat_;
+                        val=m.evaluateAt(coord,chunk.at).outfloat_;
                     } break;
 
                     default: break;
@@ -309,7 +312,7 @@ namespace anl
                         ny=ranges.mapy0 + q*(ranges.mapy1-ranges.mapy0);
                         nz=z;
 						CCoordinate coord(nx,ny);
-                        val=m.evaluate(coord).outfloat_;
+                        val=m.evaluateAt(coord,chunk.at).outfloat_;
                     } break;
                     case SEAMLESS_X:
                     {
@@ -321,7 +324,7 @@ namespace anl
                         nz=ranges.mapy0 + q*dy;
                       
                         CCoordinate coord(nx,ny,nz);
-                        val=m.evaluate(coord).outfloat_;
+                        val=m.evaluateAt(coord,chunk.at).outfloat_;
                     } break;
                     case SEAMLESS_Y:
                     {
@@ -332,7 +335,7 @@ namespace anl
                         ny=ranges.loopy0 + cos(q*pi2) * dy/pi2;
                         nz=ranges.loopy0 + sin(q*pi2) * dy/pi2;
                         CCoordinate coord(nx,ny,nz);
-                        val=m.evaluate(coord).outfloat_;
+                        val=m.evaluateAt(coord,chunk.at).outfloat_;
                     } break;
                     case SEAMLESS_Z:
                     {
@@ -346,7 +349,7 @@ namespace anl
                         nz=ranges.loopz0 + cos(zval*pi2) * dz/pi2;
                         nw=ranges.loopz0 + sin(zval*pi2) * dz/pi2;
                         CCoordinate coord(nx,ny,nz,nw);
-                        val=m.evaluate(coord).outfloat_;
+                        val=m.evaluateAt(coord,chunk.at).outfloat_;
                     } break;
                     case SEAMLESS_XY:
                     {
@@ -359,7 +362,7 @@ namespace anl
                         nz=ranges.loopy0 + cos(q*pi2) * dy/pi2;
                         nw=ranges.loopy0 + sin(q*pi2) * dy/pi2;
                         CCoordinate coord(nx,ny,nz,nw);
-                        val=m.evaluate(coord).outfloat_;
+                        val=m.evaluateAt(coord,chunk.at).outfloat_;
            
                     } break;
                     case SEAMLESS_XZ:
@@ -376,7 +379,7 @@ namespace anl
                         nw=ranges.loopz0 + cos(zval*pi2)*dz/pi2;
                         nu=ranges.loopz0 + sin(zval*pi2)*dz/pi2;
                         CCoordinate coord(nx,ny,nz,nw,nu,0);
-                        val=m.evaluate(coord).outfloat_;
+                        val=m.evaluateAt(coord,chunk.at).outfloat_;
                     } break;
                     case SEAMLESS_YZ:
                     {
@@ -392,7 +395,7 @@ namespace anl
                         nw=ranges.loopz0 + cos(zval*pi2) * dz/pi2;
                         nu=ranges.loopz0 + sin(zval*pi2) * dz/pi2;
                         CCoordinate coord(nx,ny,nz,nw,nu,0);
-                        val=m.evaluate(coord).outfloat_;
+                        val=m.evaluateAt(coord,chunk.at).outfloat_;
                     } break;
                     case SEAMLESS_XYZ:
                     {
@@ -410,7 +413,7 @@ namespace anl
                         nu=ranges.loopz0 + cos(zval*pi2)*dz/pi2;
                         nv=ranges.loopz0 + sin(zval*pi2)*dz/pi2;
                         CCoordinate coord(nx,ny,nz,nw,nu,nv);
-                        val=m.evaluate(coord).outfloat_;
+                        val=m.evaluateAt(coord,chunk.at).outfloat_;
                     } break;
 
                     default: break;
@@ -429,10 +432,10 @@ namespace anl
 		return (double)d.count() * (double)high_resolution_clock::period::num / (double)high_resolution_clock::period::den;
 	}
 	
-	void map2D(int seamlessmode, CArray2Dd &a, CKernel &k, SMappingRanges ranges, double z)
+	void map2D(int seamlessmode, CArray2Dd &a, CKernel &k, SMappingRanges ranges, double z, CInstructionIndex at)
    {
 	#ifndef USETHREAD
-		SChunk chunk;
+		SChunk chunk(at);
 		chunk.seamlessmode=seamlessmode;
 		chunk.a=a.getData();
 		chunk.awidth=a.width();
@@ -456,7 +459,7 @@ namespace anl
 		
 		for(unsigned int thread=0; thread<threadcount; ++thread)
 		{
-			SChunk chunk;
+			SChunk chunk(at);
 			chunk.seamlessmode=seamlessmode;
 			double *arr=a.getData();
 			int offsety=thread*chunksize;
@@ -482,10 +485,10 @@ namespace anl
 	#endif
    }
 
-   void map2DNoZ(int seamlessmode, CArray2Dd &a, CKernel &k, SMappingRanges ranges)
+   void map2DNoZ(int seamlessmode, CArray2Dd &a, CKernel &k, SMappingRanges ranges, CInstructionIndex at)
    {
     #ifndef USETHREAD
-		SChunk chunk;
+		SChunk chunk(at);
 		chunk.seamlessmode=seamlessmode;
 		chunk.a=a.getData();
 		chunk.awidth=a.width();
@@ -509,7 +512,7 @@ namespace anl
 		
 		for(unsigned int thread=0; thread<threadcount; ++thread)
 		{
-			SChunk chunk;
+			SChunk chunk(at);
 			chunk.seamlessmode=seamlessmode;
 			double *arr=a.getData();
 			int offsety=thread*chunksize;
@@ -690,6 +693,9 @@ namespace anl
 		CKernel *kernel;
 		SMappingRanges ranges;
 		double z;
+		CInstructionIndex at;
+		
+		SRGBAChunk(CInstructionIndex a) : at(a){}
 	};
 	
 	void mapRGBA2DChunk(SRGBAChunk chunk)
@@ -719,7 +725,7 @@ namespace anl
                         ny=ranges.mapy0 + q*(ranges.mapy1-ranges.mapy0);
                         nz=z;
 						CCoordinate coord(nx,ny,nz);
-                        val=m.evaluate(coord).outrgba_;
+                        val=m.evaluateAt(coord,chunk.at).outrgba_;
                     } break;
                     case SEAMLESS_X:
                     {
@@ -731,7 +737,7 @@ namespace anl
                         nz=ranges.mapy0 + q*dy;
                         nw=z;
                         CCoordinate coord(nx,ny,nz,nw);
-                        val=m.evaluate(coord).outrgba_;
+                        val=m.evaluateAt(coord,chunk.at).outrgba_;
                     } break;
                     case SEAMLESS_Y:
                     {
@@ -743,7 +749,7 @@ namespace anl
                         nz=ranges.loopy0 + sin(q*pi2) * dy/pi2;
                         nw=z;
                         CCoordinate coord(nx,ny,nz,nw);
-                        val=m.evaluate(coord).outrgba_;
+                        val=m.evaluateAt(coord,chunk.at).outrgba_;
                     } break;
                     case SEAMLESS_Z:
                     {
@@ -757,7 +763,7 @@ namespace anl
                         nz=ranges.loopz0 + cos(zval*pi2) * dz/pi2;
                         nw=ranges.loopz0 + sin(zval*pi2) * dz/pi2;
                         CCoordinate coord(nx,ny,nz,nw);
-                        val=m.evaluate(coord).outrgba_;
+                        val=m.evaluateAt(coord,chunk.at).outrgba_;
                     } break;
                     case SEAMLESS_XY:
                     {
@@ -771,7 +777,7 @@ namespace anl
                         nw=ranges.loopy0 + sin(q*pi2) * dy/pi2;
                         nu=z;
 						CCoordinate coord(nx,ny,nz,nw,nu,0);
-                        val=m.evaluate(coord).outrgba_;
+                        val=m.evaluateAt(coord,chunk.at).outrgba_;
            
                     } break;
                     case SEAMLESS_XZ:
@@ -788,7 +794,7 @@ namespace anl
                         nw=ranges.loopz0 + cos(zval*pi2)*dz/pi2;
                         nu=ranges.loopz0 + sin(zval*pi2)*dz/pi2;
                         CCoordinate coord(nx,ny,nz,nw,nu,0);
-                        val=m.evaluate(coord).outrgba_;
+                        val=m.evaluateAt(coord,chunk.at).outrgba_;
                     } break;
                     case SEAMLESS_YZ:
                     {
@@ -804,7 +810,7 @@ namespace anl
                         nw=ranges.loopz0 + cos(zval*pi2) * dz/pi2;
                         nu=ranges.loopz0 + sin(zval*pi2) * dz/pi2;
                         CCoordinate coord(nx,ny,nz,nw,nu,0);
-                        val=m.evaluate(coord).outrgba_;
+                        val=m.evaluateAt(coord,chunk.at).outrgba_;
                     } break;
                     case SEAMLESS_XYZ:
                     {
@@ -822,7 +828,7 @@ namespace anl
                         nu=ranges.loopz0 + cos(zval*pi2)*dz/pi2;
                         nv=ranges.loopz0 + sin(zval*pi2)*dz/pi2;
                         CCoordinate coord(nx,ny,nz,nw,nu,nv);
-                        val=m.evaluate(coord).outrgba_;
+                        val=m.evaluateAt(coord,chunk.at).outrgba_;
                     } break;
 
                     default: break;
@@ -860,7 +866,7 @@ namespace anl
                         ny=ranges.mapy0 + q*(ranges.mapy1-ranges.mapy0);
                         nz=z;
 						CCoordinate coord(nx,ny);
-                        val=m.evaluate(coord).outrgba_;
+                        val=m.evaluateAt(coord,chunk.at).outrgba_;
                     } break;
                     case SEAMLESS_X:
                     {
@@ -872,7 +878,7 @@ namespace anl
                         nz=ranges.mapy0 + q*dy;
                       
                         CCoordinate coord(nx,ny,nz);
-                        val=m.evaluate(coord).outrgba_;
+                        val=m.evaluateAt(coord,chunk.at).outrgba_;
                     } break;
                     case SEAMLESS_Y:
                     {
@@ -883,7 +889,7 @@ namespace anl
                         ny=ranges.loopy0 + cos(q*pi2) * dy/pi2;
                         nz=ranges.loopy0 + sin(q*pi2) * dy/pi2;
                         CCoordinate coord(nx,ny,nz);
-                        val=m.evaluate(coord).outrgba_;
+                        val=m.evaluateAt(coord,chunk.at).outrgba_;
                     } break;
                     case SEAMLESS_Z:
                     {
@@ -897,7 +903,7 @@ namespace anl
                         nz=ranges.loopz0 + cos(zval*pi2) * dz/pi2;
                         nw=ranges.loopz0 + sin(zval*pi2) * dz/pi2;
                         CCoordinate coord(nx,ny,nz,nw);
-                        val=m.evaluate(coord).outrgba_;
+                        val=m.evaluateAt(coord,chunk.at).outrgba_;
                     } break;
                     case SEAMLESS_XY:
                     {
@@ -910,7 +916,7 @@ namespace anl
                         nz=ranges.loopy0 + cos(q*pi2) * dy/pi2;
                         nw=ranges.loopy0 + sin(q*pi2) * dy/pi2;
                         CCoordinate coord(nx,ny,nz,nw);
-                        val=m.evaluate(coord).outrgba_;
+                        val=m.evaluateAt(coord,chunk.at).outrgba_;
            
                     } break;
                     case SEAMLESS_XZ:
@@ -927,7 +933,7 @@ namespace anl
                         nw=ranges.loopz0 + cos(zval*pi2)*dz/pi2;
                         nu=ranges.loopz0 + sin(zval*pi2)*dz/pi2;
                         CCoordinate coord(nx,ny,nz,nw,nu,0);
-                        val=m.evaluate(coord).outrgba_;
+                        val=m.evaluateAt(coord,chunk.at).outrgba_;
                     } break;
                     case SEAMLESS_YZ:
                     {
@@ -943,7 +949,7 @@ namespace anl
                         nw=ranges.loopz0 + cos(zval*pi2) * dz/pi2;
                         nu=ranges.loopz0 + sin(zval*pi2) * dz/pi2;
                         CCoordinate coord(nx,ny,nz,nw,nu,0);
-                        val=m.evaluate(coord).outrgba_;
+                        val=m.evaluateAt(coord,chunk.at).outrgba_;
                     } break;
                     case SEAMLESS_XYZ:
                     {
@@ -961,7 +967,7 @@ namespace anl
                         nu=ranges.loopz0 + cos(zval*pi2)*dz/pi2;
                         nv=ranges.loopz0 + sin(zval*pi2)*dz/pi2;
                         CCoordinate coord(nx,ny,nz,nw,nu,nv);
-                        val=m.evaluate(coord).outrgba_;
+                        val=m.evaluateAt(coord,chunk.at).outrgba_;
                     } break;
 
                     default: break;
@@ -972,10 +978,10 @@ namespace anl
 		}
 	}
 	
-	void mapRGBA2D(int seamlessmode, CArray2Drgba &a, CKernel &k, SMappingRanges ranges, double z)
+	void mapRGBA2D(int seamlessmode, CArray2Drgba &a, CKernel &k, SMappingRanges ranges, double z, CInstructionIndex at)
    {
 	#ifndef USETHREAD
-		SRGBAChunk chunk;
+		SRGBAChunk chunk(at);
 		chunk.seamlessmode=seamlessmode;
 		chunk.a=a.getData();
 		chunk.awidth=a.width();
@@ -999,7 +1005,7 @@ namespace anl
 		
 		for(unsigned int thread=0; thread<threadcount; ++thread)
 		{
-			SRGBAChunk chunk;
+			SRGBAChunk chunk(at);
 			chunk.seamlessmode=seamlessmode;
 			SRGBA *arr=a.getData();
 			int offsety=thread*chunksize;
@@ -1025,10 +1031,10 @@ namespace anl
 	#endif
    }
 
-   void mapRGBA2DNoZ(int seamlessmode, CArray2Drgba &a, CKernel &k, SMappingRanges ranges)
+   void mapRGBA2DNoZ(int seamlessmode, CArray2Drgba &a, CKernel &k, SMappingRanges ranges, CInstructionIndex at)
    {
     #ifndef USETHREAD
-		SRGBAChunk chunk;
+		SRGBAChunk chunk(at);
 		chunk.seamlessmode=seamlessmode;
 		chunk.a=a.getData();
 		chunk.awidth=a.width();
@@ -1052,7 +1058,7 @@ namespace anl
 		
 		for(unsigned int thread=0; thread<threadcount; ++thread)
 		{
-			SRGBAChunk chunk;
+			SRGBAChunk chunk(at);
 			chunk.seamlessmode=seamlessmode;
 			SRGBA *arr=a.getData();
 			int offsety=thread*chunksize;

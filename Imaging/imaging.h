@@ -86,12 +86,12 @@ namespace anl
 
     };
 
-    void map2D(int seamlessmode, CArray2Dd &a, CKernel &k, SMappingRanges ranges, double z);
-    void map2DNoZ(int seamlessmode, CArray2Dd &a, CKernel &k, SMappingRanges ranges);
+    void map2D(int seamlessmode, CArray2Dd &a, CKernel &k, SMappingRanges ranges, double z, CInstructionIndex at);
+    void map2DNoZ(int seamlessmode, CArray2Dd &a, CKernel &k, SMappingRanges ranges, CInstructionIndex at);
     void map3D(int seamlessmode, CArray3Dd &a, CKernel &k, SMappingRanges ranges, CInstructionIndex index);
 
-    void mapRGBA2D(int seamlessmode, CArray2Drgba &a, CKernel &k, SMappingRanges ranges, double z);
-    void mapRGBA2DNoZ(int seamlessmode, CArray2Drgba &a, CKernel &k, SMappingRanges ranges);
+    void mapRGBA2D(int seamlessmode, CArray2Drgba &a, CKernel &k, SMappingRanges ranges, double z, CInstructionIndex at);
+    void mapRGBA2DNoZ(int seamlessmode, CArray2Drgba &a, CKernel &k, SMappingRanges ranges, CInstructionIndex at);
     void mapRGBA3D(int seamlessmode, CArray3Drgba &a, CKernel &k, SMappingRanges ranges, CInstructionIndex index);
 
     void saveDoubleArray(std::string filename, TArray2D<double> *array);

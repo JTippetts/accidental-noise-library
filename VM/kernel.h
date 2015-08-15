@@ -12,6 +12,14 @@ namespace anl
     class CKernel
     {
     public:
+		CKernel();
+		
+		CInstructionIndex pi();
+		CInstructionIndex e();
+		CInstructionIndex one();
+		CInstructionIndex zero();
+		CInstructionIndex point5();
+		CInstructionIndex sqrt2();
 
         CInstructionIndex constant(double val);
         CInstructionIndex valueBasis(CInstructionIndex interpindex, unsigned int seed);
@@ -88,6 +96,7 @@ namespace anl
 		CInstructionIndex dv(CInstructionIndex src, CInstructionIndex spacing);
 		
 		CInstructionIndex sigmoid(CInstructionIndex src);
+		CInstructionIndex sigmoid(CInstructionIndex src, CInstructionIndex center, CInstructionIndex ramp);
 
 		CInstructionIndex radial();
 		
@@ -114,6 +123,8 @@ namespace anl
         CInstructionIndex lastIndex(){return CInstructionIndex(kernel_.size()-1);}
     private:
         InstructionListType kernel_;
+		
+		CInstructionIndex pi_, e_, one_, zero_, point5_, sqrt2_;
     };
 
 };

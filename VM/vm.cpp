@@ -873,7 +873,9 @@ namespace anl
 			case OP_Sigmoid:
 			{
 				double s=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
-				cache[index].set(1.0 / (1.0 + std::exp(-s)));
+				double c=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
+				double r=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[2],coord);
+				cache[index].set(1.0 / (1.0 + std::exp(-r*(s-c))));
 				evaluated[index]=true;
 				return;
 			} break;

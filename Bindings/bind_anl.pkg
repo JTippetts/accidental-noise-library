@@ -84,6 +84,13 @@ class CInstructionListType
     public:
 		CKernel();
 		~CKernel();
+		
+		CInstructionIndex pi();
+		CInstructionIndex e();
+		CInstructionIndex one();
+		CInstructionIndex zero();
+		CInstructionIndex point5();
+		CInstructionIndex sqrt2();
 
         CInstructionIndex constant(double val);
         CInstructionIndex valueBasis(CInstructionIndex interpindex, unsigned int seed);
@@ -160,6 +167,7 @@ class CInstructionListType
 		CInstructionIndex dv(CInstructionIndex src, CInstructionIndex spacing);
 		
 		CInstructionIndex sigmoid(CInstructionIndex src);
+		CInstructionIndex sigmoid(CInstructionIndex src, CInstructionIndex center, CInstructionIndex ramp);
 
 		CInstructionIndex radial();
 		
@@ -348,12 +356,12 @@ class CArray3Drgba
 	anl::SRGBA get(int x, int y, int z);
 };
 
-void map2D(int seamlessmode, CArray2Dd &a, CKernel &k, SMappingRanges ranges, double z);
-void map2DNoZ(int seamlessmode, CArray2Dd &a, CKernel &k, SMappingRanges ranges);
+void map2D(int seamlessmode, CArray2Dd &a, CKernel &k, SMappingRanges ranges, double z, CInstructionIndex at);
+void map2DNoZ(int seamlessmode, CArray2Dd &a, CKernel &k, SMappingRanges ranges, CInstructionIndex at);
 void map3D(int seamlessmode, CArray3Dd &a, CKernel &k, SMappingRanges ranges, CInstructionIndex index);
 
-void mapRGBA2D(int seamlessmode, CArray2Drgba &a, CKernel &k, SMappingRanges ranges, double z);
-void mapRGBA2DNoZ(int seamlessmode, CArray2Drgba &a, CKernel &k, SMappingRanges ranges);
+void mapRGBA2D(int seamlessmode, CArray2Drgba &a, CKernel &k, SMappingRanges ranges, double z, CInstructionIndex at);
+void mapRGBA2DNoZ(int seamlessmode, CArray2Drgba &a, CKernel &k, SMappingRanges ranges, CInstructionIndex at);
 void mapRGBA3D(int seamlessmode, CArray3Drgba &a, CKernel &k, SMappingRanges ranges, CInstructionIndex index);
 
 void saveDoubleArray(const char *filename, CArray2Dd *array);

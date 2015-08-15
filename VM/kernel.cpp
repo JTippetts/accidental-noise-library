@@ -6,6 +6,47 @@
 namespace anl
 {
 
+CKernel::CKernel()
+{
+	pi_=constant(3.14159265358979323846);
+	e_=constant(2.71828182845904523536);
+	one_=constant(1.0);
+	zero_=constant(0.0);
+	point5_=constant(0.5);
+	sqrt2_=constant(sqrt(2.0));
+}
+
+CInstructionIndex CKernel::pi()
+{
+	return pi_;
+}
+
+CInstructionIndex CKernel::e()
+{
+	return e_;
+}
+
+CInstructionIndex CKernel::one()
+{
+	return one_;
+}
+
+CInstructionIndex CKernel::zero()
+{
+	return zero_;
+}
+
+CInstructionIndex CKernel::point5()
+{
+	return point5_;
+}
+
+CInstructionIndex CKernel::sqrt2()
+{
+	return sqrt2_;
+}
+
+
 CInstructionIndex CKernel::constant(double val)
 {
     anl::SInstruction i;
@@ -817,12 +858,22 @@ CInstructionIndex CKernel::dv(CInstructionIndex src, CInstructionIndex spacing)
 
 CInstructionIndex CKernel::sigmoid(CInstructionIndex src)
 {
+	CInstructionIndex center=zero();
+	CInstructionIndex ramp=one();
+	return sigmoid(src,center,ramp);
+}
+
+CInstructionIndex CKernel::sigmoid(CInstructionIndex src, CInstructionIndex center, CInstructionIndex ramp)
+{
 	anl::SInstruction i;
 	i.opcode_=anl::OP_Sigmoid;
 	i.sources_[0]=src.index_;
+	i.sources_[1]=center.index_;
+	i.sources_[2]=ramp.index_;
 	kernel_.push_back(i);
 	return lastIndex();
 }
+
 
 CInstructionIndex CKernel::scaleOffset(CInstructionIndex src, double scale, double offset)
 {
