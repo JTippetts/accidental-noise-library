@@ -708,6 +708,45 @@ CInstructionIndex CKernel::simpleRidgedLayer(unsigned int basistype, CInstructio
     return lastIndex();
 }
 
+CInstructionIndex CKernel::simpleBillowLayer(unsigned int basistype, CInstructionIndex interpindex, double layerscale, double layerfreq, unsigned int seed, bool rot,
+	double angle, double ax, double ay, double az)
+{
+	CInstructionIndex base=nextIndex();
+    switch(basistype)
+    {
+    case anl::OP_ValueBasis:
+        valueBasis(interpindex, seed);
+        break;
+    case anl::OP_GradientBasis:
+        gradientBasis(interpindex, seed);
+        break;
+    case anl::OP_SimplexBasis:
+        simplexBasis(seed);
+        break;
+    default:
+        gradientBasis(interpindex, seed);
+        break;
+    }
+	base=abs(base);
+	base=multiply(base,constant(2.0));
+	base=subtract(base,one());
+	
+	constant(layerscale);
+    multiply(base,base+1);
+    constant(layerfreq);
+    CInstructionIndex sd=scaleDomain(base+2, lastIndex(), lastIndex(), lastIndex(), lastIndex(), lastIndex(), lastIndex());
+	if(rot)
+    {
+		double len=std::sqrt(ax*ax+ay*ay+az*az);
+        constant(angle);
+        constant(ax/len);
+        constant(ay/len);
+        constant(az/len);
+        rotateDomain(sd, sd+1, sd+2, sd+3, sd+4);
+    }
+    return lastIndex();
+}
+
 CInstructionIndex CKernel::simpleRidgedMultifractal(unsigned int basistype, unsigned int interptype, unsigned int numoctaves, double frequency, unsigned int seed, bool rot)
 {
     if(numoctaves<1) return 0;
@@ -716,13 +755,13 @@ CInstructionIndex CKernel::simpleRidgedMultifractal(unsigned int basistype, unsi
 	KISS rnd;
 	rnd.setSeed(seed);
 	simpleRidgedLayer(basistype, interpindex, 1.0, 1.0*frequency, seed+10,rot,
-                               rnd.get01()*3.14159265*2.0, rnd.get01(), rnd.get01(), rnd.get01());
+                               rnd.get01()*3.14159265, rnd.get01(), rnd.get01(), rnd.get01());
 	CInstructionIndex lastlayer=lastIndex();
 	
 	for(int c=0; c<numoctaves-1; ++c)
 	{
 		CInstructionIndex nextlayer=simpleRidgedLayer(basistype, interpindex, 1.0/std::pow(2.0, (double)(c)), std::pow(2.0, (double)(c))*frequency, seed+10+c*1000,rot,
-                               rnd.get01()*3.14159265*2.0, rnd.get01(), rnd.get01(), rnd.get01());
+                               rnd.get01()*3.14159265, rnd.get01(), rnd.get01(), rnd.get01());
 		lastlayer=add(lastlayer,nextlayer);
 	}
 	return lastIndex();
@@ -736,13 +775,33 @@ CInstructionIndex CKernel::simplefBm(unsigned int basistype, unsigned int interp
 	KISS rnd;
 	rnd.setSeed(seed);
 	simpleFractalLayer(basistype, interpindex, 1.0, 1.0*frequency, seed+10,rot,
-                               rnd.get01()*3.14159265*2.0, rnd.get01(), rnd.get01(), rnd.get01());
+                               rnd.get01()*3.14159265, rnd.get01(), rnd.get01(), rnd.get01());
 	CInstructionIndex lastlayer=lastIndex();
 	
 	for(int c=0; c<numoctaves-1; ++c)
 	{
 		CInstructionIndex nextlayer=simpleFractalLayer(basistype, interpindex, 1.0/std::pow(2.0, (double)(c)), std::pow(2.0, (double)(c))*frequency, seed+10+c*1000,rot,
-                               rnd.get01()*3.14159265*2.0, rnd.get01(), rnd.get01(), rnd.get01());
+                               rnd.get01()*3.14159265, rnd.get01(), rnd.get01(), rnd.get01());
+		lastlayer=add(lastlayer,nextlayer);
+	}
+	return lastIndex();
+}
+
+CInstructionIndex CKernel::simpleBillow(unsigned int basistype, unsigned int interptype, unsigned int numoctaves, double frequency, unsigned int seed, bool rot)
+{
+    if(numoctaves<1) return 0;
+	
+	CInstructionIndex interpindex=constant(interptype);
+	KISS rnd;
+	rnd.setSeed(seed);
+	simpleBillowLayer(basistype, interpindex, 1.0, 1.0*frequency, seed+10,rot,
+                               rnd.get01()*3.14159265, rnd.get01(), rnd.get01(), rnd.get01());
+	CInstructionIndex lastlayer=lastIndex();
+	
+	for(int c=0; c<numoctaves-1; ++c)
+	{
+		CInstructionIndex nextlayer=simpleBillowLayer(basistype, interpindex, 1.0/std::pow(2.0, (double)(c)), std::pow(2.0, (double)(c))*frequency, seed+10+c*1000,rot,
+                               rnd.get01()*3.14159265, rnd.get01(), rnd.get01(), rnd.get01());
 		lastlayer=add(lastlayer,nextlayer);
 	}
 	return lastIndex();

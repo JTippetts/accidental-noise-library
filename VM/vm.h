@@ -55,6 +55,7 @@ namespace anl
 		void set(SRGBA v)
 		{
 			outrgba_=v;
+			outfloat_=0.2126*v.r + 0.7152*v.g + 0.0722*v.b;
 		}
 		
 		SVMOutput operator-(const SVMOutput &rhs) const

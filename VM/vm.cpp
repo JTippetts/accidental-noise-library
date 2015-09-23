@@ -357,8 +357,9 @@ namespace anl
                 }
             case OP_Add:
                 {
-                    double s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
-                    double s2=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
+                    SVMOutput s1, s2;
+					s1=evaluateBoth(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+					s2=evaluateBoth(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
                     cache[index].set(s1+s2);
                     evaluated[index]=true;
                     return;
@@ -366,16 +367,19 @@ namespace anl
                 }
             case OP_Subtract:
                 {
-                    double s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
-                    double s2=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
+                    SVMOutput s1, s2;
+					s1=evaluateBoth(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+					s2=evaluateBoth(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
                     cache[index].set(s1-s2);
                     evaluated[index]=true;
                     return;
                 } break;
             case OP_Multiply:
                 {
-                    double s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
-                    double s2=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
+					SVMOutput s1, s2;
+					s1=evaluateBoth(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+					s2=evaluateBoth(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
+					
                     cache[index].set(s1*s2);
                     evaluated[index]=true;
                     return;
@@ -383,8 +387,9 @@ namespace anl
                 }
             case OP_Divide:
                 {
-                    double s1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
-                    double s2=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
+                    SVMOutput s1, s2;
+					s1=evaluateBoth(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+					s2=evaluateBoth(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
                     cache[index].set(s1/s2);
                     evaluated[index]=true;
                     return;
