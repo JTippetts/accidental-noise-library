@@ -60,6 +60,11 @@ namespace anl
 	}
 	ExpressionBuilder::~ExpressionBuilder(){}
 
+	void ExpressionBuilder::setRandomSeed(unsigned int seed)
+	{
+	    prng_.setSeed(seed);
+	}
+
 	std::vector<Token> ExpressionBuilder::getPostfix(const std::string &expr)
 	{
 		ExpressionToPostfix e(expr, f_, vars_);
@@ -114,11 +119,11 @@ namespace anl
 	{
 	    if(token=="rand")
         {
-
+            stk.push(kernel_.seed(prng_.get()));
         }
         else if (token=="rand01")
         {
-
+            stk.push(kernel_.constant(prng_.get01()));
         }
         else if (token=="x")
         {

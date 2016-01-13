@@ -29,65 +29,17 @@ using namespace anl;
 /* function to release collected object via destructor */
 #ifdef __cplusplus
 
-static int tolua_collect_SRGBA (lua_State* tolua_S)
-{
- SRGBA* self = (SRGBA*) tolua_tousertype(tolua_S,1,0);
- tolua_release(tolua_S,self);
- delete self;
- return 0;
-}
-
-static int tolua_collect_CArray3Drgba (lua_State* tolua_S)
-{
- CArray3Drgba* self = (CArray3Drgba*) tolua_tousertype(tolua_S,1,0);
- tolua_release(tolua_S,self);
- delete self;
- return 0;
-}
-
-static int tolua_collect_CArray2Dd (lua_State* tolua_S)
-{
- CArray2Dd* self = (CArray2Dd*) tolua_tousertype(tolua_S,1,0);
- tolua_release(tolua_S,self);
- delete self;
- return 0;
-}
-
-static int tolua_collect_CInstructionIndex (lua_State* tolua_S)
-{
- CInstructionIndex* self = (CInstructionIndex*) tolua_tousertype(tolua_S,1,0);
- tolua_release(tolua_S,self);
- delete self;
- return 0;
-}
-
-static int tolua_collect_anl_SRGBA (lua_State* tolua_S)
-{
- anl::SRGBA* self = (anl::SRGBA*) tolua_tousertype(tolua_S,1,0);
- tolua_release(tolua_S,self);
- delete self;
- return 0;
-}
-
-static int tolua_collect_CArray3Dd (lua_State* tolua_S)
-{
- CArray3Dd* self = (CArray3Dd*) tolua_tousertype(tolua_S,1,0);
- tolua_release(tolua_S,self);
- delete self;
- return 0;
-}
-
-static int tolua_collect_SVMOutput (lua_State* tolua_S)
-{
- SVMOutput* self = (SVMOutput*) tolua_tousertype(tolua_S,1,0);
- tolua_release(tolua_S,self);
- delete self;
- return 0;
-}
-
 static int tolua_collect_CNoiseExecutor (lua_State* tolua_S)
 {
  CNoiseExecutor* self = (CNoiseExecutor*) tolua_tousertype(tolua_S,1,0);
+ tolua_release(tolua_S,self);
+ delete self;
+ return 0;
+}
+
+static int tolua_collect_CMWC4096 (lua_State* tolua_S)
+{
+ CMWC4096* self = (CMWC4096*) tolua_tousertype(tolua_S,1,0);
  tolua_release(tolua_S,self);
  delete self;
  return 0;
@@ -101,9 +53,65 @@ static int tolua_collect_CArray2Drgba (lua_State* tolua_S)
  return 0;
 }
 
-static int tolua_collect_CMWC4096 (lua_State* tolua_S)
+static int tolua_collect_CInstructionIndex (lua_State* tolua_S)
 {
- CMWC4096* self = (CMWC4096*) tolua_tousertype(tolua_S,1,0);
+ CInstructionIndex* self = (CInstructionIndex*) tolua_tousertype(tolua_S,1,0);
+ tolua_release(tolua_S,self);
+ delete self;
+ return 0;
+}
+
+static int tolua_collect_CArray3Drgba (lua_State* tolua_S)
+{
+ CArray3Drgba* self = (CArray3Drgba*) tolua_tousertype(tolua_S,1,0);
+ tolua_release(tolua_S,self);
+ delete self;
+ return 0;
+}
+
+static int tolua_collect_anl_SRGBA (lua_State* tolua_S)
+{
+ anl::SRGBA* self = (anl::SRGBA*) tolua_tousertype(tolua_S,1,0);
+ tolua_release(tolua_S,self);
+ delete self;
+ return 0;
+}
+
+static int tolua_collect_SRGBA (lua_State* tolua_S)
+{
+ SRGBA* self = (SRGBA*) tolua_tousertype(tolua_S,1,0);
+ tolua_release(tolua_S,self);
+ delete self;
+ return 0;
+}
+
+static int tolua_collect_SVMOutput (lua_State* tolua_S)
+{
+ SVMOutput* self = (SVMOutput*) tolua_tousertype(tolua_S,1,0);
+ tolua_release(tolua_S,self);
+ delete self;
+ return 0;
+}
+
+static int tolua_collect_CArray3Dd (lua_State* tolua_S)
+{
+ CArray3Dd* self = (CArray3Dd*) tolua_tousertype(tolua_S,1,0);
+ tolua_release(tolua_S,self);
+ delete self;
+ return 0;
+}
+
+static int tolua_collect_CKernel (lua_State* tolua_S)
+{
+ CKernel* self = (CKernel*) tolua_tousertype(tolua_S,1,0);
+ tolua_release(tolua_S,self);
+ delete self;
+ return 0;
+}
+
+static int tolua_collect_LCG (lua_State* tolua_S)
+{
+ LCG* self = (LCG*) tolua_tousertype(tolua_S,1,0);
  tolua_release(tolua_S,self);
  delete self;
  return 0;
@@ -133,17 +141,9 @@ static int tolua_collect_KISS (lua_State* tolua_S)
  return 0;
 }
 
-static int tolua_collect_CKernel (lua_State* tolua_S)
+static int tolua_collect_CArray2Dd (lua_State* tolua_S)
 {
- CKernel* self = (CKernel*) tolua_tousertype(tolua_S,1,0);
- tolua_release(tolua_S,self);
- delete self;
- return 0;
-}
-
-static int tolua_collect_LCG (lua_State* tolua_S)
-{
- LCG* self = (LCG*) tolua_tousertype(tolua_S,1,0);
+ CArray2Dd* self = (CArray2Dd*) tolua_tousertype(tolua_S,1,0);
  tolua_release(tolua_S,self);
  delete self;
  return 0;
@@ -162,27 +162,27 @@ static int tolua_collect_MWC256 (lua_State* tolua_S)
 /* function to register type */
 static void tolua_reg_types (lua_State* tolua_S)
 {
- tolua_usertype(tolua_S,"SRGBA");
- tolua_usertype(tolua_S,"CInstructionIndex");
+ tolua_usertype(tolua_S,"CArray2Drgba");
+ tolua_usertype(tolua_S,"CCoordinate");
  tolua_usertype(tolua_S,"CBasePRNG");
+ tolua_usertype(tolua_S,"anl::SRGBA");
+ tolua_usertype(tolua_S,"LCG");
  tolua_usertype(tolua_S,"Xorshift");
- tolua_usertype(tolua_S,"CInstructionListType");
- tolua_usertype(tolua_S,"MWC256");
+ tolua_usertype(tolua_S,"CArray3Dd");
+ tolua_usertype(tolua_S,"CKernel");
+ tolua_usertype(tolua_S,"CNoiseExecutor");
+ tolua_usertype(tolua_S,"CMWC4096");
+ tolua_usertype(tolua_S,"CInstructionIndex");
+ tolua_usertype(tolua_S,"SRGBA");
+ tolua_usertype(tolua_S,"SVMOutput");
+ tolua_usertype(tolua_S,"CArray3Drgba");
  tolua_usertype(tolua_S,"InstructionListType");
  tolua_usertype(tolua_S,"CArray2Dd");
- tolua_usertype(tolua_S,"anl::SRGBA");
- tolua_usertype(tolua_S,"CArray3Drgba");
- tolua_usertype(tolua_S,"CArray3Dd");
- tolua_usertype(tolua_S,"SVMOutput");
- tolua_usertype(tolua_S,"CNoiseExecutor");
- tolua_usertype(tolua_S,"CArray2Drgba");
- tolua_usertype(tolua_S,"CMWC4096");
- tolua_usertype(tolua_S,"anl::SMappingRanges");
  tolua_usertype(tolua_S,"SMappingRanges");
+ tolua_usertype(tolua_S,"anl::SMappingRanges");
  tolua_usertype(tolua_S,"KISS");
- tolua_usertype(tolua_S,"CKernel");
- tolua_usertype(tolua_S,"LCG");
- tolua_usertype(tolua_S,"CCoordinate");
+ tolua_usertype(tolua_S,"CInstructionListType");
+ tolua_usertype(tolua_S,"MWC256");
 }
 
 /* function: highresTime */
@@ -5085,7 +5085,7 @@ static int tolua_bind_anl_CNoiseExecutor_new00(lua_State* tolua_S)
  {
   CKernel* kernel = ((CKernel*)  tolua_tousertype(tolua_S,2,0));
  {
-  CNoiseExecutor* tolua_ret = (CNoiseExecutor*)  new CNoiseExecutor(kernel);
+  CNoiseExecutor* tolua_ret = (CNoiseExecutor*)  new CNoiseExecutor(*kernel);
  tolua_pushusertype(tolua_S,(void*)tolua_ret,"CNoiseExecutor");
  }
  }

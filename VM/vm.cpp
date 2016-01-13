@@ -63,7 +63,8 @@ double hex_function(double x, double y)
 
 namespace anl
 {
-    CNoiseExecutor::CNoiseExecutor(CKernel *kernel) : kernel_(kernel->getKernel()), evaluated_(kernel->getKernel()->size(), false), coordcache_(kernel->getKernel()->size()), cache_(kernel->getKernel()->size())
+    //CNoiseExecutor::CNoiseExecutor(CKernel *kernel) : kernel_(kernel->getKernel()), evaluated_(kernel->getKernel()->size(), false), coordcache_(kernel->getKernel()->size()), cache_(kernel->getKernel()->size())
+    CNoiseExecutor::CNoiseExecutor(CKernel &kernel) : kernel_(kernel)
     {
     }
 
@@ -121,39 +122,41 @@ namespace anl
 		return evaluate(c).outrgba_;
 	}
 
+	InstructionListType *CNoiseExecutor::prepare()
+	{
+	    InstructionListType *k=kernel_.getKernel();
+        if(!k || k->size()==0) return 0;
+        if(k->size() != evaluated_.size()) evaluated_.resize(k->size());
+        if(k->size() != coordcache_.size()) coordcache_.resize(k->size());
+        if(k->size() != cache_.size()) cache_.resize(k->size());
+
+        // clear evaluated flags
+        for(auto i=evaluated_.begin(); i!=evaluated_.end(); ++i) *i=false;
+
+        return k;
+	}
+
 
     SVMOutput CNoiseExecutor::evaluate(CCoordinate &coord)
     {
         SVMOutput out;
-        if(!kernel_) {std::cout<<"duh"<<std::endl;return out;}
-        if(kernel_->size()==0) {std::cout<<"ruh roh"<<std::endl;return out;}
-
-        // Clear evaluated
-        //for(bool& e : evaluated_) e=false;
-        for(auto i=evaluated_.begin(); i!=evaluated_.end(); ++i) *i=false;
-
         // Evaluate the last one to start the chain
-        evaluateInstruction(*kernel_, evaluated_, coordcache_, cache_, kernel_->size()-1, coord);
-        //out.outfloat_=kernel[kernel.size()-1].outfloat_;
-        //return out;
-        return cache_[kernel_->size()-1];
+        InstructionListType *k=prepare();
+        if(!k) return out;
+
+        evaluateInstruction(*k, evaluated_, coordcache_, cache_, k->size()-1, coord);
+
+        return cache_[k->size()-1];
     }
 
     SVMOutput CNoiseExecutor::evaluateAt(CCoordinate &coord, CInstructionIndex index)
     {
         SVMOutput out;
-        if(!kernel_) {std::cout<<"duh"<<std::endl;return out;}
-        if(kernel_->size()==0) {std::cout<<"ruh roh"<<std::endl;return out;}
-        if(index.index_>=kernel_->size()) return out;
-
-        // Clear evaluated
-        //for(bool& e : evaluated_) e=false;
-        for(auto i=evaluated_.begin(); i!=evaluated_.end(); ++i) *i=false;
-
         // Evaluate the instruction at the specified index
-        evaluateInstruction(*kernel_, evaluated_, coordcache_, cache_, index.index_, coord);
-        //out.outfloat_=kernel[kernel.size()-1].outfloat_;
-        //return out;
+        InstructionListType *k=prepare();
+        if(!k) return out;
+
+        evaluateInstruction(*k, evaluated_, coordcache_, cache_, index.index_, coord);
         return cache_[index.index_];
     }
 
@@ -162,7 +165,6 @@ namespace anl
         if(index>=kernel.size()) return 0;
 
         evaluateInstruction(kernel, evaluated, coordcache, cache, index, coord);
-        //return kernel[index].outfloat_;
         return cache[index].outfloat_;
     }
 

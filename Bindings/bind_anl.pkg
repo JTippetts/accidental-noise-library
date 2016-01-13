@@ -248,7 +248,7 @@ class CInstructionListType
 	class CNoiseExecutor
     {
     public:
-        CNoiseExecutor(CKernel *kernel);
+        CNoiseExecutor(CKernel &kernel);
 		~CNoiseExecutor();
 
         SVMOutput evaluate(CCoordinate &coord);

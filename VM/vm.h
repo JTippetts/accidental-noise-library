@@ -99,7 +99,7 @@ namespace anl
     class CNoiseExecutor
     {
     public:
-        CNoiseExecutor(CKernel *kernel);
+        CNoiseExecutor(CKernel &kernel);
         ~CNoiseExecutor();
 
         SVMOutput evaluate(CCoordinate &coord);
@@ -121,8 +121,10 @@ namespace anl
 		SRGBA evaluateRGBA(InstructionListType &kernel, EvaluatedType &evaluated, CoordCacheType &coordcache, CacheType &cache, unsigned int index, CCoordinate &coord);
 		TileCoord calcHexPointTile(float px, float py);
 		CoordPair calcHexTileCenter(int tx, int ty);
+		InstructionListType *prepare();
 
-        InstructionListType *kernel_;
+        //InstructionListType *kernel_;
+        CKernel &kernel_;
         EvaluatedType evaluated_;
 		CoordCacheType coordcache_;
         CacheType cache_;

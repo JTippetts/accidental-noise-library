@@ -90,14 +90,14 @@ namespace anl
 		}
 		delete[] data;
 	}
-	
+
 	void loadDoubleArray(std::string filename, TArray2D<double> *array)
         {
                 if(!array) return;
                 int w,h,n;
                 unsigned char *data=stbi_load(filename.c_str(), &w, &h, &n, 4);
                 if(!data) return;
-                
+
                 array->resize(w,h);
                 for(int x=0; x<w; ++x)
                 {
@@ -107,17 +107,17 @@ namespace anl
                                 array->set(x,y,(double)(a[0])/255.0);
                         }
                 }
-                
+
                 stbi_image_free(data);
         }
-        
+
         void loadRGBAArray(std::string filename, TArray2D<anl::SRGBA> *array)
         {
                 if(!array) return;
                 int w,h,n;
                 unsigned char *data=stbi_load(filename.c_str(), &w, &h, &n, 4);
                 if(!data) return;
-                
+
                 array->resize(w,h);
                 for(int x=0; x<w; ++x)
                 {
@@ -128,10 +128,10 @@ namespace anl
                                 array->set(x,y,color);
                         }
                 }
-                
+
                 stbi_image_free(data);
         }
-	
+
 	struct SChunk
 	{
 		int seamlessmode;
@@ -142,17 +142,17 @@ namespace anl
 		SMappingRanges ranges;
 		CInstructionIndex at;
 		double z;
-		
+
 		SChunk(CInstructionIndex a) : at(a) {}
 	};
-	
+
 	void map2DChunk(SChunk chunk)
 	{
 		static double pi2=3.141592*2.0;
-		CNoiseExecutor m(chunk.kernel);
+		CNoiseExecutor m(*(chunk.kernel));
 		SMappingRanges ranges=chunk.ranges;
 		double z=chunk.z;
-		
+
 		for(int x=0; x<chunk.awidth; ++x)
 		{
 			for(int y=0; y<chunk.chunkheight; ++y)
@@ -225,7 +225,7 @@ namespace anl
                         nu=z;
 						CCoordinate coord(nx,ny,nz,nw,nu,0);
                         val=m.evaluateAt(coord,chunk.at).outfloat_;
-           
+
                     } break;
                     case SEAMLESS_XZ:
                     {
@@ -285,14 +285,14 @@ namespace anl
 			}
 		}
 	}
-	
+
 	void map2DChunkNoZ(SChunk chunk)
 	{
 		static double pi2=3.141592*2.0;
-		CNoiseExecutor m(chunk.kernel);
+		CNoiseExecutor m(*(chunk.kernel));
 		SMappingRanges ranges=chunk.ranges;
 		double z=chunk.z;
-		
+
 		for(int x=0; x<chunk.awidth; ++x)
 		{
 			for(int y=0; y<chunk.chunkheight; ++y)
@@ -322,7 +322,7 @@ namespace anl
                         nx=ranges.loopx0 + cos(p*pi2) * dx/pi2;
                         ny=ranges.loopx0 + sin(p*pi2) * dx/pi2;
                         nz=ranges.mapy0 + q*dy;
-                      
+
                         CCoordinate coord(nx,ny,nz);
                         val=m.evaluateAt(coord,chunk.at).outfloat_;
                     } break;
@@ -363,7 +363,7 @@ namespace anl
                         nw=ranges.loopy0 + sin(q*pi2) * dy/pi2;
                         CCoordinate coord(nx,ny,nz,nw);
                         val=m.evaluateAt(coord,chunk.at).outfloat_;
-           
+
                     } break;
                     case SEAMLESS_XZ:
                     {
@@ -423,7 +423,7 @@ namespace anl
 			}
 		}
 	}
-	
+
 	double highresTime()
 	{
 		using namespace std::chrono;
@@ -431,7 +431,7 @@ namespace anl
 		high_resolution_clock::duration d=t.time_since_epoch();
 		return (double)d.count() * (double)high_resolution_clock::period::num / (double)high_resolution_clock::period::den;
 	}
-	
+
 	void map2D(int seamlessmode, CArray2Dd &a, CKernel &k, SMappingRanges ranges, double z, CInstructionIndex at)
    {
 	#ifndef USETHREAD
@@ -446,17 +446,17 @@ namespace anl
 		chunk.ranges=ranges;
 		chunk.z=z;
 		chunk.at=index;
-		
+
 		map2DChunk(chunk);
 	#else
 		unsigned threadcount=std::thread::hardware_concurrency();
-		std::cout << "Thread count: "<<threadcount<<std::endl;
-		
+		//std::cout << "Thread count: "<<threadcount<<std::endl;
+
 		int chunksize=std::floor(a.height() / threadcount);
-		
+
 		std::vector<std::thread> threads;
-		
-		
+
+
 		for(unsigned int thread=0; thread<threadcount; ++thread)
 		{
 			SChunk chunk(at);
@@ -472,14 +472,14 @@ namespace anl
 			chunk.kernel=&k;
 			chunk.ranges=ranges;
 			chunk.z=z;
-			std::cout << "Construct thread " << thread <<std::endl;
+			//std::cout << "Construct thread " << thread <<std::endl;
 			threads.push_back(std::thread(map2DChunk, chunk));
 		}
-		
-		std::cout << "Join threads" << std::endl;
+
+		//std::cout << "Join threads" << std::endl;
 		for(unsigned int c=0; c<threads.size(); ++c)
 		{
-			std::cout << "Thread: " << c << std::endl;
+			//std::cout << "Thread: " << c << std::endl;
 			threads[c].join();
 		}
 	#endif
@@ -499,17 +499,17 @@ namespace anl
 		chunk.ranges=ranges;
 		chunk.z=0;
 		chunk.at=index;
-		
+
 		map2DChunkNoZ(chunk);
 	#else
 		unsigned threadcount=std::thread::hardware_concurrency();
-		std::cout << "Thread count: "<<threadcount<<std::endl;
-		
+		//std::cout << "Thread count: "<<threadcount<<std::endl;
+
 		int chunksize=std::floor(a.height() / threadcount);
-		
+
 		std::vector<std::thread> threads;
-		
-		
+
+
 		for(unsigned int thread=0; thread<threadcount; ++thread)
 		{
 			SChunk chunk(at);
@@ -528,11 +528,11 @@ namespace anl
 			std::cout << "Construct thread " << thread <<std::endl;
 			threads.push_back(std::thread(map2DChunkNoZ, chunk));
 		}
-		
-		std::cout << "Join threads" << std::endl;
+
+		//std::cout << "Join threads" << std::endl;
 		for(unsigned int c=0; c<threads.size(); ++c)
 		{
-			std::cout << "Thread: " << c << std::endl;
+			//std::cout << "Thread: " << c << std::endl;
 			threads[c].join();
 		}
 	#endif
@@ -543,7 +543,7 @@ namespace anl
         int w=a.width();
         int h=a.height();
         int d=a.depth();
-		CNoiseExecutor m(&k);
+		CNoiseExecutor m(k);
 
         int x,y,z;
         static double pi2=3.14159265 * 2.0;
@@ -694,17 +694,17 @@ namespace anl
 		SMappingRanges ranges;
 		double z;
 		CInstructionIndex at;
-		
+
 		SRGBAChunk(CInstructionIndex a) : at(a){}
 	};
-	
+
 	void mapRGBA2DChunk(SRGBAChunk chunk)
 	{
 		static double pi2=3.141592*2.0;
-		CNoiseExecutor m(chunk.kernel);
+		CNoiseExecutor m(*(chunk.kernel));
 		SMappingRanges ranges=chunk.ranges;
 		double z=chunk.z;
-		
+
 		for(int x=0; x<chunk.awidth; ++x)
 		{
 			for(int y=0; y<chunk.chunkheight; ++y)
@@ -778,7 +778,7 @@ namespace anl
                         nu=z;
 						CCoordinate coord(nx,ny,nz,nw,nu,0);
                         val=m.evaluateAt(coord,chunk.at).outrgba_;
-           
+
                     } break;
                     case SEAMLESS_XZ:
                     {
@@ -838,14 +838,14 @@ namespace anl
 			}
 		}
 	}
-	
+
 	void mapRGBA2DChunkNoZ(SRGBAChunk chunk)
 	{
 		static double pi2=3.141592*2.0;
-		CNoiseExecutor m(chunk.kernel);
+		CNoiseExecutor m(*(chunk.kernel));
 		SMappingRanges ranges=chunk.ranges;
 		double z=chunk.z;
-		
+
 		for(int x=0; x<chunk.awidth; ++x)
 		{
 			for(int y=0; y<chunk.chunkheight; ++y)
@@ -876,7 +876,7 @@ namespace anl
                         nx=ranges.loopx0 + cos(p*pi2) * dx/pi2;
                         ny=ranges.loopx0 + sin(p*pi2) * dx/pi2;
                         nz=ranges.mapy0 + q*dy;
-                      
+
                         CCoordinate coord(nx,ny,nz);
                         val=m.evaluateAt(coord,chunk.at).outrgba_;
                     } break;
@@ -917,7 +917,7 @@ namespace anl
                         nw=ranges.loopy0 + sin(q*pi2) * dy/pi2;
                         CCoordinate coord(nx,ny,nz,nw);
                         val=m.evaluateAt(coord,chunk.at).outrgba_;
-           
+
                     } break;
                     case SEAMLESS_XZ:
                     {
@@ -977,7 +977,7 @@ namespace anl
 			}
 		}
 	}
-	
+
 	void mapRGBA2D(int seamlessmode, CArray2Drgba &a, CKernel &k, SMappingRanges ranges, double z, CInstructionIndex at)
    {
 	#ifndef USETHREAD
@@ -992,17 +992,17 @@ namespace anl
 		chunk.ranges=ranges;
 		chunk.z=z;
 		chunk.at=index;
-		
+
 		map2DChunk(chunk);
 	#else
 		unsigned threadcount=std::thread::hardware_concurrency();
-		std::cout << "Thread count: "<<threadcount<<std::endl;
-		
+		//std::cout << "Thread count: "<<threadcount<<std::endl;
+
 		int chunksize=std::floor(a.height() / threadcount);
-		
+
 		std::vector<std::thread> threads;
-		
-		
+
+
 		for(unsigned int thread=0; thread<threadcount; ++thread)
 		{
 			SRGBAChunk chunk(at);
@@ -1018,14 +1018,14 @@ namespace anl
 			chunk.kernel=&k;
 			chunk.ranges=ranges;
 			chunk.z=z;
-			std::cout << "Construct thread " << thread <<std::endl;
+			//std::cout << "Construct thread " << thread <<std::endl;
 			threads.push_back(std::thread(mapRGBA2DChunk, chunk));
 		}
-		
-		std::cout << "Join threads" << std::endl;
+
+		//std::cout << "Join threads" << std::endl;
 		for(unsigned int c=0; c<threads.size(); ++c)
 		{
-			std::cout << "Thread: " << c << std::endl;
+			//std::cout << "Thread: " << c << std::endl;
 			threads[c].join();
 		}
 	#endif
@@ -1045,17 +1045,17 @@ namespace anl
 		chunk.ranges=ranges;
 		chunk.z=0;
 		chunk.at=index;
-		
+
 		map2DChunkNoZ(chunk);
 	#else
 		unsigned threadcount=std::thread::hardware_concurrency();
-		std::cout << "Thread count: "<<threadcount<<std::endl;
-		
+		//std::cout << "Thread count: "<<threadcount<<std::endl;
+
 		int chunksize=std::floor(a.height() / threadcount);
-		
+
 		std::vector<std::thread> threads;
-		
-		
+
+
 		for(unsigned int thread=0; thread<threadcount; ++thread)
 		{
 			SRGBAChunk chunk(at);
@@ -1071,14 +1071,14 @@ namespace anl
 			chunk.kernel=&k;
 			chunk.ranges=ranges;
 			chunk.z=0;
-			std::cout << "Construct thread " << thread <<std::endl;
+			//std::cout << "Construct thread " << thread <<std::endl;
 			threads.push_back(std::thread(mapRGBA2DChunkNoZ, chunk));
 		}
-		
-		std::cout << "Join threads" << std::endl;
+
+		//std::cout << "Join threads" << std::endl;
 		for(unsigned int c=0; c<threads.size(); ++c)
 		{
-			std::cout << "Thread: " << c << std::endl;
+			//std::cout << "Thread: " << c << std::endl;
 			threads[c].join();
 		}
 	#endif
@@ -1298,7 +1298,7 @@ namespace anl
         int w=a.width();
         int h=a.height();
         int d=a.depth();
-		CNoiseExecutor m(&k);
+		CNoiseExecutor m(k);
 
         int x,y,z;
         static double pi2=3.14159265 * 2.0;
