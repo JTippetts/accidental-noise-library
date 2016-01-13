@@ -11,6 +11,7 @@ namespace anl
     enum EOpcodes
     {
         OP_NOP,
+		OP_Seed,
         OP_Constant,
         OP_ValueBasis,
         OP_GradientBasis,
@@ -95,7 +96,7 @@ namespace anl
 
         // Instruction opcode
         unsigned int opcode_;
-        unsigned int seed_;
+        //unsigned int seed_;
 
         SInstruction()
         {
@@ -103,7 +104,7 @@ namespace anl
             outfloat_=0;
 			outrgba_=SRGBA(0,0,0,1);
             opcode_=0;
-            seed_=12345;
+            //seed_=12345;
         }
     };
 

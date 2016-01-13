@@ -27,27 +27,27 @@ double rad_to_deg(double rad)
 double hex_function(double x, double y)
 {
 	if(x==0 && y==0) return 1.0;
-	
+
 	double len=std::sqrt(x*x+y*y);
 	double dx=x/len, dy=y/len;
 	double angle_degrees=rad_to_deg(std::atan2(dy,dx));
-	
+
 	double angleincrement=60;
 	double t=(angle_degrees/angleincrement);
 	double a1=std::floor(t)*angleincrement;
 	double a2=a1+angleincrement;
-	
+
 	double ax1=std::cos(deg_to_rad(a1));
 	double ay1=std::sin(deg_to_rad(a1));
 	double ax2=std::cos(deg_to_rad(a2));
 	double ay2=std::sin(deg_to_rad(a2));
-	
+
 	CoordPair p1=closest_point(ax1,ay1,x,y);
 	CoordPair p2=closest_point(ax2,ay2,x,y);
-	
+
 	double dist1=std::sqrt((x-p1.x)*(x-p1.x)+(y-p1.y)*(y-p1.y));
 	double dist2=std::sqrt((x-p2.x)*(x-p2.x)+(y-p2.y)*(y-p2.y));
-	
+
 	if(dist1<dist2)
 	{
 		double d1=std::sqrt(p1.x*p1.x+p1.y*p1.y);
@@ -58,7 +58,7 @@ double hex_function(double x, double y)
 		double d1=std::sqrt(p2.x*p2.x+p2.y*p2.y);
 		return d1/0.86602540378443864676372317075294;
 	}
-	
+
 }
 
 namespace anl
@@ -66,56 +66,61 @@ namespace anl
     CNoiseExecutor::CNoiseExecutor(CKernel *kernel) : kernel_(kernel->getKernel()), evaluated_(kernel->getKernel()->size(), false), coordcache_(kernel->getKernel()->size()), cache_(kernel->getKernel()->size())
     {
     }
-	
+
+    CNoiseExecutor::~CNoiseExecutor()
+    {
+
+    }
+
 	double CNoiseExecutor::evaluateScalar(double x, double y)
 	{
 		CCoordinate c(x,y);
 		return evaluate(c).outfloat_;
 	}
-	
+
 	double CNoiseExecutor::evaluateScalar(double x, double y, double z)
 	{
 		CCoordinate c(x,y,z);
 		return evaluate(c).outfloat_;
 	}
-	
+
 	double CNoiseExecutor::evaluateScalar(double x, double y, double z, double w)
 	{
 		CCoordinate c(x,y,z,w);
 		return evaluate(c).outfloat_;
 	}
-	
+
 	double CNoiseExecutor::evaluateScalar(double x, double y, double z, double w, double u, double v)
 	{
 		CCoordinate c(x,y,z,w,u,v);
 		return evaluate(c).outfloat_;
 	}
-	
-		
+
+
 	SRGBA CNoiseExecutor::evaluateColor(double x, double y)
 	{
 		CCoordinate c(x,y);
 		return evaluate(c).outrgba_;
 	}
-	
+
 	SRGBA CNoiseExecutor::evaluateColor(double x, double y, double z)
 	{
 		CCoordinate c(x,y);
 		return evaluate(c).outrgba_;
 	}
-	
+
 	SRGBA CNoiseExecutor::evaluateColor(double x, double y, double z, double w)
 	{
 		CCoordinate c(x,y);
 		return evaluate(c).outrgba_;
 	}
-	
+
 	SRGBA CNoiseExecutor::evaluateColor(double x, double y, double z, double w, double u, double v)
 	{
 		CCoordinate c(x,y);
 		return evaluate(c).outrgba_;
 	}
-	
+
 
     SVMOutput CNoiseExecutor::evaluate(CCoordinate &coord)
     {
@@ -169,7 +174,7 @@ namespace anl
         //return kernel[index].outfloat_;
         return cache[index].outrgba_;
     }
-	
+
 	SVMOutput CNoiseExecutor::evaluateBoth(InstructionListType &kernel, EvaluatedType &evaluated, CoordCacheType &coordcache, CacheType &cache, unsigned int index, CCoordinate &coord)
     {
         if(index>=kernel.size()) return SVMOutput(0);
@@ -191,6 +196,7 @@ namespace anl
         switch(i.opcode_)
         {
             case OP_NOP:
+			case OP_Seed:
             case OP_Constant: evaluated[index]=true; cache[index].set(i.outfloat_); return; break;
 
             case OP_ValueBasis:
@@ -198,39 +204,40 @@ namespace anl
                 // Parameters
                 // 0=Interpolation
                 int interp=(int)evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+				unsigned int seed=(unsigned int)evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
                 switch(coord.dimension_)
                 {
                 case 2:
                     switch(interp)
                     {
-                        case 0: cache[index].set(value_noise2D(coord.x_,coord.y_,i.seed_,noInterp)); break;
-                        case 1: cache[index].set(value_noise2D(coord.x_,coord.y_,i.seed_,linearInterp)); break;
-                        case 2: cache[index].set(value_noise2D(coord.x_,coord.y_,i.seed_,hermiteInterp)); break;
-                        default: cache[index].set(value_noise2D(coord.x_,coord.y_,i.seed_,quinticInterp)); break;
+                        case 0: cache[index].set(value_noise2D(coord.x_,coord.y_,seed,noInterp)); break;
+                        case 1: cache[index].set(value_noise2D(coord.x_,coord.y_,seed,linearInterp)); break;
+                        case 2: cache[index].set(value_noise2D(coord.x_,coord.y_,seed,hermiteInterp)); break;
+                        default: cache[index].set(value_noise2D(coord.x_,coord.y_,seed,quinticInterp)); break;
                     }; break;
                 case 3:
                     switch(interp)
                     {
-                        case 0: cache[index].set(value_noise3D(coord.x_,coord.y_,coord.z_,i.seed_,noInterp)); break;
-                        case 1: cache[index].set(value_noise3D(coord.x_,coord.y_,coord.z_,i.seed_,linearInterp)); break;
-                        case 2: cache[index].set(value_noise3D(coord.x_,coord.y_,coord.z_,i.seed_,hermiteInterp)); break;
-                        default: cache[index].set(value_noise3D(coord.x_,coord.y_,coord.z_,i.seed_,quinticInterp)); break;
+                        case 0: cache[index].set(value_noise3D(coord.x_,coord.y_,coord.z_,seed,noInterp)); break;
+                        case 1: cache[index].set(value_noise3D(coord.x_,coord.y_,coord.z_,seed,linearInterp)); break;
+                        case 2: cache[index].set(value_noise3D(coord.x_,coord.y_,coord.z_,seed,hermiteInterp)); break;
+                        default: cache[index].set(value_noise3D(coord.x_,coord.y_,coord.z_,seed,quinticInterp)); break;
                     }; break;
                 case 4:
                     switch(interp)
                     {
-                        case 0: cache[index].set(value_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,i.seed_,noInterp)); break;
-                        case 1: cache[index].set(value_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,i.seed_,linearInterp)); break;
-                        case 2: cache[index].set(value_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,i.seed_,hermiteInterp)); break;
-                        default: cache[index].set(value_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,i.seed_,quinticInterp)); break;
+                        case 0: cache[index].set(value_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,seed,noInterp)); break;
+                        case 1: cache[index].set(value_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,seed,linearInterp)); break;
+                        case 2: cache[index].set(value_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,seed,hermiteInterp)); break;
+                        default: cache[index].set(value_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,seed,quinticInterp)); break;
                     }; break;
                 default:
                     switch(interp)
                     {
-                        case 0: cache[index].set(value_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,i.seed_,noInterp)); break;
-                        case 1: cache[index].set(value_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,i.seed_,linearInterp)); break;
-                        case 2: cache[index].set(value_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,i.seed_,hermiteInterp)); break;
-                        default: cache[index].set(value_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,i.seed_,quinticInterp)); break;
+                        case 0: cache[index].set(value_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,seed,noInterp)); break;
+                        case 1: cache[index].set(value_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,seed,linearInterp)); break;
+                        case 2: cache[index].set(value_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,seed,hermiteInterp)); break;
+                        default: cache[index].set(value_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,seed,quinticInterp)); break;
                     }; break;
                 }
 
@@ -243,40 +250,41 @@ namespace anl
                 // Parameters
                 // 0=Interpolation
                 int interp=(int)evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+				unsigned int seed=(unsigned int)evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
                 switch(coord.dimension_)
                 {
                 case 2:
                     switch(interp)
                     {
-                        case 0: cache[index].set(gradient_noise2D(coord.x_,coord.y_,i.seed_,noInterp)); break;
-                        case 1: cache[index].set(gradient_noise2D(coord.x_,coord.y_,i.seed_,linearInterp)); break;
-                        case 2: cache[index].set(gradient_noise2D(coord.x_,coord.y_,i.seed_,hermiteInterp)); break;
-                        default: cache[index].set(gradient_noise2D(coord.x_,coord.y_,i.seed_,quinticInterp)); break;
+                        case 0: cache[index].set(gradient_noise2D(coord.x_,coord.y_,seed,noInterp)); break;
+                        case 1: cache[index].set(gradient_noise2D(coord.x_,coord.y_,seed,linearInterp)); break;
+                        case 2: cache[index].set(gradient_noise2D(coord.x_,coord.y_,seed,hermiteInterp)); break;
+                        default: cache[index].set(gradient_noise2D(coord.x_,coord.y_,seed,quinticInterp)); break;
                     }; break;
                 case 3:
                     //std::cout << "(" << coord.x_ << "," << coord.y_ << "," << coord.z_ << std::endl;
                     switch(interp)
                     {
-                        case 0: cache[index].set(gradient_noise3D(coord.x_,coord.y_,coord.z_,i.seed_,noInterp)); break;
-                        case 1: cache[index].set(gradient_noise3D(coord.x_,coord.y_,coord.z_,i.seed_,linearInterp)); break;
-                        case 2: cache[index].set(gradient_noise3D(coord.x_,coord.y_,coord.z_,i.seed_,hermiteInterp)); break;
-                        default: cache[index].set(gradient_noise3D(coord.x_,coord.y_,coord.z_,i.seed_,quinticInterp)); break;
+                        case 0: cache[index].set(gradient_noise3D(coord.x_,coord.y_,coord.z_,seed,noInterp)); break;
+                        case 1: cache[index].set(gradient_noise3D(coord.x_,coord.y_,coord.z_,seed,linearInterp)); break;
+                        case 2: cache[index].set(gradient_noise3D(coord.x_,coord.y_,coord.z_,seed,hermiteInterp)); break;
+                        default: cache[index].set(gradient_noise3D(coord.x_,coord.y_,coord.z_,seed,quinticInterp)); break;
                     }; break;
                 case 4:
                     switch(interp)
                     {
-                        case 0: cache[index].set(gradient_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,i.seed_,noInterp)); break;
-                        case 1: cache[index].set(gradient_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,i.seed_,linearInterp)); break;
-                        case 2: cache[index].set(gradient_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,i.seed_,hermiteInterp)); break;
-                        default: cache[index].set(gradient_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,i.seed_,quinticInterp)); break;
+                        case 0: cache[index].set(gradient_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,seed,noInterp)); break;
+                        case 1: cache[index].set(gradient_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,seed,linearInterp)); break;
+                        case 2: cache[index].set(gradient_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,seed,hermiteInterp)); break;
+                        default: cache[index].set(gradient_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,seed,quinticInterp)); break;
                     }; break;
                 default:
                     switch(interp)
                     {
-                        case 0: cache[index].set(gradient_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,i.seed_,noInterp)); break;
-                        case 1: cache[index].set(gradient_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,i.seed_,linearInterp)); break;
-                        case 2: cache[index].set(gradient_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,i.seed_,hermiteInterp)); break;
-                        default: cache[index].set(gradient_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,i.seed_,quinticInterp)); break;
+                        case 0: cache[index].set(gradient_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,seed,noInterp)); break;
+                        case 1: cache[index].set(gradient_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,seed,linearInterp)); break;
+                        case 2: cache[index].set(gradient_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,seed,hermiteInterp)); break;
+                        default: cache[index].set(gradient_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,seed,quinticInterp)); break;
                     }; break;
                 }
                 evaluated[index]=true;
@@ -288,12 +296,13 @@ namespace anl
                 // Parameters
 
                 // Simplex noise isn't interpolated, so interp does nothing
+				unsigned int seed=(unsigned int)evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
                 switch(coord.dimension_)
                 {
-                case 2: cache[index].set(simplex_noise2D(coord.x_,coord.y_,i.seed_,noInterp)); break;
-                case 3: cache[index].set(simplex_noise3D(coord.x_,coord.y_,coord.z_,i.seed_,noInterp)); break;
-                case 4: cache[index].set(simplex_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,i.seed_,noInterp)); break;
-                default: cache[index].set(simplex_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,i.seed_,noInterp)); break;
+                case 2: cache[index].set(simplex_noise2D(coord.x_,coord.y_,seed,noInterp)); break;
+                case 3: cache[index].set(simplex_noise3D(coord.x_,coord.y_,coord.z_,seed,noInterp)); break;
+                case 4: cache[index].set(simplex_noise4D(coord.x_,coord.y_,coord.z_,coord.w_,seed,noInterp)); break;
+                default: cache[index].set(simplex_noise6D(coord.x_,coord.y_,coord.z_,coord.w_,coord.u_,coord.v_,seed,noInterp)); break;
                 };
                 evaluated[index]=true;
                 return;
@@ -310,44 +319,45 @@ namespace anl
                     double d2=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[6],coord);
                     double d3=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[7],coord);
                     double d4=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[8],coord);
+					unsigned int seed=(unsigned int)evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[9],coord);
                     double f[4], d[4];
                     switch(coord.dimension_)
                     {
                     case 2:
                         switch(dist)
                         {
-                        case 0: cellular_function2D(coord.x_, coord.y_, i.seed_, f, d, distEuclid2); break;
-                        case 1: cellular_function2D(coord.x_, coord.y_, i.seed_, f, d, distManhattan2); break;
-                        case 2: cellular_function2D(coord.x_, coord.y_, i.seed_, f, d, distGreatestAxis2); break;
-                        case 3: cellular_function2D(coord.x_, coord.y_, i.seed_, f, d, distLeastAxis2); break;
-                        default: cellular_function2D(coord.x_, coord.y_, i.seed_, f, d, distEuclid2); break;
+                        case 0: cellular_function2D(coord.x_, coord.y_, seed, f, d, distEuclid2); break;
+                        case 1: cellular_function2D(coord.x_, coord.y_, seed, f, d, distManhattan2); break;
+                        case 2: cellular_function2D(coord.x_, coord.y_, seed, f, d, distGreatestAxis2); break;
+                        case 3: cellular_function2D(coord.x_, coord.y_, seed, f, d, distLeastAxis2); break;
+                        default: cellular_function2D(coord.x_, coord.y_, seed, f, d, distEuclid2); break;
                         }; break;
                     case 3:
                         switch(dist)
                         {
-                        case 0: cellular_function3D(coord.x_, coord.y_, coord.z_, i.seed_, f, d, distEuclid3); break;
-                        case 1: cellular_function3D(coord.x_, coord.y_, coord.z_, i.seed_, f, d, distManhattan3); break;
-                        case 2: cellular_function3D(coord.x_, coord.y_, coord.z_, i.seed_, f, d, distGreatestAxis3); break;
-                        case 3: cellular_function3D(coord.x_, coord.y_, coord.z_, i.seed_, f, d, distLeastAxis3); break;
-                        default: cellular_function3D(coord.x_, coord.y_, coord.z_, i.seed_, f, d, distEuclid3); break;
+                        case 0: cellular_function3D(coord.x_, coord.y_, coord.z_, seed, f, d, distEuclid3); break;
+                        case 1: cellular_function3D(coord.x_, coord.y_, coord.z_, seed, f, d, distManhattan3); break;
+                        case 2: cellular_function3D(coord.x_, coord.y_, coord.z_, seed, f, d, distGreatestAxis3); break;
+                        case 3: cellular_function3D(coord.x_, coord.y_, coord.z_, seed, f, d, distLeastAxis3); break;
+                        default: cellular_function3D(coord.x_, coord.y_, coord.z_, seed, f, d, distEuclid3); break;
                         }; break;
                     case 4:
                         switch(dist)
                         {
-                        case 0: cellular_function4D(coord.x_, coord.y_, coord.z_, coord.w_, i.seed_, f, d, distEuclid4); break;
-                        case 1: cellular_function4D(coord.x_, coord.y_, coord.z_, coord.w_, i.seed_, f, d, distManhattan4); break;
-                        case 2: cellular_function4D(coord.x_, coord.y_, coord.z_, coord.w_, i.seed_, f, d, distGreatestAxis4); break;
-                        case 3: cellular_function4D(coord.x_, coord.y_, coord.z_, coord.w_, i.seed_, f, d, distLeastAxis4); break;
-                        default: cellular_function4D(coord.x_, coord.y_, coord.z_, coord.w_, i.seed_, f, d, distEuclid4); break;
+                        case 0: cellular_function4D(coord.x_, coord.y_, coord.z_, coord.w_, seed, f, d, distEuclid4); break;
+                        case 1: cellular_function4D(coord.x_, coord.y_, coord.z_, coord.w_, seed, f, d, distManhattan4); break;
+                        case 2: cellular_function4D(coord.x_, coord.y_, coord.z_, coord.w_, seed, f, d, distGreatestAxis4); break;
+                        case 3: cellular_function4D(coord.x_, coord.y_, coord.z_, coord.w_, seed, f, d, distLeastAxis4); break;
+                        default: cellular_function4D(coord.x_, coord.y_, coord.z_, coord.w_, seed, f, d, distEuclid4); break;
                         }; break;
                     default:
                         switch(dist)
                         {
-                        case 0: cellular_function6D(coord.x_, coord.y_, coord.z_, coord.w_, coord.u_, coord.v_, i.seed_, f, d, distEuclid6); break;
-                        case 1: cellular_function6D(coord.x_, coord.y_, coord.z_, coord.w_, coord.u_, coord.v_, i.seed_, f, d, distManhattan6); break;
-                        case 2: cellular_function6D(coord.x_, coord.y_, coord.z_, coord.w_, coord.u_, coord.v_, i.seed_, f, d, distGreatestAxis6); break;
-                        case 3: cellular_function6D(coord.x_, coord.y_, coord.z_, coord.w_, coord.u_, coord.v_, i.seed_, f, d, distLeastAxis6); break;
-                        default: cellular_function6D(coord.x_, coord.y_, coord.z_, coord.w_, coord.u_, coord.v_, i.seed_, f, d, distEuclid6); break;
+                        case 0: cellular_function6D(coord.x_, coord.y_, coord.z_, coord.w_, coord.u_, coord.v_, seed, f, d, distEuclid6); break;
+                        case 1: cellular_function6D(coord.x_, coord.y_, coord.z_, coord.w_, coord.u_, coord.v_, seed, f, d, distManhattan6); break;
+                        case 2: cellular_function6D(coord.x_, coord.y_, coord.z_, coord.w_, coord.u_, coord.v_, seed, f, d, distGreatestAxis6); break;
+                        case 3: cellular_function6D(coord.x_, coord.y_, coord.z_, coord.w_, coord.u_, coord.v_, seed, f, d, distLeastAxis6); break;
+                        default: cellular_function6D(coord.x_, coord.y_, coord.z_, coord.w_, coord.u_, coord.v_, seed, f, d, distEuclid6); break;
                         }; break;
                     };
 
@@ -379,7 +389,7 @@ namespace anl
 					SVMOutput s1, s2;
 					s1=evaluateBoth(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
 					s2=evaluateBoth(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
-					
+
                     cache[index].set(s1*s2);
                     evaluated[index]=true;
                     return;
@@ -857,7 +867,7 @@ namespace anl
                 evaluated[index]=true;
                 return;
             } break;
-			
+
 			case OP_DX:
 			{
 				double spacing=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
@@ -924,7 +934,7 @@ namespace anl
 				evaluated[index]=true;
 				return;
 			} break;
-			
+
 			case OP_Sigmoid:
 			{
 				double s=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
@@ -968,16 +978,17 @@ namespace anl
                 evaluated[index]=true;
                 return;
             } break;
-			
+
 			case OP_HexTile:
 			{
 				TileCoord tile=calcHexPointTile(coord.x_, coord.y_);
-				unsigned int hash=hash_coords_2(tile.x, tile.y, i.seed_);
+				unsigned int seed=(unsigned int)evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+				unsigned int hash=hash_coords_2(tile.x, tile.y, seed);
 				cache[index].set((double)hash/255.0);
 				evaluated[index]=true;
 				return;
 			} break;
-			
+
 			case OP_HexBump:
 			{
 				TileCoord tile=calcHexPointTile(coord.x_, coord.y_);
@@ -988,7 +999,7 @@ namespace anl
 				evaluated[index]=true;
 				return;
 			} break;
-			
+
 			case OP_Color: evaluated[index]=true; cache[index].set(i.outrgba_); return; break;
 
 			case OP_ExtractRed:
@@ -1045,7 +1056,7 @@ namespace anl
             default: evaluated[index]=true; return; break;
         };
     }
-	
+
 	TileCoord CNoiseExecutor::calcHexPointTile(float px, float py)
 	{
 		TileCoord tile;
@@ -1094,7 +1105,7 @@ namespace anl
 		tile.y=Y;
 		return tile;
 	}
-	
+
 	CoordPair CNoiseExecutor::calcHexTileCenter(int tx, int ty)
 	{
 		CoordPair origin;

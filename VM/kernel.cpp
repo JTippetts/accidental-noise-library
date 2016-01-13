@@ -56,41 +56,53 @@ CInstructionIndex CKernel::constant(double val)
     return lastIndex();
 }
 
-CInstructionIndex CKernel::valueBasis(CInstructionIndex interpindex, unsigned int seed)
+CInstructionIndex CKernel::seed(unsigned int val)
+{
+    anl::SInstruction i;
+    i.outfloat_=(double)val;
+    i.opcode_=anl::OP_Seed;
+    kernel_.push_back(i);
+    return lastIndex();
+}
+
+CInstructionIndex CKernel::valueBasis(CInstructionIndex interpindex, CInstructionIndex seed)
 {
     anl::SInstruction i;
 
     i.opcode_=anl::OP_ValueBasis;
     i.sources_[0]=interpindex.index_;
-    i.seed_=seed;
+	i.sources_[1]=seed.index_;
+    //i.seed_=seed;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-CInstructionIndex CKernel::gradientBasis(CInstructionIndex interp, unsigned int seed)
+CInstructionIndex CKernel::gradientBasis(CInstructionIndex interp, CInstructionIndex seed)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_GradientBasis;
     i.sources_[0]=interp.index_;
-    i.seed_=seed;
+	i.sources_[1]=seed.index_;
+    //i.seed_=seed;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-CInstructionIndex CKernel::simplexBasis(unsigned int seed)
+CInstructionIndex CKernel::simplexBasis(CInstructionIndex seed)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_SimplexBasis;
-    i.seed_=seed;
+	i.sources_[0]=seed.index_;
+    //i.seed_=seed;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-CInstructionIndex CKernel::cellularBasis(CInstructionIndex f1, CInstructionIndex f2, CInstructionIndex f3, CInstructionIndex f4, CInstructionIndex d1, CInstructionIndex d2, CInstructionIndex d3, CInstructionIndex d4, CInstructionIndex dist, unsigned int seed)
+CInstructionIndex CKernel::cellularBasis(CInstructionIndex f1, CInstructionIndex f2, CInstructionIndex f3, CInstructionIndex f4, CInstructionIndex d1, CInstructionIndex d2, CInstructionIndex d3, CInstructionIndex d4, CInstructionIndex dist, CInstructionIndex seed)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_CellularBasis;
-    i.seed_=seed;
+    //i.seed_=seed;
     i.sources_[0]=dist.index_;
     i.sources_[1]=f1.index_;
     i.sources_[2]=f2.index_;
@@ -100,6 +112,7 @@ CInstructionIndex CKernel::cellularBasis(CInstructionIndex f1, CInstructionIndex
     i.sources_[6]=d2.index_;
     i.sources_[7]=d3.index_;
     i.sources_[8]=d4.index_;
+	i.sources_[9]=seed.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
@@ -992,11 +1005,12 @@ CInstructionIndex CKernel::combineRGBA(CInstructionIndex r, CInstructionIndex g,
 	return lastIndex();
 }
 
-CInstructionIndex CKernel::hexTile(unsigned int seed)
+CInstructionIndex CKernel::hexTile(CInstructionIndex seed)
 {
 	anl::SInstruction i;
 	i.opcode_=anl::OP_HexTile;
-	i.seed_=seed;
+	//i.seed_=seed;
+	i.sources_[0]=seed.index_;
 	kernel_.push_back(i);
 	return lastIndex();
 }

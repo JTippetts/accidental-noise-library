@@ -62,7 +62,7 @@ solution "ANL"
 			buildoptions "-std=c++11"
 		end
 		
-		files {"VM/*.h", "VM/*.cpp", "Imaging/*.h", "Imaging/*.cpp", "Imaging/*.c", "templates/*.h", "vectortypes.h"}
+		files {"VM/*.h", "VM/*.cpp", "Imaging/*.h", "Imaging/*.cpp", "Imaging/*.c", "Expression/*.h", "Expression/*.cpp", "templates/*.h", "vectortypes.h"}
 		
 	project "toluaexe"
 		kind "ConsoleApp"

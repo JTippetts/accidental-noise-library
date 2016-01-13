@@ -44,10 +44,11 @@ namespace anl
 		CInstructionIndex sqrt2();
 
         CInstructionIndex constant(double val);
-        CInstructionIndex valueBasis(CInstructionIndex interpindex, unsigned int seed);
-        CInstructionIndex gradientBasis(CInstructionIndex interpindex, unsigned int seed);
-        CInstructionIndex simplexBasis(unsigned int seed);
-        CInstructionIndex cellularBasis(CInstructionIndex f1, CInstructionIndex f2, CInstructionIndex f3, CInstructionIndex f4, CInstructionIndex d1, CInstructionIndex d2, CInstructionIndex d3, CInstructionIndex d4, CInstructionIndex dist, unsigned int seed);
+		CInstructionIndex seed(unsigned int val);
+        CInstructionIndex valueBasis(CInstructionIndex interpindex, CInstructionIndex seed);
+        CInstructionIndex gradientBasis(CInstructionIndex interpindex, CInstructionIndex seed);
+        CInstructionIndex simplexBasis(CInstructionIndex seed);
+        CInstructionIndex cellularBasis(CInstructionIndex f1, CInstructionIndex f2, CInstructionIndex f3, CInstructionIndex f4, CInstructionIndex d1, CInstructionIndex d2, CInstructionIndex d3, CInstructionIndex d4, CInstructionIndex dist, CInstructionIndex seed);
         CInstructionIndex add(CInstructionIndex s1index, CInstructionIndex s2index);
         CInstructionIndex subtract(CInstructionIndex s1, CInstructionIndex s2);
         CInstructionIndex multiply(CInstructionIndex s1index, CInstructionIndex s2index);
@@ -89,6 +90,7 @@ namespace anl
         CInstructionIndex multiplySequence(CInstructionIndex baseindex, unsigned int number, unsigned int stride);
         CInstructionIndex maxSequence(CInstructionIndex baseindex, unsigned int number, unsigned int stride);
         CInstructionIndex minSequence(CInstructionIndex baseindex, unsigned int number, unsigned int stride);
+		
         CInstructionIndex blend(CInstructionIndex low, CInstructionIndex high, CInstructionIndex control);
         CInstructionIndex select(CInstructionIndex low, CInstructionIndex high, CInstructionIndex control, CInstructionIndex threshold, CInstructionIndex falloff);
         CInstructionIndex clamp(CInstructionIndex src, CInstructionIndex low, CInstructionIndex high);
@@ -123,7 +125,7 @@ namespace anl
 		CInstructionIndex radial();
 		
 		// Patterns
-		CInstructionIndex hexTile(unsigned int seed);
+		CInstructionIndex hexTile(CInstructionIndex seed);
 		CInstructionIndex hexBump();
 		
 		CInstructionIndex color(SRGBA c);

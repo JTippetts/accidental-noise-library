@@ -5,7 +5,7 @@
 #include "coordinate.h"
 #include "noise_gen.h"
 
-//#include <vector>
+#include <vector>
 #include "../templates/tarray1.h"
 #include "../vectortypes.h"
 
@@ -30,17 +30,17 @@ namespace anl
         {
 
         }
-		
+
 		SVMOutput(double v) : outfloat_(v), outrgba_(v,v,v,1)
 		{
 		}
-		
+
 		SVMOutput(double v, SRGBA rgba)
 		{
 			outfloat_=v;
 			outrgba_=rgba;
 		}
-		
+
 		SVMOutput(const SVMOutput &rhs) : outfloat_(rhs.outfloat_), outrgba_(rhs.outrgba_)
 		{
 		}
@@ -57,33 +57,33 @@ namespace anl
 			outrgba_=v;
 			outfloat_=0.2126*v.r + 0.7152*v.g + 0.0722*v.b;
 		}
-		
+
 		SVMOutput operator-(const SVMOutput &rhs) const
 		{
 			return SVMOutput(outfloat_-rhs.outfloat_, outrgba_-rhs.outrgba_);
 		}
-		
+
 		SVMOutput operator+(const SVMOutput &rhs) const
 		{
 			return SVMOutput(outfloat_+rhs.outfloat_, outrgba_+rhs.outrgba_);
 		}
-		
+
 		SVMOutput operator*(const SVMOutput &rhs) const
 		{
 			return SVMOutput(outfloat_*rhs.outfloat_, outrgba_*rhs.outrgba_);
 		}
-		
+
 		SVMOutput operator/(const SVMOutput &rhs) const
 		{
 			return SVMOutput(outfloat_/rhs.outfloat_, outrgba_/rhs.outrgba_);
 		}
-		
+
 		SVMOutput operator*(double rhs) const
 		{
 			return SVMOutput(outfloat_*rhs, outrgba_*rhs);
 		}
-		
-		
+
+
 		void set(const SVMOutput &rhs)
 		{
 			outfloat_=rhs.outfloat_;
@@ -91,24 +91,25 @@ namespace anl
 		}
     };
 
-    typedef TArray1D<SInstruction> InstructionListType;
-    typedef TArray1D<bool> EvaluatedType;
-	typedef TArray1D<CCoordinate> CoordCacheType;
-    typedef TArray1D<SVMOutput> CacheType;
+    typedef std::vector<SInstruction> InstructionListType;
+    typedef std::vector<bool> EvaluatedType;
+	typedef std::vector<CCoordinate> CoordCacheType;
+    typedef std::vector<SVMOutput> CacheType;
 
     class CNoiseExecutor
     {
     public:
         CNoiseExecutor(CKernel *kernel);
+        ~CNoiseExecutor();
 
         SVMOutput evaluate(CCoordinate &coord);
         SVMOutput evaluateAt(CCoordinate &coord, CInstructionIndex index);
-		
+
 		double evaluateScalar(double x, double y);
 		double evaluateScalar(double x, double y, double z);
 		double evaluateScalar(double x, double y, double z, double w);
 		double evaluateScalar(double x, double y, double z, double w, double u, double v);
-		
+
 		SRGBA evaluateColor(double x, double y);
 		SRGBA evaluateColor(double x, double y, double z);
 		SRGBA evaluateColor(double x, double y, double z, double w);
