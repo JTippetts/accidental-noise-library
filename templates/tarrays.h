@@ -762,6 +762,8 @@ template<class T> class TArray3D
     {
         for(int c=0; c<m_width*m_height*m_depth; ++c) m_array[c]=v;
     }
+	
+	T *getData() { return m_array.size()>0 ? &m_array[0] : 0;}
 
     protected:
     int m_width, m_height, m_depth;
