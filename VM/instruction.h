@@ -201,7 +201,7 @@ namespace anl
 		unsigned int index_;
 		friend class CKernel;
 		friend class CNoiseExecutor;
-		friend class ExpressionBuilder;
+		friend class CExpressionBuilder;
 	};
 };
 

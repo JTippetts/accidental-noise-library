@@ -9,11 +9,11 @@
 
 namespace anl
 {
-class ExpressionBuilder
+class CExpressionBuilder
 {
 public:
-	ExpressionBuilder(CKernel &kernel);
-	~ExpressionBuilder();
+	CExpressionBuilder(CKernel &kernel);
+	~CExpressionBuilder();
 
 	CInstructionIndex eval(const std::string &expr);
 	std::vector<Token> getPostfix(const std::string &expr);

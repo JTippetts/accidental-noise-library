@@ -3,7 +3,7 @@
 #include <iostream>
 namespace anl
 {
-	ExpressionBuilder::ExpressionBuilder(CKernel &kernel) : kernel_(kernel)
+	CExpressionBuilder::CExpressionBuilder(CKernel &kernel) : kernel_(kernel)
 	{
 		f_["valueBasis"]=2;
         f_["gradientBasis"]=2;
@@ -44,6 +44,7 @@ namespace anl
         f_["dw"]=1;
         f_["du"]=1;
         f_["dv"]=1;
+        f_["sigmoid"]=3;
         f_["index"]=1;
 
         f_["color"]=4;
@@ -60,20 +61,20 @@ namespace anl
         vars_.push_back("radial");
 
 	}
-	ExpressionBuilder::~ExpressionBuilder(){}
+	CExpressionBuilder::~CExpressionBuilder(){}
 
-	void ExpressionBuilder::setRandomSeed(unsigned int seed)
+	void CExpressionBuilder::setRandomSeed(unsigned int seed)
 	{
 	    prng_.setSeed(seed);
 	}
 
-	std::vector<Token> ExpressionBuilder::getPostfix(const std::string &expr)
+	std::vector<Token> CExpressionBuilder::getPostfix(const std::string &expr)
 	{
 		ExpressionToPostfix e(expr, f_, vars_);
 		return e.ToPostfix();
 	}
 
-	CInstructionIndex ExpressionBuilder::eval(const std::string &expr)
+	CInstructionIndex CExpressionBuilder::eval(const std::string &expr)
 	{
 		ExpressionToPostfix e(expr, f_, vars_);
 
@@ -119,7 +120,7 @@ namespace anl
 		return stk.top();
 	}
 
-	void ExpressionBuilder::buildVar(const std::string &token, std::stack<CInstructionIndex> &stk)
+	void CExpressionBuilder::buildVar(const std::string &token, std::stack<CInstructionIndex> &stk)
 	{
 	    if(token=="rand")
         {
@@ -159,7 +160,7 @@ namespace anl
         }
 	}
 
-	void ExpressionBuilder::buildFunction(const std::string &token, std::stack<CInstructionIndex> &stk)
+	void CExpressionBuilder::buildFunction(const std::string &token, std::stack<CInstructionIndex> &stk)
 	{
 		if(token=="valueBasis")
 		{
@@ -501,6 +502,17 @@ namespace anl
             stk.pop();
 
             stk.push(kernel_.combineRGBA(r,g,b,a));
+        }
+        else if(token=="sigmoid")
+        {
+            CInstructionIndex rmp=stk.top();
+            stk.pop();
+            CInstructionIndex cntr=stk.top();
+            stk.pop();
+            CInstructionIndex src=stk.top();
+            stk.pop();
+
+            stk.push(kernel_.sigmoid(src,cntr,rmp));
         }
         else if(token=="index")
 		{

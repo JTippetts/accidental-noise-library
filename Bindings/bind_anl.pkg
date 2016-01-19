@@ -6,6 +6,7 @@ $#include "../VM/kernel.h"
 $#include "../VM/coordinate.h"
 $#include "../VM/random_gen.h"
 $#include "../Imaging/imaging.h"
+$#include "../Expression/expressionbuilder.h"
 
 $using namespace anl;
 double highresTime();
@@ -298,6 +299,16 @@ class CInstructionListType
 		double loopy1;
 		double loopz1;
     };
+	
+	class CExpressionBuilder
+	{
+	public:
+		CExpressionBuilder(CKernel &kernel);
+		~CExpressionBuilder();
+
+		CInstructionIndex eval(const char *expr);
+		void setRandomSeed(unsigned int seed);
+	};
 	
 
 class CArray2Dd
