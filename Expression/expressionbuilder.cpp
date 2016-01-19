@@ -46,6 +46,8 @@ namespace anl
         f_["dv"]=1;
         f_["index"]=1;
 
+        f_["color"]=4;
+
         // Build vars
         vars_.push_back("rand");
         vars_.push_back("rand01");
@@ -111,6 +113,8 @@ namespace anl
 			    buildVar(i.GetToken(), stk);
 			}
 		}
+
+		index_.push_back(stk.top());
 
 		return stk.top();
 	}
@@ -485,8 +489,47 @@ namespace anl
 			stk.pop();
 			stk.push(kernel_.dv(left,right));
 		}
+		else if(token=="color")
+        {
+            CInstructionIndex a=stk.top();
+            stk.pop();
+            CInstructionIndex b=stk.top();
+            stk.pop();
+            CInstructionIndex g=stk.top();
+            stk.pop();
+            CInstructionIndex r=stk.top();
+            stk.pop();
+
+            stk.push(kernel_.combineRGBA(r,g,b,a));
+        }
         else if(token=="index")
 		{
+		    InstructionListType *il=kernel_.getKernel();
+		    CInstructionIndex i=stk.top();
+		    stk.pop();
+		    unsigned int id=i.index_;
+		    if(id >= il->size() || (*il)[id].opcode_!=OP_Constant)
+            {
+                // Parameter passed to index must be a number
+                // TODO: Figure out how to convey error to user
+                stk.push(kernel_.zero());
+            }
+            else
+            {
+                unsigned int ic=(unsigned int)(*il)[id].outfloat_;
+                if(ic>=index_.size())
+                {
+                    // Index out of range
+                    stk.push(kernel_.zero());
+                }
+                else
+                {
+                    stk.push(index_[ic]);
+                }
+            }
+
+
 		}
+
 	}
 };

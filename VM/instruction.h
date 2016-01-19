@@ -61,16 +61,16 @@ namespace anl
         OP_W,
         OP_U,
         OP_V,
-		
+
 		OP_DX,
 		OP_DY,
 		OP_DZ,
 		OP_DW,
 		OP_DU,
 		OP_DV,
-		
+
 		OP_Sigmoid,
-		
+
 		// Patterns
 		OP_HexTile,
 		OP_HexBump,
@@ -201,6 +201,7 @@ namespace anl
 		unsigned int index_;
 		friend class CKernel;
 		friend class CNoiseExecutor;
+		friend class ExpressionBuilder;
 	};
 };
 
