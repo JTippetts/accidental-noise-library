@@ -6,6 +6,7 @@
 #include <string>
 #include <map>
 
+
 namespace anl
 {
 	enum InterpolationTypes
@@ -15,7 +16,7 @@ namespace anl
 		INTERP_HERMITE,
 		INTERP_QUINTIC
 	};
-	
+
 	enum DistanceTypes
 	{
 		DISTANCE_EUCLID,
@@ -23,7 +24,7 @@ namespace anl
 		DISTANCE_LEASTAXIS,
 		DISTANCE_GREATESTAXIS
 	};
-	
+
 	enum BasisTypes
 	{
 		BASIS_VALUE,
@@ -35,7 +36,7 @@ namespace anl
     {
     public:
 		CKernel();
-		
+
 		CInstructionIndex pi();
 		CInstructionIndex e();
 		CInstructionIndex one();
@@ -90,7 +91,7 @@ namespace anl
         CInstructionIndex multiplySequence(CInstructionIndex baseindex, unsigned int number, unsigned int stride);
         CInstructionIndex maxSequence(CInstructionIndex baseindex, unsigned int number, unsigned int stride);
         CInstructionIndex minSequence(CInstructionIndex baseindex, unsigned int number, unsigned int stride);
-		
+
         CInstructionIndex blend(CInstructionIndex low, CInstructionIndex high, CInstructionIndex control);
         CInstructionIndex select(CInstructionIndex low, CInstructionIndex high, CInstructionIndex control, CInstructionIndex threshold, CInstructionIndex falloff);
         CInstructionIndex clamp(CInstructionIndex src, CInstructionIndex low, CInstructionIndex high);
@@ -101,7 +102,7 @@ namespace anl
         CInstructionIndex acos(CInstructionIndex src);
         CInstructionIndex asin(CInstructionIndex src);
         CInstructionIndex atan(CInstructionIndex src);
-		
+
 		CInstructionIndex tiers(CInstructionIndex src, CInstructionIndex numtiers);
 		CInstructionIndex smoothTiers(CInstructionIndex src, CInstructionIndex numtiers);
 
@@ -111,26 +112,26 @@ namespace anl
         CInstructionIndex w();
         CInstructionIndex u();
         CInstructionIndex v();
-		
+
 		CInstructionIndex dx(CInstructionIndex src, CInstructionIndex spacing);
 		CInstructionIndex dy(CInstructionIndex src, CInstructionIndex spacing);
 		CInstructionIndex dz(CInstructionIndex src, CInstructionIndex spacing);
 		CInstructionIndex dw(CInstructionIndex src, CInstructionIndex spacing);
 		CInstructionIndex du(CInstructionIndex src, CInstructionIndex spacing);
 		CInstructionIndex dv(CInstructionIndex src, CInstructionIndex spacing);
-		
+
 		CInstructionIndex sigmoid(CInstructionIndex src);
 		CInstructionIndex sigmoid(CInstructionIndex src, CInstructionIndex center, CInstructionIndex ramp);
 
 		CInstructionIndex radial();
-		
+
 		// Patterns
 		CInstructionIndex hexTile(CInstructionIndex seed);
 		CInstructionIndex hexBump();
-		
+
 		CInstructionIndex color(SRGBA c);
 		CInstructionIndex color(float r, float g, float b, float a);
-		
+
 		CInstructionIndex combineRGBA(CInstructionIndex r, CInstructionIndex g, CInstructionIndex b, CInstructionIndex a);
 
         CInstructionIndex scaleOffset(CInstructionIndex src, double scale, double offset);
@@ -141,7 +142,7 @@ namespace anl
             double angle=0.5, double ax=0, double ay=0, double az=1);
 		CInstructionIndex simpleBillowLayer(unsigned int basistype, CInstructionIndex interptypeindex, double layerscale, double layerfreq, unsigned int seed, bool rot=true,
             double angle=0.5, double ax=0, double ay=0, double az=1);
-			
+
         CInstructionIndex simplefBm(unsigned int basistype, unsigned int interptype, unsigned int numoctaves, double frequency, unsigned int seed, bool rot=true);
 		CInstructionIndex simpleRidgedMultifractal(unsigned int basistype, unsigned int interptype, unsigned int numoctaves, double frequency, unsigned int seed, bool rot=true);
 		CInstructionIndex simpleBillow(unsigned int basistype, unsigned int interptype, unsigned int numoctaves, double frequency, unsigned int seed, bool rot=true);
@@ -149,10 +150,14 @@ namespace anl
         InstructionListType *getKernel(){return &kernel_;}
         CInstructionIndex nextIndex(){return CInstructionIndex(kernel_.size());}
         CInstructionIndex lastIndex(){return CInstructionIndex(kernel_.size()-1);}
+
+        void setVar(const std::string name,double val);
+        CInstructionIndex getVar(const std::string name);
     private:
         InstructionListType kernel_;
-		
+
 		CInstructionIndex pi_, e_, one_, zero_, point5_, sqrt2_;
+		std::map<std::string, CInstructionIndex> vars_;
     };
 
 };

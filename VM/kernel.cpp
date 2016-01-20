@@ -743,7 +743,7 @@ CInstructionIndex CKernel::simpleBillowLayer(unsigned int basistype, CInstructio
 	base=abs(base);
 	base=multiply(base,constant(2.0));
 	base=subtract(base,one());
-	
+
 	constant(layerscale);
     multiply(base,base+1);
     constant(layerfreq);
@@ -763,14 +763,14 @@ CInstructionIndex CKernel::simpleBillowLayer(unsigned int basistype, CInstructio
 CInstructionIndex CKernel::simpleRidgedMultifractal(unsigned int basistype, unsigned int interptype, unsigned int numoctaves, double frequency, unsigned int seed, bool rot)
 {
     if(numoctaves<1) return 0;
-	
+
 	CInstructionIndex interpindex=constant(interptype);
 	KISS rnd;
 	rnd.setSeed(seed);
 	simpleRidgedLayer(basistype, interpindex, 1.0, 1.0*frequency, seed+10,rot,
                                rnd.get01()*3.14159265, rnd.get01(), rnd.get01(), rnd.get01());
 	CInstructionIndex lastlayer=lastIndex();
-	
+
 	for(int c=0; c<numoctaves-1; ++c)
 	{
 		CInstructionIndex nextlayer=simpleRidgedLayer(basistype, interpindex, 1.0/std::pow(2.0, (double)(c)), std::pow(2.0, (double)(c))*frequency, seed+10+c*1000,rot,
@@ -783,14 +783,14 @@ CInstructionIndex CKernel::simpleRidgedMultifractal(unsigned int basistype, unsi
 CInstructionIndex CKernel::simplefBm(unsigned int basistype, unsigned int interptype, unsigned int numoctaves, double frequency, unsigned int seed, bool rot)
 {
     if(numoctaves<1) return 0;
-	
+
 	CInstructionIndex interpindex=constant(interptype);
 	KISS rnd;
 	rnd.setSeed(seed);
 	simpleFractalLayer(basistype, interpindex, 1.0, 1.0*frequency, seed+10,rot,
                                rnd.get01()*3.14159265, rnd.get01(), rnd.get01(), rnd.get01());
 	CInstructionIndex lastlayer=lastIndex();
-	
+
 	for(int c=0; c<numoctaves-1; ++c)
 	{
 		CInstructionIndex nextlayer=simpleFractalLayer(basistype, interpindex, 1.0/std::pow(2.0, (double)(c)), std::pow(2.0, (double)(c))*frequency, seed+10+c*1000,rot,
@@ -803,14 +803,14 @@ CInstructionIndex CKernel::simplefBm(unsigned int basistype, unsigned int interp
 CInstructionIndex CKernel::simpleBillow(unsigned int basistype, unsigned int interptype, unsigned int numoctaves, double frequency, unsigned int seed, bool rot)
 {
     if(numoctaves<1) return 0;
-	
+
 	CInstructionIndex interpindex=constant(interptype);
 	KISS rnd;
 	rnd.setSeed(seed);
 	simpleBillowLayer(basistype, interpindex, 1.0, 1.0*frequency, seed+10,rot,
                                rnd.get01()*3.14159265, rnd.get01(), rnd.get01(), rnd.get01());
 	CInstructionIndex lastlayer=lastIndex();
-	
+
 	for(int c=0; c<numoctaves-1; ++c)
 	{
 		CInstructionIndex nextlayer=simpleBillowLayer(basistype, interpindex, 1.0/std::pow(2.0, (double)(c)), std::pow(2.0, (double)(c))*frequency, seed+10+c*1000,rot,
@@ -1021,5 +1021,35 @@ CInstructionIndex CKernel::hexBump()
 	i.opcode_=anl::OP_HexBump;
 	kernel_.push_back(i);
 	return lastIndex();
+}
+
+void CKernel::setVar(const std::string name,double val)
+{
+    auto i=vars_.find(name);
+    if(i==vars_.end())
+    {
+        vars_.insert(std::pair<std::string, CInstructionIndex>(name,constant(val)));
+    }
+    else
+    {
+        unsigned s=(*i).second.index_;
+        if(s>=kernel_.size()) return;
+        kernel_[s].outfloat_=val;
+    }
+}
+
+CInstructionIndex CKernel::getVar(const std::string name)
+{
+    auto i=vars_.find(name);
+    if(i==vars_.end())
+    {
+        return zero();
+    }
+    else
+    {
+        unsigned int s=(*i).second.index_;
+        if(s>=kernel_.size()) return zero();
+        return (*i).second;
+    }
 }
 };

@@ -46,6 +46,7 @@ namespace anl
         f_["dv"]=1;
         f_["sigmoid"]=3;
         f_["index"]=1;
+        f_["rindex"]=1;
 
         f_["color"]=4;
 
@@ -157,6 +158,11 @@ namespace anl
         else if (token=="radial")
         {
             stk.push(kernel_.radial());
+        }
+        else
+        {
+            // Not a pre-built token, so must be a user var
+            stk.push(kernel_.getVar(token));
         }
 	}
 
@@ -537,6 +543,35 @@ namespace anl
                 else
                 {
                     stk.push(index_[ic]);
+                }
+            }
+
+
+		}
+		else if(token=="rindex")
+		{
+		    // Reverse index
+		    InstructionListType *il=kernel_.getKernel();
+		    CInstructionIndex i=stk.top();
+		    stk.pop();
+		    unsigned int id=i.index_;
+		    if(id >= il->size() || (*il)[id].opcode_!=OP_Constant)
+            {
+                // Parameter passed to index must be a number
+                // TODO: Figure out how to convey error to user
+                stk.push(kernel_.zero());
+            }
+            else
+            {
+                unsigned int ic=(unsigned int)(*il)[id].outfloat_;
+                if(ic>=index_.size())
+                {
+                    // Index out of range
+                    stk.push(kernel_.zero());
+                }
+                else
+                {
+                    stk.push(index_[(index_.size()-1)-ic]);
                 }
             }
 

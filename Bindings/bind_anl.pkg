@@ -221,6 +221,9 @@ class CInstructionListType
 		InstructionListType *getKernel();
 		CInstructionIndex lastIndex();
 		CInstructionIndex nextIndex();
+		
+		CInstructionIndex getVar(const char *name);
+		void setVar(const char *name, double val);
 	};
 	
 	struct SRGBA
