@@ -14,12 +14,14 @@ namespace anl
         f_["abs"]=1;
         f_["bias"]=2;
         f_["gain"]=2;
+        f_["scale"]=2;
         f_["scaleX"]=2;
         f_["scaleY"]=2;
         f_["scaleZ"]=2;
         f_["scaleW"]=2;
         f_["scaleU"]=2;
         f_["scaleV"]=2;
+        f_["translate"]=2;
         f_["translateX"]=2;
         f_["translateY"]=2;
         f_["translateZ"]=2;
@@ -116,9 +118,58 @@ namespace anl
 			}
 		}
 
+		return stk.top();
+	}
+
+	CInstructionIndex CExpressionBuilder::evalAndStore(const std::string &expr)
+	{
+		ExpressionToPostfix e(expr, f_, vars_);
+
+		auto p=e.ToPostfix();
+		std::stack<CInstructionIndex> stk;
+
+		for(auto i : p)
+		{
+			if(i.GetType()==Token::NUMBER)
+			{
+				stk.push(kernel_.constant(std::stod(i.GetToken())));
+			}
+			else if(i.GetType()==Token::OPERATOR)
+			{
+				CInstructionIndex right=stk.top();
+				stk.pop();
+				CInstructionIndex left=stk.top();
+				stk.pop();
+				if(i.GetToken()=="+") stk.push(kernel_.add(left,right));
+				else if(i.GetToken()=="-") stk.push(kernel_.subtract(left,right));
+				else if(i.GetToken()=="*") stk.push(kernel_.multiply(left,right));
+				else if(i.GetToken()=="/") stk.push(kernel_.divide(left,right));
+				else if(i.GetToken()=="^") stk.push(kernel_.pow(left,right));
+			}
+			else if(i.GetType()==Token::UNARYOPERATOR)
+			{
+				CInstructionIndex o=stk.top();
+				stk.pop();
+				stk.push(kernel_.multiply(o, kernel_.constant(-1.0)));
+			}
+			else if(i.GetType()==Token::FUNCTION)
+			{
+				buildFunction(i.GetToken(), stk);
+			}
+			else if(i.GetType()==Token::VAR)
+			{
+			    buildVar(i.GetToken(), stk);
+			}
+		}
+
 		index_.push_back(stk.top());
 
 		return stk.top();
+	}
+
+	void CExpressionBuilder::store(CInstructionIndex i)
+	{
+	    index_.push_back(i);
 	}
 
 	void CExpressionBuilder::buildVar(const std::string &token, std::stack<CInstructionIndex> &stk)
@@ -252,6 +303,14 @@ namespace anl
 			stk.pop();
 			stk.push(kernel_.gain(left,right));
 		}
+		else if(token=="scale")
+        {
+            CInstructionIndex right=stk.top();
+			stk.pop();
+			CInstructionIndex left=stk.top();
+			stk.pop();
+			stk.push(kernel_.scaleDomain(left, right));
+        }
         else if(token=="scaleX")
 		{
 			CInstructionIndex right=stk.top();
@@ -300,6 +359,14 @@ namespace anl
 			stk.pop();
 			stk.push(kernel_.scaleV(left,right));
 		}
+		else if(token=="translate")
+        {
+            CInstructionIndex right=stk.top();
+			stk.pop();
+			CInstructionIndex left=stk.top();
+			stk.pop();
+			stk.push(kernel_.translateDomain(left,right));
+        }
         else if(token=="translateX")
 		{
 			CInstructionIndex right=stk.top();

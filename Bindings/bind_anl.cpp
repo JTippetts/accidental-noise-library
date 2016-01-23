@@ -46,25 +46,9 @@ static int tolua_collect_SVMOutput (lua_State* tolua_S)
  return 0;
 }
 
-static int tolua_collect_KISS (lua_State* tolua_S)
+static int tolua_collect_SMappingRanges (lua_State* tolua_S)
 {
- KISS* self = (KISS*) tolua_tousertype(tolua_S,1,0);
- tolua_release(tolua_S,self);
- delete self;
- return 0;
-}
-
-static int tolua_collect_CNoiseExecutor (lua_State* tolua_S)
-{
- CNoiseExecutor* self = (CNoiseExecutor*) tolua_tousertype(tolua_S,1,0);
- tolua_release(tolua_S,self);
- delete self;
- return 0;
-}
-
-static int tolua_collect_SRGBA (lua_State* tolua_S)
-{
- SRGBA* self = (SRGBA*) tolua_tousertype(tolua_S,1,0);
+ SMappingRanges* self = (SMappingRanges*) tolua_tousertype(tolua_S,1,0);
  tolua_release(tolua_S,self);
  delete self;
  return 0;
@@ -78,6 +62,14 @@ static int tolua_collect_CArray3Dd (lua_State* tolua_S)
  return 0;
 }
 
+static int tolua_collect_KISS (lua_State* tolua_S)
+{
+ KISS* self = (KISS*) tolua_tousertype(tolua_S,1,0);
+ tolua_release(tolua_S,self);
+ delete self;
+ return 0;
+}
+
 static int tolua_collect_LCG (lua_State* tolua_S)
 {
  LCG* self = (LCG*) tolua_tousertype(tolua_S,1,0);
@@ -86,9 +78,25 @@ static int tolua_collect_LCG (lua_State* tolua_S)
  return 0;
 }
 
-static int tolua_collect_CMWC4096 (lua_State* tolua_S)
+static int tolua_collect_CInstructionIndex (lua_State* tolua_S)
 {
- CMWC4096* self = (CMWC4096*) tolua_tousertype(tolua_S,1,0);
+ CInstructionIndex* self = (CInstructionIndex*) tolua_tousertype(tolua_S,1,0);
+ tolua_release(tolua_S,self);
+ delete self;
+ return 0;
+}
+
+static int tolua_collect_CNoiseExecutor (lua_State* tolua_S)
+{
+ CNoiseExecutor* self = (CNoiseExecutor*) tolua_tousertype(tolua_S,1,0);
+ tolua_release(tolua_S,self);
+ delete self;
+ return 0;
+}
+
+static int tolua_collect_MWC256 (lua_State* tolua_S)
+{
+ MWC256* self = (MWC256*) tolua_tousertype(tolua_S,1,0);
  tolua_release(tolua_S,self);
  delete self;
  return 0;
@@ -97,6 +105,14 @@ static int tolua_collect_CMWC4096 (lua_State* tolua_S)
 static int tolua_collect_CArray2Drgba (lua_State* tolua_S)
 {
  CArray2Drgba* self = (CArray2Drgba*) tolua_tousertype(tolua_S,1,0);
+ tolua_release(tolua_S,self);
+ delete self;
+ return 0;
+}
+
+static int tolua_collect_CArray3Drgba (lua_State* tolua_S)
+{
+ CArray3Drgba* self = (CArray3Drgba*) tolua_tousertype(tolua_S,1,0);
  tolua_release(tolua_S,self);
  delete self;
  return 0;
@@ -126,33 +142,17 @@ static int tolua_collect_CArray2Dd (lua_State* tolua_S)
  return 0;
 }
 
-static int tolua_collect_CArray3Drgba (lua_State* tolua_S)
+static int tolua_collect_SRGBA (lua_State* tolua_S)
 {
- CArray3Drgba* self = (CArray3Drgba*) tolua_tousertype(tolua_S,1,0);
+ SRGBA* self = (SRGBA*) tolua_tousertype(tolua_S,1,0);
  tolua_release(tolua_S,self);
  delete self;
  return 0;
 }
 
-static int tolua_collect_MWC256 (lua_State* tolua_S)
+static int tolua_collect_CMWC4096 (lua_State* tolua_S)
 {
- MWC256* self = (MWC256*) tolua_tousertype(tolua_S,1,0);
- tolua_release(tolua_S,self);
- delete self;
- return 0;
-}
-
-static int tolua_collect_SMappingRanges (lua_State* tolua_S)
-{
- SMappingRanges* self = (SMappingRanges*) tolua_tousertype(tolua_S,1,0);
- tolua_release(tolua_S,self);
- delete self;
- return 0;
-}
-
-static int tolua_collect_CInstructionIndex (lua_State* tolua_S)
-{
- CInstructionIndex* self = (CInstructionIndex*) tolua_tousertype(tolua_S,1,0);
+ CMWC4096* self = (CMWC4096*) tolua_tousertype(tolua_S,1,0);
  tolua_release(tolua_S,self);
  delete self;
  return 0;
@@ -171,27 +171,27 @@ static int tolua_collect_Xorshift (lua_State* tolua_S)
 /* function to register type */
 static void tolua_reg_types (lua_State* tolua_S)
 {
+ tolua_usertype(tolua_S,"InstructionListType");
+ tolua_usertype(tolua_S,"CInstructionListType");
+ tolua_usertype(tolua_S,"CBasePRNG");
  tolua_usertype(tolua_S,"CKernel");
  tolua_usertype(tolua_S,"SVMOutput");
- tolua_usertype(tolua_S,"KISS");
- tolua_usertype(tolua_S,"CInstructionListType");
- tolua_usertype(tolua_S,"anl::SMappingRanges");
- tolua_usertype(tolua_S,"SRGBA");
+ tolua_usertype(tolua_S,"SMappingRanges");
  tolua_usertype(tolua_S,"CArray3Dd");
- tolua_usertype(tolua_S,"InstructionListType");
+ tolua_usertype(tolua_S,"KISS");
+ tolua_usertype(tolua_S,"SRGBA");
+ tolua_usertype(tolua_S,"CInstructionIndex");
+ tolua_usertype(tolua_S,"CNoiseExecutor");
+ tolua_usertype(tolua_S,"MWC256");
+ tolua_usertype(tolua_S,"CArray2Drgba");
+ tolua_usertype(tolua_S,"anl::SMappingRanges");
+ tolua_usertype(tolua_S,"anl::SRGBA");
+ tolua_usertype(tolua_S,"CArray3Drgba");
+ tolua_usertype(tolua_S,"CExpressionBuilder");
+ tolua_usertype(tolua_S,"CCoordinate");
+ tolua_usertype(tolua_S,"CArray2Dd");
  tolua_usertype(tolua_S,"LCG");
  tolua_usertype(tolua_S,"CMWC4096");
- tolua_usertype(tolua_S,"CArray2Drgba");
- tolua_usertype(tolua_S,"CCoordinate");
- tolua_usertype(tolua_S,"anl::SRGBA");
- tolua_usertype(tolua_S,"CArray2Dd");
- tolua_usertype(tolua_S,"CInstructionIndex");
- tolua_usertype(tolua_S,"CExpressionBuilder");
- tolua_usertype(tolua_S,"CBasePRNG");
- tolua_usertype(tolua_S,"CArray3Drgba");
- tolua_usertype(tolua_S,"SMappingRanges");
- tolua_usertype(tolua_S,"MWC256");
- tolua_usertype(tolua_S,"CNoiseExecutor");
  tolua_usertype(tolua_S,"Xorshift");
 }
 
@@ -1941,8 +1941,7 @@ static int tolua_bind_anl_CKernel_scaleDomain00(lua_State* tolua_S)
  !tolua_isusertype(tolua_S,1,"CKernel",0,&tolua_err) || 
  !tolua_isusertype(tolua_S,2,"CInstructionIndex",0,&tolua_err) || 
  !tolua_isusertype(tolua_S,3,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,4,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isnoobj(tolua_S,5,&tolua_err)
+ !tolua_isnoobj(tolua_S,4,&tolua_err)
  )
  goto tolua_lerror;
  else
@@ -1950,13 +1949,12 @@ static int tolua_bind_anl_CKernel_scaleDomain00(lua_State* tolua_S)
  {
   CKernel* self = (CKernel*)  tolua_tousertype(tolua_S,1,0);
   CInstructionIndex srcindex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,2,0));
-  CInstructionIndex xindex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,3,0));
-  CInstructionIndex yindex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,4,0));
+  CInstructionIndex scale = *((CInstructionIndex*)  tolua_tousertype(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'scaleDomain'",NULL);
 #endif
  {
-  CInstructionIndex tolua_ret =  self->scaleDomain(srcindex,xindex,yindex);
+  CInstructionIndex tolua_ret =  self->scaleDomain(srcindex,scale);
  {
 #ifdef __cplusplus
  void* tolua_obj = new CInstructionIndex(tolua_ret);
@@ -1974,137 +1972,6 @@ static int tolua_bind_anl_CKernel_scaleDomain00(lua_State* tolua_S)
  tolua_error(tolua_S,"#ferror in function 'scaleDomain'.",&tolua_err);
  return 0;
 #endif
-}
-
-/* method: scaleDomain of class  CKernel */
-static int tolua_bind_anl_CKernel_scaleDomain01(lua_State* tolua_S)
-{
- tolua_Error tolua_err;
- if (
- !tolua_isusertype(tolua_S,1,"CKernel",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,2,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,3,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,4,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,5,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isnoobj(tolua_S,6,&tolua_err)
- )
- goto tolua_lerror;
- else
- {
-  CKernel* self = (CKernel*)  tolua_tousertype(tolua_S,1,0);
-  CInstructionIndex srcindex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,2,0));
-  CInstructionIndex xindex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,3,0));
-  CInstructionIndex yindex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,4,0));
-  CInstructionIndex zindex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,5,0));
-#ifndef TOLUA_RELEASE
- if (!self) tolua_error(tolua_S,"invalid 'self' in function 'scaleDomain'",NULL);
-#endif
- {
-  CInstructionIndex tolua_ret =  self->scaleDomain(srcindex,xindex,yindex,zindex);
- {
-#ifdef __cplusplus
- void* tolua_obj = new CInstructionIndex(tolua_ret);
- tolua_pushusertype(tolua_S,tolua_clone(tolua_S,tolua_obj,tolua_collect_CInstructionIndex),"CInstructionIndex");
-#else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CInstructionIndex));
- tolua_pushusertype(tolua_S,tolua_clone(tolua_S,tolua_obj,NULL),"CInstructionIndex");
-#endif
- }
- }
- }
- return 1;
-tolua_lerror:
- return tolua_bind_anl_CKernel_scaleDomain00(tolua_S);
-}
-
-/* method: scaleDomain of class  CKernel */
-static int tolua_bind_anl_CKernel_scaleDomain02(lua_State* tolua_S)
-{
- tolua_Error tolua_err;
- if (
- !tolua_isusertype(tolua_S,1,"CKernel",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,2,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,3,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,4,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,5,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,6,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isnoobj(tolua_S,7,&tolua_err)
- )
- goto tolua_lerror;
- else
- {
-  CKernel* self = (CKernel*)  tolua_tousertype(tolua_S,1,0);
-  CInstructionIndex srcindex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,2,0));
-  CInstructionIndex xindex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,3,0));
-  CInstructionIndex yindex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,4,0));
-  CInstructionIndex zindex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,5,0));
-  CInstructionIndex windex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,6,0));
-#ifndef TOLUA_RELEASE
- if (!self) tolua_error(tolua_S,"invalid 'self' in function 'scaleDomain'",NULL);
-#endif
- {
-  CInstructionIndex tolua_ret =  self->scaleDomain(srcindex,xindex,yindex,zindex,windex);
- {
-#ifdef __cplusplus
- void* tolua_obj = new CInstructionIndex(tolua_ret);
- tolua_pushusertype(tolua_S,tolua_clone(tolua_S,tolua_obj,tolua_collect_CInstructionIndex),"CInstructionIndex");
-#else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CInstructionIndex));
- tolua_pushusertype(tolua_S,tolua_clone(tolua_S,tolua_obj,NULL),"CInstructionIndex");
-#endif
- }
- }
- }
- return 1;
-tolua_lerror:
- return tolua_bind_anl_CKernel_scaleDomain01(tolua_S);
-}
-
-/* method: scaleDomain of class  CKernel */
-static int tolua_bind_anl_CKernel_scaleDomain03(lua_State* tolua_S)
-{
- tolua_Error tolua_err;
- if (
- !tolua_isusertype(tolua_S,1,"CKernel",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,2,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,3,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,4,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,5,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,6,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,7,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,8,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isnoobj(tolua_S,9,&tolua_err)
- )
- goto tolua_lerror;
- else
- {
-  CKernel* self = (CKernel*)  tolua_tousertype(tolua_S,1,0);
-  CInstructionIndex srcindex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,2,0));
-  CInstructionIndex xindex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,3,0));
-  CInstructionIndex yindex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,4,0));
-  CInstructionIndex zindex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,5,0));
-  CInstructionIndex windex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,6,0));
-  CInstructionIndex uindex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,7,0));
-  CInstructionIndex vindex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,8,0));
-#ifndef TOLUA_RELEASE
- if (!self) tolua_error(tolua_S,"invalid 'self' in function 'scaleDomain'",NULL);
-#endif
- {
-  CInstructionIndex tolua_ret =  self->scaleDomain(srcindex,xindex,yindex,zindex,windex,uindex,vindex);
- {
-#ifdef __cplusplus
- void* tolua_obj = new CInstructionIndex(tolua_ret);
- tolua_pushusertype(tolua_S,tolua_clone(tolua_S,tolua_obj,tolua_collect_CInstructionIndex),"CInstructionIndex");
-#else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CInstructionIndex));
- tolua_pushusertype(tolua_S,tolua_clone(tolua_S,tolua_obj,NULL),"CInstructionIndex");
-#endif
- }
- }
- }
- return 1;
-tolua_lerror:
- return tolua_bind_anl_CKernel_scaleDomain02(tolua_S);
 }
 
 /* method: scaleX of class  CKernel */
@@ -2368,8 +2235,7 @@ static int tolua_bind_anl_CKernel_translateDomain00(lua_State* tolua_S)
  !tolua_isusertype(tolua_S,1,"CKernel",0,&tolua_err) || 
  !tolua_isusertype(tolua_S,2,"CInstructionIndex",0,&tolua_err) || 
  !tolua_isusertype(tolua_S,3,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,4,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isnoobj(tolua_S,5,&tolua_err)
+ !tolua_isnoobj(tolua_S,4,&tolua_err)
  )
  goto tolua_lerror;
  else
@@ -2377,13 +2243,12 @@ static int tolua_bind_anl_CKernel_translateDomain00(lua_State* tolua_S)
  {
   CKernel* self = (CKernel*)  tolua_tousertype(tolua_S,1,0);
   CInstructionIndex srcindex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,2,0));
-  CInstructionIndex xindex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,3,0));
-  CInstructionIndex yindex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,4,0));
+  CInstructionIndex trans = *((CInstructionIndex*)  tolua_tousertype(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'translateDomain'",NULL);
 #endif
  {
-  CInstructionIndex tolua_ret =  self->translateDomain(srcindex,xindex,yindex);
+  CInstructionIndex tolua_ret =  self->translateDomain(srcindex,trans);
  {
 #ifdef __cplusplus
  void* tolua_obj = new CInstructionIndex(tolua_ret);
@@ -2401,137 +2266,6 @@ static int tolua_bind_anl_CKernel_translateDomain00(lua_State* tolua_S)
  tolua_error(tolua_S,"#ferror in function 'translateDomain'.",&tolua_err);
  return 0;
 #endif
-}
-
-/* method: translateDomain of class  CKernel */
-static int tolua_bind_anl_CKernel_translateDomain01(lua_State* tolua_S)
-{
- tolua_Error tolua_err;
- if (
- !tolua_isusertype(tolua_S,1,"CKernel",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,2,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,3,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,4,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,5,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isnoobj(tolua_S,6,&tolua_err)
- )
- goto tolua_lerror;
- else
- {
-  CKernel* self = (CKernel*)  tolua_tousertype(tolua_S,1,0);
-  CInstructionIndex srcindex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,2,0));
-  CInstructionIndex xindex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,3,0));
-  CInstructionIndex yindex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,4,0));
-  CInstructionIndex zindex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,5,0));
-#ifndef TOLUA_RELEASE
- if (!self) tolua_error(tolua_S,"invalid 'self' in function 'translateDomain'",NULL);
-#endif
- {
-  CInstructionIndex tolua_ret =  self->translateDomain(srcindex,xindex,yindex,zindex);
- {
-#ifdef __cplusplus
- void* tolua_obj = new CInstructionIndex(tolua_ret);
- tolua_pushusertype(tolua_S,tolua_clone(tolua_S,tolua_obj,tolua_collect_CInstructionIndex),"CInstructionIndex");
-#else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CInstructionIndex));
- tolua_pushusertype(tolua_S,tolua_clone(tolua_S,tolua_obj,NULL),"CInstructionIndex");
-#endif
- }
- }
- }
- return 1;
-tolua_lerror:
- return tolua_bind_anl_CKernel_translateDomain00(tolua_S);
-}
-
-/* method: translateDomain of class  CKernel */
-static int tolua_bind_anl_CKernel_translateDomain02(lua_State* tolua_S)
-{
- tolua_Error tolua_err;
- if (
- !tolua_isusertype(tolua_S,1,"CKernel",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,2,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,3,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,4,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,5,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,6,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isnoobj(tolua_S,7,&tolua_err)
- )
- goto tolua_lerror;
- else
- {
-  CKernel* self = (CKernel*)  tolua_tousertype(tolua_S,1,0);
-  CInstructionIndex srcindex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,2,0));
-  CInstructionIndex xindex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,3,0));
-  CInstructionIndex yindex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,4,0));
-  CInstructionIndex zindex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,5,0));
-  CInstructionIndex windex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,6,0));
-#ifndef TOLUA_RELEASE
- if (!self) tolua_error(tolua_S,"invalid 'self' in function 'translateDomain'",NULL);
-#endif
- {
-  CInstructionIndex tolua_ret =  self->translateDomain(srcindex,xindex,yindex,zindex,windex);
- {
-#ifdef __cplusplus
- void* tolua_obj = new CInstructionIndex(tolua_ret);
- tolua_pushusertype(tolua_S,tolua_clone(tolua_S,tolua_obj,tolua_collect_CInstructionIndex),"CInstructionIndex");
-#else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CInstructionIndex));
- tolua_pushusertype(tolua_S,tolua_clone(tolua_S,tolua_obj,NULL),"CInstructionIndex");
-#endif
- }
- }
- }
- return 1;
-tolua_lerror:
- return tolua_bind_anl_CKernel_translateDomain01(tolua_S);
-}
-
-/* method: translateDomain of class  CKernel */
-static int tolua_bind_anl_CKernel_translateDomain03(lua_State* tolua_S)
-{
- tolua_Error tolua_err;
- if (
- !tolua_isusertype(tolua_S,1,"CKernel",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,2,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,3,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,4,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,5,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,6,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,7,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isusertype(tolua_S,8,"CInstructionIndex",0,&tolua_err) || 
- !tolua_isnoobj(tolua_S,9,&tolua_err)
- )
- goto tolua_lerror;
- else
- {
-  CKernel* self = (CKernel*)  tolua_tousertype(tolua_S,1,0);
-  CInstructionIndex srcindex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,2,0));
-  CInstructionIndex xindex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,3,0));
-  CInstructionIndex yindex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,4,0));
-  CInstructionIndex zindex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,5,0));
-  CInstructionIndex windex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,6,0));
-  CInstructionIndex uindex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,7,0));
-  CInstructionIndex vindex = *((CInstructionIndex*)  tolua_tousertype(tolua_S,8,0));
-#ifndef TOLUA_RELEASE
- if (!self) tolua_error(tolua_S,"invalid 'self' in function 'translateDomain'",NULL);
-#endif
- {
-  CInstructionIndex tolua_ret =  self->translateDomain(srcindex,xindex,yindex,zindex,windex,uindex,vindex);
- {
-#ifdef __cplusplus
- void* tolua_obj = new CInstructionIndex(tolua_ret);
- tolua_pushusertype(tolua_S,tolua_clone(tolua_S,tolua_obj,tolua_collect_CInstructionIndex),"CInstructionIndex");
-#else
- void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CInstructionIndex));
- tolua_pushusertype(tolua_S,tolua_clone(tolua_S,tolua_obj,NULL),"CInstructionIndex");
-#endif
- }
- }
- }
- return 1;
-tolua_lerror:
- return tolua_bind_anl_CKernel_translateDomain02(tolua_S);
 }
 
 /* method: translateX of class  CKernel */
@@ -6121,6 +5855,77 @@ static int tolua_bind_anl_CExpressionBuilder_eval00(lua_State* tolua_S)
 #endif
 }
 
+/* method: evalAndStore of class  CExpressionBuilder */
+static int tolua_bind_anl_CExpressionBuilder_evalAndStore00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+ !tolua_isusertype(tolua_S,1,"CExpressionBuilder",0,&tolua_err) || 
+ !tolua_isstring(tolua_S,2,0,&tolua_err) || 
+ !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+ goto tolua_lerror;
+ else
+#endif
+ {
+  CExpressionBuilder* self = (CExpressionBuilder*)  tolua_tousertype(tolua_S,1,0);
+  const char* expr = ((const char*)  tolua_tostring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+ if (!self) tolua_error(tolua_S,"invalid 'self' in function 'evalAndStore'",NULL);
+#endif
+ {
+  CInstructionIndex tolua_ret =  self->evalAndStore(expr);
+ {
+#ifdef __cplusplus
+ void* tolua_obj = new CInstructionIndex(tolua_ret);
+ tolua_pushusertype(tolua_S,tolua_clone(tolua_S,tolua_obj,tolua_collect_CInstructionIndex),"CInstructionIndex");
+#else
+ void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CInstructionIndex));
+ tolua_pushusertype(tolua_S,tolua_clone(tolua_S,tolua_obj,NULL),"CInstructionIndex");
+#endif
+ }
+ }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'evalAndStore'.",&tolua_err);
+ return 0;
+#endif
+}
+
+/* method: store of class  CExpressionBuilder */
+static int tolua_bind_anl_CExpressionBuilder_store00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+ !tolua_isusertype(tolua_S,1,"CExpressionBuilder",0,&tolua_err) || 
+ !tolua_isusertype(tolua_S,2,"CInstructionIndex",0,&tolua_err) || 
+ !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+ goto tolua_lerror;
+ else
+#endif
+ {
+  CExpressionBuilder* self = (CExpressionBuilder*)  tolua_tousertype(tolua_S,1,0);
+  CInstructionIndex i = *((CInstructionIndex*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+ if (!self) tolua_error(tolua_S,"invalid 'self' in function 'store'",NULL);
+#endif
+ {
+  self->store(i);
+ }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'store'.",&tolua_err);
+ return 0;
+#endif
+}
+
 /* method: setRandomSeed of class  CExpressionBuilder */
 static int tolua_bind_anl_CExpressionBuilder_setRandomSeed00(lua_State* tolua_S)
 {
@@ -8914,9 +8719,6 @@ LUALIB_API int luaopen_bind_anl (lua_State* tolua_S)
  tolua_function(tolua_S,"bias",tolua_bind_anl_CKernel_bias00);
  tolua_function(tolua_S,"gain",tolua_bind_anl_CKernel_gain00);
  tolua_function(tolua_S,"scaleDomain",tolua_bind_anl_CKernel_scaleDomain00);
- tolua_function(tolua_S,"scaleDomain",tolua_bind_anl_CKernel_scaleDomain01);
- tolua_function(tolua_S,"scaleDomain",tolua_bind_anl_CKernel_scaleDomain02);
- tolua_function(tolua_S,"scaleDomain",tolua_bind_anl_CKernel_scaleDomain03);
  tolua_function(tolua_S,"scaleX",tolua_bind_anl_CKernel_scaleX00);
  tolua_function(tolua_S,"scaleY",tolua_bind_anl_CKernel_scaleY00);
  tolua_function(tolua_S,"scaleZ",tolua_bind_anl_CKernel_scaleZ00);
@@ -8924,9 +8726,6 @@ LUALIB_API int luaopen_bind_anl (lua_State* tolua_S)
  tolua_function(tolua_S,"scaleU",tolua_bind_anl_CKernel_scaleU00);
  tolua_function(tolua_S,"scaleV",tolua_bind_anl_CKernel_scaleV00);
  tolua_function(tolua_S,"translateDomain",tolua_bind_anl_CKernel_translateDomain00);
- tolua_function(tolua_S,"translateDomain",tolua_bind_anl_CKernel_translateDomain01);
- tolua_function(tolua_S,"translateDomain",tolua_bind_anl_CKernel_translateDomain02);
- tolua_function(tolua_S,"translateDomain",tolua_bind_anl_CKernel_translateDomain03);
  tolua_function(tolua_S,"translateX",tolua_bind_anl_CKernel_translateX00);
  tolua_function(tolua_S,"translateY",tolua_bind_anl_CKernel_translateY00);
  tolua_function(tolua_S,"translateZ",tolua_bind_anl_CKernel_translateZ00);
@@ -9069,6 +8868,8 @@ LUALIB_API int luaopen_bind_anl (lua_State* tolua_S)
  tolua_function(tolua_S,"new",tolua_bind_anl_CExpressionBuilder_new00);
  tolua_function(tolua_S,"delete",tolua_bind_anl_CExpressionBuilder_delete00);
  tolua_function(tolua_S,"eval",tolua_bind_anl_CExpressionBuilder_eval00);
+ tolua_function(tolua_S,"evalAndStore",tolua_bind_anl_CExpressionBuilder_evalAndStore00);
+ tolua_function(tolua_S,"store",tolua_bind_anl_CExpressionBuilder_store00);
  tolua_function(tolua_S,"setRandomSeed",tolua_bind_anl_CExpressionBuilder_setRandomSeed00);
  tolua_endmodule(tolua_S);
 #ifdef __cplusplus

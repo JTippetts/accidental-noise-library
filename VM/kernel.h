@@ -61,10 +61,7 @@ namespace anl
 		CInstructionIndex bias(CInstructionIndex s1, CInstructionIndex s2);
 		CInstructionIndex gain(CInstructionIndex s1, CInstructionIndex s2);
 
-        CInstructionIndex scaleDomain(CInstructionIndex srcindex, CInstructionIndex xindex, CInstructionIndex yindex);
-        CInstructionIndex scaleDomain(CInstructionIndex srcindex, CInstructionIndex xindex, CInstructionIndex yindex, CInstructionIndex zindex);
-        CInstructionIndex scaleDomain(CInstructionIndex srcindex, CInstructionIndex xindex, CInstructionIndex yindex, CInstructionIndex zindex, CInstructionIndex windex);
-        CInstructionIndex scaleDomain(CInstructionIndex srcindex, CInstructionIndex xindex, CInstructionIndex yindex, CInstructionIndex zindex, CInstructionIndex windex, CInstructionIndex uindex, CInstructionIndex vindex);
+        CInstructionIndex scaleDomain(CInstructionIndex srcindex, CInstructionIndex scale);
 
         CInstructionIndex scaleX(CInstructionIndex src, CInstructionIndex scale);
         CInstructionIndex scaleY(CInstructionIndex src, CInstructionIndex scale);
@@ -73,10 +70,7 @@ namespace anl
         CInstructionIndex scaleU(CInstructionIndex src, CInstructionIndex scale);
         CInstructionIndex scaleV(CInstructionIndex src, CInstructionIndex scale);
 
-        CInstructionIndex translateDomain(CInstructionIndex srcindex, CInstructionIndex xindex, CInstructionIndex yindex);
-        CInstructionIndex translateDomain(CInstructionIndex srcindex, CInstructionIndex xindex, CInstructionIndex yindex, CInstructionIndex zindex);
-        CInstructionIndex translateDomain(CInstructionIndex srcindex, CInstructionIndex xindex, CInstructionIndex yindex, CInstructionIndex zindex, CInstructionIndex windex);
-        CInstructionIndex translateDomain(CInstructionIndex srcindex, CInstructionIndex xindex, CInstructionIndex yindex, CInstructionIndex zindex, CInstructionIndex windex, CInstructionIndex uindex, CInstructionIndex vindex);
+        CInstructionIndex translateDomain(CInstructionIndex srcindex, CInstructionIndex trans);
 
         CInstructionIndex translateX(CInstructionIndex src, CInstructionIndex trans);
         CInstructionIndex translateY(CInstructionIndex src, CInstructionIndex trans);

@@ -16,6 +16,8 @@ public:
 	~CExpressionBuilder();
 
 	CInstructionIndex eval(const std::string &expr);
+	CInstructionIndex evalAndStore(const std::string &expr);
+	void store(CInstructionIndex i);
 	std::vector<Token> getPostfix(const std::string &expr);
 	void setRandomSeed(unsigned int seed);
 

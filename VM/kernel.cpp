@@ -290,56 +290,16 @@ CInstructionIndex CKernel::smoothTiers(CInstructionIndex s1, CInstructionIndex s
     return lastIndex();
 }
 
-CInstructionIndex CKernel::scaleDomain(CInstructionIndex srcindex, CInstructionIndex xindex, CInstructionIndex yindex)
+CInstructionIndex CKernel::scaleDomain(CInstructionIndex srcindex, CInstructionIndex scale)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_ScaleDomain;
     i.sources_[0]=srcindex.index_;
-    i.sources_[1]=xindex.index_;
-    i.sources_[2]=yindex.index_;
+    i.sources_[1]=scale.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-CInstructionIndex CKernel::scaleDomain(CInstructionIndex srcindex, CInstructionIndex xindex, CInstructionIndex yindex, CInstructionIndex zindex)
-{
-    anl::SInstruction i;
-    i.opcode_=anl::OP_ScaleDomain;
-    i.sources_[0]=srcindex.index_;
-    i.sources_[1]=xindex.index_;
-    i.sources_[2]=yindex.index_;
-    i.sources_[3]=zindex.index_;
-    kernel_.push_back(i);
-    return lastIndex();
-}
-
-CInstructionIndex CKernel::scaleDomain(CInstructionIndex srcindex, CInstructionIndex xindex, CInstructionIndex yindex, CInstructionIndex zindex, CInstructionIndex windex)
-{
-    anl::SInstruction i;
-    i.opcode_=anl::OP_ScaleDomain;
-    i.sources_[0]=srcindex.index_;
-    i.sources_[1]=xindex.index_;
-    i.sources_[2]=yindex.index_;
-    i.sources_[3]=zindex.index_;
-    i.sources_[4]=windex.index_;
-    kernel_.push_back(i);
-    return lastIndex();
-}
-
-CInstructionIndex CKernel::scaleDomain(CInstructionIndex srcindex, CInstructionIndex xindex, CInstructionIndex yindex, CInstructionIndex zindex, CInstructionIndex windex, CInstructionIndex uindex, CInstructionIndex vindex)
-{
-    anl::SInstruction i;
-    i.opcode_=anl::OP_ScaleDomain;
-    i.sources_[0]=srcindex.index_;
-    i.sources_[1]=xindex.index_;
-    i.sources_[2]=yindex.index_;
-    i.sources_[3]=zindex.index_;
-    i.sources_[4]=windex.index_;
-    i.sources_[5]=uindex.index_;
-    i.sources_[6]=vindex.index_;
-    kernel_.push_back(i);
-    return lastIndex();
-}
 
 CInstructionIndex CKernel::scaleX(CInstructionIndex src, CInstructionIndex scale)
 {
@@ -397,56 +357,16 @@ CInstructionIndex CKernel::scaleV(CInstructionIndex src, CInstructionIndex scale
     return lastIndex();
 }
 
-CInstructionIndex CKernel::translateDomain(CInstructionIndex srcindex, CInstructionIndex xindex, CInstructionIndex yindex)
+CInstructionIndex CKernel::translateDomain(CInstructionIndex srcindex, CInstructionIndex trans)
 {
     anl::SInstruction i;
     i.opcode_=anl::OP_TranslateDomain;
     i.sources_[0]=srcindex.index_;
-    i.sources_[1]=xindex.index_;
-    i.sources_[2]=yindex.index_;
+    i.sources_[1]=trans.index_;
     kernel_.push_back(i);
     return lastIndex();
 }
 
-CInstructionIndex CKernel::translateDomain(CInstructionIndex srcindex, CInstructionIndex xindex, CInstructionIndex yindex, CInstructionIndex zindex)
-{
-    anl::SInstruction i;
-    i.opcode_=anl::OP_TranslateDomain;
-    i.sources_[0]=srcindex.index_;
-    i.sources_[1]=xindex.index_;
-    i.sources_[2]=yindex.index_;
-    i.sources_[3]=zindex.index_;
-    kernel_.push_back(i);
-    return lastIndex();
-}
-
-CInstructionIndex CKernel::translateDomain(CInstructionIndex srcindex, CInstructionIndex xindex, CInstructionIndex yindex, CInstructionIndex zindex, CInstructionIndex windex)
-{
-    anl::SInstruction i;
-    i.opcode_=anl::OP_TranslateDomain;
-    i.sources_[0]=srcindex.index_;
-    i.sources_[1]=xindex.index_;
-    i.sources_[2]=yindex.index_;
-    i.sources_[3]=zindex.index_;
-    i.sources_[4]=windex.index_;
-    kernel_.push_back(i);
-    return lastIndex();
-}
-
-CInstructionIndex CKernel::translateDomain(CInstructionIndex srcindex, CInstructionIndex xindex, CInstructionIndex yindex, CInstructionIndex zindex, CInstructionIndex windex, CInstructionIndex uindex, CInstructionIndex vindex)
-{
-    anl::SInstruction i;
-    i.opcode_=anl::OP_TranslateDomain;
-    i.sources_[0]=srcindex.index_;
-    i.sources_[1]=xindex.index_;
-    i.sources_[2]=yindex.index_;
-    i.sources_[3]=zindex.index_;
-    i.sources_[4]=windex.index_;
-    i.sources_[5]=uindex.index_;
-    i.sources_[6]=vindex.index_;
-    kernel_.push_back(i);
-    return lastIndex();
-}
 
 CInstructionIndex CKernel::translateX(CInstructionIndex src, CInstructionIndex trans)
 {
@@ -670,7 +590,7 @@ CInstructionIndex CKernel::simpleFractalLayer(unsigned int basistype, CInstructi
     constant(layerscale);
     multiply(base,base+1);
     constant(layerfreq);
-    CInstructionIndex sd=scaleDomain(base+2, lastIndex(), lastIndex(), lastIndex(), lastIndex(), lastIndex(), lastIndex());
+    CInstructionIndex sd=scaleDomain(base+2, lastIndex());
     if(rot)
     {
 		double len=std::sqrt(ax*ax+ay*ay+az*az);
@@ -708,7 +628,7 @@ CInstructionIndex CKernel::simpleRidgedLayer(unsigned int basistype, CInstructio
     constant(layerscale);
     multiply(base,base+1);
     constant(layerfreq);
-    CInstructionIndex sd=scaleDomain(base+2, lastIndex(), lastIndex(), lastIndex(), lastIndex(), lastIndex(), lastIndex());
+    CInstructionIndex sd=scaleDomain(base+2, lastIndex());
     if(rot)
     {
 		double len=std::sqrt(ax*ax+ay*ay+az*az);
@@ -747,7 +667,7 @@ CInstructionIndex CKernel::simpleBillowLayer(unsigned int basistype, CInstructio
 	constant(layerscale);
     multiply(base,base+1);
     constant(layerfreq);
-    CInstructionIndex sd=scaleDomain(base+2, lastIndex(), lastIndex(), lastIndex(), lastIndex(), lastIndex(), lastIndex());
+    CInstructionIndex sd=scaleDomain(base+2, lastIndex());
 	if(rot)
     {
 		double len=std::sqrt(ax*ax+ay*ay+az*az);

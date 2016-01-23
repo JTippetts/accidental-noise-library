@@ -529,41 +529,27 @@ namespace anl
             case OP_ScaleDomain:
                 {
                     CCoordinate scale(1,1,1,1,1,1);
+                    double sc=evaluateParameter(kernel, evaluated, coordcache, cache, i.sources_[1], coord);
                     switch(coord.dimension_)
                     {
                     case 2:
                         {
-                        double sx=evaluateParameter(kernel, evaluated, coordcache,cache,i.sources_[1],coord);
-                        double sy=evaluateParameter(kernel, evaluated, coordcache,cache,i.sources_[2],coord);
-                        scale.set(sx,sy);
+                        scale.set(sc,sc);
                         break;
                         }
                     case 3:
                         {
-                        double sx=evaluateParameter(kernel, evaluated, coordcache,cache,i.sources_[1],coord);
-                        double sy=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[2],coord);
-                        double sz=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[3],coord);
-                        scale.set(sx,sy,sz);
+                        scale.set(sc,sc,sc);
                         break;
                         }
                     case 4:
                         {
-                        double sx=evaluateParameter(kernel, evaluated, coordcache,cache,i.sources_[1],coord);
-                        double sy=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[2],coord);
-                        double sz=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[3],coord);
-                        double sw=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[4],coord);
-                        scale.set(sx,sy,sz,sw);
+                        scale.set(sc,sc,sc,sc);
                         break;
                         }
                     default:
                         {
-                        double sx=evaluateParameter(kernel, evaluated, coordcache,cache,i.sources_[1],coord);
-                        double sy=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[2],coord);
-                        double sz=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[3],coord);
-                        double sw=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[4],coord);
-                        double su=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[5],coord);
-                        double sv=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[6],coord);
-                        scale.set(sx,sy,sz,sw,su,sv);
+                        scale.set(sc,sc,sc,sc,sc,sc);
                         break;
                         }
                     };
@@ -698,41 +684,27 @@ namespace anl
             case OP_TranslateDomain:
             {
                     CCoordinate scale(1,1,1,1,1,1);
+                    double sc=evaluateParameter(kernel, evaluated, coordcache,cache,i.sources_[1],coord);
                     switch(coord.dimension_)
                     {
                     case 2:
                         {
-                        double sx=evaluateParameter(kernel, evaluated, coordcache,cache,i.sources_[1],coord);
-                        double sy=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[2],coord);
-                        scale.set(sx,sy);
+                        scale.set(sc,sc);
                         break;
                         }
                     case 3:
                         {
-                        double sx=evaluateParameter(kernel, evaluated, coordcache,cache,i.sources_[1],coord);
-                        double sy=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[2],coord);
-                        double sz=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[3],coord);
-                        scale.set(sx,sy,sz);
+                        scale.set(sc,sc,sc);
                         break;
                         }
                     case 4:
                         {
-                        double sx=evaluateParameter(kernel, evaluated, coordcache,cache,i.sources_[1],coord);
-                        double sy=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[2],coord);
-                        double sz=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[3],coord);
-                        double sw=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[4],coord);
-                        scale.set(sx,sy,sz,sw);
+                        scale.set(sc,sc,sc,sc);
                         break;
                         }
                     default:
                         {
-                        double sx=evaluateParameter(kernel, evaluated, coordcache,cache,i.sources_[1],coord);
-                        double sy=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[2],coord);
-                        double sz=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[3],coord);
-                        double sw=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[4],coord);
-                        double su=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[5],coord);
-                        double sv=evaluateParameter(kernel, evaluated, coordcache, cache,i.sources_[6],coord);
-                        scale.set(sx,sy,sz,sw,su,sv);
+                        scale.set(sc,sc,sc,sc,sc,sc);
                         break;
                         }
                     };
