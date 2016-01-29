@@ -73,53 +73,53 @@ namespace anl
 
     }
 
-	double CNoiseExecutor::evaluateScalar(double x, double y)
+	double CNoiseExecutor::evaluateScalar(double x, double y, CInstructionIndex idx)
 	{
 		CCoordinate c(x,y);
-		return evaluate(c).outfloat_;
+		return evaluateAt(c,idx).outfloat_;
 	}
 
-	double CNoiseExecutor::evaluateScalar(double x, double y, double z)
+	double CNoiseExecutor::evaluateScalar(double x, double y, double z, CInstructionIndex idx)
 	{
 		CCoordinate c(x,y,z);
-		return evaluate(c).outfloat_;
+		return evaluateAt(c,idx).outfloat_;
 	}
 
-	double CNoiseExecutor::evaluateScalar(double x, double y, double z, double w)
+	double CNoiseExecutor::evaluateScalar(double x, double y, double z, double w, CInstructionIndex idx)
 	{
 		CCoordinate c(x,y,z,w);
-		return evaluate(c).outfloat_;
+		return evaluateAt(c,idx).outfloat_;
 	}
 
-	double CNoiseExecutor::evaluateScalar(double x, double y, double z, double w, double u, double v)
+	double CNoiseExecutor::evaluateScalar(double x, double y, double z, double w, double u, double v, CInstructionIndex idx)
 	{
 		CCoordinate c(x,y,z,w,u,v);
-		return evaluate(c).outfloat_;
+		return evaluateAt(c,idx).outfloat_;
 	}
 
 
-	SRGBA CNoiseExecutor::evaluateColor(double x, double y)
+	SRGBA CNoiseExecutor::evaluateColor(double x, double y, CInstructionIndex idx)
 	{
 		CCoordinate c(x,y);
-		return evaluate(c).outrgba_;
+		return evaluateAt(c,idx).outrgba_;
 	}
 
-	SRGBA CNoiseExecutor::evaluateColor(double x, double y, double z)
+	SRGBA CNoiseExecutor::evaluateColor(double x, double y, double z, CInstructionIndex idx)
 	{
 		CCoordinate c(x,y);
-		return evaluate(c).outrgba_;
+		return evaluateAt(c,idx).outrgba_;
 	}
 
-	SRGBA CNoiseExecutor::evaluateColor(double x, double y, double z, double w)
+	SRGBA CNoiseExecutor::evaluateColor(double x, double y, double z, double w, CInstructionIndex idx)
 	{
 		CCoordinate c(x,y);
-		return evaluate(c).outrgba_;
+		return evaluateAt(c,idx).outrgba_;
 	}
 
-	SRGBA CNoiseExecutor::evaluateColor(double x, double y, double z, double w, double u, double v)
+	SRGBA CNoiseExecutor::evaluateColor(double x, double y, double z, double w, double u, double v, CInstructionIndex idx)
 	{
 		CCoordinate c(x,y);
-		return evaluate(c).outrgba_;
+		return evaluateAt(c,idx).outrgba_;
 	}
 
 	InstructionListType *CNoiseExecutor::prepare()

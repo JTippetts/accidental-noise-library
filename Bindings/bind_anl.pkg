@@ -252,15 +252,15 @@ class CInstructionListType
         SVMOutput evaluate(CCoordinate &coord);
         SVMOutput evaluateAt(CCoordinate &coord, CInstructionIndex index);
 		
-		double evaluateScalar(double x, double y);
-		double evaluateScalar(double x, double y, double z);
-		double evaluateScalar(double x, double y, double z, double w);
-		double evaluateScalar(double x, double y, double z, double w, double u, double v);
+		double evaluateScalar(double x, double y, CInstructionIndex idx);
+		double evaluateScalar(double x, double y, double z, CInstructionIndex idx);
+		double evaluateScalar(double x, double y, double z, double w, CInstructionIndex idx);
+		double evaluateScalar(double x, double y, double z, double w, double u, double v, CInstructionIndex idx);
 		
-		SRGBA evaluateColor(double x, double y);
-		SRGBA evaluateColor(double x, double y, double z);
-		SRGBA evaluateColor(double x, double y, double z, double w);
-		SRGBA evaluateColor(double x, double y, double z, double w, double u, double v);
+		SRGBA evaluateColor(double x, double y, CInstructionIndex idx);
+		SRGBA evaluateColor(double x, double y, double z, CInstructionIndex idx);
+		SRGBA evaluateColor(double x, double y, double z, double w, CInstructionIndex idx);
+		SRGBA evaluateColor(double x, double y, double z, double w, double u, double v, CInstructionIndex idx);
 	};
 	
 	enum EMappingModes
