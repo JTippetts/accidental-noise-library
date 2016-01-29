@@ -28,8 +28,8 @@ The ANL provides the ability to evaluate noise functions in 2, 3, 4 or [6 dimens
 
 ---
 
-[interpolation]
+[interpolation]:
 ## Interpolation
 
-[seamless]
+[seamless]:
 ## Seamless Noise
