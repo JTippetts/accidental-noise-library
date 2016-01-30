@@ -171,21 +171,15 @@ bool Tokenizer::HasNext()
             ++offset;
         }
 
-
-        if (IsSpecialToken(tok.str()))
-        {
-            lastToken_=Token(Token::VAR, tok.str());
-        }
-        else if (IsFunctionName(tok.str()))
+        if(IsFunctionName(tok.str()))
         {
             lastToken_=Token(Token::FUNCTION, tok.str());
         }
         else
         {
-            std::stringstream ss;
-            ss << "Error: Function or var " << tok.str() << " not recognized.";
-            lastToken_=Token(Token::INVALID, ss.str());
+            lastToken_=Token(Token::VAR, tok.str());
         }
+
         pos_=offset;
         return lastToken_;
     }

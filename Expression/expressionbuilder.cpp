@@ -167,9 +167,62 @@ namespace anl
 		return stk.top();
 	}
 
+	void CExpressionBuilder::evalAndStoreVar(const std::string &varname, const std::string &expr)
+	{
+	    ExpressionToPostfix e(expr, f_, vars_);
+
+		auto p=e.ToPostfix();
+		std::stack<CInstructionIndex> stk;
+
+		for(auto i : p)
+		{
+			if(i.GetType()==Token::NUMBER)
+			{
+				stk.push(kernel_.constant(std::stod(i.GetToken())));
+			}
+			else if(i.GetType()==Token::OPERATOR)
+			{
+				CInstructionIndex right=stk.top();
+				stk.pop();
+				CInstructionIndex left=stk.top();
+				stk.pop();
+				if(i.GetToken()=="+") stk.push(kernel_.add(left,right));
+				else if(i.GetToken()=="-") stk.push(kernel_.subtract(left,right));
+				else if(i.GetToken()=="*") stk.push(kernel_.multiply(left,right));
+				else if(i.GetToken()=="/") stk.push(kernel_.divide(left,right));
+				else if(i.GetToken()=="^") stk.push(kernel_.pow(left,right));
+			}
+			else if(i.GetType()==Token::UNARYOPERATOR)
+			{
+				CInstructionIndex o=stk.top();
+				stk.pop();
+				stk.push(kernel_.multiply(o, kernel_.constant(-1.0)));
+			}
+			else if(i.GetType()==Token::FUNCTION)
+			{
+				buildFunction(i.GetToken(), stk);
+			}
+			else if(i.GetType()==Token::VAR)
+			{
+			    buildVar(i.GetToken(), stk);
+			}
+		}
+
+		//index_.push_back(stk.top());
+		storedvars_.insert(std::pair<std::string, CInstructionIndex>(varname,stk.top()));
+
+		//return stk.top();
+	}
+
 	void CExpressionBuilder::store(CInstructionIndex i)
 	{
 	    index_.push_back(i);
+	}
+
+	void CExpressionBuilder::storeVar(const std::string &varname, CInstructionIndex i)
+	{
+	    //storedvars_[varname]=i;
+	    storedvars_.insert(std::pair<std::string, CInstructionIndex>(varname,i));
 	}
 
 	void CExpressionBuilder::buildVar(const std::string &token, std::stack<CInstructionIndex> &stk)
@@ -212,8 +265,16 @@ namespace anl
         }
         else
         {
-            // Not a pre-built token, so must be a user var
-            stk.push(kernel_.getVar(token));
+            // Not a pre-built token, let's search the list of stored vars
+            auto i=storedvars_.find(token);
+            if(i!=storedvars_.end())
+            {
+                stk.push((*i).second);
+            }
+            else
+            {
+                stk.push(kernel_.getVar(token));
+            }
         }
 	}
 

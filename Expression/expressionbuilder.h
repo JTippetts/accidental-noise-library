@@ -6,6 +6,7 @@
 #include "../VM/random_gen.h"
 #include <vector>
 #include <string>
+#include <map>
 
 namespace anl
 {
@@ -21,11 +22,15 @@ public:
 	std::vector<Token> getPostfix(const std::string &expr);
 	void setRandomSeed(unsigned int seed);
 
+	void evalAndStoreVar(const std::string &varname, const std::string &expr);
+	void storeVar(const std::string &varname, CInstructionIndex idx);
+
 private:
 	CKernel &kernel_;
 	std::vector<CInstructionIndex> index_;
 	std::map<std::string, int> f_;  // Functions
 	std::vector<std::string> vars_;
+	std::map<std::string, CInstructionIndex> storedvars_;
 	KISS prng_;
 
 	void buildFunction(const std::string &token, std::stack<CInstructionIndex> &stk);

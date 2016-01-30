@@ -26,7 +26,7 @@ Behind the scenes, CKernel stores a function chain as a flat array in a std::vec
 
 The `gradientBasis()` and `valueBasis()` functions make use of an interpolation parameter, specified (usually) as a constant. (Note that since all parameters are specified as CInstructionIndex, they can in reality point to any function in the kernel, rather than merely constants. This can give rise to complex behavior, where the operation of the function changes depending on how the input parameter changes.) The types of interpolation are: None, Linear, Cubic, and Quintic. They determine how the values of the corners of the N-dimensional hypercube used to generate the noise are interpolated. None, of course, uses no interpolation:
 
-![None])http://i.imgur.com/HJD7mIc.png)
+![None](http://i.imgur.com/HJD7mIc.png)
 
 Linear uses simple linear `(A + t*(B-A))` interpolation:
 
