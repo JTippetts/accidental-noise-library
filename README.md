@@ -107,5 +107,30 @@ The three channels are combined together using a `combineRGBA()` function, and t
 
 Note that the mapRGBA2D() method takes the image, the kernel, and the index of the function to map. But note also the mysterious SEAMLESS_NONE enumeration and the creation of an anonymous anl::SMappingRanges() object. This is a good point to segue into...
 
-## Seamless Noise
+## Seamless Noise and Mapping Modes
+
+A noise function defines a function in some number of dimensions. In the ANL, the input domain is supported in 2, 3, 4 and 6 dimensions. Behind the scenes, appropriate generators are called depending on the dimensionality of the input coordinate. So, calling `CNoiseExecutor::evaluateScalar(x,y,index)` uses behind-the-scenes calls to a 2-dimensional noise function. The domain of the function stretches to 'infinity'. In practicality, the extent of the domain is the practical extents of a coordinate expressed as double-precision floating-point numbers. Throughout this domain, the noise pattern exists without repetition.
+
+(As a note: ANL uses [long-period hashing](http://graphics.cs.kuleuven.be/publications/LD06LPHFPT/) in order to extend the period of the underlying Perlin and value generators. The reference implementation of improved Perlin gradient noise will repeat on a period of, IIRC, 256 due to the way the hash is implemented. The long-period hash grants it a MUCH larger period.)
+
+In some applications, it is desirable that a noise pattern be made to repeat in one or more coordinate dimensions, in order to facilitate the generation of seamlessly-tiling textures. There are blending-based methods that can be used to construct a tiling texture, but they are frequently inadequate due to the introduction of blending artifacts. The mapping functions of ANL can be used to generate seamlessly tiling noise in 1, 2 or 3 directions through the use of domain distortion, rather than blending. For example, given the noise function for this plasma texture:
+
+![Non-tiling](http://i.imgur.com/41d7GoM.png)
+
+Using the enumeration SEAMLESS_XY, this texture can be made to tile in the X and Y directions:
+
+![Tiling](http://i.imgur.com/5iAfsr1.png)
+
+In order to perform this type of seamless mapping, it is necessary to introduce higher dimensionalities to the noise functions. For example, to create a 2D texture that is seamless in both X and Y, you require a noise function that is 4-dimensional. In order to create a 3D texture, or a slice of a 3D texture mapped to a 2D image, that is seamless in 3 dimensions, you need to have a 6-dimensional noise function. For this reason the noise functions in ANL are available in dimensions up to 6.
+
+Note that the mapping functions take an object of type `anl::SMappingRanges`. This is a simple struct that looks like this:
+
+    struct SMappingRanges
+    {
+        double mapx0,mapy0,mapz0, mapx1,mapy1,mapz1;
+        double loopx0,loopy0,loopz0, loopx1,loopy1,loopz1;
+	};
+	
+The members named mapx0, mapy0, mapz0, mapx1, mapy1, and mapz1 are used by the mapping function to determine the region of the function domain to map to the image. The members named loopx0, loopy0, loopz0, loopx1, loopy1, loopz1 determine the region of the function domain which will repeat in a seamless mapping. By default these are set to (0,0,0)->(1,1,1). This means that when a function is mapped, the function is sampled from (0,0,0) to (1,1,1) and mapped to the pixels of the image. If the mapping mode chosen is seamless in X and Y, then the pattern that occurs in the sub-region of the function will repeat across the entire domain of the function.
+
 
