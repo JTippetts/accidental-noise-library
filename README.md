@@ -20,17 +20,7 @@ In this short snippet, a kernel is created and assigned to a newly created noise
 
 Behind the scenes, CKernel stores a function chain as a flat array in a std::vector. Each element of the array is an instance of CInstruction, which stores all the data needed to reference parameters and evaluate a result. CNoiseExecutor simply evaluates the chain, starting at the given index, and returns a result.
 
-## Coordinates
 
-CNoiseExecutor provides methods called `evaluateScalar()` and `evaluateColor()`, that accept an input coordinate specified as individual parameters to the method. ie, there is a variant `evaluateScalar(x,y,index)`, a variant `evaluateScalar(x,y,z,index)` and so on. These are provided as a convenience, and are simple wrappers around the more general-purpose method, `evaluateAt()`. This method accepts 2 input parameters: an instance of a `CCoordinate` object, and an index.
-
-    auto b=kernel.gradientBasis(kernel.constant(3), kernel.seed(1546));
-	anl::CCoordinate coord(0.4, 0.5, 0.6);
-	auto i=vm.evaluateAt(coord, b);
-
-The ANL provides the ability to evaluate noise functions in 2, 3, 4 or 6 dimensions (more on the rationale for that in a bit). In order to consolidate the interface and simplify the back-end code, the CCoordinate class can encapsulate a single coordinate of a specific dimension. This interface allows the use of coordinates of arbitrary dimension, without requiring compile-time knowledge of the coordinate dimensions.
-
----
 
 ## Interpolation
 
@@ -38,17 +28,84 @@ The `gradientBasis()` and `valueBasis()` functions make use of an interpolation 
 
 ![None])http://i.imgur.com/HJD7mIc.png)
 
-Linear uses simple linear (A + s*(B-A)) interpolation:
+Linear uses simple linear `(A + t*(B-A))` interpolation:
 
 ![Linear](http://i.imgur.com/NfdYARA.png)
 
-Cubic uses hermite interpolation, ie t=(t*t*(3-2*t)):
+Cubic uses hermite interpolation, ie `t=(t*t*(3-2*t))` :
 
 ![Cubic](http://i.imgur.com/kguMGv0.png)
 
-Quintic is the smoothest, using t=t*t*t*(t*(t*6-15)+10):
+Quintic is the smoothest, using `t=t*t*t*(t*(t*6-15)+10)` :
 
 ![Quintic](http://i.imgur.com/LXzzp91.png)
 
+## Expressions
+
+Recent releases of the ANL have included an in-progress implementation of an expression parsing and evaluating class called [CExpressionBuilder](https://github.com/JTippetts/accidental-noise-library/blob/master/Expression/expressionbuilder.h). This is an attempt to make the creation of complex noise chains more concise. The principle of the expression builder is that a function can be described by an expression string:
+
+    std::string e="clamp(scaleY(scaleX(gradientBasis(3,rand),3),3)*0.5+0.5,0,1)";
+	
+The string can be evaluated with an expression builder:
+
+    anl::CExpressionBuilder eb(kernel);
+	auto index=eb.eval(e);
+	
+The result of this is the same as if you had performed the construction of the function manually:
+
+    auto index=kernel.clamp(kernel.add(kernel.multiply(kernel.scaleY(kernel.scaleX(kernel.gradientBasis(kernel.constant(3),kernel.seed(randomNumber)),kernel.constant(3)), kernel.constant(3)), kernel.constant(0.5)), kernel.constant(0.5)), kernel.constant(0), kernel.constant(1));
+
+Only, as you can see, the expression is MUCH more concise than the manual function building. When the string is evaluated, numbers are automatically converted to constants in the kernel, operators map to the corresponding arithmetic functions, and other functions are available by name. The expression builder functionality is not yet complete, nor is it yet fully tested. (TODO: All this stuff.) But where it works, it works quite well. 
+
+## Coordinates and Imaging
+
+CNoiseExecutor provides methods called `evaluateScalar()` and `evaluateColor()`, that accept an input coordinate specified as individual parameters to the method. ie, there is a variant `evaluateScalar(x,y,index)`, a variant `evaluateScalar(x,y,z,index)` and so on. These are provided as a convenience, and are simple wrappers around the more general-purpose method, `evaluateAt()`. This method accepts 2 input parameters: an instance of a `CCoordinate` object, and an index.
+
+    auto b=kernel.gradientBasis(kernel.constant(3), kernel.seed(1546));
+	anl::CCoordinate coord(0.4, 0.5, 0.6);
+	auto scalar=vm.evaluateAt(coord, b).outfloat_;
+	auto color=vm.evaluateAt(coord, b).outrgba_;
+
+All functions can be evaluated in terms of scalar values (double floating point type) or colors. The method `evaluateAt()`, then, outputs values of type SVMOutput, which is a simple structure that encapsulates both a scalar value and a color.
+
+The ANL provides the ability to evaluate noise functions in 2, 3, 4 or 6 dimensions (more on the rationale for that in a bit). In order to consolidate the interface and simplify the back-end code, the CCoordinate class can encapsulate a single coordinate of a specific dimension. This interface allows the use of coordinates of arbitrary dimension, without requiring compile-time knowledge of the coordinate dimensions.
+
+A common use-case for noise functions is the generation of textures and images. Because of this, all functions output both a scalar value and a color value. If one is interested in only the scalar value, the color can be safely ignored, and vice versa. In order to facilitate image generation, the ANL provides some utility mapping functions. These mapping functions operate on 1 of 4 basic data containers:
+
+* CArray2Dd -- A 2D array of scalar (double) values
+* CArray2Drgba -- A 2D array of colors
+* CArray3Dd -- A 3D array of scalar values
+* CArray3Drgba -- A 3D array of colors
+
+The functions provided for imaging are:
+
+* `map2D(seamlessmode, image, kernel, mappingranges, index, z)`
+* `map2DNoZ(seamlessmode, image, kernel, mappingranges, index)`
+* `mapRGBA2D(seamlessmode, image, kernel, mappingranges, index, z)`
+* `mapRGBA2DNoZ(seamlessmode, image, kernel, mappingranges, index)`
+* `map3D(seamlessmode, image3D, kernel, mappingranges, index)`
+* `mapRGBA3D(seamlessmode, image3D, kernel, mappingranges, index)`
+
+These functions are used to map scalar functions to grayscale images, or scalar/color functions to color images. The 2D variants are split into variants that accept a Z value and variants that do not. I will explain more about those in the section on seamless noise. Here is a quick example of mapping a color image:
+
+    anl::CKernel kernel;
+    anl::CArray2Drgba img(256,256);
+
+    auto r=kernel.add(kernel.multiply(kernel.valueBasis(kernel.constant(1), kernel.seed(1234)), kernel.point5()), kernel.point5());
+    auto g=kernel.add(kernel.multiply(kernel.valueBasis(kernel.constant(2), kernel.seed(5678)), kernel.point5()), kernel.point5());
+    auto b=kernel.add(kernel.multiply(kernel.valueBasis(kernel.constant(0), kernel.seed(9101112)), kernel.point5()), kernel.point5());
+    auto col=kernel.scaleDomain(kernel.combineRGBA(r,g,b,kernel.one()), kernel.constant(5));
+	
+	anl::mapRGBA2D(anl::SEAMLESS_NONE, img, kernel, anl::SMappingRanges(), 0, col);
+    anl::saveRGBAArray("img.png", &img);
+	
+This snippet of code creates a kernel and an image sized 256x256. A function chain is set up by creating 3 sub-modules for the red, green and blue channels of a color. Each channel is based on a valueBasis() function that is scaled to the range 0,1 by multiplying by 0.5 and adding 0.5. (Note here that the snippet is using one of CKernel's built-in constants, in this case the constant 0.5, which are provided for convenience for commonly used constants such as 0, 1, 0.5, pi, e, and so forth).
+
+The three channels are combined together using a `combineRGBA()` function, and the input coordinate is scaled by 5. Then the function is mapped to the image and the image is saved to .PNG. The result looks like this:
+
+![Colors](http://i.imgur.com/rdRHgFo.png)
+
+Note that the mapRGBA2D() method takes the image, the kernel, and the index of the function to map. But note also the mysterious SEAMLESS_NONE enumeration and the creation of an anonymous anl::SMappingRanges() object. This is a good point to segue into...
 
 ## Seamless Noise
+
