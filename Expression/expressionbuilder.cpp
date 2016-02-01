@@ -146,98 +146,19 @@ namespace anl
 
 	CInstructionIndex CExpressionBuilder::evalAndStore(const std::string &expr)
 	{
-		ExpressionToPostfix e(expr, f_, vars_);
+		auto e=eval(expr);
 
-		auto p=e.ToPostfix();
-		std::stack<CInstructionIndex> stk;
+		index_.push_back(e);
 
-		for(auto i : p)
-		{
-			if(i.GetType()==Token::NUMBER)
-			{
-				stk.push(kernel_.constant(std::stod(i.GetToken())));
-			}
-			else if(i.GetType()==Token::OPERATOR)
-			{
-				CInstructionIndex right=stk.top();
-				stk.pop();
-				CInstructionIndex left=stk.top();
-				stk.pop();
-				if(i.GetToken()=="+") stk.push(kernel_.add(left,right));
-				else if(i.GetToken()=="-") stk.push(kernel_.subtract(left,right));
-				else if(i.GetToken()=="*") stk.push(kernel_.multiply(left,right));
-				else if(i.GetToken()=="/") stk.push(kernel_.divide(left,right));
-				else if(i.GetToken()=="^") stk.push(kernel_.pow(left,right));
-			}
-			else if(i.GetType()==Token::UNARYOPERATOR)
-			{
-				CInstructionIndex o=stk.top();
-				stk.pop();
-				stk.push(kernel_.multiply(o, kernel_.constant(-1.0)));
-			}
-			else if(i.GetType()==Token::FUNCTION)
-			{
-				buildFunction(i.GetToken(), stk);
-			}
-			else if(i.GetType()==Token::VAR)
-			{
-			    buildVar(i.GetToken(), stk);
-			}
-		}
-
-		index_.push_back(stk.top());
-
-		return stk.top();
+		return e;
 	}
 
 	CInstructionIndex CExpressionBuilder::evalAndStoreVar(const std::string &varname, const std::string &expr)
 	{
-	    ExpressionToPostfix e(expr, f_, vars_);
+	    auto e=eval(expr);
+		insert_or_assign(storedvars_, varname, e);
 
-		auto p=e.ToPostfix();
-		std::stack<CInstructionIndex> stk;
-
-		for(auto i : p)
-		{
-			if(i.GetType()==Token::NUMBER)
-			{
-				stk.push(kernel_.constant(std::stod(i.GetToken())));
-			}
-			else if(i.GetType()==Token::OPERATOR)
-			{
-				CInstructionIndex right=stk.top();
-				stk.pop();
-				CInstructionIndex left=stk.top();
-				stk.pop();
-				if(i.GetToken()=="+") stk.push(kernel_.add(left,right));
-				else if(i.GetToken()=="-") stk.push(kernel_.subtract(left,right));
-				else if(i.GetToken()=="*") stk.push(kernel_.multiply(left,right));
-				else if(i.GetToken()=="/") stk.push(kernel_.divide(left,right));
-				else if(i.GetToken()=="^") stk.push(kernel_.pow(left,right));
-			}
-			else if(i.GetType()==Token::UNARYOPERATOR)
-			{
-				CInstructionIndex o=stk.top();
-				stk.pop();
-				stk.push(kernel_.multiply(o, kernel_.constant(-1.0)));
-			}
-			else if(i.GetType()==Token::FUNCTION)
-			{
-				buildFunction(i.GetToken(), stk);
-			}
-			else if(i.GetType()==Token::VAR)
-			{
-			    buildVar(i.GetToken(), stk);
-			}
-		}
-
-		//index_.push_back(stk.top());
-		//auto place=storedvars_.find(varname);
-		//if(place!=storedvars_.end()) storedvars_.erase(place);
-		//storedvars_.insert(std::pair<std::string, CInstructionIndex>(varname,stk.top()));
-		insert_or_assign(storedvars_, varname, stk.top());
-
-		return stk.top();
+		return e;
 	}
 
 	void CExpressionBuilder::store(CInstructionIndex i)
@@ -254,10 +175,6 @@ namespace anl
 
 	void CExpressionBuilder::storeVar(const std::string &varname, CInstructionIndex i)
 	{
-	    //storedvars_[varname]=i;
-	    //auto place=storedvars_.find(varname);
-		//if(place!=storedvars_.end()) storedvars_.erase(place);
-	   // storedvars_.insert(std::pair<std::string, CInstructionIndex>(varname,i));
 	    insert_or_assign(storedvars_, varname, i);
 	}
 
