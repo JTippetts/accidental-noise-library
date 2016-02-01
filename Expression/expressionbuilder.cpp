@@ -1,6 +1,29 @@
 #include "expressionbuilder.h"
 
 #include <iostream>
+
+template<class Container, class V>
+std::pair<typename Container::iterator, bool> insert_or_assign(Container & c, typename Container::key_type const & k, V && v) {
+    auto itor = c.find(k);
+    if(itor == c.end()) {
+        return c.emplace(k, std::forward<V>(v));
+    } else {
+        itor->second = std::forward<V>(v);
+        return std::make_pair(itor, false);
+    }
+}
+
+template<class C, class V>
+std::pair<typename C::iterator, bool> insert_or_assign(C & c, typename C::key_type && k, V && v) {
+    auto itor = c.find(k);
+    if(itor == c.end()) {
+        return c.emplace(std::move(k), std::forward<V>(v));
+    } else {
+        itor->second = std::forward<V>(v);
+        return std::make_pair(itor, false);
+    }
+}
+
 namespace anl
 {
 	CExpressionBuilder::CExpressionBuilder(CKernel &kernel) : kernel_(kernel)
@@ -209,9 +232,10 @@ namespace anl
 		}
 
 		//index_.push_back(stk.top());
-		auto place=storedvars_.find(varname);
-		if(place!=storedvars_.end()) storedvars_.erase(place);
-		storedvars_.insert(std::pair<std::string, CInstructionIndex>(varname,stk.top()));
+		//auto place=storedvars_.find(varname);
+		//if(place!=storedvars_.end()) storedvars_.erase(place);
+		//storedvars_.insert(std::pair<std::string, CInstructionIndex>(varname,stk.top()));
+		insert_or_assign(storedvars_, varname, stk.top());
 
 		return stk.top();
 	}
@@ -231,9 +255,10 @@ namespace anl
 	void CExpressionBuilder::storeVar(const std::string &varname, CInstructionIndex i)
 	{
 	    //storedvars_[varname]=i;
-	    auto place=storedvars_.find(varname);
-		if(place!=storedvars_.end()) storedvars_.erase(place);
-	    storedvars_.insert(std::pair<std::string, CInstructionIndex>(varname,i));
+	    //auto place=storedvars_.find(varname);
+		//if(place!=storedvars_.end()) storedvars_.erase(place);
+	   // storedvars_.insert(std::pair<std::string, CInstructionIndex>(varname,i));
+	    insert_or_assign(storedvars_, varname, i);
 	}
 
 	void CExpressionBuilder::buildVar(const std::string &token, std::stack<CInstructionIndex> &stk)
