@@ -22,8 +22,9 @@ public:
 	std::vector<Token> getPostfix(const std::string &expr);
 	void setRandomSeed(unsigned int seed);
 
-	void evalAndStoreVar(const std::string &varname, const std::string &expr);
+	CInstructionIndex evalAndStoreVar(const std::string &varname, const std::string &expr);
 	void storeVar(const std::string &varname, CInstructionIndex idx);
+	CInstructionIndex retrieveVar(const std::string &varname);
 
 private:
 	CKernel &kernel_;

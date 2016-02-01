@@ -308,7 +308,8 @@ class CInstructionListType
 		void store(CInstructionIndex i);
 		void setRandomSeed(unsigned int seed);
 		void storeVar(const char *varname, CInstructionIndex i);
-		void evalAndStoreVar(const char *varname, const char *expr);
+		CInstructionIndex evalAndStoreVar(const char *varname, const char *expr);
+		CInstructionIndex retrieveVar(const char *varname);
 	};
 	
 

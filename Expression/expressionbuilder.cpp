@@ -167,7 +167,7 @@ namespace anl
 		return stk.top();
 	}
 
-	void CExpressionBuilder::evalAndStoreVar(const std::string &varname, const std::string &expr)
+	CInstructionIndex CExpressionBuilder::evalAndStoreVar(const std::string &varname, const std::string &expr)
 	{
 	    ExpressionToPostfix e(expr, f_, vars_);
 
@@ -209,9 +209,11 @@ namespace anl
 		}
 
 		//index_.push_back(stk.top());
+		auto place=storedvars_.find(varname);
+		if(place!=storedvars_.end()) storedvars_.erase(place);
 		storedvars_.insert(std::pair<std::string, CInstructionIndex>(varname,stk.top()));
 
-		//return stk.top();
+		return stk.top();
 	}
 
 	void CExpressionBuilder::store(CInstructionIndex i)
@@ -219,9 +221,18 @@ namespace anl
 	    index_.push_back(i);
 	}
 
+	CInstructionIndex CExpressionBuilder::retrieveVar(const std::string &varname)
+	{
+	    auto i=storedvars_.find(varname);
+	    if(i!=storedvars_.end()) return (*i).second;
+	    else return kernel_.zero();
+	}
+
 	void CExpressionBuilder::storeVar(const std::string &varname, CInstructionIndex i)
 	{
 	    //storedvars_[varname]=i;
+	    auto place=storedvars_.find(varname);
+		if(place!=storedvars_.end()) storedvars_.erase(place);
 	    storedvars_.insert(std::pair<std::string, CInstructionIndex>(varname,i));
 	}
 

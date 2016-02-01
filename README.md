@@ -123,6 +123,8 @@ Using the enumeration SEAMLESS_XY, this texture can be made to tile in the X and
 
 In order to perform this type of seamless mapping, it is necessary to introduce higher dimensionalities to the noise functions. For example, to create a 2D texture that is seamless in both X and Y, you require a noise function that is 4-dimensional. In order to create a 3D texture, or a slice of a 3D texture mapped to a 2D image, that is seamless in 3 dimensions, you need to have a 6-dimensional noise function. For this reason the noise functions in ANL are available in dimensions up to 6.
 
+For a more in-depth look at how the seamless mapping functions operate, see [this blog post](http://www.gamedev.net/blog/33/entry-2138456-seamless-noise/).
+
 Note that the mapping functions take an object of type `anl::SMappingRanges`. This is a simple struct that looks like this:
 
     struct SMappingRanges
