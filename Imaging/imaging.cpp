@@ -132,20 +132,6 @@ namespace anl
                 stbi_image_free(data);
         }
 
-	struct SChunk
-	{
-		int seamlessmode;
-		double *a;
-		int awidth, aheight;
-		int chunkheight, chunkyoffset;
-		CKernel *kernel;
-		SMappingRanges ranges;
-		CInstructionIndex at;
-		double z;
-
-		SChunk(CInstructionIndex a) : at(a) {}
-	};
-
 	void map2DChunk(SChunk chunk)
 	{
 		static double pi2=3.141592*2.0;
@@ -443,7 +429,7 @@ namespace anl
 		chunk.kernel=&k;
 		chunk.ranges=ranges;
 		chunk.z=z;
-		chunk.at=index;
+		chunk.at=at;
 
 		map2DChunk(chunk);
 	#else
@@ -489,7 +475,7 @@ namespace anl
 		chunk.kernel=&k;
 		chunk.ranges=ranges;
 		chunk.z=0;
-		chunk.at=index;
+		chunk.at=at;
 
 		map2DChunkNoZ(chunk);
 	#else
@@ -521,19 +507,6 @@ namespace anl
 		}
 	#endif
    }
-
-   struct SChunk3D
-   {
-       int seamlessmode;
-       double *a;
-       int awidth, aheight, adepth;
-       int chunkdepth, chunkzoffset;
-       CKernel *kernel;
-       SMappingRanges ranges;
-       CInstructionIndex at;
-
-       SChunk3D(CInstructionIndex a) : at(a) {}
-	};
 
 	void map3DChunk(SChunk3D chunk)
 	{
@@ -680,7 +653,7 @@ namespace anl
     {
         if(a.getData()==0) return;
     #ifndef USETHREAD
-		SChunk3D chunk(at);
+		SChunk3D chunk(index);
 		chunk.seamlessmode=seamlessmode;
 		chunk.a=a.getData();
 		chunk.awidth=a.width();
@@ -721,22 +694,6 @@ namespace anl
 		for(unsigned int c=0; c<threads.size(); ++c) threads[c].join();
 	#endif
     }
-
-
-
-	struct SRGBAChunk
-	{
-		int seamlessmode;
-		SRGBA *a;
-		int awidth, aheight;
-		int chunkheight, chunkyoffset;
-		CKernel *kernel;
-		SMappingRanges ranges;
-		double z;
-		CInstructionIndex at;
-
-		SRGBAChunk(CInstructionIndex a) : at(a){}
-	};
 
 	void mapRGBA2DChunk(SRGBAChunk chunk)
 	{
@@ -1031,9 +988,9 @@ namespace anl
 		chunk.kernel=&k;
 		chunk.ranges=ranges;
 		chunk.z=z;
-		chunk.at=index;
+		chunk.at=at;
 
-		map2DChunk(chunk);
+		mapRGBA2DChunk(chunk);
 	#else
 		unsigned threadcount=std::thread::hardware_concurrency();
 		int chunksize=std::floor(a.height() / threadcount);
@@ -1077,9 +1034,9 @@ namespace anl
 		chunk.kernel=&k;
 		chunk.ranges=ranges;
 		chunk.z=0;
-		chunk.at=index;
+		chunk.at=at;
 
-		map2DChunkNoZ(chunk);
+		mapRGBA2DChunkNoZ(chunk);
 	#else
 		unsigned threadcount=std::thread::hardware_concurrency();
 		int chunksize=std::floor(a.height() / threadcount);
@@ -1269,7 +1226,7 @@ namespace anl
     {
         if(a.getData()==0) return;
     #ifndef USETHREAD
-		SRGBAChunk3D chunk(at);
+		SRGBAChunk3D chunk(index);
 		chunk.seamlessmode=seamlessmode;
 		chunk.a=a.getData();
 		chunk.awidth=a.width();
@@ -1281,7 +1238,7 @@ namespace anl
 		chunk.ranges=ranges;
 		chunk.at=index;
 
-		map3DChunk(chunk);
+		mapRGBA3DChunk(chunk);
 	#else
 		unsigned threadcount=std::thread::hardware_concurrency();
 		int chunksize=std::floor(a.depth() / threadcount);
