@@ -7,6 +7,7 @@ $#include "../VM/coordinate.h"
 $#include "../VM/random_gen.h"
 $#include "../Imaging/imaging.h"
 $#include "../Expression/expressionbuilder.h"
+$#include "../Processing/erosion.h"
 
 $using namespace anl;
 double highresTime();
@@ -423,5 +424,4 @@ void loadDoubleArray(const char *filename, CArray2Dd *array);
 void loadRGBAArray(const char *filename, CArray2Drgba *array);
 	
 	
-//void map2DThread(int seamlessmode, CArray2Dd &a, CKernel &k, SMappingRanges ranges, double z);
-//void map2DNoThread(int seamlessmode, CArray2Dd &a, CKernel &k, SMappingRanges ranges, double z);
+void simpleErode(CArray2Dd &map, unsigned int numdrops, float power);
