@@ -3,15 +3,14 @@
 
 -- Path to Lua source
 -- 
---local luapath="ThirdParty/lua-5.3.0/"
- --local luapath="ThirdParty/lua-5.2.4/" 
+
  local luapath="ThirdParty/lua-5.1.4/"
 
 local usethread=true 
 
 solution "ANL"
 	configurations {"Debug", "Release"}
-	--platforms {"x32", "x64"}
+	platforms {"x32", "x64"}
 	location "../build"
 	
 	if usethread then defines { "USETHREAD" } end
@@ -43,16 +42,6 @@ solution "ANL"
 		includedirs(luapath.."src")
 		files({luapath.."src/*.c"})
 		excludes({luapath.."src/lua.c", luapath.."src/luac.c"})
-		
-		
-	--[[project "tolua"
-		kind "StaticLib"
-		location "../build/tolua"
-		targetdir "../build/tolua"
-		language "C"
-		includedirs "ThirdParty/tolua-5.2/include"
-		includedirs(luapath.."src")
-		files {"ThirdParty/tolua-5.2/src/lib/*.h", "ThirdParty/tolua-5.2/src/lib/*.c"}]]
 	
 	project "ANLLib"
 		kind "StaticLib"
