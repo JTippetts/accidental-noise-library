@@ -4,6 +4,10 @@
 -- Path to Lua source
 -- 
 
+--  ugly hack to use clang
+premake.gcc.cc  = 'clang'
+premake.gcc.cxx = 'clang++'
+
  local luapath="ThirdParty/lua-5.1.4/"
 
 local usethread=true 
@@ -30,6 +34,10 @@ solution "ANL"
 		location "../build/toluapp"
 		targetdir "../build/toluapp"
 		language "C"
+		if _ACTION=="gmake" then
+			buildoptions "-Wl,--no-as-needed -std=c++11 -pthread"
+			linkoptions "-pthread"
+		end
 		includedirs "ThirdParty/toluapp/include"
 		includedirs(luapath.."src")
 		files {"ThirdParty/toluapp/src/lib/*.h", "ThirdParty/toluapp/src/lib/*.c"}
@@ -39,6 +47,10 @@ solution "ANL"
 		location "../build/lua"
 		targetdir "../build/lua"
 		language "C"
+		if _ACTION=="gmake" then
+			buildoptions "-Wl,--no-as-needed -std=c++11 -pthread"
+			linkoptions "-pthread"
+		end
 		includedirs(luapath.."src")
 		files({luapath.."src/*.c"})
 		excludes({luapath.."src/lua.c", luapath.."src/luac.c"})
@@ -49,7 +61,8 @@ solution "ANL"
 		targetdir "../build/ANL"
 		language "C++"
 		if _ACTION=="gmake" then
-			buildoptions "-std=c++11"
+			buildoptions "-Wl,--no-as-needed -std=c++11 -pthread"
+			linkoptions "-pthread"
 		end
 		
 		files {"VM/*.h", "VM/*.cpp", "Imaging/*.h", "Imaging/*.cpp", "Expression/*.h", "Expression/*.cpp", "Processing/*.h", "Processing/*.cpp", "templates/*.h", "vectortypes.h"}
@@ -70,7 +83,8 @@ solution "ANL"
 		targetdir "../build/Bin"
 		language "C++"
 		if _ACTION=="gmake" then
-			buildoptions "-std=c++11"
+			buildoptions "-Wl,--no-as-needed -std=c++11 -pthread"
+			linkoptions "-pthread"
 		end
 		
 		--includedirs "ThirdParty/tolua-5.2/include"
