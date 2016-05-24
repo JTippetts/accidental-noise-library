@@ -1355,7 +1355,7 @@ double anl::simplex_noise6D(double x, double y, double z, double w, double u, do
                 gr+=vec[d]*u[d];
             }
 
-            n+=gr*t*t*t*t;
+            n+=gr*t*t*t*t*t;
         }
         skewOffset+=G4;
     }
