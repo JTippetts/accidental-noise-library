@@ -1,4 +1,3 @@
-#include "erosion.h"
 #include <list>
 #include <iostream>
 #include <algorithm>
@@ -21,7 +20,6 @@ void shuffleDirections(SDrop *dirs, anl::CMWC4096 &rnd)
 
 SDrop find_lowest_neighbor(anl::CMWC4096 &rnd, anl::CArray2Dd &map, int x, int y)
 {
-    int i,j;
     int w=map.width(), h=map.height();
 
     static SDrop dirs[8]=
@@ -72,7 +70,7 @@ void simpleErode(anl::CArray2Dd &map, unsigned int numdrops, float power)
 
     if(numdrops==0) numdrops=w*h;
 
-    for(int c=0; c<numdrops; ++c)
+    for(unsigned int c=0; c<numdrops; ++c)
     {
         drops.push_back(SDrop(rnd.getRange(0,w-1), rnd.getRange(0,h-1)));
     }

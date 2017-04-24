@@ -1,5 +1,3 @@
-#include "imaging.h"
-
 #include <fstream>
 #include <iostream>
 #include <string>

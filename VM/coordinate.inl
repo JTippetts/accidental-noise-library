@@ -1,5 +1,3 @@
-#include "coordinate.h"
-
 namespace anl
 {
     CCoordinate::CCoordinate()

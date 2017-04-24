@@ -4,17 +4,13 @@
 -- Path to Lua source
 -- 
 
---  ugly hack to use clang
-premake.gcc.cc  = 'clang'
-premake.gcc.cxx = 'clang++'
-
  local luapath="ThirdParty/lua-5.1.4/"
 
 local usethread=true 
 
 solution "ANL"
 	configurations {"Debug", "Release"}
-	platforms {"x32", "x64"}
+	platforms {"x32", "x64", "native"}
 	location "../build"
 	
 	if usethread then defines { "USETHREAD" } end

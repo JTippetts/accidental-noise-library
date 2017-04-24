@@ -1,30 +1,27 @@
-#include "noise_gen.h"
-#include "noise_lut.h"
+
 #include <vector>
 #include <algorithm>
 #include <math.h>
-#include <iostream>
 
-#include "hashing.h"
+namespace anl
+{
 
-using namespace anl;
-
-double anl::noInterp(double t)
+double noInterp(double t)
 {
     return 0;
 }
 
-double anl::linearInterp(double t)
+double linearInterp(double t)
 {
     return t;
 }
 
-double anl::hermiteInterp(double t)
+double hermiteInterp(double t)
 {
     return (t*t*(3-2*t));
 }
 
-double anl::quinticInterp(double t)
+double quinticInterp(double t)
 {
     return t*t*t*(t*(t*6-15)+10);
 
@@ -57,14 +54,14 @@ inline double array_dot6(double *arr, double x, double y, double z, double w, do
 
 // Distance
 
-double anl::distEuclid2(double x1, double y1, double x2, double y2)
+double distEuclid2(double x1, double y1, double x2, double y2)
 {
     double dx=x2-x1;
     double dy=y2-y1;
     return sqrt(dx*dx+dy*dy);
 }
 
-double anl::distEuclid3(double x1, double y1, double z1, double x2, double y2, double z2)
+double distEuclid3(double x1, double y1, double z1, double x2, double y2, double z2)
 {
     double dx=x2-x1;
     double dy=y2-y1;
@@ -72,7 +69,7 @@ double anl::distEuclid3(double x1, double y1, double z1, double x2, double y2, d
     return sqrt(dx*dx+dy*dy+dz*dz);
 }
 
-double anl::distEuclid4(double x1, double y1, double z1, double w1, double x2, double y2, double z2, double w2)
+double distEuclid4(double x1, double y1, double z1, double w1, double x2, double y2, double z2, double w2)
 {
     double dx=x2-x1;
     double dy=y2-y1;
@@ -81,7 +78,7 @@ double anl::distEuclid4(double x1, double y1, double z1, double w1, double x2, d
     return sqrt(dx*dx+dy*dy+dz*dz+dw*dw);
 }
 
-double anl::distEuclid6(double x1, double y1, double z1, double w1, double u1, double v1, double x2, double y2, double z2, double w2, double u2, double v2)
+double distEuclid6(double x1, double y1, double z1, double w1, double u1, double v1, double x2, double y2, double z2, double w2, double u2, double v2)
 {
     double dx=x2-x1;
     double dy=y2-y1;
@@ -93,7 +90,7 @@ double anl::distEuclid6(double x1, double y1, double z1, double w1, double u1, d
 }
 
 
-double anl::distManhattan2(double x1, double y1, double x2, double y2)
+double distManhattan2(double x1, double y1, double x2, double y2)
 {
     double dx=fabs(x2-x1);
     double dy=fabs(y2-y1);
@@ -101,7 +98,7 @@ double anl::distManhattan2(double x1, double y1, double x2, double y2)
     return dx+dy;
 }
 
-double anl::distManhattan3(double x1, double y1, double z1, double x2, double y2, double z2)
+double distManhattan3(double x1, double y1, double z1, double x2, double y2, double z2)
 {
     double dx=fabs(x2-x1);
     double dy=fabs(y2-y1);
@@ -110,7 +107,7 @@ double anl::distManhattan3(double x1, double y1, double z1, double x2, double y2
     return dx+dy+dz;
 }
 
-double anl::distManhattan4(double x1, double y1, double z1, double w1, double x2, double y2, double z2, double w2)
+double distManhattan4(double x1, double y1, double z1, double w1, double x2, double y2, double z2, double w2)
 {
     double dx=fabs(x2-x1);
     double dy=fabs(y2-y1);
@@ -120,7 +117,7 @@ double anl::distManhattan4(double x1, double y1, double z1, double w1, double x2
     return dx+dy+dz+dw;
 }
 
-double anl::distManhattan6(double x1, double y1, double z1, double w1, double u1, double v1, double x2, double y2, double z2, double w2, double u2, double v2)
+double distManhattan6(double x1, double y1, double z1, double w1, double u1, double v1, double x2, double y2, double z2, double w2, double u2, double v2)
 {
     double dx=fabs(x2-x1);
     double dy=fabs(y2-y1);
@@ -132,14 +129,14 @@ double anl::distManhattan6(double x1, double y1, double z1, double w1, double u1
     return dx+dy+dz+dw+du+dv;
 }
 
-double anl::distGreatestAxis2(double x1, double y1, double x2, double y2)
+double distGreatestAxis2(double x1, double y1, double x2, double y2)
 {
     double dx=fabs(x2-x1);
     double dy=fabs(y2-y1);
     return std::max(dx,dy);
 }
 
-double anl::distGreatestAxis3(double x1, double y1, double z1, double x2, double y2, double z2)
+double distGreatestAxis3(double x1, double y1, double z1, double x2, double y2, double z2)
 {
     double dx=fabs(x2-x1);
     double dy=fabs(y2-y1);
@@ -147,7 +144,7 @@ double anl::distGreatestAxis3(double x1, double y1, double z1, double x2, double
     return std::max(dz,std::max(dx,dy));
 }
 
-double anl::distGreatestAxis4(double x1, double y1, double z1, double w1, double x2, double y2, double z2, double w2)
+double distGreatestAxis4(double x1, double y1, double z1, double w1, double x2, double y2, double z2, double w2)
 {
     double dx=fabs(x2-x1);
     double dy=fabs(y2-y1);
@@ -156,7 +153,7 @@ double anl::distGreatestAxis4(double x1, double y1, double z1, double w1, double
     return std::max(dw,std::max(dz,std::max(dx,dy)));
 }
 
-double anl::distGreatestAxis6(double x1, double y1, double z1, double w1, double u1, double v1, double x2, double y2, double z2, double w2, double u2, double v2)
+double distGreatestAxis6(double x1, double y1, double z1, double w1, double u1, double v1, double x2, double y2, double z2, double w2, double u2, double v2)
 {
     double dx=fabs(x2-x1);
     double dy=fabs(y2-y1);
@@ -167,14 +164,14 @@ double anl::distGreatestAxis6(double x1, double y1, double z1, double w1, double
     return std::max(du,std::max(dv,std::max(dw,std::max(dz,std::max(dx,dy)))));
 }
 
-double anl::distLeastAxis2(double x1, double y1, double x2, double y2)
+double distLeastAxis2(double x1, double y1, double x2, double y2)
 {
     double dx=fabs(x2-x1);
     double dy=fabs(y2-y1);
     return std::min(dx,dy);
 }
 
-double anl::distLeastAxis3(double x1, double y1, double z1, double x2, double y2, double z2)
+double distLeastAxis3(double x1, double y1, double z1, double x2, double y2, double z2)
 {
     double dx=fabs(x2-x1);
     double dy=fabs(y2-y1);
@@ -182,7 +179,7 @@ double anl::distLeastAxis3(double x1, double y1, double z1, double x2, double y2
     return std::min(dz,std::min(dx,dy));
 }
 
-double anl::distLeastAxis4(double x1, double y1, double z1, double w1, double x2, double y2, double z2, double w2)
+double distLeastAxis4(double x1, double y1, double z1, double w1, double x2, double y2, double z2, double w2)
 {
     double dx=fabs(x2-x1);
     double dy=fabs(y2-y1);
@@ -191,7 +188,7 @@ double anl::distLeastAxis4(double x1, double y1, double z1, double w1, double x2
     return std::min(dw,std::min(dz,std::min(dx,dy)));
 }
 
-double anl::distLeastAxis6(double x1, double y1, double z1, double w1, double u1, double v1, double x2, double y2, double z2, double w2, double u2, double v2)
+double distLeastAxis6(double x1, double y1, double z1, double w1, double u1, double v1, double x2, double y2, double z2, double w2, double u2, double v2)
 {
     double dx=fabs(x2-x1);
     double dy=fabs(y2-y1);
@@ -464,7 +461,7 @@ double interp_XYZWUV_6(double x, double y, double z, double w, double u, double 
 
 // The usable noise functions
 
-double anl::value_noise2D(double x, double y, unsigned int seed, interp_func interp)
+double value_noise2D(double x, double y, unsigned int seed, interp_func interp)
 {
 	int x0=fast_floor(x);
     int y0=fast_floor(y);
@@ -478,7 +475,7 @@ double anl::value_noise2D(double x, double y, unsigned int seed, interp_func int
 	return interp_XY_2(x,y,xs,ys,x0,x1,y0,y1,seed,value_noise_2);
 }
 
-double anl::value_noise3D(double x, double y, double z, unsigned int seed, interp_func interp)
+double value_noise3D(double x, double y, double z, unsigned int seed, interp_func interp)
 {
     int x0=fast_floor(x);
     int y0=fast_floor(y);
@@ -494,7 +491,7 @@ double anl::value_noise3D(double x, double y, double z, unsigned int seed, inter
     return interp_XYZ_3(x,y,z,xs,ys,zs,x0,x1,y0,y1,z0,z1,seed,value_noise_3);
 }
 
-double anl::value_noise4D(double x, double y, double z, double w, unsigned int seed, interp_func interp)
+double value_noise4D(double x, double y, double z, double w, unsigned int seed, interp_func interp)
 {
 	int x0=fast_floor(x);
     int y0=fast_floor(y);
@@ -514,7 +511,7 @@ double anl::value_noise4D(double x, double y, double z, double w, unsigned int s
 	return interp_XYZW_4(x,y,z,w,xs,ys,zs,ws,x0,x1,y0,y1,z0,z1,w0,w1,seed,value_noise_4);
 }
 
-double anl::value_noise6D(double x, double y, double z, double w, double u, double v, unsigned int seed, interp_func interp)
+double value_noise6D(double x, double y, double z, double w, double u, double v, unsigned int seed, interp_func interp)
 {
 	int x0=fast_floor(x);
     int y0=fast_floor(y);
@@ -540,7 +537,7 @@ double anl::value_noise6D(double x, double y, double z, double w, double u, doub
 	return interp_XYZWUV_6(x,y,z,w,u,v,xs,ys,zs,ws,us,vs,x0,x1,y0,y1,z0,z1,w0,w1,u0,u1,v0,v1,seed,value_noise_6);
 }
 
-double anl::gradient_noise2D(double x, double y, unsigned int seed, interp_func interp)
+double gradient_noise2D(double x, double y, unsigned int seed, interp_func interp)
 {
 	int x0=fast_floor(x);
     int y0=fast_floor(y);
@@ -554,7 +551,7 @@ double anl::gradient_noise2D(double x, double y, unsigned int seed, interp_func 
 	return interp_XY_2(x,y,xs,ys,x0,x1,y0,y1,seed,grad_noise_2);
 }
 
-double anl::gradient_noise3D(double x, double y, double z, unsigned int seed, interp_func interp)
+double gradient_noise3D(double x, double y, double z, unsigned int seed, interp_func interp)
 {
     int x0=fast_floor(x);
     int y0=fast_floor(y);
@@ -571,7 +568,7 @@ double anl::gradient_noise3D(double x, double y, double z, unsigned int seed, in
 	return interp_XYZ_3(x,y,z,xs,ys,zs,x0,x1,y0,y1,z0,z1,seed,grad_noise_3);
 }
 
-double anl::gradient_noise4D(double x, double y, double z, double w, unsigned int seed, interp_func interp)
+double gradient_noise4D(double x, double y, double z, double w, unsigned int seed, interp_func interp)
 {
 	int x0=fast_floor(x);
     int y0=fast_floor(y);
@@ -590,7 +587,7 @@ double anl::gradient_noise4D(double x, double y, double z, double w, unsigned in
 
 	return interp_XYZW_4(x,y,z,w,xs,ys,zs,ws,x0,x1,y0,y1,z0,z1,w0,w1,seed,grad_noise_4);
 }
-double anl::gradient_noise6D(double x, double y, double z, double w, double u, double v, unsigned int seed, interp_func interp)
+double gradient_noise6D(double x, double y, double z, double w, double u, double v, unsigned int seed, interp_func interp)
 {
 	int x0=fast_floor(x);
     int y0=fast_floor(y);
@@ -616,46 +613,46 @@ double anl::gradient_noise6D(double x, double y, double z, double w, double u, d
 	return interp_XYZWUV_6(x,y,z,w,u,v,xs,ys,zs,ws,us,vs,x0,x1,y0,y1,z0,z1,w0,w1,u0,u1,v0,v1,seed,grad_noise_6);
 }
 
-double anl::gradval_noise2D(double x, double y, unsigned int seed, interp_func interp)
+double gradval_noise2D(double x, double y, unsigned int seed, interp_func interp)
 {
 	return value_noise2D(x,y,seed,interp)+gradient_noise2D(x,y,seed,interp);
 }
 
-double anl::gradval_noise3D(double x, double y, double z, unsigned int seed, interp_func interp)
+double gradval_noise3D(double x, double y, double z, unsigned int seed, interp_func interp)
 {
     return value_noise3D(x,y,z,seed,interp)+gradient_noise3D(x,y,z,seed,interp);
 }
 
-double anl::gradval_noise4D(double x, double y, double z, double w, unsigned int seed, interp_func interp)
+double gradval_noise4D(double x, double y, double z, double w, unsigned int seed, interp_func interp)
 {
 	return value_noise4D(x,y,z,w,seed,interp)+gradient_noise4D(x,y,z,w,seed,interp);
 }
 
-double anl::gradval_noise6D(double x, double y, double z, double w, double u, double v, unsigned int seed, interp_func interp)
+double gradval_noise6D(double x, double y, double z, double w, double u, double v, unsigned int seed, interp_func interp)
 {
 	return value_noise6D(x,y,z,w,u,v,seed,interp)+gradient_noise6D(x,y,z,w,u,v,seed,interp);
 }
 
-double anl::white_noise2D(double x, double y, unsigned int seed, interp_func interp)
+double white_noise2D(double x, double y, unsigned int seed, interp_func interp)
 {
 	unsigned char hash=compute_hash_double_2(x,y,seed);
 	return whitenoise_lut[hash];
 }
 
-double anl::white_noise3D(double x, double y, double z, unsigned int seed, interp_func interp)
+double white_noise3D(double x, double y, double z, unsigned int seed, interp_func interp)
 {
     unsigned char hash=compute_hash_double_3(x,y,z,seed);
 	//std::cout << (unsigned int)hash << std::endl;
     return whitenoise_lut[hash];
 }
 
-double anl::white_noise4D(double x, double y, double z, double w, unsigned int seed, interp_func interp)
+double white_noise4D(double x, double y, double z, double w, unsigned int seed, interp_func interp)
 {
 	unsigned char hash=compute_hash_double_4(x,y,z,w,seed);
 	return whitenoise_lut[hash];
 }
 
-double anl::white_noise6D(double x, double y, double z, double w, double u, double v, unsigned int seed, interp_func interp)
+double white_noise6D(double x, double y, double z, double w, double u, double v, unsigned int seed, interp_func interp)
 {
 	unsigned char hash=compute_hash_double_6(x,y,z,w,u,v,seed);
 	return whitenoise_lut[hash];
@@ -684,7 +681,7 @@ void add_dist(double *f, double *disp, double testdist, double testdisp)
 
 
 
-void anl::cellular_function2D(double x, double y, unsigned int seed, double *f, double *disp, dist_func2 distance)
+void cellular_function2D(double x, double y, unsigned int seed, double *f, double *disp, dist_func2 distance)
 {
     int xint = fast_floor(x);
     int yint = fast_floor(y);
@@ -711,7 +708,7 @@ void anl::cellular_function2D(double x, double y, unsigned int seed, double *f, 
     }
 }
 
-void anl::cellular_function3D(double x, double y, double z, unsigned int seed, double *f, double *disp, dist_func3 distance)
+void cellular_function3D(double x, double y, double z, unsigned int seed, double *f, double *disp, dist_func3 distance)
 {
     int xint = fast_floor(x);
     int yint = fast_floor(y);
@@ -743,7 +740,7 @@ void anl::cellular_function3D(double x, double y, double z, unsigned int seed, d
     }
 }
 
-void anl::cellular_function4D(double x, double y, double z, double w, unsigned int seed, double *f, double *disp, dist_func4 distance)
+void cellular_function4D(double x, double y, double z, double w, unsigned int seed, double *f, double *disp, dist_func4 distance)
 {
     int xint = fast_floor(x);
     int yint = fast_floor(y);
@@ -782,7 +779,7 @@ void anl::cellular_function4D(double x, double y, double z, double w, unsigned i
     }
 }
 
-void anl::cellular_function6D(double x, double y, double z, double w, double u, double v, unsigned int seed, double *f, double *disp, dist_func6 distance)
+void cellular_function6D(double x, double y, double z, double w, double u, double v, unsigned int seed, double *f, double *disp, dist_func6 distance)
 {
     int xint = fast_floor(x);
     int yint = fast_floor(y);
@@ -843,7 +840,7 @@ const double F3=1.0/3.0;
 const double G3=1.0/6.0;
 
 
-double anl::simplex_noise2D(double x, double y, unsigned int seed, interp_func interp)
+double simplex_noise2D(double x, double y, unsigned int seed, interp_func interp)
 {
     double s = (x+y)*F2;
     int i=fast_floor(x+s);
@@ -911,7 +908,7 @@ double anl::simplex_noise2D(double x, double y, unsigned int seed, interp_func i
 }
 
 
-double anl::simplex_noise3D(double x, double y, double z, unsigned int seed, interp_func interp)
+double simplex_noise3D(double x, double y, double z, unsigned int seed, interp_func interp)
 {
     //static double F3 = 1.0/3.0;
     //static double G3 = 1.0/6.0;
@@ -1022,7 +1019,7 @@ double anl::simplex_noise3D(double x, double y, double z, unsigned int seed, int
     return (32.0*(n0+n1+n2+n3))*1.25086885 + 0.0003194984;
 }
 
-double anl::simplex_noise4D(double x, double y, double z, double w, unsigned int seed, interp_func interp)
+double simplex_noise4D(double x, double y, double z, double w, unsigned int seed, interp_func interp)
 {
     static int simplex[64][4] = {
     {0,1,2,3},{0,1,3,2},{0,0,0,0},{0,2,3,1},{0,0,0,0},{0,0,0,0},{0,0,0,0},{1,2,3,0},
@@ -1209,7 +1206,7 @@ void sortBy_6(double *l1, int *l2)
     for(int c=0; c<6; ++c) l2[c]=a[c].axis;
 }
 
-double anl::new_simplex_noise4D(double x, double y, double z, double w, unsigned int seed, interp_func interp)
+double new_simplex_noise4D(double x, double y, double z, double w, unsigned int seed, interp_func interp)
 {
     // f = ((self.d + 1) ** .5 - 1) / self.d
     double F4=(sqrt(5.0)-1.0)/4.0;
@@ -1285,7 +1282,7 @@ double anl::new_simplex_noise4D(double x, double y, double z, double w, unsigned
 
 
 
-double anl::simplex_noise6D(double x, double y, double z, double w, double u, double v, unsigned int seed, interp_func interp)
+double simplex_noise6D(double x, double y, double z, double w, double u, double v, unsigned int seed, interp_func interp)
 {
     // Skew
     //self.f = ((self.d + 1) ** .5 - 1) / self.d
@@ -1361,4 +1358,5 @@ double anl::simplex_noise6D(double x, double y, double z, double w, double u, do
     }
     n*=valueScaler;
     return n;
+}
 }

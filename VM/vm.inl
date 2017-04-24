@@ -1,8 +1,3 @@
-#include "vm.h"
-#include "kernel.h"
-#include "utility.h"
-#include "hashing.h"
-#include <iostream>
 
 CoordPair closest_point(double vx, double vy, double x, double  y)
 {

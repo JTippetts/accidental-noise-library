@@ -1,8 +1,5 @@
 // Lookup tables for 2D, 3D, 4D and 6D gradient and simplex noise.
 
-#include "types.h"
-
-
 double gradient2D_lut[4][2]=
 {
 	{0,1},

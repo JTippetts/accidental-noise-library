@@ -1,8 +1,3 @@
-#include "kernel.h"
-#include "random_gen.h"
-#include <cmath>
-#include <iostream>
-
 namespace anl
 {
 
@@ -691,7 +686,7 @@ CInstructionIndex CKernel::simpleRidgedMultifractal(unsigned int basistype, unsi
                                rnd.get01()*3.14159265, rnd.get01(), rnd.get01(), rnd.get01());
 	CInstructionIndex lastlayer=lastIndex();
 
-	for(int c=0; c<numoctaves-1; ++c)
+	for(unsigned int c=0; c<numoctaves-1; ++c)
 	{
 		CInstructionIndex nextlayer=simpleRidgedLayer(basistype, interpindex, 1.0/std::pow(2.0, (double)(c)), std::pow(2.0, (double)(c))*frequency, seed+10+c*1000,rot,
                                rnd.get01()*3.14159265, rnd.get01(), rnd.get01(), rnd.get01());
@@ -711,7 +706,7 @@ CInstructionIndex CKernel::simplefBm(unsigned int basistype, unsigned int interp
                                rnd.get01()*3.14159265, rnd.get01(), rnd.get01(), rnd.get01());
 	CInstructionIndex lastlayer=lastIndex();
 
-	for(int c=0; c<numoctaves-1; ++c)
+	for(unsigned int c=0; c<numoctaves-1; ++c)
 	{
 		CInstructionIndex nextlayer=simpleFractalLayer(basistype, interpindex, 1.0/std::pow(2.0, (double)(c)), std::pow(2.0, (double)(c))*frequency, seed+10+c*1000,rot,
                                rnd.get01()*3.14159265, rnd.get01(), rnd.get01(), rnd.get01());
@@ -731,7 +726,7 @@ CInstructionIndex CKernel::simpleBillow(unsigned int basistype, unsigned int int
                                rnd.get01()*3.14159265, rnd.get01(), rnd.get01(), rnd.get01());
 	CInstructionIndex lastlayer=lastIndex();
 
-	for(int c=0; c<numoctaves-1; ++c)
+	for(unsigned int c=0; c<numoctaves-1; ++c)
 	{
 		CInstructionIndex nextlayer=simpleBillowLayer(basistype, interpindex, 1.0/std::pow(2.0, (double)(c)), std::pow(2.0, (double)(c))*frequency, seed+10+c*1000,rot,
                                rnd.get01()*3.14159265, rnd.get01(), rnd.get01(), rnd.get01());
