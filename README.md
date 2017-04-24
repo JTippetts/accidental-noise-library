@@ -1,5 +1,13 @@
 # Accidental Noise Library
 
+## Building
+ANL is a header-only library. The library can be included into your project using #include <anl.h>. However, in exactly 1 compilation unit (main.cpp or otherwise), you must #define ANL_IMPLEMENTATION then #include "anl.h" to resolve link dependencies.
+
+Included in the root level directory is a CMakeLists.txt to facilitate building a sample Lua-based command-line framework that allows experimenting with the library. To build, create an empty folder wherever you wish to build the project, change to that directory, and execute:
+	cmake <path to ANL folder> -G <makefile generator of your choice>
+	
+The ANL executable, when executed, enters a Lua interpreter. The executable can be run instead with a Lua script filename passed on the command line to execute that file instead.
+
 ## Overview
 
 The ANL is a C++ library (C++11 supported) for the generation of complex noise functions. Functions include noise generators such as Ken Perlin's [improved gradient noise](https://mrl.nyu.edu/~perlin/noise/) and [simplex noise](http://webstaff.itn.liu.se/~stegu/simplexnoise/simplexnoise.pdf) variants, a value noise generator, and [Worley's cellular noise](https://en.wikipedia.org/wiki/Worley_noise). The library allows combining various generator functions using operations (arithmetic and otherwise) in order to generate a complex output.
