@@ -13,14 +13,10 @@
 /* Exported function */
 TOLUA_API int  tolua_bind_anl_open (lua_State* tolua_S);
 
-#include "../VM/vm.h"
-#include "../VM/instruction.h"
-#include "../VM/kernel.h"
-#include "../VM/coordinate.h"
-#include "../VM/random_gen.h"
-#include "../Imaging/imaging.h"
-#include "../Expression/expressionbuilder.h"
-#include "../Processing/erosion.h"
+#define ANL_IMPLEMENTATION
+#include "../anl.h"
+
+
 using namespace anl;
 
 /* function to release collected object via destructor */
