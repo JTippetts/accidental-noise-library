@@ -32,12 +32,14 @@
 	
 	#include "Imaging/imaging.inl"
 	
-	#define STB_IMAGE_IMPLEMENTATION
-	#define STB_IMAGE_WRITE_IMPLEMENTATION
-	#include "Imaging/stb_image.h"
-	#include "Imaging/stb_image_write.h"
-	#undef STB_IMAGE_IMPLEMENTATION
-	#undef STB_IMAGE_WRITE_IMPLEMENTATION
+	#ifdef IMPLEMENT_STB
+		#define STB_IMAGE_IMPLEMENTATION
+		#define STB_IMAGE_WRITE_IMPLEMENTATION
+		#include "Imaging/stb_image.h"
+		#include "Imaging/stb_image_write.h"
+		#undef STB_IMAGE_IMPLEMENTATION
+		#undef STB_IMAGE_WRITE_IMPLEMENTATION
+	#endif
 	
 	#include "Processing/erosion.inl"
 #endif
