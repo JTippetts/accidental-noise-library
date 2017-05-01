@@ -20,28 +20,28 @@
 #include "Processing/erosion.h"
 
 #ifdef ANL_IMPLEMENTATION
-	#include "VM/noise_lut.inl"
-	#include "VM/noise_gen.inl"
-	#include "VM/coordinate.inl"
-	#include "VM/hashing.inl"
-	#include "VM/kernel.inl"
-	#include "VM/vm.inl"
-	
-	#include "Expression/parsing.inl"
-	#include "Expression/expressionbuilder.inl"
-	
-	#include "Imaging/imaging.inl"
-	
-	#ifdef IMPLEMENT_STB
-		#define STB_IMAGE_IMPLEMENTATION
-		#define STB_IMAGE_WRITE_IMPLEMENTATION
-		#include "Imaging/stb_image.h"
-		#include "Imaging/stb_image_write.h"
-		#undef STB_IMAGE_IMPLEMENTATION
-		#undef STB_IMAGE_WRITE_IMPLEMENTATION
-	#endif
-	
-	#include "Processing/erosion.inl"
+#include "VM/noise_lut.inl"
+#include "VM/noise_gen.inl"
+#include "VM/coordinate.inl"
+#include "VM/hashing.inl"
+#include "VM/kernel.inl"
+#include "VM/vm.inl"
+
+#include "Expression/parsing.inl"
+#include "Expression/expressionbuilder.inl"
+
+#include "Imaging/imaging.inl"
+
+#ifdef IMPLEMENT_STB
+#define STB_IMAGE_IMPLEMENTATION
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#include "Imaging/stb_image.h"
+#include "Imaging/stb_image_write.h"
+#undef STB_IMAGE_IMPLEMENTATION
+#undef STB_IMAGE_WRITE_IMPLEMENTATION
+#endif
+
+#include "Processing/erosion.inl"
 #endif
 
 #endif

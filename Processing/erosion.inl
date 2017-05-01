@@ -6,7 +6,7 @@ struct SDrop
 {
     int x,y;
 
-    SDrop(int X, int Y) : x(X), y(Y){}
+    SDrop(int X, int Y) : x(X), y(Y) {}
 };
 
 void shuffleDirections(SDrop *dirs, anl::CMWC4096 &rnd)

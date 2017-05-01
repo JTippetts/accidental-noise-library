@@ -11,31 +11,31 @@ namespace anl
 class Token
 {
 public:
-	enum ETokenTypes
-	{
-		COMMA,
-		CLOSEPARENS,
-		OPENPARENS,
-		NUMBER,
-		FUNCTION,
-		OPERATOR,
-		UNARYOPERATOR,
-		VAR,
-		INVALID,
-		NONE,
-	};
+    enum ETokenTypes
+    {
+        COMMA,
+        CLOSEPARENS,
+        OPENPARENS,
+        NUMBER,
+        FUNCTION,
+        OPERATOR,
+        UNARYOPERATOR,
+        VAR,
+        INVALID,
+        NONE,
+    };
 
     Token();
-	Token(ETokenTypes t, const std::string token);
-	Token(const Token &rhs);
-	virtual ~Token();
+    Token(ETokenTypes t, const std::string token);
+    Token(const Token &rhs);
+    virtual ~Token();
 
-	const ETokenTypes GetType() const;
-	const std::string &GetToken() const;
+    const ETokenTypes GetType() const;
+    const std::string &GetToken() const;
 
 protected:
-	ETokenTypes type_;
-	std::string token_;
+    ETokenTypes type_;
+    std::string token_;
 };
 
 class Tokenizer

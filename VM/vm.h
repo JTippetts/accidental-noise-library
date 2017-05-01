@@ -11,125 +11,125 @@
 
 struct TileCoord
 {
-	unsigned int x,y;
+    unsigned int x,y;
 };
 
 struct CoordPair
 {
-	double x,y;
+    double x,y;
 };
 
 namespace anl
 {
-    struct SVMOutput
+struct SVMOutput
+{
+    double outfloat_;
+    SRGBA outrgba_;
+
+    SVMOutput() : outfloat_(0), outrgba_(0,0,0,0)
     {
-        double outfloat_;
-        SRGBA outrgba_;
 
-        SVMOutput() : outfloat_(0), outrgba_(0,0,0,0)
-        {
+    }
 
-        }
-
-		SVMOutput(double v) : outfloat_(v), outrgba_(v,v,v,1)
-		{
-		}
-
-		SVMOutput(double v, SRGBA rgba)
-		{
-			outfloat_=v;
-			outrgba_=rgba;
-		}
-
-		SVMOutput(const SVMOutput &rhs) : outfloat_(rhs.outfloat_), outrgba_(rhs.outrgba_)
-		{
-		}
-
-		void set(double v)
-		{
-			outfloat_=v;
-			outrgba_.r=outrgba_.g=outrgba_.b=v;
-			outrgba_.a=1;
-		}
-
-		void set(SRGBA v)
-		{
-			outrgba_=v;
-			outfloat_=0.2126*v.r + 0.7152*v.g + 0.0722*v.b;
-		}
-
-		SVMOutput operator-(const SVMOutput &rhs) const
-		{
-			return SVMOutput(outfloat_-rhs.outfloat_, outrgba_-rhs.outrgba_);
-		}
-
-		SVMOutput operator+(const SVMOutput &rhs) const
-		{
-			return SVMOutput(outfloat_+rhs.outfloat_, outrgba_+rhs.outrgba_);
-		}
-
-		SVMOutput operator*(const SVMOutput &rhs) const
-		{
-			return SVMOutput(outfloat_*rhs.outfloat_, outrgba_*rhs.outrgba_);
-		}
-
-		SVMOutput operator/(const SVMOutput &rhs) const
-		{
-			return SVMOutput(outfloat_/rhs.outfloat_, outrgba_/rhs.outrgba_);
-		}
-
-		SVMOutput operator*(double rhs) const
-		{
-			return SVMOutput(outfloat_*rhs, outrgba_*rhs);
-		}
-
-
-		void set(const SVMOutput &rhs)
-		{
-			outfloat_=rhs.outfloat_;
-			outrgba_=rhs.outrgba_;
-		}
-    };
-
-    typedef std::vector<SInstruction> InstructionListType;
-    typedef std::vector<bool> EvaluatedType;
-	typedef std::vector<CCoordinate> CoordCacheType;
-    typedef std::vector<SVMOutput> CacheType;
-
-    class CNoiseExecutor
+    SVMOutput(double v) : outfloat_(v), outrgba_(v,v,v,1)
     {
-    public:
-        CNoiseExecutor(CKernel &kernel);
-        ~CNoiseExecutor();
+    }
 
-        SVMOutput evaluate(CCoordinate &coord);
-        SVMOutput evaluateAt(CCoordinate &coord, CInstructionIndex index);
+    SVMOutput(double v, SRGBA rgba)
+    {
+        outfloat_=v;
+        outrgba_=rgba;
+    }
 
-		double evaluateScalar(double x, double y, CInstructionIndex idx);
-		double evaluateScalar(double x, double y, double z, CInstructionIndex idx);
-		double evaluateScalar(double x, double y, double z, double w, CInstructionIndex idx);
-		double evaluateScalar(double x, double y, double z, double w, double u, double v, CInstructionIndex idx);
+    SVMOutput(const SVMOutput &rhs) : outfloat_(rhs.outfloat_), outrgba_(rhs.outrgba_)
+    {
+    }
 
-		SRGBA evaluateColor(double x, double y, CInstructionIndex idx);
-		SRGBA evaluateColor(double x, double y, double z, CInstructionIndex idx);
-		SRGBA evaluateColor(double x, double y, double z, double w, CInstructionIndex idx);
-		SRGBA evaluateColor(double x, double y, double z, double w, double u, double v, CInstructionIndex idx);
-    private:
-        void evaluateInstruction(InstructionListType &kernel, EvaluatedType &evaluated, CoordCacheType &coordcache, CacheType &cache, unsigned int index, CCoordinate &coord);
-        double evaluateParameter(InstructionListType &kernel, EvaluatedType &evaluated, CoordCacheType &coordcache, CacheType &cache, unsigned int index, CCoordinate &coord);
-		SVMOutput evaluateBoth(InstructionListType &kernel, EvaluatedType &evaluated, CoordCacheType &coordcache, CacheType &cache, unsigned int index, CCoordinate &coord);
-		SRGBA evaluateRGBA(InstructionListType &kernel, EvaluatedType &evaluated, CoordCacheType &coordcache, CacheType &cache, unsigned int index, CCoordinate &coord);
-		TileCoord calcHexPointTile(float px, float py);
-		CoordPair calcHexTileCenter(int tx, int ty);
-		InstructionListType *prepare();
+    void set(double v)
+    {
+        outfloat_=v;
+        outrgba_.r=outrgba_.g=outrgba_.b=v;
+        outrgba_.a=1;
+    }
 
-        //InstructionListType *kernel_;
-        CKernel &kernel_;
-        EvaluatedType evaluated_;
-		CoordCacheType coordcache_;
-        CacheType cache_;
+    void set(SRGBA v)
+    {
+        outrgba_=v;
+        outfloat_=0.2126*v.r + 0.7152*v.g + 0.0722*v.b;
+    }
 
-    };
+    SVMOutput operator-(const SVMOutput &rhs) const
+    {
+        return SVMOutput(outfloat_-rhs.outfloat_, outrgba_-rhs.outrgba_);
+    }
+
+    SVMOutput operator+(const SVMOutput &rhs) const
+    {
+        return SVMOutput(outfloat_+rhs.outfloat_, outrgba_+rhs.outrgba_);
+    }
+
+    SVMOutput operator*(const SVMOutput &rhs) const
+    {
+        return SVMOutput(outfloat_*rhs.outfloat_, outrgba_*rhs.outrgba_);
+    }
+
+    SVMOutput operator/(const SVMOutput &rhs) const
+    {
+        return SVMOutput(outfloat_/rhs.outfloat_, outrgba_/rhs.outrgba_);
+    }
+
+    SVMOutput operator*(double rhs) const
+    {
+        return SVMOutput(outfloat_*rhs, outrgba_*rhs);
+    }
+
+
+    void set(const SVMOutput &rhs)
+    {
+        outfloat_=rhs.outfloat_;
+        outrgba_=rhs.outrgba_;
+    }
+};
+
+typedef std::vector<SInstruction> InstructionListType;
+typedef std::vector<bool> EvaluatedType;
+typedef std::vector<CCoordinate> CoordCacheType;
+typedef std::vector<SVMOutput> CacheType;
+
+class CNoiseExecutor
+{
+public:
+    CNoiseExecutor(CKernel &kernel);
+    ~CNoiseExecutor();
+
+    SVMOutput evaluate(CCoordinate &coord);
+    SVMOutput evaluateAt(CCoordinate &coord, CInstructionIndex index);
+
+    double evaluateScalar(double x, double y, CInstructionIndex idx);
+    double evaluateScalar(double x, double y, double z, CInstructionIndex idx);
+    double evaluateScalar(double x, double y, double z, double w, CInstructionIndex idx);
+    double evaluateScalar(double x, double y, double z, double w, double u, double v, CInstructionIndex idx);
+
+    SRGBA evaluateColor(double x, double y, CInstructionIndex idx);
+    SRGBA evaluateColor(double x, double y, double z, CInstructionIndex idx);
+    SRGBA evaluateColor(double x, double y, double z, double w, CInstructionIndex idx);
+    SRGBA evaluateColor(double x, double y, double z, double w, double u, double v, CInstructionIndex idx);
+private:
+    void evaluateInstruction(InstructionListType &kernel, EvaluatedType &evaluated, CoordCacheType &coordcache, CacheType &cache, unsigned int index, CCoordinate &coord);
+    double evaluateParameter(InstructionListType &kernel, EvaluatedType &evaluated, CoordCacheType &coordcache, CacheType &cache, unsigned int index, CCoordinate &coord);
+    SVMOutput evaluateBoth(InstructionListType &kernel, EvaluatedType &evaluated, CoordCacheType &coordcache, CacheType &cache, unsigned int index, CCoordinate &coord);
+    SRGBA evaluateRGBA(InstructionListType &kernel, EvaluatedType &evaluated, CoordCacheType &coordcache, CacheType &cache, unsigned int index, CCoordinate &coord);
+    TileCoord calcHexPointTile(float px, float py);
+    CoordPair calcHexTileCenter(int tx, int ty);
+    InstructionListType *prepare();
+
+    //InstructionListType *kernel_;
+    CKernel &kernel_;
+    EvaluatedType evaluated_;
+    CoordCacheType coordcache_;
+    CacheType cache_;
+
+};
 };
 
 

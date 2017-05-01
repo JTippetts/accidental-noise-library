@@ -7,7 +7,7 @@
 template <class T>
 class TVec2D
 {
-    public:
+public:
     TVec2D()
     {
         vec[0]=(T)0;
@@ -38,11 +38,23 @@ class TVec2D
         vec[1]=tptr[1];
     };
 
-    T x() {return vec[0];};
-    const T x() const {return vec[0];};
+    T x()
+    {
+        return vec[0];
+    };
+    const T x() const
+    {
+        return vec[0];
+    };
 
-    T y() {return vec[1];};
-    const T y() const {return vec[1];};
+    T y()
+    {
+        return vec[1];
+    };
+    const T y() const
+    {
+        return vec[1];
+    };
 
     T &operator[](const int i)
     {
@@ -189,20 +201,36 @@ class TVec2D
         (*this) /= lng;
     };
 
-    inline T get_x() { return vec[0];}
-    inline T get_y() { return vec[1];}
+    inline T get_x()
+    {
+        return vec[0];
+    }
+    inline T get_y()
+    {
+        return vec[1];
+    }
 
 
-    inline void set_x(T x) { vec[0]=x;}
-    inline void set_y(T y) { vec[1]=y;}
+    inline void set_x(T x)
+    {
+        vec[0]=x;
+    }
+    inline void set_y(T y)
+    {
+        vec[1]=y;
+    }
 
-	inline void set(T x, T y) {vec[0]=x; vec[1]=y;}
+    inline void set(T x, T y)
+    {
+        vec[0]=x;
+        vec[1]=y;
+    }
 
 
 
 
 
-    protected:
+protected:
 
     T vec[2];
 };

@@ -3,10 +3,10 @@
 
 namespace anl
 {
-    struct RGBA
-    {
-        float r,g,b,a;
-    };
+struct RGBA
+{
+    float r,g,b,a;
+};
 };
 
 #endif

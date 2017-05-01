@@ -44,12 +44,12 @@ inline double array_dot3(double *arr, double a, double b, double c)
 
 inline double array_dot4(double *arr, double x, double y, double z, double w)
 {
-	return x*arr[0]+y*arr[1]+z*arr[2]+w*arr[3];
+    return x*arr[0]+y*arr[1]+z*arr[2]+w*arr[3];
 }
 
 inline double array_dot6(double *arr, double x, double y, double z, double w, double u, double v)
 {
-	return x*arr[0]+y*arr[1]+z*arr[2]+w*arr[3]+u*arr[4]+v*arr[5];
+    return x*arr[0]+y*arr[1]+z*arr[2]+w*arr[3]+u*arr[4]+v*arr[5];
 }
 
 // Distance
@@ -202,59 +202,59 @@ double distLeastAxis6(double x1, double y1, double z1, double w1, double u1, dou
 unsigned int compute_hash_double_2(double x, double y, unsigned int seed)
 {
     //double d[3]={x,y,(double)seed};
-	//unsigned int s=sizeof(d) / sizeof(unsigned int);
+    //unsigned int s=sizeof(d) / sizeof(unsigned int);
     //return xor_fold_hash(fnv_32_a_buf(d, s));
 
-	unsigned int hash=FNV_32_INIT;
-	hash=fnv_32_a_combine(hash, (unsigned int)(x*(double)1000000));
-	hash=fnv_32_a_combine(hash, (unsigned int)(y*(double)1000000));
-	hash=fnv_32_a_combine(hash, seed);
-	return xor_fold_hash(hash);
+    unsigned int hash=FNV_32_INIT;
+    hash=fnv_32_a_combine(hash, (unsigned int)(x*(double)1000000));
+    hash=fnv_32_a_combine(hash, (unsigned int)(y*(double)1000000));
+    hash=fnv_32_a_combine(hash, seed);
+    return xor_fold_hash(hash);
 }
 
 
 unsigned int compute_hash_double_3(double x, double y, double z, unsigned int seed)
 {
     //double d[4]={x,y,z,(double)seed};
-	//unsigned int s=sizeof(d) / sizeof(unsigned int);
+    //unsigned int s=sizeof(d) / sizeof(unsigned int);
     //return xor_fold_hash(fnv_32_a_buf(d, s));
-	unsigned int hash=FNV_32_INIT;
-	hash=fnv_32_a_combine(hash, (unsigned int)(x*(double)1000000));
-	hash=fnv_32_a_combine(hash, (unsigned int)(y*(double)1000000));
-	hash=fnv_32_a_combine(hash, (unsigned int)(z*(double)1000000));
-	hash=fnv_32_a_combine(hash, seed);
-	return xor_fold_hash(hash);
+    unsigned int hash=FNV_32_INIT;
+    hash=fnv_32_a_combine(hash, (unsigned int)(x*(double)1000000));
+    hash=fnv_32_a_combine(hash, (unsigned int)(y*(double)1000000));
+    hash=fnv_32_a_combine(hash, (unsigned int)(z*(double)1000000));
+    hash=fnv_32_a_combine(hash, seed);
+    return xor_fold_hash(hash);
 
 }
 
 unsigned int compute_hash_double_4(double x, double y, double z, double w, unsigned int seed)
 {
     //double d[5]={x,y,z,w,(double)seed};
-	//unsigned int s=sizeof(d) / sizeof(unsigned int);
+    //unsigned int s=sizeof(d) / sizeof(unsigned int);
     //return xor_fold_hash(fnv_32_a_buf(d, s));
-	unsigned int hash=FNV_32_INIT;
-	hash=fnv_32_a_combine(hash, (unsigned int)(x*(double)1000000));
-	hash=fnv_32_a_combine(hash, (unsigned int)(y*(double)1000000));
-	hash=fnv_32_a_combine(hash, (unsigned int)(z*(double)1000000));
-	hash=fnv_32_a_combine(hash, (unsigned int)(w*(double)1000000));
-	hash=fnv_32_a_combine(hash, seed);
-	return xor_fold_hash(hash);
+    unsigned int hash=FNV_32_INIT;
+    hash=fnv_32_a_combine(hash, (unsigned int)(x*(double)1000000));
+    hash=fnv_32_a_combine(hash, (unsigned int)(y*(double)1000000));
+    hash=fnv_32_a_combine(hash, (unsigned int)(z*(double)1000000));
+    hash=fnv_32_a_combine(hash, (unsigned int)(w*(double)1000000));
+    hash=fnv_32_a_combine(hash, seed);
+    return xor_fold_hash(hash);
 }
 
 unsigned int compute_hash_double_6(double x, double y, double z, double w, double u, double v, unsigned int seed)
 {
     //double d[7]={x,y,z,w,u,v,(double)seed};
-	//unsigned int s=sizeof(d) / sizeof(unsigned int);
+    //unsigned int s=sizeof(d) / sizeof(unsigned int);
     //return xor_fold_hash(fnv_32_a_buf(d, s));
-	unsigned int hash=FNV_32_INIT;
-	hash=fnv_32_a_combine(hash, (unsigned int)(x*(double)1000000));
-	hash=fnv_32_a_combine(hash, (unsigned int)(y*(double)1000000));
-	hash=fnv_32_a_combine(hash, (unsigned int)(z*(double)1000000));
-	hash=fnv_32_a_combine(hash, (unsigned int)(w*(double)1000000));
-	hash=fnv_32_a_combine(hash, (unsigned int)(u*(double)1000000));
-	hash=fnv_32_a_combine(hash, (unsigned int)(v*(double)1000000));
-	hash=fnv_32_a_combine(hash, seed);
-	return xor_fold_hash(hash);
+    unsigned int hash=FNV_32_INIT;
+    hash=fnv_32_a_combine(hash, (unsigned int)(x*(double)1000000));
+    hash=fnv_32_a_combine(hash, (unsigned int)(y*(double)1000000));
+    hash=fnv_32_a_combine(hash, (unsigned int)(z*(double)1000000));
+    hash=fnv_32_a_combine(hash, (unsigned int)(w*(double)1000000));
+    hash=fnv_32_a_combine(hash, (unsigned int)(u*(double)1000000));
+    hash=fnv_32_a_combine(hash, (unsigned int)(v*(double)1000000));
+    hash=fnv_32_a_combine(hash, seed);
+    return xor_fold_hash(hash);
 }
 
 
@@ -348,21 +348,21 @@ double grad_noise_6(double x, double y, double z, double w, double u, double v, 
 // Edge/Face/Cube/Hypercube interpolation
 double lerp(double s, double v1, double v2)
 {
-	return v1+s*(v2-v1);
+    return v1+s*(v2-v1);
 }
 
 double interp_X_2(double x, double y, double xs, int x0, int x1, int iy, unsigned int seed, worker_noise_2 noisefunc)
 {
-	double v1=noisefunc(x,y,x0,iy,seed);
-	double v2=noisefunc(x,y,x1,iy,seed);
-	return lerp(xs,v1,v2);
+    double v1=noisefunc(x,y,x0,iy,seed);
+    double v2=noisefunc(x,y,x1,iy,seed);
+    return lerp(xs,v1,v2);
 }
 
 double interp_XY_2(double x, double y, double xs, double ys, int x0, int x1, int y0, int y1, unsigned int seed, worker_noise_2 noisefunc)
 {
-	double v1=interp_X_2(x,y,xs,x0,x1,y0,seed,noisefunc);
-	double v2=interp_X_2(x,y,xs,x0,x1,y1,seed,noisefunc);
-	return lerp(ys,v1,v2);
+    double v1=interp_X_2(x,y,xs,x0,x1,y0,seed,noisefunc);
+    double v2=interp_X_2(x,y,xs,x0,x1,y1,seed,noisefunc);
+    return lerp(ys,v1,v2);
 }
 
 double interp_X_3(double x, double y, double z, double xs, int x0, int x1, int iy, int iz, unsigned int seed, worker_noise_3 noisefunc)
@@ -388,30 +388,30 @@ double interp_XYZ_3(double x, double y, double z, double xs, double ys, double z
 
 double interp_X_4(double x, double y, double z, double w, double xs, int x0, int x1, int iy, int iz, int iw, unsigned int seed, worker_noise_4 noisefunc)
 {
-	double v1=noisefunc(x,y,z,w,x0,iy,iz,iw,seed);
-	double v2=noisefunc(x,y,z,w,x1,iy,iz,iw,seed);
-	return lerp(xs,v1,v2);
+    double v1=noisefunc(x,y,z,w,x0,iy,iz,iw,seed);
+    double v2=noisefunc(x,y,z,w,x1,iy,iz,iw,seed);
+    return lerp(xs,v1,v2);
 }
 
 double interp_XY_4(double x, double y, double z, double w, double xs, double ys, int x0, int x1, int y0, int y1, int iz, int iw, unsigned int seed, worker_noise_4 noisefunc)
 {
-	double v1=interp_X_4(x,y,z,w,xs,x0,x1,y0,iz,iw,seed,noisefunc);
-	double v2=interp_X_4(x,y,z,w,xs,x0,x1,y1,iz,iw,seed,noisefunc);
-	return lerp(ys,v1,v2);
+    double v1=interp_X_4(x,y,z,w,xs,x0,x1,y0,iz,iw,seed,noisefunc);
+    double v2=interp_X_4(x,y,z,w,xs,x0,x1,y1,iz,iw,seed,noisefunc);
+    return lerp(ys,v1,v2);
 }
 
 double interp_XYZ_4(double x, double y, double z, double w, double xs, double ys, double zs, int x0, int x1, int y0, int y1, int z0, int z1, int iw, unsigned int seed, worker_noise_4 noisefunc)
 {
-	double v1=interp_XY_4(x,y,z,w,xs,ys,x0,x1,y0,y1,z0,iw,seed,noisefunc);
-	double v2=interp_XY_4(x,y,z,w,xs,ys,x0,x1,y0,y1,z1,iw,seed,noisefunc);
-	return lerp(zs,v1,v2);
+    double v1=interp_XY_4(x,y,z,w,xs,ys,x0,x1,y0,y1,z0,iw,seed,noisefunc);
+    double v2=interp_XY_4(x,y,z,w,xs,ys,x0,x1,y0,y1,z1,iw,seed,noisefunc);
+    return lerp(zs,v1,v2);
 }
 
 double interp_XYZW_4(double x, double y, double z, double w, double xs, double ys, double zs, double ws, int x0, int x1, int y0, int y1, int z0, int z1, int w0, int w1, unsigned int seed, worker_noise_4 noisefunc)
 {
-	double v1=interp_XYZ_4(x,y,z,w,xs,ys,zs,x0,x1,y0,y1,z0,z1,w0,seed,noisefunc);
-	double v2=interp_XYZ_4(x,y,z,w,xs,ys,zs,x0,x1,y0,y1,z0,z1,w1,seed,noisefunc);
-	return lerp(ws,v1,v2);
+    double v1=interp_XYZ_4(x,y,z,w,xs,ys,zs,x0,x1,y0,y1,z0,z1,w0,seed,noisefunc);
+    double v2=interp_XYZ_4(x,y,z,w,xs,ys,zs,x0,x1,y0,y1,z0,z1,w1,seed,noisefunc);
+    return lerp(ws,v1,v2);
 }
 
 
@@ -463,7 +463,7 @@ double interp_XYZWUV_6(double x, double y, double z, double w, double u, double 
 
 double value_noise2D(double x, double y, unsigned int seed, interp_func interp)
 {
-	int x0=fast_floor(x);
+    int x0=fast_floor(x);
     int y0=fast_floor(y);
 
     int x1=x0+1;
@@ -472,7 +472,7 @@ double value_noise2D(double x, double y, unsigned int seed, interp_func interp)
     double xs=interp((x-(double)x0));
     double ys=interp((y-(double)y0));
 
-	return interp_XY_2(x,y,xs,ys,x0,x1,y0,y1,seed,value_noise_2);
+    return interp_XY_2(x,y,xs,ys,x0,x1,y0,y1,seed,value_noise_2);
 }
 
 double value_noise3D(double x, double y, double z, unsigned int seed, interp_func interp)
@@ -493,7 +493,7 @@ double value_noise3D(double x, double y, double z, unsigned int seed, interp_fun
 
 double value_noise4D(double x, double y, double z, double w, unsigned int seed, interp_func interp)
 {
-	int x0=fast_floor(x);
+    int x0=fast_floor(x);
     int y0=fast_floor(y);
     int z0=fast_floor(z);
     int w0=fast_floor(w);
@@ -505,15 +505,15 @@ double value_noise4D(double x, double y, double z, double w, unsigned int seed, 
 
     double xs=interp((x-(double)x0));
     double ys=interp((y-(double)y0));
-	double zs=interp((z-(double)z0));
-	double ws=interp((w-(double)w0));
+    double zs=interp((z-(double)z0));
+    double ws=interp((w-(double)w0));
 
-	return interp_XYZW_4(x,y,z,w,xs,ys,zs,ws,x0,x1,y0,y1,z0,z1,w0,w1,seed,value_noise_4);
+    return interp_XYZW_4(x,y,z,w,xs,ys,zs,ws,x0,x1,y0,y1,z0,z1,w0,w1,seed,value_noise_4);
 }
 
 double value_noise6D(double x, double y, double z, double w, double u, double v, unsigned int seed, interp_func interp)
 {
-	int x0=fast_floor(x);
+    int x0=fast_floor(x);
     int y0=fast_floor(y);
     int z0=fast_floor(z);
     int w0=fast_floor(w);
@@ -534,12 +534,12 @@ double value_noise6D(double x, double y, double z, double w, double u, double v,
     double us=interp((u-(double)u0));
     double vs=interp((v-(double)v0));
 
-	return interp_XYZWUV_6(x,y,z,w,u,v,xs,ys,zs,ws,us,vs,x0,x1,y0,y1,z0,z1,w0,w1,u0,u1,v0,v1,seed,value_noise_6);
+    return interp_XYZWUV_6(x,y,z,w,u,v,xs,ys,zs,ws,us,vs,x0,x1,y0,y1,z0,z1,w0,w1,u0,u1,v0,v1,seed,value_noise_6);
 }
 
 double gradient_noise2D(double x, double y, unsigned int seed, interp_func interp)
 {
-	int x0=fast_floor(x);
+    int x0=fast_floor(x);
     int y0=fast_floor(y);
 
     int x1=x0+1;
@@ -548,7 +548,7 @@ double gradient_noise2D(double x, double y, unsigned int seed, interp_func inter
     double xs=interp((x-(double)x0));
     double ys=interp((y-(double)y0));
 
-	return interp_XY_2(x,y,xs,ys,x0,x1,y0,y1,seed,grad_noise_2);
+    return interp_XY_2(x,y,xs,ys,x0,x1,y0,y1,seed,grad_noise_2);
 }
 
 double gradient_noise3D(double x, double y, double z, unsigned int seed, interp_func interp)
@@ -563,14 +563,14 @@ double gradient_noise3D(double x, double y, double z, unsigned int seed, interp_
 
     double xs=interp((x-(double)x0));
     double ys=interp((y-(double)y0));
-	double zs=interp((z-(double)z0));
+    double zs=interp((z-(double)z0));
 
-	return interp_XYZ_3(x,y,z,xs,ys,zs,x0,x1,y0,y1,z0,z1,seed,grad_noise_3);
+    return interp_XYZ_3(x,y,z,xs,ys,zs,x0,x1,y0,y1,z0,z1,seed,grad_noise_3);
 }
 
 double gradient_noise4D(double x, double y, double z, double w, unsigned int seed, interp_func interp)
 {
-	int x0=fast_floor(x);
+    int x0=fast_floor(x);
     int y0=fast_floor(y);
     int z0=fast_floor(z);
     int w0=fast_floor(w);
@@ -582,14 +582,14 @@ double gradient_noise4D(double x, double y, double z, double w, unsigned int see
 
     double xs=interp((x-(double)x0));
     double ys=interp((y-(double)y0));
-	double zs=interp((z-(double)z0));
-	double ws=interp((w-(double)w0));
+    double zs=interp((z-(double)z0));
+    double ws=interp((w-(double)w0));
 
-	return interp_XYZW_4(x,y,z,w,xs,ys,zs,ws,x0,x1,y0,y1,z0,z1,w0,w1,seed,grad_noise_4);
+    return interp_XYZW_4(x,y,z,w,xs,ys,zs,ws,x0,x1,y0,y1,z0,z1,w0,w1,seed,grad_noise_4);
 }
 double gradient_noise6D(double x, double y, double z, double w, double u, double v, unsigned int seed, interp_func interp)
 {
-	int x0=fast_floor(x);
+    int x0=fast_floor(x);
     int y0=fast_floor(y);
     int z0=fast_floor(z);
     int w0=fast_floor(w);
@@ -610,12 +610,12 @@ double gradient_noise6D(double x, double y, double z, double w, double u, double
     double us=interp((u-(double)u0));
     double vs=interp((v-(double)v0));
 
-	return interp_XYZWUV_6(x,y,z,w,u,v,xs,ys,zs,ws,us,vs,x0,x1,y0,y1,z0,z1,w0,w1,u0,u1,v0,v1,seed,grad_noise_6);
+    return interp_XYZWUV_6(x,y,z,w,u,v,xs,ys,zs,ws,us,vs,x0,x1,y0,y1,z0,z1,w0,w1,u0,u1,v0,v1,seed,grad_noise_6);
 }
 
 double gradval_noise2D(double x, double y, unsigned int seed, interp_func interp)
 {
-	return value_noise2D(x,y,seed,interp)+gradient_noise2D(x,y,seed,interp);
+    return value_noise2D(x,y,seed,interp)+gradient_noise2D(x,y,seed,interp);
 }
 
 double gradval_noise3D(double x, double y, double z, unsigned int seed, interp_func interp)
@@ -625,37 +625,37 @@ double gradval_noise3D(double x, double y, double z, unsigned int seed, interp_f
 
 double gradval_noise4D(double x, double y, double z, double w, unsigned int seed, interp_func interp)
 {
-	return value_noise4D(x,y,z,w,seed,interp)+gradient_noise4D(x,y,z,w,seed,interp);
+    return value_noise4D(x,y,z,w,seed,interp)+gradient_noise4D(x,y,z,w,seed,interp);
 }
 
 double gradval_noise6D(double x, double y, double z, double w, double u, double v, unsigned int seed, interp_func interp)
 {
-	return value_noise6D(x,y,z,w,u,v,seed,interp)+gradient_noise6D(x,y,z,w,u,v,seed,interp);
+    return value_noise6D(x,y,z,w,u,v,seed,interp)+gradient_noise6D(x,y,z,w,u,v,seed,interp);
 }
 
 double white_noise2D(double x, double y, unsigned int seed, interp_func interp)
 {
-	unsigned char hash=compute_hash_double_2(x,y,seed);
-	return whitenoise_lut[hash];
+    unsigned char hash=compute_hash_double_2(x,y,seed);
+    return whitenoise_lut[hash];
 }
 
 double white_noise3D(double x, double y, double z, unsigned int seed, interp_func interp)
 {
     unsigned char hash=compute_hash_double_3(x,y,z,seed);
-	//std::cout << (unsigned int)hash << std::endl;
+    //std::cout << (unsigned int)hash << std::endl;
     return whitenoise_lut[hash];
 }
 
 double white_noise4D(double x, double y, double z, double w, unsigned int seed, interp_func interp)
 {
-	unsigned char hash=compute_hash_double_4(x,y,z,w,seed);
-	return whitenoise_lut[hash];
+    unsigned char hash=compute_hash_double_4(x,y,z,w,seed);
+    return whitenoise_lut[hash];
 }
 
 double white_noise6D(double x, double y, double z, double w, double u, double v, unsigned int seed, interp_func interp)
 {
-	unsigned char hash=compute_hash_double_6(x,y,z,w,u,v,seed);
-	return whitenoise_lut[hash];
+    unsigned char hash=compute_hash_double_6(x,y,z,w,u,v,seed);
+    return whitenoise_lut[hash];
 }
 
 void add_dist(double *f, double *disp, double testdist, double testdisp)
@@ -664,15 +664,15 @@ void add_dist(double *f, double *disp, double testdist, double testdisp)
     // Compare the given distance to the ones already in f
     if(testdist < f[3])
     {
-       index=3;
-       while(index>0 && testdist<f[index-1]) index--;
-       for(int i=3; i-->index;)
-       {
-           f[i+1]=f[i];
-           disp[i+1]=disp[i];
-       }
-       f[index]=testdist;
-       disp[index]=testdisp;
+        index=3;
+        while(index>0 && testdist<f[index-1]) index--;
+        for(int i=3; i-->index;)
+        {
+            f[i+1]=f[i];
+            disp[i+1]=disp[i];
+        }
+        f[index]=testdist;
+        disp[index]=testdisp;
     }
 }
 
@@ -686,7 +686,11 @@ void cellular_function2D(double x, double y, unsigned int seed, double *f, doubl
     int xint = fast_floor(x);
     int yint = fast_floor(y);
 
-    for(int c=0; c<4; ++c){ f[c]=99999.0; disp[c]=0.0;}
+    for(int c=0; c<4; ++c)
+    {
+        f[c]=99999.0;
+        disp[c]=0.0;
+    }
 
     {
         for(int ycur=yint-3; ycur<=yint+3; ++ycur)
@@ -714,7 +718,11 @@ void cellular_function3D(double x, double y, double z, unsigned int seed, double
     int yint = fast_floor(y);
     int zint = fast_floor(z);
 
-    for(int c=0; c<4; ++c){ f[c]=99999.0; disp[c]=0.0;}
+    for(int c=0; c<4; ++c)
+    {
+        f[c]=99999.0;
+        disp[c]=0.0;
+    }
 
     for (int zcur=zint-2; zcur<=zint+2; ++zcur)
     {
@@ -747,35 +755,39 @@ void cellular_function4D(double x, double y, double z, double w, unsigned int se
     int zint = fast_floor(z);
     int wint = fast_floor(w);
 
-    for(int c=0; c<4; ++c){ f[c]=99999.0; disp[c]=0.0;}
+    for(int c=0; c<4; ++c)
+    {
+        f[c]=99999.0;
+        disp[c]=0.0;
+    }
 
     for (int wcur=wint-2; wcur<=wint+2; ++wcur)
     {
-    for (int zcur=zint-2; zcur<=zint+2; ++zcur)
-    {
-        for(int ycur=yint-2; ycur<=yint+2; ++ycur)
+        for (int zcur=zint-2; zcur<=zint+2; ++zcur)
         {
-            for(int xcur=xint-2; xcur<=xint+2; ++xcur)
+            for(int ycur=yint-2; ycur<=yint+2; ++ycur)
             {
-                double xpos = (double)xcur + value_noise_4(x,y,z,w,xcur,ycur,zcur,wcur,seed);
-                double ypos = (double)ycur + value_noise_4(x,y,z,w,xcur,ycur,zcur,wcur,seed+1);
-                double zpos = (double)zcur + value_noise_4(x,y,z,w,xcur,ycur,zcur,wcur,seed+2);
-                double wpos = (double)wcur + value_noise_4(x,y,z,w,xcur,ycur,zcur,wcur,seed+3);
-                //double xdist=xpos-x;
-                //double ydist=ypos-y;
-                //double zdist=zpos-z;
-                //double wdist=wpos-w;
-                //double dist=(xdist*xdist + ydist*ydist + zdist*zdist + wdist*wdist);
-                double dist=distance(xpos,ypos,zpos,wpos,x,y,z,w);
-                int xval=fast_floor(xpos);
-                int yval=fast_floor(ypos);
-                int zval=fast_floor(zpos);
-                int wval=fast_floor(wpos);
-                double dsp=value_noise_4(x,y,z,w,xval,yval,zval,wval,seed+3);
-                add_dist(f,disp, dist, dsp);
+                for(int xcur=xint-2; xcur<=xint+2; ++xcur)
+                {
+                    double xpos = (double)xcur + value_noise_4(x,y,z,w,xcur,ycur,zcur,wcur,seed);
+                    double ypos = (double)ycur + value_noise_4(x,y,z,w,xcur,ycur,zcur,wcur,seed+1);
+                    double zpos = (double)zcur + value_noise_4(x,y,z,w,xcur,ycur,zcur,wcur,seed+2);
+                    double wpos = (double)wcur + value_noise_4(x,y,z,w,xcur,ycur,zcur,wcur,seed+3);
+                    //double xdist=xpos-x;
+                    //double ydist=ypos-y;
+                    //double zdist=zpos-z;
+                    //double wdist=wpos-w;
+                    //double dist=(xdist*xdist + ydist*ydist + zdist*zdist + wdist*wdist);
+                    double dist=distance(xpos,ypos,zpos,wpos,x,y,z,w);
+                    int xval=fast_floor(xpos);
+                    int yval=fast_floor(ypos);
+                    int zval=fast_floor(zpos);
+                    int wval=fast_floor(wpos);
+                    double dsp=value_noise_4(x,y,z,w,xval,yval,zval,wval,seed+3);
+                    add_dist(f,disp, dist, dsp);
+                }
             }
         }
-    }
     }
 }
 
@@ -788,7 +800,11 @@ void cellular_function6D(double x, double y, double z, double w, double u, doubl
     int uint = fast_floor(u);
     int vint = fast_floor(v);
 
-    for(int c=0; c<4; ++c){ f[c]=99999.0; disp[c]=0.0;}
+    for(int c=0; c<4; ++c)
+    {
+        f[c]=99999.0;
+        disp[c]=0.0;
+    }
 
     for (int vcur=vint-1; vcur<=vint+1; ++vcur)
     {
@@ -855,11 +871,13 @@ double simplex_noise2D(double x, double y, unsigned int seed, interp_func interp
     int i1,j1;
     if(x0>y0)
     {
-        i1=1; j1=0;
+        i1=1;
+        j1=0;
     }
     else
     {
-        i1=0; j1=1;
+        i1=0;
+        j1=1;
     }
 
     double x1=x0-(double)i1+G2;
@@ -935,30 +953,60 @@ double simplex_noise3D(double x, double y, double z, unsigned int seed, interp_f
     {
         if(y0>=z0)
         {
-            i1=1; j1=0; k1=0; i2=1; j2=1; k2=0;
+            i1=1;
+            j1=0;
+            k1=0;
+            i2=1;
+            j2=1;
+            k2=0;
         }
         else if(x0>=z0)
         {
-            i1=1; j1=0; k1=0; i2=1; j2=0; k2=1;
+            i1=1;
+            j1=0;
+            k1=0;
+            i2=1;
+            j2=0;
+            k2=1;
         }
         else
         {
-            i1=0; j1=0; k1=1; i2=1; j2=0; k2=1;
+            i1=0;
+            j1=0;
+            k1=1;
+            i2=1;
+            j2=0;
+            k2=1;
         }
     }
     else
     {
         if(y0<z0)
         {
-            i1=0; j1=0; k1=1; i2=0; j2=1; k2=1;
+            i1=0;
+            j1=0;
+            k1=1;
+            i2=0;
+            j2=1;
+            k2=1;
         }
         else if(x0<z0)
         {
-            i1=0; j1=1; k1=0; i2=0; j2=1; k2=1;
+            i1=0;
+            j1=1;
+            k1=0;
+            i2=0;
+            j2=1;
+            k2=1;
         }
         else
         {
-            i1=0; j1=1; k1=0; i2=1; j2=1; k2=0;
+            i1=0;
+            j1=1;
+            k1=0;
+            i2=1;
+            j2=1;
+            k2=0;
         }
     }
 
@@ -1021,15 +1069,17 @@ double simplex_noise3D(double x, double y, double z, unsigned int seed, interp_f
 
 double simplex_noise4D(double x, double y, double z, double w, unsigned int seed, interp_func interp)
 {
-    static int simplex[64][4] = {
-    {0,1,2,3},{0,1,3,2},{0,0,0,0},{0,2,3,1},{0,0,0,0},{0,0,0,0},{0,0,0,0},{1,2,3,0},
-    {0,2,1,3},{0,0,0,0},{0,3,1,2},{0,3,2,1},{0,0,0,0},{0,0,0,0},{0,0,0,0},{1,3,2,0},
-    {0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},
-    {1,2,0,3},{0,0,0,0},{1,3,0,2},{0,0,0,0},{0,0,0,0},{0,0,0,0},{2,3,0,1},{2,3,1,0},
-    {1,0,2,3},{1,0,3,2},{0,0,0,0},{0,0,0,0},{0,0,0,0},{2,0,3,1},{0,0,0,0},{2,1,3,0},
-    {0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},
-    {2,0,1,3},{0,0,0,0},{0,0,0,0},{0,0,0,0},{3,0,1,2},{3,0,2,1},{0,0,0,0},{3,1,2,0},
-    {2,1,0,3},{0,0,0,0},{0,0,0,0},{0,0,0,0},{3,1,0,2},{0,0,0,0},{3,2,0,1},{3,2,1,0}};
+    static int simplex[64][4] =
+    {
+        {0,1,2,3},{0,1,3,2},{0,0,0,0},{0,2,3,1},{0,0,0,0},{0,0,0,0},{0,0,0,0},{1,2,3,0},
+        {0,2,1,3},{0,0,0,0},{0,3,1,2},{0,3,2,1},{0,0,0,0},{0,0,0,0},{0,0,0,0},{1,3,2,0},
+        {0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},
+        {1,2,0,3},{0,0,0,0},{1,3,0,2},{0,0,0,0},{0,0,0,0},{0,0,0,0},{2,3,0,1},{2,3,1,0},
+        {1,0,2,3},{1,0,3,2},{0,0,0,0},{0,0,0,0},{0,0,0,0},{2,0,3,1},{0,0,0,0},{2,1,3,0},
+        {0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0},
+        {2,0,1,3},{0,0,0,0},{0,0,0,0},{0,0,0,0},{3,0,1,2},{3,0,2,1},{0,0,0,0},{3,1,2,0},
+        {2,1,0,3},{0,0,0,0},{0,0,0,0},{0,0,0,0},{3,1,0,2},{0,0,0,0},{3,2,0,1},{3,2,1,0}
+    };
 
     double F4 = (sqrt(5.0)-1.0)/4.0;
     double G4 = (5.0-sqrt(5.0))/20.0;
@@ -1121,31 +1171,36 @@ double simplex_noise4D(double x, double y, double z, double w, unsigned int seed
 // Calculate the contribution from the five corners
     double t0 = 0.6 - x0*x0 - y0*y0 - z0*z0 - w0*w0;
     if(t0<0) n0 = 0.0;
-    else {
+    else
+    {
         t0 *= t0;
         n0 = t0 * t0 * array_dot4(g0, x0, y0, z0, w0);
     }
     double t1 = 0.6 - x1*x1 - y1*y1 - z1*z1 - w1*w1;
     if(t1<0) n1 = 0.0;
-    else {
+    else
+    {
         t1 *= t1;
         n1 = t1 * t1 * array_dot4(g1, x1, y1, z1, w1);
     }
     double t2 = 0.6 - x2*x2 - y2*y2 - z2*z2 - w2*w2;
     if(t2<0) n2 = 0.0;
-    else {
+    else
+    {
         t2 *= t2;
         n2 = t2 * t2 * array_dot4(g2, x2, y2, z2, w2);
     }
     double t3 = 0.6 - x3*x3 - y3*y3 - z3*z3 - w3*w3;
     if(t3<0) n3 = 0.0;
-    else {
+    else
+    {
         t3 *= t3;
         n3 = t3 * t3 * array_dot4(g3, x3, y3, z3, w3);
     }
     double t4 = 0.6 - x4*x4 - y4*y4 - z4*z4 - w4*w4;
     if(t4<0) n4 = 0.0;
-    else {
+    else
+    {
         t4 *= t4;
         n4 = t4 * t4 * array_dot4(g4, x4, y4, z4, w4);
     }
@@ -1160,7 +1215,10 @@ struct SVectorOrdering4
     SVectorOrdering4(double v, int X, int Y, int Z, int W)
     {
         coord=v;
-        x=X;y=Y;z=Z;w=W;
+        x=X;
+        y=Y;
+        z=Z;
+        w=W;
     };
     double coord;
     int x,y,z,w;
@@ -1174,7 +1232,11 @@ bool svec4Compare(SVectorOrdering4 v1, SVectorOrdering4 v2)
 
 struct SVectorOrdering
 {
-    SVectorOrdering(){val=0; axis=0;}
+    SVectorOrdering()
+    {
+        val=0;
+        axis=0;
+    }
     SVectorOrdering(double v, int a)
     {
         val=v;
@@ -1193,7 +1255,11 @@ bool vectorOrderingCompare(SVectorOrdering v1, SVectorOrdering v2)
 void sortBy_4(double *l1, int *l2)
 {
     SVectorOrdering a[4];
-    for(int c=0; c<4; ++c) {a[c].val=l1[c]; a[c].axis=l2[c];}
+    for(int c=0; c<4; ++c)
+    {
+        a[c].val=l1[c];
+        a[c].axis=l2[c];
+    }
 
     std::sort(&a[0],&a[4],vectorOrderingCompare);
     for(int c=0; c<4; ++c) l2[c]=a[c].axis;
@@ -1201,7 +1267,11 @@ void sortBy_4(double *l1, int *l2)
 void sortBy_6(double *l1, int *l2)
 {
     SVectorOrdering a[6];
-    for(int c=0; c<6; ++c) {a[c].val=l1[c]; a[c].axis=l2[c];}
+    for(int c=0; c<6; ++c)
+    {
+        a[c].val=l1[c];
+        a[c].axis=l2[c];
+    }
     std::sort(&a[0],&a[6],vectorOrderingCompare);
     for(int c=0; c<6; ++c) l2[c]=a[c].axis;
 }
@@ -1224,22 +1294,23 @@ double new_simplex_noise4D(double x, double y, double z, double w, unsigned int 
     // for scaling output to be -1 to 1
     valueScaler*=pow(3.0, -3.5)*100.0 + 13.0;
 
-    double loc[4]={x,y,z,w};
+    double loc[4]= {x,y,z,w};
     double s=0;
     for (int c=0; c<4; ++c) s+=loc[c];
     s*=F4;
 
-    int skewLoc[4]={fast_floor(x+s),fast_floor(y+s),fast_floor(z+s),fast_floor(w+s)};
-    int intLoc[4]={fast_floor(x+s),fast_floor(y+s),fast_floor(z+s),fast_floor(w+s)};
+    int skewLoc[4]= {fast_floor(x+s),fast_floor(y+s),fast_floor(z+s),fast_floor(w+s)};
+    int intLoc[4]= {fast_floor(x+s),fast_floor(y+s),fast_floor(z+s),fast_floor(w+s)};
     double unskew=0.0;
     for(int c=0; c<4; ++c) unskew+=skewLoc[c];
     unskew*=G4;
-    double cellDist[4]={loc[0]-(double)skewLoc[0]+unskew, loc[1]-(double)skewLoc[1]+unskew,
-        loc[2]-(double)skewLoc[2]+unskew, loc[3]-(double)skewLoc[3]+unskew};
-    int distOrder[4]={0,1,2,3};
+    double cellDist[4]= {loc[0]-(double)skewLoc[0]+unskew, loc[1]-(double)skewLoc[1]+unskew,
+                         loc[2]-(double)skewLoc[2]+unskew, loc[3]-(double)skewLoc[3]+unskew
+                        };
+    int distOrder[4]= {0,1,2,3};
     sortBy_4(cellDist,distOrder);
 
-    int newDistOrder[5]={-1,distOrder[0],distOrder[1],distOrder[2],distOrder[3]};
+    int newDistOrder[5]= {-1,distOrder[0],distOrder[1],distOrder[2],distOrder[3]};
 
     double n=0.0;
     double skewOffset=0.0;
@@ -1303,23 +1374,24 @@ double simplex_noise6D(double x, double y, double z, double w, double u, double 
     double valueScaler=pow(5.0, -0.5);
     valueScaler*=pow(5.0, -3.5)*100+13;
 
-    double loc[6]={x,y,z,w,u,v};
+    double loc[6]= {x,y,z,w,u,v};
     double s=0;
     for (int c=0; c<6; ++c) s+=loc[c];
     s*=F4;
 
-    int skewLoc[6]={fast_floor(x+s),fast_floor(y+s),fast_floor(z+s),fast_floor(w+s),fast_floor(u+s),fast_floor(v+s)};
-    int intLoc[6]={fast_floor(x+s),fast_floor(y+s),fast_floor(z+s),fast_floor(w+s),fast_floor(u+s),fast_floor(v+s)};
+    int skewLoc[6]= {fast_floor(x+s),fast_floor(y+s),fast_floor(z+s),fast_floor(w+s),fast_floor(u+s),fast_floor(v+s)};
+    int intLoc[6]= {fast_floor(x+s),fast_floor(y+s),fast_floor(z+s),fast_floor(w+s),fast_floor(u+s),fast_floor(v+s)};
     double unskew=0.0;
     for(int c=0; c<6; ++c) unskew+=skewLoc[c];
     unskew*=G4;
-    double cellDist[6]={loc[0]-(double)skewLoc[0]+unskew, loc[1]-(double)skewLoc[1]+unskew,
-        loc[2]-(double)skewLoc[2]+unskew, loc[3]-(double)skewLoc[3]+unskew,
-        loc[4]-(double)skewLoc[4]+unskew, loc[5]-(double)skewLoc[5]+unskew};
-    int distOrder[6]={0,1,2,3,4,5};
+    double cellDist[6]= {loc[0]-(double)skewLoc[0]+unskew, loc[1]-(double)skewLoc[1]+unskew,
+                         loc[2]-(double)skewLoc[2]+unskew, loc[3]-(double)skewLoc[3]+unskew,
+                         loc[4]-(double)skewLoc[4]+unskew, loc[5]-(double)skewLoc[5]+unskew
+                        };
+    int distOrder[6]= {0,1,2,3,4,5};
     sortBy_6(cellDist,distOrder);
 
-    int newDistOrder[7]={-1,distOrder[0],distOrder[1],distOrder[2],distOrder[3],distOrder[4],distOrder[5]};
+    int newDistOrder[7]= {-1,distOrder[0],distOrder[1],distOrder[2],distOrder[3],distOrder[4],distOrder[5]};
 
     double n=0.0;
     double skewOffset=0.0;

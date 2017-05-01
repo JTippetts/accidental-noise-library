@@ -6,7 +6,7 @@
 template <class T>
 class TVec3D
 {
-    public:
+public:
     TVec3D()
     {
         vec[0]=(T)0;
@@ -49,14 +49,32 @@ class TVec3D
         vec[2]=tptr[2];
     };
 
-    T x() {return vec[0];};
-    const T x() const {return vec[0];};
+    T x()
+    {
+        return vec[0];
+    };
+    const T x() const
+    {
+        return vec[0];
+    };
 
-    T y() {return vec[1];};
-    const T y() const {return vec[1];};
+    T y()
+    {
+        return vec[1];
+    };
+    const T y() const
+    {
+        return vec[1];
+    };
 
-    T z() {return vec[2];};
-    const T z() const {return vec[2];};
+    T z()
+    {
+        return vec[2];
+    };
+    const T z() const
+    {
+        return vec[2];
+    };
 
     T &operator[](const int i)
     {
@@ -76,13 +94,31 @@ class TVec3D
         vec[1]=v2;
         vec[2]=v3;
     }
-    inline T get_x() { return vec[0];}
-    inline T get_y() { return vec[1];}
-    inline T get_z() { return vec[2];}
+    inline T get_x()
+    {
+        return vec[0];
+    }
+    inline T get_y()
+    {
+        return vec[1];
+    }
+    inline T get_z()
+    {
+        return vec[2];
+    }
 
-    inline void set_x(T x) { vec[0]=x;}
-    inline void set_y(T y) { vec[1]=y;}
-    inline void set_z(T z) { vec[2]=z;}
+    inline void set_x(T x)
+    {
+        vec[0]=x;
+    }
+    inline void set_y(T y)
+    {
+        vec[1]=y;
+    }
+    inline void set_z(T z)
+    {
+        vec[2]=z;
+    }
 
     bool operator ==(const TVec3D<T> &tvec) const
     {
@@ -153,15 +189,15 @@ class TVec3D
         return (*this);
     };
 
-	TVec3D<T> operator *(const double &rhs) const
-	{
-		return TVec3D<T>(vec[0]*rhs, vec[1]*rhs, vec[2]*rhs);
-	}
+    TVec3D<T> operator *(const double &rhs) const
+    {
+        return TVec3D<T>(vec[0]*rhs, vec[1]*rhs, vec[2]*rhs);
+    }
 
-	TVec3D<T> operator /(const double &rhs) const
-	{
-		return TVec3D<T>(vec[0]/rhs, vec[1]/rhs, vec[2]/rhs);
-	}
+    TVec3D<T> operator /(const double &rhs) const
+    {
+        return TVec3D<T>(vec[0]/rhs, vec[1]/rhs, vec[2]/rhs);
+    }
 
     TVec3D<T> fmul(const float &fval) const
     {
@@ -269,7 +305,7 @@ class TVec3D
 
 
 
-    protected:
+protected:
 
     T vec[3];
 };
