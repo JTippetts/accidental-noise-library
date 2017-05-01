@@ -19,6 +19,10 @@ extern "C"{
 #include "lualib.h"
 }
 
+#define ANL_IMPLEMENTATION
+#define IMPLEMENT_STB
+#include "../anl.h"
+
 
 static lua_State *globalL = NULL;
 

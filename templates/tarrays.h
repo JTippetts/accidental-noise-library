@@ -576,6 +576,36 @@ class TArray2D
 */
 
 	}
+	
+	void subtractFilter(TArray2D<T> *fil)
+	{
+		// Subtract a buffer from this one. The buffer being subtracted is sampled bilinearly, and can be of any size
+		for(int y=0; y<m_height; ++y)
+		{
+			for(int x=0; x<m_width; ++x)
+			{
+				float nx=(float)x/(float)m_width;
+				float ny=(float)y/(float)m_height;
+				T val=fil->getBilinear(nx,ny);
+				set(x,y,get(x,y)-val);
+			}
+		}	
+	}
+	
+	void addFilter(TArray2D<T> *fil)
+	{
+		// Add a buffer to this one. The buffer being subtracted is sampled bilinearly, and can be of any size
+		for(int y=0; y<m_height; ++y)
+		{
+			for(int x=0; x<m_width; ++x)
+			{
+				float nx=(float)x/(float)m_width;
+				float ny=(float)y/(float)m_height;
+				T val=fil->getBilinear(nx,ny);
+				set(x,y,get(x,y)+val);
+			}
+		}
+	}
 
 	T splineNeighborhood(T *block, float s, float t)
 	{

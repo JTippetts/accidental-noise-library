@@ -142,11 +142,16 @@ namespace anl
 	void loadDoubleArray(std::string filename, TArray2D<double> *array);
 	void loadRGBAArray(std::string filename, TArray2D<anl::SRGBA> *array);
 	
+	void saveHeightmap(std::string filename, TArray2D<double> *array);
+	
 	void map2DChunk(SChunk chunk);
 	void map2DChunkNoZ(SChunk chunk);
 	void mapRGBA2DChunkNoZ(SRGBAChunk chunk);
 	void mapRGBA2DChunk(SRGBAChunk chunk);
 	void map3DChunk(SChunk3D chunk);
+	
+	void calcNormalMap(CArray2Dd *map, CArray2Drgba *bump, float spacing, bool normalize, bool wrap);
+	void calcBumpMap(CArray2Dd *map, CArray2Dd *bump, float light[3], float spacing, bool wrap);
 	
 	double highresTime();
 };

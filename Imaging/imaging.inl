@@ -49,6 +49,50 @@ namespace anl
 
 		delete[] data;
 	}
+	
+	void saveHeightmap(std::string filename, TArray2D<double> *array)
+	{
+		if(!array) return;
+		int width=array->width();
+		int height=array->height();
+
+		unsigned char *data=new unsigned char[width*height*4];
+		for(int x=0; x<width; ++x)
+		{
+			for(int y=0; y<height; ++y)
+			{
+				unsigned char *c=&data[y*width*4+x*4];
+				double v=array->get(x,y);
+				double expht=std::floor(v*255.0);
+				double rm=v*255.0-expht;
+				double r=expht/255.0;
+				double g=rm;
+				c[0]=(unsigned char)(r*255.0);
+				c[1]=(unsigned char)(g*255.0);
+				c[2]=0;
+				c[3]=255;
+			}
+		}
+
+		std::string ext=filename.substr(filename.size()-3, std::string::npos);
+		struct convert {
+			void operator()(char& c) { c = toupper((unsigned char)c); }
+		};
+
+		std::for_each(ext.begin(), ext.end(), convert());
+
+		if(ext=="TGA")
+		{
+			stbi_write_tga(filename.c_str(), width, height, 4, data);
+		}
+		else
+		{
+			stbi_write_png(filename.c_str(), width, height, 4, data, width*4);
+		}
+
+
+		delete[] data;
+	}
 
 
 	void saveRGBAArray(std::string filename, TArray2D<anl::SRGBA> *array)
@@ -1267,5 +1311,123 @@ namespace anl
             threads[c].join();
         }
 	#endif
+    }
+	
+	void normalizeVec3(float v[3])
+    {
+        float len=std::sqrt(v[0]*v[0]+v[1]*v[1]+v[2]*v[2]);
+        v[0]/=len;
+        v[1]/=len;
+        v[2]/=len;
+    }
+	
+	void calcNormalMap(CArray2Dd *map, CArray2Drgba *bump, float spacing, bool normalize, bool wrap)
+    {
+        if(!map || !bump) return;
+        int mw=map->width(), mh=map->height();
+        if(mw!=bump->width() || mh!=bump->height()) bump->resize(mw,mh);
+
+        for(int x=0; x<mw; ++x)
+        {
+            for(int y=0; y<mh; ++y)
+            {
+                float n[3]={0.0, 1.0, 0.0};
+
+                if(!wrap)
+                {
+                    if(x==0 || y==0 || x==mw-1 || y==mh-1)
+                    {
+                        n[0]=0.0;
+                        n[2]=0.0;
+                    }
+                    else
+                    {
+                        n[0]=(map->get(x-1,y)-map->get(x+1,y)) / spacing;
+                        n[2]=(map->get(x,y-1)-map->get(x,y+1)) / spacing;
+                    }
+                    normalizeVec3(n);
+                }
+                else
+                {
+                    int x1,x2,y1,y2;
+                    if(x==0) x1=mw-1;
+                    else x1=x-1;
+
+                    if(y==0) y1=mh-1;
+                    else y1=y-1;
+
+                    if(x==mw-1) x2=0;
+                    else x2=x+1;
+
+                    if(y==mh-1) y2=0;
+                    else y2=y+1;
+
+                    n[0]=(map->get(x1,y)-map->get(x2,y)) / spacing;
+                    n[2]=(map->get(x,y1)-map->get(x,y2)) / spacing;
+                    normalizeVec3(n);
+                }
+                if(normalize)
+                {
+                    n[0]=n[0]*0.5 + 0.5;
+                    n[1]=n[1]*0.5 + 0.5;
+                    n[2]=n[2]*0.5 + 0.5;
+                }
+                bump->set(x,y,SRGBA((float)n[0], (float)n[2], (float)n[1], 1.0));
+            }
+        }
+    }
+	
+	void calcBumpMap(CArray2Dd *map, CArray2Dd *bump, float light[3], float spacing, bool wrap)
+    {
+        if(!map || !bump) return;
+        int mw=map->width(), mh=map->height();
+        if(mw!=bump->width() || mh!=bump->height()) bump->resize(mw,mh);
+		normalizeVec3(light);
+
+        for(int x=0; x<mw; ++x)
+        {
+            for(int y=0; y<mh; ++y)
+            {
+                float n[3]={0.0, 1.0, 0.0};
+
+                if(!wrap)
+                {
+                    if(x==0 || y==0 || x==mw-1 || y==mh-1)
+                    {
+                        n[0]=0.0;
+                        n[2]=0.0;
+                    }
+                    else
+                    {
+                        n[0]=(map->get(x-1,y)-map->get(x+1,y)) / spacing;
+                        n[2]=(map->get(x,y-1)-map->get(x,y+1)) / spacing;
+                    }
+                    normalizeVec3(n);
+                }
+                else
+                {
+                    int x1,x2,y1,y2;
+                    if(x==0) x1=mw-1;
+                    else x1=x-1;
+
+                    if(y==0) y1=mh-1;
+                    else y1=y-1;
+
+                    if(x==mw-1) x2=0;
+                    else x2=x+1;
+
+                    if(y==mh-1) y2=0;
+                    else y2=y+1;
+
+                    n[0]=(map->get(x1,y)-map->get(x2,y)) / spacing;
+                    n[2]=(map->get(x,y1)-map->get(x,y2)) / spacing;
+                    normalizeVec3(n);
+                }
+                float b = light[0]*n[0] + light[1]*n[1] + light[2]*n[2];
+                if(b<0.0) b=0.0;
+                if(b>1.0) b=1.0;
+                bump->set(x,y,b);
+            }
+        }
     }
 };

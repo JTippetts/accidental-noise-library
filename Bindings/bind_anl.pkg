@@ -1,6 +1,5 @@
 // Bind ANL
 
-$#define ANL_IMPLEMENTATION
 $#include "../anl.h"
 
 $using namespace anl;
@@ -339,6 +338,9 @@ class CArray2Dd
   void flipVertical();
   void flipHorizontal();
   void blur(float,bool);
+  void subtractFilter(CArray2Dd *fil);
+  void addFilter(CArray2Dd *fil);
+  void scaleTo(CArray2Dd *i);
 };
 
 class CArray2Drgba
@@ -413,9 +415,12 @@ void mapRGBA2DNoZ(int seamlessmode, CArray2Drgba &a, CKernel &k, SMappingRanges 
 void mapRGBA3D(int seamlessmode, CArray3Drgba &a, CKernel &k, SMappingRanges ranges, CInstructionIndex index);
 
 void saveDoubleArray(const char *filename, CArray2Dd *array);
+void saveHeightmap(const char *filename, CArray2Dd *array);
 void saveRGBAArray(const char *filename, CArray2Drgba *array); 
 void loadDoubleArray(const char *filename, CArray2Dd *array);
 void loadRGBAArray(const char *filename, CArray2Drgba *array);
 	
 	
 void simpleErode(CArray2Dd &map, unsigned int numdrops, float power);
+void calcNormalMap(CArray2Dd *map, CArray2Drgba *bump, float spacing, bool normalize, bool wrap);
+void calcBumpMap(CArray2Dd *map, CArray2Dd *bump, float light[3], float spacing, bool wrap);
