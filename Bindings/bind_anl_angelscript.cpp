@@ -2,7 +2,7 @@
 
 #include "angelscript.h"
 
-static void RegisterANL(asIScriptEngine *as)
+void RegisterANL(asIScriptEngine *as)
 {
-	
+	as->RegisterEnum("Test");
 }
