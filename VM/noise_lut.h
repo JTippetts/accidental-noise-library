@@ -1,6 +1,6 @@
 // Lookup tables for 2D, 4D and 6D gradient oise.
 // Generated with boost::random, using a lagged Fibonacci generator and a uniform_on_sphere distribution.
-#include "types.h"
+
 
 #ifndef NOISE_LUT_H
 #define NOISE_LUT_H

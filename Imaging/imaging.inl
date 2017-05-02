@@ -732,7 +732,7 @@ void map3DChunk(SChunk3D chunk)
 void map3D(int seamlessmode, CArray3Dd &a, CKernel &k, SMappingRanges ranges, CInstructionIndex index)
 {
     if(a.getData()==0) return;
-#ifndef USETHREAD_TEST
+#ifndef USETHREAD
     SChunk3D chunk(index);
     chunk.seamlessmode=seamlessmode;
     chunk.a=a.getData();

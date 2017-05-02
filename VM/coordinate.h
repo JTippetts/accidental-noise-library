@@ -1,6 +1,5 @@
 #ifndef COORDINATE_H
 #define COORDINATE_H
-#include "types.h"
 
 namespace anl
 {

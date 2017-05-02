@@ -1,8 +1,6 @@
 #ifndef COMMON_VECTOR_TYPES
 #define COMMON_VECTOR_TYPES
 
-#include "VM/types.h"
-
 namespace anl
 {
 //typedef rhs4D<float> SRGBA;
