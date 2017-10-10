@@ -1248,9 +1248,9 @@ void CNoiseExecutor::evaluateInstruction(InstructionListType &kernel, EvaluatedT
         low=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[0], coord);
         high=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[1], coord);
         control=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[2], coord);
-		double t=(control-low)/(high-low);
-		t=t*t*(3-2*t);
-        cache[index].set(std::min(1.0, std::max(0.0, t)));
+		double t=std::min(1.0, std::max(0.0, (control-low)/(high-low)));
+		t=t*t*(3.0-2.0*t);
+        cache[index].set(t);
 		evaluated[index]=true;
 		return;
 	}
@@ -1262,9 +1262,9 @@ void CNoiseExecutor::evaluateInstruction(InstructionListType &kernel, EvaluatedT
         low=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[0], coord);
         high=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[1], coord);
         control=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[2], coord);
-		double t=(control-low)/(high-low);
+		double t=std::min(1.0, std::max(0.0, (control-low)/(high-low)));
 		t=t*t*t*(t*(t*6 - 15) + 10);
-        cache[index].set(std::min(1.0, std::max(0.0, t)));
+        cache[index].set(t);
 		evaluated[index]=true;
 		return;
 	}
