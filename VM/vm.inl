@@ -255,7 +255,11 @@ void CNoiseExecutor::seedSource(InstructionListType &kernel, EvaluatedType &eval
 			case OP_DV: seedSource(kernel, evaluated, i.sources_[0], seed); seedSource(kernel, evaluated, i.sources_[1], seed); return; break;
 			case OP_Sigmoid: for(int c=0; c<3; ++c) seedSource(kernel, evaluated, i.sources_[c], seed); return; break;
 			case OP_Fractal: i.outfloat_=(double)seed++; return; break;
-			case OP_Randomize: for(int c=0; c<3; ++c) seedSource(kernel,evaluated,i.sources_[c],seed); return; break;
+			case OP_Randomize: 
+			case OP_SmoothStep: 
+			case OP_SmootherStep:
+			case OP_LinearStep: for(int c=0; c<3; ++c) seedSource(kernel,evaluated,i.sources_[c],seed); return; break;
+			case OP_Step: for(int c=0; c<2; ++c) seedSource(kernel,evaluated,i.sources_[c],seed); return; break;
 			case OP_HexTile: seedSource(kernel, evaluated, i.sources_[0], seed); return; break;
 			case OP_HexBump: return; break;
 			case OP_Color: return; break;
