@@ -199,8 +199,8 @@ void map2DChunk(SChunk chunk)
         {
             int realy=y+chunk.chunkyoffset;
             int index=y*chunk.awidth+x;
-            double p=(double) x/ (double)(chunk.awidth-1);
-            double q=(double) realy/(double)(chunk.aheight-1);
+            double p=(double) x/ (double)(chunk.awidth);
+            double q=(double) realy/(double)(chunk.aheight);
             double r;
             double nx,ny,nz,nw,nu,nv,val=0.0;
             double dx, dy, dz;
@@ -347,8 +347,8 @@ void map2DChunkNoZ(SChunk chunk)
         {
             int realy=y+chunk.chunkyoffset;
             int index=y*chunk.awidth+x;
-            double p=(double) x/ (double)(chunk.awidth-1);
-            double q=(double) realy/(double)(chunk.aheight-1);
+            double p=(double) x/ (double)(chunk.awidth);
+            double q=(double) realy/(double)(chunk.aheight);
             double r;
             double nx,ny,nz,nw,nu,nv,val=0.0;
             double dx, dy, dz;
@@ -594,9 +594,9 @@ void map3DChunk(SChunk3D chunk)
             {
                 int realz=z+chunk.chunkzoffset;
                 int index=(z*chunk.awidth*chunk.aheight) + y*chunk.awidth+x;
-                double p=(double) x/ (double)(chunk.awidth-1);
-                double q=(double) y/(double)(chunk.aheight-1);
-                double r=(double) realz/(double)(chunk.adepth-1);
+                double p=(double) x/ (double)(chunk.awidth);
+                double q=(double) y/(double)(chunk.aheight);
+                double r=(double) realz/(double)(chunk.adepth);
                 double nx,ny,nz,nw,nu,nv,val=0.0;
                 double dx, dy, dz;
                 switch(chunk.seamlessmode)
@@ -788,8 +788,8 @@ void mapRGBA2DChunk(SRGBAChunk chunk)
         {
             int realy=y+chunk.chunkyoffset;
             int index=y*chunk.awidth+x;
-            double p=(double) x/ (double)(chunk.awidth-1);
-            double q=(double) realy/(double)(chunk.aheight-1);
+            double p=(double) x/ (double)(chunk.awidth);
+            double q=(double) realy/(double)(chunk.aheight);
             double r;
             double nx,ny,nz,nw,nu,nv;
             SRGBA val;
@@ -937,8 +937,8 @@ void mapRGBA2DChunkNoZ(SRGBAChunk chunk)
         {
             int realy=y+chunk.chunkyoffset;
             int index=y*chunk.awidth+x;
-            double p=(double) x/ (double)(chunk.awidth-1);
-            double q=(double) realy/(double)(chunk.aheight-1);
+            double p=(double) x/ (double)(chunk.awidth);
+            double q=(double) realy/(double)(chunk.aheight);
             double r;
             double nx,ny,nz,nw,nu,nv;
             SRGBA val;
@@ -1192,9 +1192,9 @@ void mapRGBA3DChunk(SRGBAChunk3D chunk)
             {
                 int realz=z+chunk.chunkzoffset;
                 int index=(z*chunk.awidth*chunk.aheight) + y*chunk.awidth+x;
-                double p=(double) x/ (double)(chunk.awidth-1);
-                double q=(double) y/(double)(chunk.aheight-1);
-                double r=(double) realz/(double)(chunk.adepth-1);
+                double p=(double) x/ (double)(chunk.awidth);
+                double q=(double) y/(double)(chunk.aheight);
+                double r=(double) realz/(double)(chunk.adepth);
                 double nx,ny,nz,nw,nu,nv=0.0;
                 SRGBA val;
                 double dx, dy, dz;

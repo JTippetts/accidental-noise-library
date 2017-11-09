@@ -1013,7 +1013,8 @@ void CNoiseExecutor::evaluateInstruction(InstructionListType &kernel, EvaluatedT
         low=evaluateBoth(kernel, evaluated, coordcache,cache, i.sources_[0], coord);
         high=evaluateBoth(kernel, evaluated, coordcache,cache, i.sources_[1], coord);
         control=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[2], coord);
-        cache[index].set(low+(high-low)*control);
+        //cache[index].set(low+(high-low)*control);
+		cache[index].set(low*(1.0-control) + high*control);
         evaluated[index]=true;
         return;
     }
@@ -1409,7 +1410,7 @@ void CNoiseExecutor::evaluateInstruction(InstructionListType &kernel, EvaluatedT
         double g=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
         double b=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[2],coord);
         double a=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[3],coord);
-        cache[index].outrgba_=SRGBA(r,g,b,a);
+        cache[index].set(SRGBA(r,g,b,a));
         evaluated[index]=true;
         return;
     }
