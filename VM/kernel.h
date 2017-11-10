@@ -138,6 +138,7 @@ public:
     CInstructionIndex color(float r, float g, float b, float a);
 
     CInstructionIndex combineRGBA(CInstructionIndex r, CInstructionIndex g, CInstructionIndex b, CInstructionIndex a);
+	CInstructionIndex combineHSVA(CInstructionIndex h, CInstructionIndex s, CInstructionIndex v, CInstructionIndex a);
 
     CInstructionIndex scaleOffset(CInstructionIndex src, double scale, double offset);
 

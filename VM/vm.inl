@@ -268,7 +268,8 @@ void CNoiseExecutor::seedSource(InstructionListType &kernel, EvaluatedType &eval
 			case OP_ExtractBlue:
 			case OP_ExtractAlpha:
 			case OP_Grayscale: return; break;
-			case OP_CombineRGBA: for(int c=0; c<4; ++c) seedSource(kernel, evaluated, i.sources_[c], seed); return; break;
+			case OP_CombineRGBA:
+			case OP_CombineHSVA: for(int c=0; c<4; ++c) seedSource(kernel, evaluated, i.sources_[c], seed); return; break;
 			default: return; break;
 		}
 	}
@@ -1411,6 +1412,37 @@ void CNoiseExecutor::evaluateInstruction(InstructionListType &kernel, EvaluatedT
         double b=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[2],coord);
         double a=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[3],coord);
         cache[index].set(SRGBA(r,g,b,a));
+        evaluated[index]=true;
+        return;
+    }
+    break;
+	
+	case OP_CombineHSVA:
+    {
+        double h=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+        double s=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
+        double v=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[2],coord);
+        double a=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[3],coord);
+		SRGBA col;
+		
+		double P,Q,T,fract;
+		if (h>=360.0) h=0.0;
+		else h=h/60.0;
+		fract = h - std::floor(h);
+		
+		P = v*(1.0-s);
+		Q = v*(1.0-s*fract);
+		T = v*(1.0-s*(1.0-fract));
+		
+		if (h>=0 and h<1) col=SRGBA(v,T,P,1);
+		else if (h>=1 and h<2) col=SRGBA(Q,v,P,a);
+		else if (h>=2 and h<3) col=SRGBA(P,v,T,a);
+		else if (h>=3 and h<4) col=SRGBA(P,Q,v,a);
+		else if (h>=4 and h<5) col=SRGBA(T,P,v,a);
+		else if (h>=5 and h<6) col=SRGBA(v,P,Q,a);
+		else col=SRGBA(0,0,0,a);
+	
+        cache[index].set(col);
         evaluated[index]=true;
         return;
     }

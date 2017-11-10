@@ -90,7 +90,8 @@ enum EOpcodes
     OP_ExtractBlue,
     OP_ExtractAlpha,
     OP_Grayscale,
-    OP_CombineRGBA
+    OP_CombineRGBA,
+	OP_CombineHSVA
 };
 
 struct SInstruction
