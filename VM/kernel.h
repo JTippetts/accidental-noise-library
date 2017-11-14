@@ -129,6 +129,8 @@ public:
 	CInstructionIndex linearStep(CInstructionIndex low, CInstructionIndex high, CInstructionIndex control);
 	CInstructionIndex smoothStep(CInstructionIndex low, CInstructionIndex high, CInstructionIndex control);
 	CInstructionIndex smootherStep(CInstructionIndex low, CInstructionIndex high, CInstructionIndex control);
+	
+	CInstructionIndex curveSection(CInstructionIndex lowv, CInstructionIndex t0, CInstructionIndex t1, CInstructionIndex v0, CInstructionIndex v1, CInstructionIndex control);
 
     // Patterns
     CInstructionIndex hexTile(CInstructionIndex seed);

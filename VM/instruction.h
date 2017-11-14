@@ -78,6 +78,8 @@ enum EOpcodes
 	OP_SmootherStep,
 	OP_LinearStep,
 	OP_Step,
+	
+	OP_CurveSection,
 
     // Patterns
     OP_HexTile,

@@ -260,6 +260,7 @@ void CNoiseExecutor::seedSource(InstructionListType &kernel, EvaluatedType &eval
 			case OP_SmootherStep:
 			case OP_LinearStep: for(int c=0; c<3; ++c) seedSource(kernel,evaluated,i.sources_[c],seed); return; break;
 			case OP_Step: for(int c=0; c<2; ++c) seedSource(kernel,evaluated,i.sources_[c],seed); return; break;
+			case OP_CurveSection: for(int c=0; c<6; ++c) seedSource(kernel,evaluated,i.sources_[c],seed); return; break;
 			case OP_HexTile: seedSource(kernel, evaluated, i.sources_[0], seed); return; break;
 			case OP_HexBump: return; break;
 			case OP_Color: return; break;
@@ -1292,6 +1293,32 @@ void CNoiseExecutor::evaluateInstruction(InstructionListType &kernel, EvaluatedT
         control=evaluateParameter(kernel, evaluated, coordcache,cache, i.sources_[1], coord);
         cache[index].set(control<val ? 0.0 : 1.0);
 		evaluated[index]=true;
+		return;
+	}
+	
+	case OP_CurveSection:
+	{
+		SVMOutput lowv=evaluateBoth(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
+		double control=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[5],coord);
+		double t0=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
+		double t1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[4],coord);
+		
+		if(control<t0)
+		{
+			cache[index].set(lowv);
+			evaluated[index]=true;
+		}
+		else
+		{
+			double interp=(control-t0)/(t1-t0);
+			interp=interp*interp*interp*(interp*(interp*6.0-15.0)+10.0);
+			interp=std::min(1.0, std::max(0.0, interp));
+			SVMOutput v0=evaluateBoth(kernel,evaluated,coordcache,cache,i.sources_[3],coord);
+			SVMOutput v1=evaluateBoth(kernel,evaluated,coordcache,cache,i.sources_[4],coord);
+		
+			cache[index].set(v0 + (v1-v0)*interp);
+			evaluated[index]=true;
+		}
 		return;
 	}
 

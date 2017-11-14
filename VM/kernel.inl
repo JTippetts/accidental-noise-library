@@ -650,6 +650,20 @@ CInstructionIndex CKernel::smootherStep(CInstructionIndex low, CInstructionIndex
     return lastIndex();
 }
 
+CInstructionIndex CKernel::curveSection(CInstructionIndex lowv, CInstructionIndex t0, CInstructionIndex t1, CInstructionIndex v0, CInstructionIndex v1, CInstructionIndex control)
+{
+	anl::SInstruction i;
+	i.opcode_=anl::OP_CurveSection;
+	i.sources_[0]=lowv.index_;
+	i.sources_[1]=t0.index_;
+	i.sources_[2]=t1.index_;
+	i.sources_[3]=v0.index_;
+	i.sources_[4]=v1.index_;
+	i.sources_[5]=control.index_;
+	kernel_.push_back(i);
+	return lastIndex();
+}
+
 CInstructionIndex CKernel::simpleFractalLayer(unsigned int basistype, CInstructionIndex interpindex, double layerscale, double layerfreq, unsigned int s, bool rot,
         double angle, double ax, double ay, double az)
 {
