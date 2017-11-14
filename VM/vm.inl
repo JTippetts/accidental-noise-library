@@ -1301,7 +1301,7 @@ void CNoiseExecutor::evaluateInstruction(InstructionListType &kernel, EvaluatedT
 		SVMOutput lowv=evaluateBoth(kernel,evaluated,coordcache,cache,i.sources_[0],coord);
 		double control=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[5],coord);
 		double t0=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[1],coord);
-		double t1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[4],coord);
+		double t1=evaluateParameter(kernel,evaluated,coordcache,cache,i.sources_[2],coord);
 		
 		if(control<t0)
 		{
