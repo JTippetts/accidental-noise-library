@@ -18,7 +18,7 @@ void shuffleDirections(SDrop *dirs, anl::CMWC4096 &rnd)
     }
 }
 
-SDrop find_lowest_neighbor(anl::CMWC4096 &rnd, anl::CArray2Dd &map, int x, int y)
+SDrop find_lowest_neighbor(anl::CMWC4096 &rnd, anl::CArray2Dd &map, int x, int y, bool seamless)
 {
     int w=map.width(), h=map.height();
 
@@ -45,22 +45,39 @@ SDrop find_lowest_neighbor(anl::CMWC4096 &rnd, anl::CArray2Dd &map, int x, int y
     {
         int i=x+dirs[c].x;
         int j=y+dirs[c].y;
-        if(i>=0 && i<w && j>=0 && j<h)
-        {
-            double v=map.get(i,j);
-            if(v<minht)
-            {
-                minht=v;
-                minx=i;
-                miny=j;
-            }
-        }
+        if(!seamless)
+		{
+			if(i>=0 && i<w && j>=0 && j<h)
+			{
+				double v=map.get(i,j);
+				if(v<minht)
+				{
+					minht=v;
+					minx=i;
+					miny=j;
+				}
+			}
+		}
+		else
+		{
+			while(i<0) i+=w;
+			while(i>=w) i-=w;
+			while(j<0) j+=h;
+			while(j>=h) j-=h;
+			double v=map.get(i,j);
+			if(v<minht)
+			{
+				minht=v;
+				minx=i;
+				miny=j;
+			}
+		}
     }
 
     return SDrop(minx,miny);
 }
 
-void simpleErode(anl::CArray2Dd &map, unsigned int numdrops, float power)
+void simpleErode(anl::CArray2Dd &map, unsigned int numdrops, float power, bool seamless)
 {
     anl::CMWC4096 rnd;
     rnd.setSeedTime();
@@ -80,7 +97,7 @@ void simpleErode(anl::CArray2Dd &map, unsigned int numdrops, float power)
         SDrop drop=drops.front();
         drops.pop_front();
 
-        SDrop low=find_lowest_neighbor(rnd, map, drop.x, drop.y);
+        SDrop low=find_lowest_neighbor(rnd, map, drop.x, drop.y, seamless);
         if(low.x != drop.x || low.y!=drop.y)
         {
             double ht=map.get(drop.x,drop.y);
@@ -95,7 +112,7 @@ void simpleErode(anl::CArray2Dd &map, unsigned int numdrops, float power)
     }
 }
 
-void waterFlow(anl::CArray2Dd &map, anl::CArray2Dd &flow, unsigned int numdrops)
+void waterFlow(anl::CArray2Dd &map, anl::CArray2Dd &flow, unsigned int numdrops, bool seamless)
 {
 	anl::CMWC4096 rnd;
     rnd.setSeedTime();
@@ -118,7 +135,7 @@ void waterFlow(anl::CArray2Dd &map, anl::CArray2Dd &flow, unsigned int numdrops)
         SDrop drop=drops.front();
         drops.pop_front();
 
-        SDrop low=find_lowest_neighbor(rnd, map, drop.x, drop.y);
+        SDrop low=find_lowest_neighbor(rnd, map, drop.x, drop.y, seamless);
         if(low.x != drop.x || low.y!=drop.y)
         {
             flow.set(low.x,low.y,flow.get(low.x,low.y)+1);

@@ -433,7 +433,7 @@ void loadDoubleArray(const char *filename, CArray2Dd *array);
 void loadRGBAArray(const char *filename, CArray2Drgba *array);
 	
 	
-void simpleErode(CArray2Dd &map, unsigned int numdrops, float power);
-void waterFlow(CArray2Dd &map, CArray2Dd &flow, unsigned int numdrops);
+void simpleErode(CArray2Dd &map, unsigned int numdrops, float power, bool seamless);
+void waterFlow(CArray2Dd &map, CArray2Dd &flow, unsigned int numdrops, bool seamless);
 void calcNormalMap(CArray2Dd *map, CArray2Drgba *bump, float spacing, bool normalize, bool wrap);
 void calcBumpMap(CArray2Dd *map, CArray2Dd *bump, float light[3], float spacing, bool wrap);

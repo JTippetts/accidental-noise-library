@@ -10981,7 +10981,8 @@ static int tolua_bind_anl_simpleErode00(lua_State* tolua_S)
  (tolua_isvaluenil(tolua_S,1,&tolua_err) || !tolua_isusertype(tolua_S,1,"CArray2Dd",0,&tolua_err)) ||
  !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
  !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
- !tolua_isnoobj(tolua_S,4,&tolua_err)
+ !tolua_isboolean(tolua_S,4,0,&tolua_err) ||
+ !tolua_isnoobj(tolua_S,5,&tolua_err)
  )
  goto tolua_lerror;
  else
@@ -10990,8 +10991,9 @@ static int tolua_bind_anl_simpleErode00(lua_State* tolua_S)
   CArray2Dd* map = ((CArray2Dd*)  tolua_tousertype(tolua_S,1,0));
   unsigned int numdrops = ((unsigned int)  tolua_tonumber(tolua_S,2,0));
   float power = ((float)  tolua_tonumber(tolua_S,3,0));
+  bool seamless = ((bool)  tolua_toboolean(tolua_S,4,0));
  {
-  simpleErode(*map,numdrops,power);
+  simpleErode(*map,numdrops,power,seamless);
  }
  }
  return 0;
@@ -11013,7 +11015,8 @@ static int tolua_bind_anl_waterFlow00(lua_State* tolua_S)
  (tolua_isvaluenil(tolua_S,1,&tolua_err) || !tolua_isusertype(tolua_S,1,"CArray2Dd",0,&tolua_err)) ||
  (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"CArray2Dd",0,&tolua_err)) ||
  !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
- !tolua_isnoobj(tolua_S,4,&tolua_err)
+ !tolua_isboolean(tolua_S,4,0,&tolua_err) ||
+ !tolua_isnoobj(tolua_S,5,&tolua_err)
  )
  goto tolua_lerror;
  else
@@ -11022,8 +11025,9 @@ static int tolua_bind_anl_waterFlow00(lua_State* tolua_S)
   CArray2Dd* map = ((CArray2Dd*)  tolua_tousertype(tolua_S,1,0));
   CArray2Dd* flow = ((CArray2Dd*)  tolua_tousertype(tolua_S,2,0));
   unsigned int numdrops = ((unsigned int)  tolua_tonumber(tolua_S,3,0));
+  bool seamless = ((bool)  tolua_toboolean(tolua_S,4,0));
  {
-  waterFlow(*map,*flow,numdrops);
+  waterFlow(*map,*flow,numdrops,seamless);
  }
  }
  return 0;
